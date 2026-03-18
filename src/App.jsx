@@ -2005,7 +2005,7 @@ export default function App() {
                 <div className="logo-sub">Application received</div>
                 <p className="subtext" style={{margin:"14px 0 18px"}}>We'll reach out to <strong style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>{artistForm.email||"your email"}</strong> within 2-3 business days.</p>
                 <div className="note" style={{textAlign:"left",marginBottom:20}}>{E.note} Once approved, you'll earn $3 for every $5 ticket your riders purchase.</div>
-                <button className="btn btn-ghost" onClick={()=>go(SCREENS.LANDING)}><- Home</button>
+                <button className="btn btn-ghost" onClick={()=>go(SCREENS.LANDING)}>Home</button>
               </div>
             )}
             {screen===SCREENS.ARTIST_CLOSED&&(
@@ -2014,7 +2014,7 @@ export default function App() {
                 <div className="logo-sub">Account closed</div>
                 <p className="subtext" style={{margin:"14px 0 18px"}}>Your artist account has been closed. Your profile and posts have been removed from tourbus.</p>
                 <div className="note" style={{textAlign:"left",marginBottom:20,borderColor:"#331111",color:"#884444"}}>If this was a mistake or you'd like to return to tourbus in the future, reach out to us at <span style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>artists@tourbus.live</span>.</div>
-                <button className="btn btn-ghost" onClick={()=>go(SCREENS.LANDING)}><- Home</button>
+                <button className="btn btn-ghost" onClick={()=>go(SCREENS.LANDING)}>Home</button>
               </div>
             )}
             {screen===SCREENS.RIDER_CLOSED&&(
@@ -2023,7 +2023,7 @@ export default function App() {
                 <div className="logo-sub">Account closed</div>
                 <p className="subtext" style={{margin:"14px 0 18px"}}>Your rider account has been closed. We're sorry to see you go.</p>
                 <div className="note" style={{textAlign:"left",marginBottom:20,borderColor:"#331111",color:"#884444"}}>If this was a mistake, reach out to us at <span style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>hello@tourbus.live</span>.</div>
-                <button className="btn btn-ghost" onClick={()=>go(SCREENS.LANDING)}><- Home</button>
+                <button className="btn btn-ghost" onClick={()=>go(SCREENS.LANDING)}>Home</button>
               </div>
             )}
           </div>
