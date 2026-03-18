@@ -54,13 +54,17 @@ const ARTISTS = [
 const LIVE_IDS = new Set([1, 5, 9]); // The Midnight, Colt Reyes, Dusk Radio
 
 const INIT_FEED = [
-  {id:8,artist:"The Midnight",type:"photo",color:"#0a0a2e",label:"Soundcheck @ The Roxy â€” LA, you have no idea what's coming tonight. We've been sitting on this new arrangement for three months and we're finally letting it loose. Doors at 8. We wouldn't be here if it wasn't for @Wilco.",time:"1h ago",likes:198},
-  {id:1,artist:"The Midnight",type:"photo",color:"#0a0a2e",label:"Soundcheck @ The Roxy â€” LA, you have no idea what's coming tonight. We've been sitting on this new arrangement for three months and we're finally letting it loose. Doors at 8.",time:"2h ago",likes:312},
-  {id:2,artist:"Colt Reyes",type:"video",color:"#2e1800",label:"Mile 1,200 on the bus. Somewhere outside Amarillo, coffee's cold, Jake's already asleep, and I'm watching the sun come up over nothing but flat. Wrote half a song. Might be the best thing I've ever done or complete garbage â€” too early to tell.",time:"5h ago",likes:87},
+  {id:11,artist:"The Midnight",type:"photo",color:"#0a0a2e",label:"Lollapalooza 2026 confirmed. See you in Grant Park. This one is going to be something else. #lollapalooza2026",time:"3d ago",likes:892},
+  {id:12,artist:"Jade Carver",type:"photo",color:"#1a2e0a",label:"Just got the call. @Jade Carver is playing Lollapalooza 2026. I have been waiting for this moment my entire life. #lollapalooza2026",time:"4d ago",likes:634},
+  {id:13,artist:"Neon Palms",type:"video",color:"#001a2e",label:"Grant Park, Chicago. July 2026. We will be there. #lollapalooza2026 #dreampop",time:"5d ago",likes:441},
+
+  {id:8,artist:"The Midnight",type:"photo",color:"#0a0a2e",label:"Soundcheck @ The Roxy -- LA, you have no idea what's coming tonight. We've been sitting on this new arrangement for three months and we're finally letting it loose. Doors at 8. We wouldn't be here if it wasn't for @Wilco.",time:"1h ago",likes:198},
+  {id:1,artist:"The Midnight",type:"photo",color:"#0a0a2e",label:"Soundcheck @ The Roxy -- LA, you have no idea what's coming tonight. We've been sitting on this new arrangement for three months and we're finally letting it loose. Doors at 8.",time:"2h ago",likes:312},
+  {id:2,artist:"Colt Reyes",type:"video",color:"#2e1800",label:"Mile 1,200 on the bus. Somewhere outside Amarillo, coffee's cold, Jake's already asleep, and I'm watching the sun come up over nothing but flat. Wrote half a song. Might be the best thing I've ever done or complete garbage -- too early to tell.",time:"5h ago",likes:87},
   {id:3,artist:"Neon Palms",type:"photo",color:"#001a2e",label:"Wrapped our last studio session for the record tonight. 11 tracks. 14 months. A lot of late nights and bad takeout and moments where we almost scrapped the whole thing. Feels unreal to finally say it's done.",time:"8h ago",likes:204},
   {id:9,artist:"tourbus",type:"video",color:"#0e0e0e",label:"We sat down with @Jade Carver ahead of her first headline tour to talk about the road, the songs, and what it feels like when it's finally real. One of the most honest conversations we've had. Don't miss her.",time:"12h ago",likes:0,isTourbus:true},
   {id:10,artist:"tourbus",type:"photo",color:"#0e0e0e",label:"Caught up with @Static Bloom on their first night in the van somewhere in New Jersey. It's raining, they're laughing, and they have no idea what's about to hit them. Get on their bus before everyone else does.",time:"14h ago",likes:0,isTourbus:true},
-  {id:4,artist:"The Midnight",type:"video",color:"#1a0a3e",label:"Here's how the setlist comes together the day of a show. Tyler and I go back and forth for hours â€” we pulled three songs tonight and added one we haven't played live since 2022. No spoilers.",time:"1d ago",likes:519},
+  {id:4,artist:"The Midnight",type:"video",color:"#1a0a3e",label:"Here's how the setlist comes together the day of a show. Tyler and I go back and forth for hours -- we pulled three songs tonight and added one we haven't played live since 2022. No spoilers.",time:"1d ago",likes:519},
   {id:5,artist:"Jade Carver",type:"photo",color:"#1a2e0a",label:"Playing my hometown tonight for the first time since I left at 19. My mom's in the front row. My high school English teacher bought a ticket. I am not going to hold it together and I am completely okay with that.",time:"1d ago",likes:143},
   {id:6,artist:"Colt Reyes",type:"photo",color:"#2e1000",label:"Meet the crew that makes this whole thing run. L to R: Jake (merch + moral support), Dani (tour manager, actual backbone of this operation), T-Ray (sound), and Boots (driver, 22 years, never late once). Buy them a drink if you see them.",time:"2d ago",likes:76},
   {id:7,artist:"tourbus",type:"announcement",color:"#0e0e0e",label:"New artist alert: Static Bloom just joined tourbus. The UK shoegaze duo is documenting their first US tour from a van. Grab your $5 ticket at the Station.",time:"3d ago",likes:0,isTourbus:true},
@@ -215,7 +219,7 @@ const SPOTIFY_ARTISTS = [
   {id:213,name:'Don Omar',genre:'',riders:0,standby:5580,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:214,name:'Usher',genre:'',riders:0,standby:7086,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:215,name:'Luke Combs',genre:'',riders:0,standby:4044,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:216,name:'TiÃ«sto',genre:'',riders:0,standby:5602,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:216,name:'Ti&#235;sto',genre:'',riders:0,standby:5602,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:217,name:'Don Toliver',genre:'',riders:0,standby:3351,color:'#1a000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:218,name:'Metallica',genre:'',riders:0,standby:4761,color:'#0d000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:219,name:'Charlie Puth',genre:'',riders:0,standby:3379,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -261,7 +265,7 @@ const SPOTIFY_ARTISTS = [
   {id:259,name:'The Kid LAROI',genre:'',riders:0,standby:3835,color:'#001510',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:260,name:'Anitta',genre:'',riders:0,standby:6004,color:'#100015',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:261,name:'Justin Quiles',genre:'',riders:0,standby:2215,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:262,name:'MarÃ­lia MendonÃ§a',genre:'',riders:0,standby:6797,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:262,name:'Mar&#237;lia Mendon&#231;a',genre:'',riders:0,standby:6797,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:263,name:'Black Eyed Peas',genre:'',riders:0,standby:2807,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:264,name:'Green Day',genre:'',riders:0,standby:1305,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:265,name:'Gucci Mane',genre:'',riders:0,standby:3465,color:'#1a000d',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -276,9 +280,9 @@ const SPOTIFY_ARTISTS = [
   {id:274,name:'Panic! At The Disco',genre:'',riders:0,standby:4999,color:'#0a001a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:275,name:'Ne-Yo',genre:'',riders:0,standby:2836,color:'#1a000a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:276,name:'Stray Kids',genre:'',riders:0,standby:2021,color:'#001a00',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:277,name:'Lenny TavÃ¡rez',genre:'',riders:0,standby:1389,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:277,name:'Lenny Tav&#225;rez',genre:'',riders:0,standby:1389,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:278,name:'Joji',genre:'',riders:0,standby:2103,color:'#1a0a0a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:279,name:'ROSALÃA',genre:'',riders:0,standby:3576,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:279,name:'ROSAL&#205;A',genre:'',riders:0,standby:3576,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:280,name:'A.R. Rahman',genre:'',riders:0,standby:3673,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:281,name:'Morat',genre:'',riders:0,standby:1918,color:'#0a150a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:282,name:'Bryson Tiller',genre:'',riders:0,standby:3731,color:'#1a1500',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -307,14 +311,14 @@ const SPOTIFY_ARTISTS = [
   {id:305,name:'Wisin',genre:'',riders:0,standby:1774,color:'#0a150a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:306,name:'Lil Nas X',genre:'',riders:0,standby:465,color:'#1a1500',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:307,name:'Becky G',genre:'',riders:0,standby:1759,color:'#001510',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:308,name:'Banda MS de Sergio LizÃ¡rraga',genre:'',riders:0,standby:231,color:'#100015',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:308,name:'Banda MS de Sergio Liz&#225;rraga',genre:'',riders:0,standby:231,color:'#100015',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:309,name:'Tame Impala',genre:'',riders:0,standby:1062,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:310,name:'Pink Floyd',genre:'',riders:0,standby:721,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:311,name:'Zara Larsson',genre:'',riders:0,standby:294,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:312,name:'Rels B',genre:'',riders:0,standby:990,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:313,name:'Miguel',genre:'',riders:0,standby:419,color:'#1a000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:314,name:'John Mayer',genre:'',riders:0,standby:1925,color:'#0d000d',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:315,name:'Michael BublÃ©',genre:'',riders:0,standby:1944,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:315,name:'Michael Bubl&#233;',genre:'',riders:0,standby:1944,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:316,name:'Anne-Marie',genre:'',riders:0,standby:1550,color:'#0a0a2e',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:317,name:'Childish Gambino',genre:'',riders:0,standby:830,color:'#1a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:318,name:'Jack Harlow',genre:'',riders:0,standby:1640,color:'#0a1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -337,7 +341,7 @@ const SPOTIFY_ARTISTS = [
   {id:335,name:'Robin Schulz',genre:'',riders:0,standby:495,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:336,name:'TWICE',genre:'',riders:0,standby:1174,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:337,name:'Wisin & Yandel',genre:'',riders:0,standby:1451,color:'#1a000d',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:338,name:'Ã‘engo Flow',genre:'',riders:0,standby:1958,color:'#0d000d',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:338,name:'&#209;engo Flow',genre:'',riders:0,standby:1958,color:'#0d000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:339,name:'Gusttavo Lima',genre:'',riders:0,standby:420,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:340,name:'The Rolling Stones',genre:'',riders:0,standby:876,color:'#0a0a2e',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:341,name:'Bryant Myers',genre:'',riders:0,standby:1838,color:'#1a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -375,7 +379,7 @@ const SPOTIFY_ARTISTS = [
   {id:373,name:'The Notorious B.I.G.',genre:'',riders:0,standby:1782,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:374,name:'Creedence Clearwater Revival',genre:'',riders:0,standby:398,color:'#1a0a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:375,name:'Jung Kook',genre:'',riders:0,standby:1207,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:376,name:'JhenÃ© Aiko',genre:'',riders:0,standby:534,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:376,name:'Jhen&#233; Aiko',genre:'',riders:0,standby:534,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:377,name:'Florida Georgia Line',genre:'',riders:0,standby:1140,color:'#0a150a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:378,name:'Labrinth',genre:'',riders:0,standby:366,color:'#1a1500',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:379,name:'WizKid',genre:'',riders:0,standby:1309,color:'#001510',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -383,7 +387,7 @@ const SPOTIFY_ARTISTS = [
   {id:381,name:'Summer Walker',genre:'',riders:0,standby:845,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:382,name:'Rammstein',genre:'',riders:0,standby:1878,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:383,name:'Kehlani',genre:'',riders:0,standby:1517,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:384,name:'ZÃ© Neto & Cristiano',genre:'',riders:0,standby:1473,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:384,name:'Z&#233; Neto & Cristiano',genre:'',riders:0,standby:1473,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:385,name:'De La Ghetto',genre:'',riders:0,standby:1807,color:'#1a000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:386,name:'League of Legends',genre:'',riders:0,standby:1243,color:'#0d000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:387,name:'Mitski',genre:'',riders:0,standby:1953,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -407,7 +411,7 @@ const SPOTIFY_ARTISTS = [
   {id:405,name:'Jeremih',genre:'',riders:0,standby:1765,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:406,name:'Paulo Londra',genre:'',riders:0,standby:1441,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:407,name:'Conan Gray',genre:'',riders:0,standby:1018,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:408,name:'BeÃ©le',genre:'',riders:0,standby:926,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:408,name:'Be&#233;le',genre:'',riders:0,standby:926,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:409,name:'Matheus & Kauan',genre:'',riders:0,standby:1024,color:'#1a000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:410,name:'Dalex',genre:'',riders:0,standby:557,color:'#0d000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:411,name:'U2',genre:'',riders:0,standby:297,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -422,8 +426,8 @@ const SPOTIFY_ARTISTS = [
   {id:420,name:'Marc Anthony',genre:'',riders:0,standby:1580,color:'#001a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:421,name:'Led Zeppelin',genre:'',riders:0,standby:1998,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:422,name:'Danny Ocean',genre:'',riders:0,standby:1234,color:'#1a0a0a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:423,name:'MÃ¥neskin',genre:'',riders:0,standby:866,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:424,name:'ManÃ¡',genre:'',riders:0,standby:1267,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:423,name:'M&#229;neskin',genre:'',riders:0,standby:866,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:424,name:'Man&#225;',genre:'',riders:0,standby:1267,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:425,name:'Central Cee',genre:'',riders:0,standby:1692,color:'#0a150a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:426,name:'The Lumineers',genre:'',riders:0,standby:822,color:'#1a1500',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:427,name:'Anderson .Paak',genre:'',riders:0,standby:1393,color:'#001510',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -431,7 +435,7 @@ const SPOTIFY_ARTISTS = [
   {id:429,name:'Mac DeMarco',genre:'',riders:0,standby:1798,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:430,name:'Nickelback',genre:'',riders:0,standby:874,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:431,name:'Jonas Blue',genre:'',riders:0,standby:1560,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:432,name:'La Arrolladora Banda El LimÃ³n De Rene Camacho',genre:'',riders:0,standby:1162,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:432,name:'La Arrolladora Banda El Lim&#243;n De Rene Camacho',genre:'',riders:0,standby:1162,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:433,name:'Bastille',genre:'',riders:0,standby:1682,color:'#1a000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:434,name:'Sfera Ebbasta',genre:'',riders:0,standby:1237,color:'#0d000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:435,name:'Benson Boone',genre:'',riders:0,standby:771,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -453,7 +457,7 @@ const SPOTIFY_ARTISTS = [
   {id:451,name:'Tanishk Bagchi',genre:'',riders:0,standby:291,color:'#001510',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:452,name:'Cartel De Santa',genre:'',riders:0,standby:1366,color:'#100015',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:453,name:'Giveon',genre:'',riders:0,standby:1211,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:454,name:'JuliÃ³n Ãlvarez y su NorteÃ±o Banda',genre:'',riders:0,standby:1560,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:454,name:'Juli&#243;n &#193;lvarez y su Norte&#241;o Banda',genre:'',riders:0,standby:1560,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:455,name:'Oscar Maydon',genre:'',riders:0,standby:401,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:456,name:'Billy Joel',genre:'',riders:0,standby:851,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:457,name:'Muse',genre:'',riders:0,standby:506,color:'#1a000d',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -470,7 +474,7 @@ const SPOTIFY_ARTISTS = [
   {id:468,name:'Jack Johnson',genre:'',riders:0,standby:1787,color:'#001a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:469,name:'Clairo',genre:'',riders:0,standby:748,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:470,name:'Whitney Houston',genre:'',riders:0,standby:1902,color:'#1a0a0a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:471,name:'Alejandro FernÃ¡ndez',genre:'',riders:0,standby:889,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:471,name:'Alejandro Fern&#225;ndez',genre:'',riders:0,standby:889,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:472,name:'Amy Winehouse',genre:'',riders:0,standby:808,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:473,name:'Alfredo Olivas',genre:'',riders:0,standby:597,color:'#0a150a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:474,name:'Hans Zimmer',genre:'',riders:0,standby:408,color:'#1a1500',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -517,11 +521,11 @@ const SPOTIFY_ARTISTS = [
   {id:515,name:'Chappell Roan',genre:'',riders:0,standby:504,color:'#1a000a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:516,name:'Rod Wave',genre:'',riders:0,standby:1747,color:'#001a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:517,name:'R3HAB',genre:'',riders:0,standby:1430,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:518,name:'Vicente FernÃ¡ndez',genre:'',riders:0,standby:504,color:'#1a0a0a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:518,name:'Vicente Fern&#225;ndez',genre:'',riders:0,standby:504,color:'#1a0a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:519,name:'GIMS',genre:'',riders:0,standby:1934,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:520,name:'Jess Glynne',genre:'',riders:0,standby:1314,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:521,name:'RAF Camora',genre:'',riders:0,standby:1706,color:'#0a150a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:522,name:'Wesley SafadÃ£o',genre:'',riders:0,standby:1528,color:'#1a1500',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:522,name:'Wesley Safad&#227;o',genre:'',riders:0,standby:1528,color:'#1a1500',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:523,name:'ScHoolboy Q',genre:'',riders:0,standby:353,color:'#001510',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:524,name:'Disclosure',genre:'',riders:0,standby:1087,color:'#100015',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:525,name:'Eagles',genre:'',riders:0,standby:1389,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -537,7 +541,7 @@ const SPOTIFY_ARTISTS = [
   {id:535,name:'The Smiths',genre:'',riders:0,standby:978,color:'#1a0a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:536,name:'NewJeans',genre:'',riders:0,standby:934,color:'#001a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:537,name:'Ricardo Arjona',genre:'',riders:0,standby:1799,color:'#1a1a00',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:538,name:'Los Ãngeles Azules',genre:'',riders:0,standby:973,color:'#0a001a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:538,name:'Los &#193;ngeles Azules',genre:'',riders:0,standby:973,color:'#0a001a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:539,name:'H.E.R.',genre:'',riders:0,standby:1901,color:'#1a000a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:540,name:'Dire Straits',genre:'',riders:0,standby:1016,color:'#001a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:541,name:'Disturbed',genre:'',riders:0,standby:374,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -551,7 +555,7 @@ const SPOTIFY_ARTISTS = [
   {id:549,name:'Johnny Cash',genre:'',riders:0,standby:1053,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:550,name:'Bon Iver',genre:'',riders:0,standby:1496,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:551,name:'Nicki Nicole',genre:'',riders:0,standby:801,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:552,name:'CÃ©line Dion',genre:'',riders:0,standby:1615,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:552,name:'C&#233;line Dion',genre:'',riders:0,standby:1615,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:553,name:'KHEA',genre:'',riders:0,standby:1485,color:'#1a000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:554,name:'Tiago PZK',genre:'',riders:0,standby:1815,color:'#0d000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:555,name:'Nelly Furtado',genre:'',riders:0,standby:456,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -571,7 +575,7 @@ const SPOTIFY_ARTISTS = [
   {id:569,name:'JENNIE',genre:'',riders:0,standby:1802,color:'#0a150a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:570,name:'Tom Odell',genre:'',riders:0,standby:566,color:'#1a1500',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:571,name:'beabadoobee',genre:'',riders:0,standby:764,color:'#001510',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:572,name:'Marco Antonio SolÃ­s',genre:'',riders:0,standby:235,color:'#100015',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:572,name:'Marco Antonio Sol&#237;s',genre:'',riders:0,standby:235,color:'#100015',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:573,name:'YNW Melly',genre:'',riders:0,standby:1704,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:574,name:'Jason Mraz',genre:'',riders:0,standby:1094,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:575,name:'Mc IG',genre:'',riders:0,standby:1560,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -589,16 +593,16 @@ const SPOTIFY_ARTISTS = [
   {id:587,name:'Alec Benjamin',genre:'',riders:0,standby:1598,color:'#1a000a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:588,name:'Outkast',genre:'',riders:0,standby:543,color:'#001a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:589,name:'Los Tigres Del Norte',genre:'',riders:0,standby:259,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:590,name:'Pablo AlborÃ¡n',genre:'',riders:0,standby:1567,color:'#1a0a0a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:590,name:'Pablo Albor&#225;n',genre:'',riders:0,standby:1567,color:'#1a0a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:591,name:'Los Temerarios',genre:'',riders:0,standby:211,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:592,name:'Korn',genre:'',riders:0,standby:1497,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:593,name:'Lizzo',genre:'',riders:0,standby:623,color:'#0a150a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:594,name:'Mustard',genre:'',riders:0,standby:1407,color:'#1a1500',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:595,name:'Jesse & Joy',genre:'',riders:0,standby:1367,color:'#001510',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:596,name:'Grupo Menos Ã‰ Mais',genre:'',riders:0,standby:1536,color:'#100015',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:596,name:'Grupo Menos &#201; Mais',genre:'',riders:0,standby:1536,color:'#100015',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:597,name:'The Cure',genre:'',riders:0,standby:1737,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:598,name:'Phoebe Bridgers',genre:'',riders:0,standby:1667,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:599,name:'JosÃ© JosÃ©',genre:'',riders:0,standby:826,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:599,name:'Jos&#233; Jos&#233;',genre:'',riders:0,standby:826,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:600,name:'Filipe Ret',genre:'',riders:0,standby:408,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:601,name:'Train',genre:'',riders:0,standby:161,color:'#1a000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:602,name:'Trey Songz',genre:'',riders:0,standby:287,color:'#0d000d',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -612,7 +616,7 @@ const SPOTIFY_ARTISTS = [
   {id:610,name:'Bibi und Tina',genre:'',riders:0,standby:214,color:'#0a001a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:611,name:'Mc Don Juan',genre:'',riders:0,standby:197,color:'#1a000a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:612,name:'Lin-Manuel Miranda',genre:'',riders:0,standby:230,color:'#001a00',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:613,name:'MatuÃª',genre:'',riders:0,standby:269,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:613,name:'Matu&#234;',genre:'',riders:0,standby:269,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:614,name:'Luciano',genre:'',riders:0,standby:264,color:'#1a0a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:615,name:'d4vd',genre:'',riders:0,standby:200,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:616,name:'Carlos Vives',genre:'',riders:0,standby:112,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -630,7 +634,7 @@ const SPOTIFY_ARTISTS = [
   {id:628,name:'Juan Luis Guerra 4.40',genre:'',riders:0,standby:297,color:'#0a0a2e',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:629,name:'Cosculluela',genre:'',riders:0,standby:413,color:'#1a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:630,name:'Swedish House Mafia',genre:'',riders:0,standby:344,color:'#0a1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:631,name:'The MarÃ­as',genre:'',riders:0,standby:126,color:'#1a0a00',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:631,name:'The Mar&#237;as',genre:'',riders:0,standby:126,color:'#1a0a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:632,name:'John Williams',genre:'',riders:0,standby:205,color:'#001a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:633,name:'A$AP Ferg',genre:'',riders:0,standby:286,color:'#1a1a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:634,name:'Soda Stereo',genre:'',riders:0,standby:86,color:'#0a001a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -668,7 +672,7 @@ const SPOTIFY_ARTISTS = [
   {id:666,name:'Wale',genre:'',riders:0,standby:84,color:'#1a1500',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:667,name:'Lunay',genre:'',riders:0,standby:135,color:'#001510',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:668,name:'Skillet',genre:'',riders:0,standby:463,color:'#100015',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:669,name:'LuÃ­sa Sonza',genre:'',riders:0,standby:148,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:669,name:'Lu&#237;sa Sonza',genre:'',riders:0,standby:148,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:670,name:'AJR',genre:'',riders:0,standby:56,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:671,name:'Jessie J',genre:'',riders:0,standby:224,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:672,name:'Mon Laferte',genre:'',riders:0,standby:263,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -743,7 +747,7 @@ const SPOTIFY_ARTISTS = [
   {id:741,name:'Maren Morris',genre:'',riders:0,standby:384,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:742,name:'Sade',genre:'',riders:0,standby:389,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:743,name:'Jubin Nautiyal',genre:'',riders:0,standby:341,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:744,name:'ROSÃ‰',genre:'',riders:0,standby:383,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:744,name:'ROS&#201;',genre:'',riders:0,standby:383,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:745,name:'Melendi',genre:'',riders:0,standby:450,color:'#1a000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:746,name:'Topic',genre:'',riders:0,standby:367,color:'#0d000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:747,name:'Carly Rae Jepsen',genre:'',riders:0,standby:288,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -777,7 +781,7 @@ const SPOTIFY_ARTISTS = [
   {id:775,name:'Mike Posner',genre:'',riders:0,standby:484,color:'#1a0a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:776,name:'YOASOBI',genre:'',riders:0,standby:106,color:'#001a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:777,name:'Seeb',genre:'',riders:0,standby:357,color:'#1a1a00',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:778,name:'ZoÃ©',genre:'',riders:0,standby:348,color:'#0a001a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:778,name:'Zo&#233;',genre:'',riders:0,standby:348,color:'#0a001a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:779,name:'El Fantasma',genre:'',riders:0,standby:125,color:'#1a000a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:780,name:'D-Block Europe',genre:'',riders:0,standby:390,color:'#001a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:781,name:'The Black Keys',genre:'',riders:0,standby:159,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -794,7 +798,7 @@ const SPOTIFY_ARTISTS = [
   {id:792,name:'Kim Petras',genre:'',riders:0,standby:341,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:793,name:'Keane',genre:'',riders:0,standby:142,color:'#1a000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:794,name:'Van Morrison',genre:'',riders:0,standby:394,color:'#0d000d',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:795,name:'Juan MagÃ¡n',genre:'',riders:0,standby:497,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:795,name:'Juan Mag&#225;n',genre:'',riders:0,standby:497,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:796,name:'Niska',genre:'',riders:0,standby:69,color:'#0a0a2e',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:797,name:'Stromae',genre:'',riders:0,standby:112,color:'#1a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:798,name:'Joey Bada$$',genre:'',riders:0,standby:141,color:'#0a1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -917,14 +921,14 @@ const SPOTIFY_ARTISTS = [
   {id:915,name:'Prince',genre:'',riders:0,standby:469,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:916,name:'Years & Years',genre:'',riders:0,standby:423,color:'#0a0a2e',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:917,name:'Red Velvet',genre:'',riders:0,standby:466,color:'#1a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:918,name:'JesÃºs AdriÃ¡n Romero',genre:'',riders:0,standby:241,color:'#0a1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:918,name:'Jes&#250;s Adri&#225;n Romero',genre:'',riders:0,standby:241,color:'#0a1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:919,name:'La Santa Grifa',genre:'',riders:0,standby:91,color:'#1a0a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:920,name:'3 Doors Down',genre:'',riders:0,standby:132,color:'#001a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:921,name:'j-hope',genre:'',riders:0,standby:253,color:'#1a1a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:922,name:'LUCKI',genre:'',riders:0,standby:481,color:'#0a001a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:923,name:'Alex Rose',genre:'',riders:0,standby:128,color:'#1a000a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:924,name:'Falling In Reverse',genre:'',riders:0,standby:96,color:'#001a00',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:925,name:'Eden MuÃ±oz',genre:'',riders:0,standby:69,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:925,name:'Eden Mu&#241;oz',genre:'',riders:0,standby:69,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:926,name:'Calle 24',genre:'',riders:0,standby:405,color:'#1a0a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:927,name:'B Praak',genre:'',riders:0,standby:242,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:928,name:'Samra',genre:'',riders:0,standby:448,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -949,7 +953,7 @@ const SPOTIFY_ARTISTS = [
   {id:947,name:'The Vamps',genre:'',riders:0,standby:206,color:'#1a000a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:948,name:'Jimi Hendrix',genre:'',riders:0,standby:223,color:'#001a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:949,name:'Ella Mai',genre:'',riders:0,standby:56,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:950,name:'AminÃ©',genre:'',riders:0,standby:194,color:'#1a0a0a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:950,name:'Amin&#233;',genre:'',riders:0,standby:194,color:'#1a0a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:951,name:'Stephen Sanchez',genre:'',riders:0,standby:375,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:952,name:'Timmy Trumpet',genre:'',riders:0,standby:67,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:953,name:'JP Cooper',genre:'',riders:0,standby:421,color:'#0a150a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -966,13 +970,13 @@ const SPOTIFY_ARTISTS = [
   {id:964,name:'NEFFEX',genre:'',riders:0,standby:478,color:'#0a0a2e',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:965,name:'Kodaline',genre:'',riders:0,standby:432,color:'#1a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:966,name:'Doechii',genre:'',riders:0,standby:72,color:'#0a1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:967,name:'RÃœFÃœS DU SOL',genre:'',riders:0,standby:279,color:'#1a0a00',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:967,name:'R&#220;F&#220;S DU SOL',genre:'',riders:0,standby:279,color:'#1a0a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:968,name:'Aretha Franklin',genre:'',riders:0,standby:374,color:'#001a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:969,name:'Bethel Music',genre:'',riders:0,standby:238,color:'#1a1a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:970,name:'Sezen Aksu',genre:'',riders:0,standby:104,color:'#0a001a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:971,name:'Carla Morrison',genre:'',riders:0,standby:143,color:'#1a000a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:972,name:'MÃ¶tley CrÃ¼e',genre:'',riders:0,standby:245,color:'#001a00',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:973,name:'ANAVITÃ“RIA',genre:'',riders:0,standby:75,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:972,name:'M&#246;tley Cr&#252;e',genre:'',riders:0,standby:245,color:'#001a00',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:973,name:'ANAVIT&#211;RIA',genre:'',riders:0,standby:75,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:974,name:'310187161',genre:'',riders:0,standby:322,color:'#1a0a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:975,name:'BROCKHAMPTON',genre:'',riders:0,standby:274,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:976,name:'Ice Spice',genre:'',riders:0,standby:320,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -984,7 +988,7 @@ const SPOTIFY_ARTISTS = [
   {id:982,name:'Wolfgang Amadeus Mozart',genre:'',riders:0,standby:382,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:983,name:'YSY A',genre:'',riders:0,standby:462,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:984,name:'Kenshi Yonezu',genre:'',riders:0,standby:265,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:985,name:'Os BarÃµes Da Pisadinha',genre:'',riders:0,standby:236,color:'#1a000d',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:985,name:'Os Bar&#245;es Da Pisadinha',genre:'',riders:0,standby:236,color:'#1a000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:986,name:'CRO',genre:'',riders:0,standby:119,color:'#0d000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:987,name:'Laura Pausini',genre:'',riders:0,standby:245,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:988,name:'PNAU',genre:'',riders:0,standby:442,color:'#0a0a2e',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -998,8 +1002,8 @@ const SPOTIFY_ARTISTS = [
   {id:996,name:'Rag',genre:'',riders:0,standby:65,color:'#001a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:997,name:'Tiakola',genre:'',riders:0,standby:350,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:998,name:'Santana',genre:'',riders:0,standby:436,color:'#1a0a0a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:999,name:'Kany GarcÃ­a',genre:'',riders:0,standby:486,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:1000,name:'Benjamin BlÃ¼mchen',genre:'',riders:0,standby:153,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:999,name:'Kany Garc&#237;a',genre:'',riders:0,standby:486,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:1000,name:'Benjamin Bl&#252;mchen',genre:'',riders:0,standby:153,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1001,name:'Cavetown',genre:'',riders:0,standby:115,color:'#0a150a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1002,name:'Lauana Prado',genre:'',riders:0,standby:449,color:'#1a1500',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1003,name:'Vintage Culture',genre:'',riders:0,standby:388,color:'#001510',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -1012,18 +1016,18 @@ const SPOTIFY_ARTISTS = [
   {id:1010,name:'NCT DREAM',genre:'',riders:0,standby:274,color:'#0d000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1011,name:'ODESZA',genre:'',riders:0,standby:391,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1012,name:'WALK THE MOON',genre:'',riders:0,standby:299,color:'#0a0a2e',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:1013,name:'FrÃ©dÃ©ric Chopin',genre:'',riders:0,standby:500,color:'#1a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:1013,name:'Fr&#233;d&#233;ric Chopin',genre:'',riders:0,standby:500,color:'#1a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1014,name:'Gloria Trevi',genre:'',riders:0,standby:396,color:'#0a1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1015,name:'The Clash',genre:'',riders:0,standby:210,color:'#1a0a00',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:1016,name:'Pedro CapÃ³',genre:'',riders:0,standby:117,color:'#001a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:1016,name:'Pedro Cap&#243;',genre:'',riders:0,standby:117,color:'#001a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1017,name:'Felipe Amorim',genre:'',riders:0,standby:464,color:'#1a1a00',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:1018,name:'Nanpa BÃ¡sico',genre:'',riders:0,standby:230,color:'#0a001a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:1018,name:'Nanpa B&#225;sico',genre:'',riders:0,standby:230,color:'#0a001a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1019,name:'*NSYNC',genre:'',riders:0,standby:327,color:'#1a000a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1020,name:'Lvbel C5',genre:'',riders:0,standby:439,color:'#001a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1021,name:'Louis Armstrong',genre:'',riders:0,standby:317,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1022,name:'PEDRO SAMPAIO',genre:'',riders:0,standby:138,color:'#1a0a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1023,name:'Werenoi',genre:'',riders:0,standby:442,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:1024,name:'JoÃ£o Gomes',genre:'',riders:0,standby:92,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:1024,name:'Jo&#227;o Gomes',genre:'',riders:0,standby:92,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1025,name:'Ado',genre:'',riders:0,standby:476,color:'#0a150a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1026,name:'Jere Klein',genre:'',riders:0,standby:338,color:'#1a1500',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1027,name:'DENNIS',genre:'',riders:0,standby:338,color:'#001510',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -1040,7 +1044,7 @@ const SPOTIFY_ARTISTS = [
   {id:1038,name:'IU',genre:'',riders:0,standby:224,color:'#0a1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1039,name:'BoyWithUke',genre:'',riders:0,standby:77,color:'#1a0a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1040,name:'JIN',genre:'',riders:0,standby:308,color:'#001a1a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:1041,name:'Cardenales De Nuevo LeÃ³n',genre:'',riders:0,standby:415,color:'#1a1a00',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:1041,name:'Cardenales De Nuevo Le&#243;n',genre:'',riders:0,standby:415,color:'#1a1a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1042,name:'Dread Mar I',genre:'',riders:0,standby:319,color:'#0a001a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1043,name:'The Pussycat Dolls',genre:'',riders:0,standby:317,color:'#1a000a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1044,name:'FISHER',genre:'',riders:0,standby:178,color:'#001a00',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -1052,7 +1056,7 @@ const SPOTIFY_ARTISTS = [
   {id:1050,name:'Bailey Zimmerman',genre:'',riders:0,standby:254,color:'#1a1500',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1051,name:'back number',genre:'',riders:0,standby:224,color:'#001510',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1052,name:'Supernova Ent',genre:'',riders:0,standby:433,color:'#100015',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:1053,name:'La Adictiva Banda San JosÃ© de Mesillas',genre:'',riders:0,standby:304,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:1053,name:'La Adictiva Banda San Jos&#233; de Mesillas',genre:'',riders:0,standby:304,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1054,name:'Toby Fox',genre:'',riders:0,standby:257,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1055,name:'Beret',genre:'',riders:0,standby:456,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1056,name:'Semicenk',genre:'',riders:0,standby:190,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -1082,10 +1086,10 @@ const SPOTIFY_ARTISTS = [
   {id:1080,name:'Alex G',genre:'',riders:0,standby:133,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1081,name:'Ali Gatie',genre:'',riders:0,standby:440,color:'#1a000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1082,name:'Toby Keith',genre:'',riders:0,standby:476,color:'#0d000d',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:1083,name:'Karsten GlÃ¼ck',genre:'',riders:0,standby:218,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:1083,name:'Karsten Gl&#252;ck',genre:'',riders:0,standby:218,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1084,name:'Simone Sommerland',genre:'',riders:0,standby:493,color:'#0a0a2e',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1085,name:'ITZY',genre:'',riders:0,standby:89,color:'#1a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:1086,name:'Die Kita-FrÃ¶sche',genre:'',riders:0,standby:461,color:'#0a1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:1086,name:'Die Kita-Fr&#246;sche',genre:'',riders:0,standby:461,color:'#0a1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1087,name:'Incubus',genre:'',riders:0,standby:470,color:'#1a0a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1088,name:'Lee Brice',genre:'',riders:0,standby:113,color:'#001a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1089,name:'Foreigner',genre:'',riders:0,standby:348,color:'#1a1a00',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -1217,7 +1221,7 @@ const makeCSS = (dark) => {
   .root{min-height:100vh;width:100%;overflow-x:hidden;background:${t.bg};background-image:radial-gradient(ellipse at 30% 40%,${t.accentGlow2} 0%,transparent 55%),radial-gradient(ellipse at 75% 70%,${t.accentGlow3} 0%,transparent 50%);font-family:'Inter',sans-serif;color:${t.text};display:flex;flex-direction:column;align-items:center;padding:0 0 40px;text-align:left;}
   .page-content{width:100%;display:flex;flex-direction:column;align-items:center;padding:68px 12px 40px;text-align:left;overflow-x:hidden;}
   @keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}.fade{animation:fadeUp 0.35s ease forwards;}
-  /* NAV â€” mobile first */
+  /* NAV -- mobile first */
   .nav{position:fixed;top:0;left:0;right:0;z-index:999;background:${t.navBg};backdrop-filter:blur(8px);border-bottom:1px solid ${t.borderMid};display:flex;align-items:center;justify-content:center;padding:0 10px;height:52px;}
   .nav-inner{width:100%;display:flex;align-items:center;justify-content:space-between;position:relative;}
   .nav-logo{font-family:'Caveat',cursive;font-size:28px;color:${t.logoColor};line-height:1;text-shadow:0 0 20px ${t.logoGlow};cursor:pointer;letter-spacing:-1px;flex-shrink:0;}
@@ -1241,9 +1245,9 @@ const makeCSS = (dark) => {
   .nav-search-result:last-child{border-bottom:none;}
   .nav-result-name{font-size:12px;color:${t.text};letter-spacing:0.5px;}
   .nav-result-genre{font-size:10px;color:${t.textDeeper};letter-spacing:1px;}
-  /* CARD â€” mobile first */
+  /* CARD -- mobile first */
   .card{background:${t.bgCard};border:1px solid ${t.border};border-radius:2px;width:100%;padding:28px 16px;box-shadow:0 0 0 1px ${t.borderMid},0 20px 60px ${t.shadowColor};}
-  /* CONTENT CONTAINERS â€” full width on mobile */
+  /* CONTENT CONTAINERS -- full width on mobile */
   .stream,.account-wrap,.dashboard-wrap,.new-post-wrap,.post-view-wrap,.search-wrap,.artist-cards,.station-tabs,.tag-summary-cards,.filter-row,.search-bar-wrap{width:100%;max-width:100%;}
   /* DESKTOP overrides */
 
@@ -1292,8 +1296,8 @@ const makeCSS = (dark) => {
   .my-bus-chip-wrap{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;flex-shrink:0;}
   .live-thumb{animation:live-glow 1.4s ease-in-out infinite;}
   .my-bus-name{font-family:'Inter',sans-serif;font-size:9px;letter-spacing:1px;color:${t.textDeep};text-align:center;max-width:60px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .feed-post{background:${t.bgCard};border:1px solid ${t.border};border-radius:2px;margin-bottom:16px;overflow:hidden;width:100%;transition:opacity 0.3s;}.feed-post.muted{opacity:0.35;}
-  .feed-post-header{display:flex;align-items:center;gap:10px;padding:12px 14px;width:100%;overflow:hidden;}
+  .feed-post{background:${t.bgCard};border:1px solid ${t.border};border-radius:2px;margin-bottom:16px;overflow:visible;width:100%;transition:opacity 0.3s;position:relative;}.feed-post.muted{opacity:0.35;}
+  .feed-post-header{display:flex;align-items:center;gap:10px;padding:12px 14px;width:100%;overflow:visible;position:relative;}
   .feed-post-avatar{width:32px;height:32px;border:1px solid ${t.border};border-radius:2px;flex-shrink:0;}
   .feed-post-artist{font-family:'Anton',sans-serif;font-size:13px;letter-spacing:1px;color:${t.text};}
   .feed-post-artist.tourbus-author{font-family:'Caveat',cursive;font-size:20px;letter-spacing:-1px;color:${t.logoColor};}
@@ -1460,7 +1464,7 @@ const makeCSS = (dark) => {
   .upload-preview{width:100%;max-height:200px;object-fit:contain;border-radius:1px;}
   .upload-hint{font-size:12px;color:${t.textDeep};letter-spacing:1px;}.upload-hint strong{color:${t.accent};}
   .new-post-wrap{width:100%;max-width:min(560px,100%);}
-  .post-view-wrap{width:100%;max-width:min(560px,100%);}
+  .post-view-wrap{width:100%;max-width:min(560px,100%);} .post-view-thumb{width:100%;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;font-size:64px;position:relative;overflow:hidden;background:#111;} .post-view-thumb img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
   .post-view-media{width:100%;aspect-ratio:4/3;background:${t.bgInput};display:flex;align-items:center;justify-content:center;font-size:48px;border-radius:2px;margin-bottom:16px;}
   .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;}
   .modal{background:${t.bgCard};border:1px solid ${t.border};border-radius:2px;padding:24px;max-width:min(380px,100%);width:100%;box-shadow:0 20px 60px ${t.shadowColor};}
@@ -1505,27 +1509,27 @@ export default function App() {
   const [artistRecos, setArtistRecos] = useState(()=>{
     const A = (id) => [...ARTISTS,...SPOTIFY_ARTISTS].find(a=>a.id===id);
     return {
-      // The Midnight (id:1) â€” synthwave/electronic adjacent
+      // The Midnight (id:1) -- synthwave/electronic adjacent
       1:  [A(4),A(10),A(6),A(103),A(126)],  // Neon Palms, Maeve, Static Bloom, The Weeknd, Lana Del Rey
-      // Jade Carver (id:2) â€” indie folk
+      // Jade Carver (id:2) -- indie folk
       2:  [A(11),A(8),A(10),A(107),A(164)], // Sun Copper, Hollow Pine, Maeve, Ed Sheeran, Arctic Monkeys
-      // Brass & Bone (id:3) â€” jazz fusion / New Orleans
+      // Brass & Bone (id:3) -- jazz fusion / New Orleans
       3:  [A(7),A(9),A(11),A(115),A(109)],  // Rosa Vega, Dusk Radio, Sun Copper, Bruno Mars, Kanye West
-      // Neon Palms (id:4) â€” dream pop
+      // Neon Palms (id:4) -- dream pop
       4:  [A(1),A(10),A(6),A(126),A(112)],  // The Midnight, Maeve, Static Bloom, Lana Del Rey, Billie Eilish
-      // Colt Reyes (id:5) â€” country
+      // Colt Reyes (id:5) -- country
       5:  [A(11),A(2),A(8),A(154),A(107)],  // Sun Copper, Jade Carver, Hollow Pine, Morgan Wallen, Ed Sheeran
-      // Static Bloom (id:6) â€” shoegaze
+      // Static Bloom (id:6) -- shoegaze
       6:  [A(1),A(4),A(10),A(149),A(164)],  // The Midnight, Neon Palms, Maeve, Linkin Park, Arctic Monkeys
-      // Rosa Vega (id:7) â€” psych rock
+      // Rosa Vega (id:7) -- psych rock
       7:  [A(9),A(3),A(6),A(164),A(113)],   // Dusk Radio, Brass & Bone, Static Bloom, Arctic Monkeys, Post Malone
-      // Hollow Pine (id:8) â€” ambient folk
+      // Hollow Pine (id:8) -- ambient folk
       8:  [A(2),A(11),A(5),A(126),A(138)],  // Jade Carver, Sun Copper, Colt Reyes, Lana Del Rey, Arijit Singh
-      // Dusk Radio (id:9) â€” punk
+      // Dusk Radio (id:9) -- punk
       9:  [A(7),A(6),A(3),A(149),A(164)],   // Rosa Vega, Static Bloom, Brass & Bone, Linkin Park, Arctic Monkeys
-      // Maeve (id:10) â€” dream pop
+      // Maeve (id:10) -- dream pop
       10: [A(4),A(2),A(6),A(124),A(126)],   // Neon Palms, Jade Carver, Static Bloom, Dua Lipa, Lana Del Rey
-      // Sun Copper (id:11) â€” indie folk
+      // Sun Copper (id:11) -- indie folk
       11: [A(2),A(8),A(5),A(107),A(154)],   // Jade Carver, Hollow Pine, Colt Reyes, Ed Sheeran, Morgan Wallen
     };
   });
@@ -1570,6 +1574,9 @@ export default function App() {
     5:  {hometown:38, indiefolk:29, emotional:22, firsttour:17, jadecarver:11, tourlife2025:35},
     6:  {tourlife:29, crew:24, country:18, ontour:14, coltreyes:9},
     7:  {newartist:33, staticbloom:27, shoegaze:21, tourbus:16, announcement:11},
+    11: {lollapalooza2026:87, synthwave:44, chicago:31, festival:28, liveshows:19},
+    12: {lollapalooza2026:76, indiefolk:39, jadecarver:28, festival:24, grantpark:18},
+    13: {lollapalooza2026:65, dreampop:41, neonpalms:33, festival:27, chicago:22},
   });
   const [activeTagInput, setActiveTagInput] = useState(null);
   const [activeTag, setActiveTag] = useState(null);
@@ -1739,7 +1746,42 @@ export default function App() {
     if (videoRef.current) videoRef.current.srcObject = null;
   };
 
-
+  useEffect(() => {
+    const fontId = "tourbus-google-fonts";
+    if (!document.getElementById(fontId)) {
+      const link = document.createElement("link");
+      link.id = fontId;
+      link.rel = "stylesheet";
+      link.href = "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Caveat:wght@700&family=Anton&family=Inter:wght@400;500&display=swap";
+      document.head.appendChild(link);
+    }
+    // Hard clamp to prevent any horizontal overflow
+    document.documentElement.style.overflowX = 'hidden';
+    document.documentElement.style.maxWidth = '100vw';
+    document.body.style.overflowX = 'hidden';
+    document.body.style.maxWidth = '100vw';
+    document.body.style.width = '100%';
+    // Force iframe to respect its own width
+    const w = window.innerWidth;
+    document.body.style.width = w + 'px';
+    document.documentElement.style.width = w + 'px';
+    const viewportId = "tourbus-viewport";
+    if (!document.getElementById(viewportId)) {
+      const meta = document.createElement("meta");
+      meta.id = viewportId;
+      meta.name = "viewport";
+      meta.content = "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no";
+      document.head.appendChild(meta);
+    }
+    // Prevent pinch zoom via touch events
+    const preventZoom = (e) => { if (e.touches && e.touches.length > 1) e.preventDefault(); };
+    document.addEventListener('touchmove', preventZoom, { passive: false });
+    document.addEventListener('touchstart', preventZoom, { passive: false });
+    return () => {
+      document.removeEventListener('touchmove', preventZoom);
+      document.removeEventListener('touchstart', preventZoom);
+    };
+  }, []);
 
   useEffect(() => {
     if (screen === SCREENS.ARTIST_LIVE) {
@@ -1758,11 +1800,11 @@ export default function App() {
     setPostCaption(""); setPostFile(null); setPostPreviewUrl(null); go(SCREENS.ARTIST_DASHBOARD);
   };
 
-  const GENRE_FILTERS = ["Top This Month","Newly Added","On The Road"];
+  const GENRE_FILTERS = ["Top This Month","Newly Added","On The Road","Lollapalooza 2026"];
   const GENRE_TAGS = ["Synthwave","Indie Folk","Jazz Fusion","Dream Pop","Country","Shoegaze","Punk","Psych Rock","Ambient Folk"];
   const filteredArtists = ALL_ARTISTS.filter(a=>{
     const ms=a.name.toLowerCase().includes(search.toLowerCase())||a.genre.toLowerCase().includes(search.toLowerCase());
-    const mg=genre==="Top This Month"?a.active:genre==="Newly Added"?a.newlyAdded:genre==="On The Road"?a.onTour:a.genre===genre;
+    const LOLLA_IDS=new Set([1,2,3,4,5,6,7,8,9,10,11,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149]);const mg=genre==="Top This Month"?a.active:genre==="Newly Added"?a.newlyAdded:genre==="On The Road"?a.onTour:genre==="Lollapalooza 2026"?LOLLA_IDS.has(a.id):a.genre===genre;
     const showInSearch = search.length>0;
     return (showInSearch?ms:ms&&mg);
   }).sort((a,b)=>genre==="Top This Month"?(b.riders+b.standby)-(a.riders+a.standby):0);
@@ -1827,7 +1869,7 @@ export default function App() {
                 <div className="logo">tourbus</div>
                 <div className="logo-sub" style={{fontSize:"18px",letterSpacing:"2px",marginBottom:"26px"}}>"We're with the band."</div>
                 <div className="headline">The <em>inside seat</em> with your favorite artists on their musical journey.</div>
-                <p className="subtext" style={{fontFamily:"'Inter',sans-serif"}}>Support artists directly, and get on board for exclusive content only they can provide â€” photos, videos and livestream moments from backstage to the main stage, and everything in between.<br/><br/>No ads. No subscriptions. No upsells.<br/>Just an app to make your <em style={{color:darkMode?"#e6ff00":"#ff4d1a",fontWeight:"bold",fontStyle:"italic"}}>live</em> better.</p>
+                <p className="subtext" style={{fontFamily:"'Inter',sans-serif"}}>Support artists directly, and get on board for exclusive content only they can provide -- photos, videos and livestream moments from backstage to the main stage, and everything in between.<br/><br/>No ads. No subscriptions. No upsells.<br/>Just an app to make your <em style={{color:darkMode?"#e6ff00":"#ff4d1a",fontWeight:"bold",fontStyle:"italic"}}>live</em> better.</p>
                 <div style={{width:"100%",aspectRatio:"16/9",background:darkMode?"#0a0a0a":"#e8e8e4",border:`1px solid ${darkMode?"#2a2a00":"#d0cfc0"}`,borderRadius:2,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:10,marginBottom:24,position:"relative",overflow:"hidden"}}>
                   <div style={{width:52,height:52,borderRadius:"50%",background:darkMode?"rgba(230,255,0,0.1)":"rgba(255,77,26,0.1)",border:`2px solid ${darkMode?"#e6ff00":"#ff4d1a"}`,display:"flex",alignItems:"center",justifyContent:"center"}}>
                     <div style={{width:0,height:0,borderTop:"10px solid transparent",borderBottom:"10px solid transparent",borderLeft:`16px solid ${darkMode?"#e6ff00":"#ff4d1a"}`,marginLeft:4}}/>
@@ -1836,7 +1878,7 @@ export default function App() {
                 </div>
                 <div className="ticket-box">
                   <div className="ticket-price" style={{textAlign:"center"}}>$5 TICKET TO RIDE</div>
-                  <div className="ticket-desc" style={{textAlign:"center"}}>One-time fee per artist Â· Transparent pricing</div>
+                  <div className="ticket-desc" style={{textAlign:"center"}}>One-time fee per artist / Transparent pricing</div>
                   <div style={{display:"flex",alignItems:"stretch",justifyContent:"center",gap:8,marginTop:8}}>
                     <div style={{textAlign:"center",flex:1,background:"rgba(230,255,0,0.04)",border:"1px solid #3a3a00",borderRadius:2,padding:"16px 12px"}}>
                       <div style={{fontFamily:"'Anton',sans-serif",fontSize:44,color:darkMode?"#e6ff00":"#ff4d1a",letterSpacing:2,lineHeight:1}}>$3</div>
@@ -1851,32 +1893,32 @@ export default function App() {
                 <button className="btn btn-primary" onClick={()=>go(SCREENS.CHOOSE_TYPE)}>Get On The Bus</button>
                 <div className="signin-divider"><div className="signin-divider-line"/><div className="signin-divider-text">Already have an account?</div><div className="signin-divider-line"/></div>
                 <button className="btn btn-outline" onClick={()=>go(SCREENS.RIDER_SIGNIN)}>Rider Sign In</button>
-                <div className="artist-signin-hint">Are you an artist? <span onClick={()=>go(SCREENS.ARTIST_SIGNIN)}>Sign in here â†’</span></div>
+                <div className="artist-signin-hint">Are you an artist? <span onClick={()=>go(SCREENS.ARTIST_SIGNIN)}>Sign in here -></span></div>
               </div>
             )}
             {screen===SCREENS.RIDER_SIGNIN&&(
               <div className="card fade">
-                <button className="back" onClick={()=>go(SCREENS.LANDING)}>â† Back</button>
+                <button className="back" onClick={()=>go(SCREENS.LANDING)}>Back</button>
                 <div className="logo logo-sm" style={{marginBottom:16}}>tourbus</div>
                 <div className="headline">Welcome back, rider!</div>
                 <label className="lbl">Username</label>
                 <input className={`inp${riderSignInError?" inp-error":""}`} placeholder="your_handle" value={riderSignInForm.username} onChange={e=>{setRiderSignInForm(p=>({...p,username:e.target.value}));setRiderSignInError("");}}/>
                 <label className="lbl">Password</label>
-                <input className={`inp${riderSignInError?" inp-error":""}`} type="password" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" value={riderSignInForm.password} onChange={e=>{setRiderSignInForm(p=>({...p,password:e.target.value}));setRiderSignInError("");}}/>
+                <input className={`inp${riderSignInError?" inp-error":""}`} type="password" placeholder="********" value={riderSignInForm.password} onChange={e=>{setRiderSignInForm(p=>({...p,password:e.target.value}));setRiderSignInError("");}}/>
                 {riderSignInError&&<div className="error-msg">{riderSignInError}</div>}
-                <div className="note" style={{marginTop:14}}>{E.bulb} Demo rider: <strong style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>rider</strong> / <strong style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>rider</strong> &nbsp;Â·&nbsp; New rider: <strong style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>mattbradley</strong> / <strong style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>tourbus123</strong></div>
+                <div className="note" style={{marginTop:14}}>{E.bulb} Demo rider: <strong style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>rider</strong> / <strong style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>rider</strong> &nbsp;.&nbsp; New rider: <strong style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>mattbradley</strong> / <strong style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>tourbus123</strong></div>
                 <button className="btn btn-primary" style={{marginTop:22}} onClick={handleRiderSignIn}>Sign In</button>
               </div>
             )}
             {screen===SCREENS.ARTIST_SIGNIN&&(
               <div className="card fade">
-                <button className="back" onClick={()=>go(SCREENS.LANDING)}>â† Back</button>
+                <button className="back" onClick={()=>go(SCREENS.LANDING)}>Back</button>
                 <div className="logo logo-sm">tourbus</div><div className="logo-sub">Artist sign in</div>
                 <div className="headline">Your <em>tourbus</em> awaits.</div>
                 <label className="lbl">Email</label>
                 <input className={`inp${artistSignInError?" inp-error":""}`} placeholder="you@yourdomain.com" value={artistSignInForm.email} onChange={e=>{setArtistSignInForm(p=>({...p,email:e.target.value}));setArtistSignInError("");}}/>
                 <label className="lbl">Authentication Code</label>
-                <input className={`inp auth-code-inp${artistSignInError?" inp-error":""}`} placeholder="Â· Â· Â· Â· Â·" maxLength={5} value={artistSignInForm.code} onChange={e=>{setArtistSignInForm(p=>({...p,code:e.target.value.replace(/\D/g,"").slice(0,5)}));setArtistSignInError("");}}/>
+                <input className={`inp auth-code-inp${artistSignInError?" inp-error":""}`} placeholder=". - . - ." maxLength={5} value={artistSignInForm.code} onChange={e=>{setArtistSignInForm(p=>({...p,code:e.target.value.replace(/\D/g,"").slice(0,5)}));setArtistSignInError("");}}/>
                 {artistSignInError?<div className="error-msg">{artistSignInError}</div>:<div className="code-hint">We'll email you a code each time you sign in.</div>}
                 <div className="note" style={{marginTop:14}}>{E.bulb} Demo: use any artist email + code <strong style={{color:darkMode?"#e6ff00":"#ff4d1a",letterSpacing:3}}>12345</strong><br/>e.g. midnight@tourbus.live</div>
                 <button className="btn btn-primary" style={{marginTop:20}} onClick={handleArtistSignIn}>Sign In</button>
@@ -1891,35 +1933,35 @@ export default function App() {
                   <div className="type-card" style={{flex:1,marginBottom:0}} onClick={()=>go(SCREENS.RIDER_SIGNUP)}><div className="type-title">I'm a Rider</div><div className="type-desc">A fan looking to get closer to the artists I love. A one-time fee to ride on an artist's tourbus.</div></div>
                   <div className="type-card" style={{flex:1,marginBottom:0}} onClick={()=>go(SCREENS.ARTIST_SIGNUP)}><div className="type-title">I'm an Artist</div><div className="type-desc">A musician or band ready to share the real tour experience. Requires validation.</div></div>
                 </div>
-                <button className="btn btn-ghost" onClick={()=>go(SCREENS.LANDING)}>â† Back</button>
+                <button className="btn btn-ghost" onClick={()=>go(SCREENS.LANDING)}>Back</button>
               </div>
             )}
             {screen===SCREENS.RIDER_SIGNUP&&(
               <div className="card fade">
-                <button className="back" onClick={()=>go(SCREENS.CHOOSE_TYPE)}>â† Back</button>
+                <button className="back" onClick={()=>go(SCREENS.CHOOSE_TYPE)}>Back</button>
                 <div className="logo logo-sm">tourbus</div><div className="logo-sub">Rider Registration</div>
                 <div className="headline">Climb aboard.</div>
                 <p className="subtext" style={{marginBottom:8}}>Here's how it works. Free to join. Once you set up your account with a valid payment method, you will be able to buy a ticket (one-time $5) to ride on an artist's tourbus.</p>
                 <label className="lbl">Username</label><input className="inp" placeholder="your_handle" value={riderForm.username} onChange={e=>setRiderForm(p=>({...p,username:e.target.value}))}/>
                 <label className="lbl">Zip Code</label><input className="inp" placeholder="00000" maxLength={5} value={riderForm.zip} onChange={e=>setRiderForm(p=>({...p,zip:e.target.value}))}/>
                 <hr className="divider"/>
-                <label className="lbl">Card Number</label><input className="inp" placeholder="â€¢â€¢â€¢â€¢ â€¢â€¢â€¢â€¢ â€¢â€¢â€¢â€¢ â€¢â€¢â€¢â€¢" value={riderForm.cc} onChange={e=>setRiderForm(p=>({...p,cc:e.target.value}))}/>
+                <label className="lbl">Card Number</label><input className="inp" placeholder=".... .... .... ...." value={riderForm.cc} onChange={e=>setRiderForm(p=>({...p,cc:e.target.value}))}/>
                 <div className="cc-row">
                   <div><label className="lbl">Expiry</label><input className="inp" placeholder="MM / YY" value={riderForm.exp} onChange={e=>setRiderForm(p=>({...p,exp:e.target.value}))}/></div>
-                  <div><label className="lbl">CVV</label><input className="inp" placeholder="â€¢â€¢â€¢" maxLength={4} value={riderForm.cvv} onChange={e=>setRiderForm(p=>({...p,cvv:e.target.value}))}/></div>
+                  <div><label className="lbl">CVV</label><input className="inp" placeholder="..." maxLength={4} value={riderForm.cvv} onChange={e=>setRiderForm(p=>({...p,cvv:e.target.value}))}/></div>
                   <div></div>
                 </div>
                 <p style={{fontSize:10,color:"#555",marginTop:8,letterSpacing:1}}>Card saved for $5 purchases. Not charged today.</p>
                 <hr className="divider"/>
                 <div className="policy-check-row">
                   <div className={`policy-checkbox${agreedPrivacy?" checked":""}`} onClick={()=>setAgreedPrivacy(p=>!p)}>
-                    {agreedPrivacy&&<span className="policy-checkbox-mark">âœ“</span>}
+                    {agreedPrivacy&&<span className="policy-checkbox-mark">&#10003;</span>}
                   </div>
                   <div className="policy-check-text">I have read and agree to the <span className="policy-link" onClick={()=>setShowPolicy("privacy")}>Privacy Policy</span></div>
                 </div>
                 <div className="policy-check-row">
                   <div className={`policy-checkbox${agreedTerms?" checked":""}`} onClick={()=>setAgreedTerms(p=>!p)}>
-                    {agreedTerms&&<span className="policy-checkbox-mark">âœ“</span>}
+                    {agreedTerms&&<span className="policy-checkbox-mark">&#10003;</span>}
                   </div>
                   <div className="policy-check-text">I have read and agree to the <span className="policy-link" onClick={()=>setShowPolicy("terms")}>Terms of Use</span></div>
                 </div>
@@ -1928,10 +1970,10 @@ export default function App() {
             )}
             {screen===SCREENS.ARTIST_SIGNUP&&(
               <div className="card fade">
-                <button className="back" onClick={()=>go(SCREENS.CHOOSE_TYPE)}>â† Back</button>
+                <button className="back" onClick={()=>go(SCREENS.CHOOSE_TYPE)}>Back</button>
                 <div className="logo logo-sm">tourbus</div><div className="logo-sub">Artist Application</div>
                 <div className="headline">Start your <em>tourbus.</em></div>
-                <p className="subtext" style={{marginBottom:8}}>We'll reach out within 2â€“3 business days.</p>
+                <p className="subtext" style={{marginBottom:8}}>We'll reach out within 2-3 business days.</p>
                 <label className="lbl">Your Full Name</label><input className="inp" placeholder="First Last" value={artistForm.name} onChange={e=>setArtistForm(p=>({...p,name:e.target.value}))}/>
                 <label className="lbl">Artist / Band Name</label><input className="inp" placeholder="The name your fans know you by" value={artistForm.artist} onChange={e=>setArtistForm(p=>({...p,artist:e.target.value}))}/>
                 <label className="lbl">Contact Email</label><input className="inp" type="email" placeholder="you@yourdomain.com" value={artistForm.email} onChange={e=>setArtistForm(p=>({...p,email:e.target.value}))}/>
@@ -1954,16 +1996,16 @@ export default function App() {
                 <div className="success-icon">{E.ticket}</div><div className="logo logo-sm">you're on</div>
                 <div className="logo-sub">Welcome, {riderForm.username||"Rider"}</div>
                 <p className="subtext" style={{margin:"14px 0 26px"}}>Your account is ready. Head to the Station to find an artist and grab your $5 ticket.</p>
-                <button className="btn btn-primary" onClick={()=>go(SCREENS.STREAM)}>Go to My Stream â†’</button>
+                <button className="btn btn-primary" onClick={()=>go(SCREENS.STREAM)}>Go to My Stream -></button>
               </div>
             )}
             {screen===SCREENS.ARTIST_SUCCESS&&(
               <div className="card fade" style={{textAlign:"center"}}>
                 <div className="logo logo-sm">submitted</div>
                 <div className="logo-sub">Application received</div>
-                <p className="subtext" style={{margin:"14px 0 18px"}}>We'll reach out to <strong style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>{artistForm.email||"your email"}</strong> within 2â€“3 business days.</p>
+                <p className="subtext" style={{margin:"14px 0 18px"}}>We'll reach out to <strong style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>{artistForm.email||"your email"}</strong> within 2-3 business days.</p>
                 <div className="note" style={{textAlign:"left",marginBottom:20}}>{E.note} Once approved, you'll earn $3 for every $5 ticket your riders purchase.</div>
-                <button className="btn btn-ghost" onClick={()=>go(SCREENS.LANDING)}>â† Home</button>
+                <button className="btn btn-ghost" onClick={()=>go(SCREENS.LANDING)}><- Home</button>
               </div>
             )}
             {screen===SCREENS.ARTIST_CLOSED&&(
@@ -1972,7 +2014,7 @@ export default function App() {
                 <div className="logo-sub">Account closed</div>
                 <p className="subtext" style={{margin:"14px 0 18px"}}>Your artist account has been closed. Your profile and posts have been removed from tourbus.</p>
                 <div className="note" style={{textAlign:"left",marginBottom:20,borderColor:"#331111",color:"#884444"}}>If this was a mistake or you'd like to return to tourbus in the future, reach out to us at <span style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>artists@tourbus.live</span>.</div>
-                <button className="btn btn-ghost" onClick={()=>go(SCREENS.LANDING)}>â† Home</button>
+                <button className="btn btn-ghost" onClick={()=>go(SCREENS.LANDING)}><- Home</button>
               </div>
             )}
             {screen===SCREENS.RIDER_CLOSED&&(
@@ -1981,7 +2023,7 @@ export default function App() {
                 <div className="logo-sub">Account closed</div>
                 <p className="subtext" style={{margin:"14px 0 18px"}}>Your rider account has been closed. We're sorry to see you go.</p>
                 <div className="note" style={{textAlign:"left",marginBottom:20,borderColor:"#331111",color:"#884444"}}>If this was a mistake, reach out to us at <span style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>hello@tourbus.live</span>.</div>
-                <button className="btn btn-ghost" onClick={()=>go(SCREENS.LANDING)}>â† Home</button>
+                <button className="btn btn-ghost" onClick={()=>go(SCREENS.LANDING)}><- Home</button>
               </div>
             )}
           </div>
@@ -1999,7 +2041,7 @@ export default function App() {
                     <div className="my-bus-name" style={{color:darkMode?"#e6ff00":"#0e0e0e"}}>tourbus</div>
                   </div>
                   <div className="my-bus-chip" onClick={()=>go(SCREENS.SEARCH)}>
-                    <div className="my-bus-avatar" style={{display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,color:"#444"}}>ï¼‹</div>
+                    <div className="my-bus-avatar" style={{display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,color:"#444"}}>+</div>
                     <div className="my-bus-name" style={{color:"#3a3a00"}}>add</div>
                   </div>
                   {ARTISTS.filter(a=>purchased.has(a.id)&&!offBus[a.name]).map(a=>(
@@ -2061,7 +2103,7 @@ export default function App() {
                         {(()=>{const a=ARTISTS.find(a=>a.name===p.artist);return a?<ArtistThumb artist={a} style={{width:32,height:32,borderRadius:2,border:"1px solid #3a3a00",flexShrink:0,cursor:"pointer"}} onClick={()=>{setSelectedArtist(a);go(SCREENS.PROFILE);}}/>:<div className="feed-post-avatar" style={{background:"#1a1a1a"}}/>;})()} 
                         <div style={{cursor:"pointer",flex:1}} onClick={()=>{const a=ARTISTS.find(a=>a.name===p.artist);if(a){setSelectedArtist(a);go(SCREENS.PROFILE);}}}><div className="feed-post-artist">{p.artist}{p.isNew&&<span className="new-post-badge">NEW</span>}{(()=>{const a=ARTISTS.find(a=>a.name===p.artist);return a&&getArtistProfile(a).onTour?<span className="on-tour-badge">ON TOUR</span>:null;})()}</div><div className="feed-post-time">{p.time}</div></div>
                         <div className="post-menu-wrap" style={{flexShrink:0,marginLeft:"auto"}}>
-                          <button className="post-menu-btn" onClick={()=>setArtistMenu(artistMenu===p.artist+p.id?null:p.artist+p.id)}>Â·Â·Â·</button>
+                          <button className="post-menu-btn" onClick={()=>setArtistMenu(artistMenu===p.artist+p.id?null:p.artist+p.id)}>...</button>
                           {artistMenu===p.artist+p.id&&(
                             <div className="post-menu" style={{top:32,right:0}}>
                               <div className="post-menu-label">{p.artist}</div>
@@ -2193,11 +2235,11 @@ export default function App() {
                         {a.active?(
                           <><div className="stub-count">{a.riders.toLocaleString()}</div><div className="stub-label">riders</div>
                           {purchased.has(a.id)
-                            ? <div style={{fontFamily:"'Anton',sans-serif",fontSize:9,letterSpacing:1,color:darkMode?"#e6ff00":"#ff4d1a",marginTop:4,textAlign:"center"}}>âœ“ RIDING</div>
+                            ? <div style={{fontFamily:"'Anton',sans-serif",fontSize:9,letterSpacing:1,color:darkMode?"#e6ff00":"#ff4d1a",marginTop:4,textAlign:"center"}}>&#10003; RIDING</div>
                             : <button className="stub-action" onClick={e=>{e.stopPropagation();setSelectedArtist(a);go(SCREENS.PROFILE);}}>Ride</button>
                           }</>
                         ):(
-                          <><div className="stub-count">{(standbyCounts[a.id]||0).toLocaleString()}</div><div className="stub-label">on standby</div><button className="stub-action" onClick={e=>{e.stopPropagation();toggleStandby(a.id);}}>{standby[a.id]?"âœ“ Standby":"Go Standby"}</button></>
+                          <><div className="stub-count">{(standbyCounts[a.id]||0).toLocaleString()}</div><div className="stub-label">on standby</div><button className="stub-action" onClick={e=>{e.stopPropagation();toggleStandby(a.id);}}>{standby[a.id]?"&#10003; Standby":"Go Standby"}</button></>
                         )}
                       </div>
                     </div>
@@ -2224,7 +2266,7 @@ export default function App() {
                   {search.trim().length>1&&filteredArtists.length>0&&(
                     <div style={{textAlign:"center",padding:"16px 0",borderTop:"1px solid #1e1e00",marginTop:4}}>
                       <span style={{fontSize:11,color:"#333",letterSpacing:1}}>Not seeing who you're looking for? </span>
-                      <span style={{fontSize:11,color:darkMode?"#e6ff00":"#ff4d1a",letterSpacing:1,cursor:"pointer"}} onClick={()=>{setSuggestSubmitted(false);setSuggestNote("");}}>Suggest an artist â†’</span>
+                      <span style={{fontSize:11,color:darkMode?"#e6ff00":"#ff4d1a",letterSpacing:1,cursor:"pointer"}} onClick={()=>{setSuggestSubmitted(false);setSuggestNote("");}}>Suggest an artist -></span>
                     </div>
                   )}
                 </div>
@@ -2267,8 +2309,8 @@ export default function App() {
             {screen===SCREENS.PROFILE&&selectedArtist&&(
               <div className="profile-wrap fade">
                 {purchased.has(selectedArtist.id)
-                  ? <button className="profile-back" onClick={()=>go(SCREENS.STREAM)}>â† Back to My Stream</button>
-                  : <button className="profile-back" onClick={()=>go(SCREENS.SEARCH)}>â† Back to Station</button>
+                  ? <button className="profile-back" onClick={()=>go(SCREENS.STREAM)}>Back to My Stream</button>
+                  : <button className="profile-back" onClick={()=>go(SCREENS.SEARCH)}>Back to Station</button>
                 }
                 {selectedArtist.active?(
                   <>
@@ -2282,7 +2324,7 @@ export default function App() {
                       <p className="profile-bio">{getArtistProfile(selectedArtist).bio}</p>
                       {(getArtistProfile(selectedArtist).spotify||getArtistProfile(selectedArtist).website)&&(
                         <div style={{display:"flex",gap:10,flexWrap:"wrap",justifyContent:"center",marginBottom:16}}>
-                          {getArtistProfile(selectedArtist).spotify&&<a href={getArtistProfile(selectedArtist).spotify} target="_blank" rel="noopener noreferrer" style={{fontSize:11,color:"#1db954",border:"1px solid #1db954",borderRadius:1,padding:"5px 12px",letterSpacing:1,textDecoration:"none",fontFamily:"'Anton',sans-serif"}}>â–¶ Spotify</a>}
+                          {getArtistProfile(selectedArtist).spotify&&<a href={getArtistProfile(selectedArtist).spotify} target="_blank" rel="noopener noreferrer" style={{fontSize:11,color:"#1db954",border:"1px solid #1db954",borderRadius:1,padding:"5px 12px",letterSpacing:1,textDecoration:"none",fontFamily:"'Anton',sans-serif"}}>&#9654; Spotify</a>}
                           {getArtistProfile(selectedArtist).website&&<a href={getArtistProfile(selectedArtist).website} target="_blank" rel="noopener noreferrer" style={{fontSize:11,color:darkMode?"#e6ff00":"#ff4d1a",border:darkMode?"1px solid #e6ff00":"1px solid #ff4d1a",borderRadius:1,padding:"5px 12px",letterSpacing:1,textDecoration:"none",fontFamily:"'Anton',sans-serif"}}>{E.globe} Website</a>}
                         </div>
                       )}
@@ -2318,7 +2360,7 @@ export default function App() {
                                 <div style={{fontFamily:"'Anton',sans-serif",fontSize:16,letterSpacing:3,color:"#f5f5f5",marginBottom:4}}>{selectedArtist.name} IS LIVE</div>
                                 <div style={{fontSize:11,color:"#666",letterSpacing:1,fontFamily:"'Inter',sans-serif"}}>Live Feed Goes Here</div>
                               </div>
-                              <div style={{position:"absolute",bottom:12,right:12,background:"rgba(0,0,0,0.7)",border:"1px solid #ff2222",borderRadius:1,padding:"4px 10px",fontSize:10,color:"#ff6666",fontFamily:"'Anton',sans-serif",letterSpacing:1}}>â— LIVE</div>
+                              <div style={{position:"absolute",bottom:12,right:12,background:"rgba(0,0,0,0.7)",border:"1px solid #ff2222",borderRadius:1,padding:"4px 10px",fontSize:10,color:"#ff6666",fontFamily:"'Anton',sans-serif",letterSpacing:1}}>&#9679; LIVE</div>
                             </div>
                           </div>
                         )}
@@ -2335,7 +2377,7 @@ export default function App() {
                             </div>
                           ))}
                         </div>
-                        <div style={{textAlign:"center",padding:"12px 0",fontSize:11,color:"#3a5a00",letterSpacing:2,fontFamily:"'Anton',sans-serif"}}>âœ“ YOU'RE ON THIS BUS</div>
+                        <div style={{textAlign:"center",padding:"12px 0",fontSize:11,color:"#3a5a00",letterSpacing:2,fontFamily:"'Anton',sans-serif"}}>&#10003; YOU'RE ON THIS BUS</div>
                       </>
                     ):(
                       <>
@@ -2345,7 +2387,7 @@ export default function App() {
                         </div>
                         <div className="unlock-box">
                           <div className="unlock-desc">A one-time fee to ride on {selectedArtist.name}'s tourbus and access their exclusive feed.</div>
-                          <button className="btn btn-primary" onClick={()=>go(SCREENS.CHECKOUT)}>Ride â†’</button>
+                          <button className="btn btn-primary" onClick={()=>go(SCREENS.CHECKOUT)}>Ride -></button>
                         </div>
                       </>
                     )}
@@ -2360,7 +2402,7 @@ export default function App() {
                       <div className="standby-count">{(standbyCounts[selectedArtist.id]||0).toLocaleString()}</div>
                       <div className="standby-lbl">riders waiting</div>
                       <button className={`btn btn-standby${standby[selectedArtist.id]?" on":""}`} onClick={()=>toggleStandby(selectedArtist.id)}>
-                        {standby[selectedArtist.id]?"âœ“ You're On Standby â€” Cancel":"Go Standby"}
+                        {standby[selectedArtist.id]?"&#10003; You're On Standby -- Cancel":"Go Standby"}
                       </button>
                       {standby[selectedArtist.id]&&<p style={{fontSize:11,color:"#555",marginTop:12,letterSpacing:1}}>You'll be charged automatically when {selectedArtist.name} goes live.</p>}
                       <div className="no-refund-notice" style={{marginTop:16,marginBottom:0}}>All sales are final. Once charged, tickets are non-refundable.</div>
@@ -2371,9 +2413,13 @@ export default function App() {
             )}
             {screen===SCREENS.POST_VIEW&&selectedPost&&selectedArtist&&(
               <div className="post-view-wrap fade">
-                <button className="profile-back" onClick={()=>go(SCREENS.PROFILE)}>â† Back to {selectedArtist.name}</button>
-                <div className="post-view-img" style={{background:selectedPost.color}}>
-                  {selectedPost.previewUrl?<img src={selectedPost.previewUrl} alt={selectedPost.label}/>:<span>{selectedPost.type==="photo"?E.photo:E.video}</span>}
+                <button className="profile-back" onClick={()=>go(SCREENS.PROFILE)}>Back to {selectedArtist.name}</button>
+                <div style={{width:"100%",aspectRatio:"16/9",background:selectedPost.color,display:"flex",alignItems:"center",justifyContent:"center",fontSize:64,position:"relative",overflow:"hidden",borderRadius:2,marginBottom:16}}>
+                  {selectedPost.previewUrl?<img src={selectedPost.previewUrl} alt={selectedPost.label} style={{width:"100%",height:"100%",objectFit:"cover",position:"absolute",inset:0}}/>:<span style={{fontSize:48}}>{selectedPost.type==="photo"?E.photo:E.video}</span>}
+                  {(()=>{const artistPosts=feedPosts.filter(p=>p.artist===selectedArtist.name);const idx=artistPosts.findIndex(p=>p.id===selectedPost.id);return(<>
+                    {idx>0&&<button onClick={()=>setSelectedPost(artistPosts[idx-1])} style={{position:"absolute",left:8,top:"50%",transform:"translateY(-50%)",background:"rgba(0,0,0,0.6)",border:"1px solid #444",borderRadius:2,color:"#fff",padding:"8px 12px",cursor:"pointer",fontSize:16,zIndex:2}}>&lt;</button>}
+                    {idx<artistPosts.length-1&&<button onClick={()=>setSelectedPost(artistPosts[idx+1])} style={{position:"absolute",right:8,top:"50%",transform:"translateY(-50%)",background:"rgba(0,0,0,0.6)",border:"1px solid #444",borderRadius:2,color:"#fff",padding:"8px 12px",cursor:"pointer",fontSize:16,zIndex:2}}>&gt;</button>}
+                  </>);})()}
                 </div>
                 <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:12}}>
                   <ArtistThumb artist={selectedArtist} style={{width:32,height:32,borderRadius:2,border:"1px solid #2a2a00",flexShrink:0}}/>
@@ -2391,17 +2437,17 @@ export default function App() {
                   <ArtistThumb artist={selectedArtist} style={{width:48,height:48,borderRadius:2,border:"1px solid #2a2a00",flexShrink:0}}/>
                   <div><div style={{fontFamily:"'Anton',sans-serif",fontSize:16,letterSpacing:2,color:"#f5f5f5"}}>{selectedArtist.name}</div><div style={{fontSize:11,color:"#555",letterSpacing:2}}>{selectedArtist.genre}</div></div>
                 </div>
-                <label className="lbl">Card Number</label><input className="inp" placeholder="â€¢â€¢â€¢â€¢ â€¢â€¢â€¢â€¢ â€¢â€¢â€¢â€¢ â€¢â€¢â€¢â€¢" value={ccForm.number} onChange={e=>setCcForm(p=>({...p,number:e.target.value}))}/>
+                <label className="lbl">Card Number</label><input className="inp" placeholder=".... .... .... ...." value={ccForm.number} onChange={e=>setCcForm(p=>({...p,number:e.target.value}))}/>
                 <div className="cc-row">
                   <div><label className="lbl">Expiry</label><input className="inp" placeholder="MM / YY" value={ccForm.exp} onChange={e=>setCcForm(p=>({...p,exp:e.target.value}))}/></div>
-                  <div><label className="lbl">CVV</label><input className="inp" placeholder="â€¢â€¢â€¢" maxLength={4} value={ccForm.cvv} onChange={e=>setCcForm(p=>({...p,cvv:e.target.value}))}/></div>
+                  <div><label className="lbl">CVV</label><input className="inp" placeholder="..." maxLength={4} value={ccForm.cvv} onChange={e=>setCcForm(p=>({...p,cvv:e.target.value}))}/></div>
                   <div></div>
                 </div>
                 <hr className="divider"/>
                 <div style={{display:"flex",justifyContent:"space-between",fontSize:12,color:"#666",marginBottom:4}}><span>Ticket to {selectedArtist.name}</span><span style={{color:"#f5f5f5"}}>$5.00</span></div>
-                <div style={{fontSize:10,color:"#444",marginBottom:14}}>$3 artist Â· $1 tourbus Â· $1 Live Lives Here</div>
+                <div style={{fontSize:10,color:"#444",marginBottom:14}}>$3 artist - $1 tourbus - $1 Live Lives Here</div>
                 <div className="no-refund-notice">All sales are final. Tickets are non-refundable.</div>
-                <button className="btn btn-primary" onClick={()=>{if(selectedArtist){const date=new Date();setPurchased(p=>{const m=new Map(p);m.set(selectedArtist.id,date);return m;});if(riderUser)riderUser.purchased.set(selectedArtist.id,date);}go(SCREENS.UNLOCKED);}}>Confirm Purchase Â· $5</button>
+                <button className="btn btn-primary" onClick={()=>{if(selectedArtist){const date=new Date();setPurchased(p=>{const m=new Map(p);m.set(selectedArtist.id,date);return m;});if(riderUser)riderUser.purchased.set(selectedArtist.id,date);}go(SCREENS.UNLOCKED);}}>Confirm Purchase - $5</button>
               </div>
             )}
             {screen===SCREENS.UNLOCKED&&selectedArtist&&(
@@ -2409,12 +2455,15 @@ export default function App() {
                 <div className="success-icon">{E.ticket}</div><div className="logo logo-sm">you're on</div>
                 <div className="logo-sub">{selectedArtist.name}</div>
                 <p className="subtext" style={{margin:"14px 0 26px"}}>You're on the bus. Welcome to {selectedArtist?.name}'s exclusive feed.</p>
-                <button className="btn btn-primary" onClick={()=>go(SCREENS.STREAM)}>Go to My Stream â†’</button>
+                <button className="btn btn-primary" onClick={()=>go(SCREENS.STREAM)}>Go to My Stream -></button>
               </div>
             )}
             {screen===SCREENS.ACCOUNT&&(
               <div className="account-wrap fade">
-                <div style={{fontFamily:"'Anton',sans-serif",fontSize:28,letterSpacing:4,color:darkMode?"#e6ff00":"#ff4d1a",marginBottom:24}}>@{(riderUser?.username||"rider").toUpperCase()} ACCOUNT</div>
+                <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:24}}>
+                  <div style={{fontFamily:"'Anton',sans-serif",fontSize:28,letterSpacing:4,color:darkMode?"#e6ff00":"#ff4d1a"}}>@{(riderUser?.username||"rider").toUpperCase()}</div>
+                  <button className="account-signout" onClick={()=>go(SCREENS.LANDING)} style={{marginBottom:0}}>Sign Out</button>
+                </div>
                 <div className="account-section">
                   <div className="account-section-title">Profile</div>
                   <div className="account-row"><div><div className="account-row-label">Username</div><div className="account-row-value">@{riderUser?.username||"rider"}</div></div><button className="account-edit-btn">Edit</button></div>
@@ -2423,7 +2472,7 @@ export default function App() {
                 </div>
                 <div className="account-section">
                   <div className="account-section-title">Payment</div>
-                  <div className="account-row"><div><div className="account-row-label">Card on File</div><div className="account-row-value">â€¢â€¢â€¢â€¢ 4242</div></div><button className="account-edit-btn">Update</button></div>
+                  <div className="account-row"><div><div className="account-row-label">Card on File</div><div className="account-row-value">.... 4242</div></div><button className="account-edit-btn">Update</button></div>
                   <div className="account-row"><div><div className="account-row-label">Total Spent</div><div className="account-row-value">${purchased.size*5}.00</div></div></div>
                 </div>
                 <div className="account-section">
@@ -2457,8 +2506,6 @@ export default function App() {
                     ))}
                   </div>
                 )}
-                <button className="account-signout" onClick={()=>go(SCREENS.LANDING)}>Sign Out</button>
-
                 <div style={{marginTop:40,paddingTop:24,borderTop:"1px solid #1e1e00"}}>
                   <div style={{fontSize:10,letterSpacing:3,color:"#663333",marginBottom:12,fontFamily:"'Anton',sans-serif"}}>DANGER ZONE</div>
                   <div style={{background:"#110000",border:"1px solid #331111",borderRadius:2,padding:"16px"}}>
@@ -2484,7 +2531,7 @@ export default function App() {
                 <div style={{background:darkMode?"#161616":"#ffffff",border:`1px solid ${darkMode?"#2a2a00":"#d0cfc0"}`,borderRadius:2,marginBottom:24,overflow:"hidden"}}>
                   <div onClick={()=>setGrowthOpen(o=>!o)} style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"12px 16px",cursor:"pointer",userSelect:"none"}}>
                     <div style={{fontSize:10,letterSpacing:3,color:darkMode?"#444":"#8a8aaa",fontFamily:"'Anton',sans-serif"}}>RIDER GROWTH</div>
-                    <div style={{fontSize:20,color:darkMode?"#e6ff00":"#0e0e0e",transition:"transform 0.2s",transform:growthOpen?"rotate(180deg)":"rotate(0deg)"}}>â–¾</div>
+                    <div style={{fontSize:20,color:darkMode?"#e6ff00":"#0e0e0e",transition:"transform 0.2s",transform:growthOpen?"rotate(180deg)":"rotate(0deg)"}}>&#9662;</div>
                   </div>
                   {growthOpen&&(
                     <>
@@ -2540,13 +2587,13 @@ export default function App() {
                       <div className="account-row">
                         <div style={{flex:1}}>
                           <div className="account-row-label">Spotify</div>
-                          <div style={{fontSize:13,color: getArtistProfile(artistUser).spotify?"#1db954":"#333",marginTop:4}}>{getArtistProfile(artistUser).spotify||"â€”"}</div>
+                          <div style={{fontSize:13,color: getArtistProfile(artistUser).spotify?"#1db954":"#333",marginTop:4}}>{getArtistProfile(artistUser).spotify||"--"}</div>
                         </div>
                       </div>
                       <div className="account-row" style={{borderBottom:"none"}}>
                         <div style={{flex:1}}>
                           <div className="account-row-label">Website</div>
-                          <div style={{fontSize:13,color: getArtistProfile(artistUser).website?darkMode?"#e6ff00":"#ff4d1a":"#333",marginTop:4}}>{getArtistProfile(artistUser).website||"â€”"}</div>
+                          <div style={{fontSize:13,color: getArtistProfile(artistUser).website?darkMode?"#e6ff00":"#ff4d1a":"#333",marginTop:4}}>{getArtistProfile(artistUser).website||"--"}</div>
                         </div>
                       </div>
                       <button className="btn btn-outline" style={{marginTop:16,fontSize:12,padding:"10px",letterSpacing:2}} onClick={()=>{const p=getArtistProfile(artistUser);setProfileDraft({bio:p.bio,spotify:p.spotify,website:p.website,onTour:p.onTour});setEditingProfile(true);}}>Edit Profile</button>
@@ -2584,13 +2631,13 @@ export default function App() {
                     <div style={{fontFamily:"'Anton',sans-serif",fontSize:13,letterSpacing:3,color:darkMode?"#e6ff00":"#ff4d1a"}}>RECOS</div>
                     <div style={{fontSize:10,color:"#555",letterSpacing:1}}>{(artistRecos[artistUser?.id]||[]).length}/5</div>
                   </div>
-                  <div style={{fontSize:11,color:"#555",letterSpacing:0.5,marginBottom:12,lineHeight:1.6}}>Spotlight up to 5 artists you love â€” on tourbus or not.</div>
+                  <div style={{fontSize:11,color:"#555",letterSpacing:0.5,marginBottom:12,lineHeight:1.6}}>Spotlight up to 5 artists you love -- on tourbus or not.</div>
                   <div className="reco-grid">
                     {(artistRecos[artistUser?.id]||[]).map(a=>(
                       <div key={a.id} className="reco-chip">
                         <ArtistThumb artist={a} className="reco-chip-avatar"/>
                         <div className="reco-chip-name">{a.name}</div>
-                        <button className="reco-chip-remove" onClick={()=>setArtistRecos(p=>({...p,[artistUser.id]:(p[artistUser.id]||[]).filter(r=>r.id!==a.id)}))}>âœ•</button>
+                        <button className="reco-chip-remove" onClick={()=>setArtistRecos(p=>({...p,[artistUser.id]:(p[artistUser.id]||[]).filter(r=>r.id!==a.id)}))}>&#10005;</button>
                       </div>
                     ))}
                   </div>
@@ -2722,7 +2769,7 @@ export default function App() {
               <div className="modal-overlay" onClick={()=>setClapModal(null)}>
                 <div className="modal" onClick={e=>e.stopPropagation()} style={{maxHeight:"80vh",overflowY:"auto"}}>
                   <div className="modal-title">{E.clap} Riders Who Clapped</div>
-                  <p style={{fontSize:11,color:darkMode?"#555":"#7a7a9a",letterSpacing:1,marginBottom:16,lineHeight:1.5}}>{clapModal.label.slice(0,60)}{clapModal.label.length>60?"â€¦":""}</p>
+                  <p style={{fontSize:11,color:darkMode?"#555":"#7a7a9a",letterSpacing:1,marginBottom:16,lineHeight:1.5}}>{clapModal.label.slice(0,60)}{clapModal.label.length>60?"...":""}</p>
                   {MOCK_CLAPPERS.map((r,i)=>(
                     <div key={r.username} style={{display:"flex",alignItems:"center",gap:12,padding:"10px 0",borderBottom:i<MOCK_CLAPPERS.length-1?`1px solid ${darkMode?"#1e1e00":"#e0dfd0"}`:"none"}}>
                       <div style={{fontFamily:"'Anton',sans-serif",fontSize:11,color:darkMode?"#444":"#8a8aaa",width:20,textAlign:"right"}}>{i+1}</div>
@@ -2778,7 +2825,7 @@ export default function App() {
             )}
             {screen===SCREENS.NEW_POST&&artistUser&&(
               <div className="new-post-wrap fade">
-                <button className="back" onClick={()=>go(SCREENS.ARTIST_DASHBOARD)}>â† Back to Dashboard</button>
+                <button className="back" onClick={()=>go(SCREENS.ARTIST_DASHBOARD)}>Back to Dashboard</button>
                 <div style={{fontFamily:"'Anton',sans-serif",fontSize:28,letterSpacing:4,color:darkMode?"#e6ff00":"#ff4d1a",marginBottom:24}}>NEW POST</div>
                 <div style={{fontSize:10,letterSpacing:3,color:"#555",marginBottom:10,fontFamily:"'Anton',sans-serif"}}>POST TYPE</div>
                 <div className="post-type-row">
@@ -2792,11 +2839,11 @@ export default function App() {
                     postType==="photo"?<img src={postPreviewUrl} alt="preview" className="upload-preview"/>
                     :<div style={{width:"100%",aspectRatio:"16/9",background:"#1a1a00",display:"flex",alignItems:"center",justifyContent:"center",flexDirection:"column",gap:8,borderRadius:2}}><span style={{fontSize:32}}>{E.video}</span><span style={{fontSize:11,color:"#888",letterSpacing:1}}>{postFile?.name}</span></div>
                   ):(
-                    <div><div className="upload-placeholder-icon">{postType==="photo"?E.img:E.vidcam}</div><div className="upload-placeholder-text">Click to upload {postType}</div><div className="upload-placeholder-sub">{postType==="photo"?"JPG, PNG, WEBP Â· Max 20MB":"MP4, MOV Â· Max 500MB"}</div></div>
+                    <div><div className="upload-placeholder-icon">{postType==="photo"?E.img:E.vidcam}</div><div className="upload-placeholder-text">Click to upload {postType}</div><div className="upload-placeholder-sub">{postType==="photo"?"JPG, PNG, WEBP / Max 20MB":"MP4, MOV - Max 500MB"}</div></div>
                   )}
                 </div>
                 <div style={{fontSize:10,letterSpacing:3,color:"#555",marginBottom:10,fontFamily:"'Anton',sans-serif"}}>CAPTION</div>
-                <textarea className="inp" placeholder="What's happening on the road..." value={postCaption} onChange={e=>setPostCaption(e.target.value.slice(0,1340))}/>
+                <textarea className="inp" placeholder="Insert genius-level post content here. Or don't. Your call." value={postCaption} onChange={e=>setPostCaption(e.target.value.slice(0,1340))}/>
                 <div className="char-count">{postCaption.length}/1340</div>
                 {postCaption.trim()&&(
                   <>
@@ -2824,7 +2871,7 @@ export default function App() {
               const sorted = [...taggedPosts].sort((a,b)=>(amps[b.id]?.count||0)-(amps[a.id]?.count||0));
               return (
                 <div className="fade" style={{width:"100%",maxWidth:"min(560px,100%)",display:"flex",flexDirection:"column",alignItems:"center"}}>
-                  <button className="profile-back" onClick={()=>go(SCREENS.STREAM)}>â† Back to My Stream</button>
+                  <button className="profile-back" onClick={()=>go(SCREENS.STREAM)}>Back to My Stream</button>
                   <div style={{fontFamily:"'Anton',sans-serif",fontSize:36,letterSpacing:4,color:darkMode?"#e6ff00":"#ff4d1a",marginBottom:4}}>#{activeTag}</div>
                   <div style={{fontSize:10,color:"#555",letterSpacing:3,fontFamily:"'Anton',sans-serif",marginBottom:24}}>{sorted.length} POST{sorted.length!==1?"S":""}</div>
                   {sorted.length===0&&<div style={{color:"#555",fontFamily:"'Inter',sans-serif",fontSize:13}}>No posts tagged with #{activeTag} yet.</div>}
@@ -2851,7 +2898,7 @@ export default function App() {
                         {!isUnlocked&&(
                           <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"10px 14px",background:darkMode?"#0e0e0e":"#f4f4f0",borderTop:`1px solid ${darkMode?"#2a2a00":"#e0dfd0"}`}}>
                             <div style={{fontSize:11,color:"#555",letterSpacing:1,fontFamily:"'Anton',sans-serif"}}>Ride {p.artist} to see photos & videos</div>
-                            <button className="btn btn-primary" style={{width:"auto",padding:"6px 16px",fontSize:11,letterSpacing:2,marginBottom:0}} onClick={()=>{setSelectedArtist(artist);go(SCREENS.CHECKOUT);}}>Ride â†’</button>
+                            <button className="btn btn-primary" style={{width:"auto",padding:"6px 16px",fontSize:11,letterSpacing:2,marginBottom:0}} onClick={()=>{setSelectedArtist(artist);go(SCREENS.CHECKOUT);}}>Ride -></button>
                           </div>
                         )}
                         <div style={{display:"flex",alignItems:"center",gap:16,padding:"8px 14px 12px"}}>
@@ -2867,7 +2914,7 @@ export default function App() {
 
             {screen===SCREENS.TOURBUS_PROFILE&&(
               <div className="fade" style={{width:"100%",maxWidth:"min(560px,100%)",display:"flex",flexDirection:"column",alignItems:"center"}}>
-                <button className="profile-back" onClick={()=>go(SCREENS.STREAM)}>â† Back to My Stream</button>
+                <button className="profile-back" onClick={()=>go(SCREENS.STREAM)}>Back to My Stream</button>
                 {/* Header */}
                 <div className="profile-header" style={{width:"100%"}}>
                   <div style={{width:"100%",maxWidth:"min(240px,100%)",height:160,borderRadius:2,background:"#0e0e0e",border:`2px solid ${darkMode?"#e6ff00":"#0e0e0e"}`,display:"flex",alignItems:"center",justifyContent:"center",marginBottom:14}}>
@@ -2908,16 +2955,16 @@ export default function App() {
                     </div>
                   ))}
                 </div>
-                <div style={{textAlign:"center",padding:"12px 0",fontSize:11,color:darkMode?"#3a5a00":"#5a7a5a",letterSpacing:2,fontFamily:"'Anton',sans-serif"}}>âœ“ YOU'RE ON THIS BUS</div>
+                <div style={{textAlign:"center",padding:"12px 0",fontSize:11,color:darkMode?"#3a5a00":"#5a7a5a",letterSpacing:2,fontFamily:"'Anton',sans-serif"}}>&#10003; YOU'RE ON THIS BUS</div>
                 <div style={{textAlign:"center",marginTop:8}}>
-                  <span style={{fontSize:10,color:"#333",letterSpacing:1,cursor:"pointer",fontFamily:"'Anton',sans-serif"}} onClick={()=>go(SCREENS.TOURBUS_DASHBOARD)}>Admin â†’</span>
+                  <span style={{fontSize:10,color:"#333",letterSpacing:1,cursor:"pointer",fontFamily:"'Anton',sans-serif"}} onClick={()=>go(SCREENS.TOURBUS_DASHBOARD)}>Admin -></span>
                 </div>
               </div>
             )}
 
             {screen===SCREENS.TOURBUS_DASHBOARD&&(
               <div className="fade" style={{width:"100%",maxWidth:"min(560px,100%)"}}>
-                <button className="profile-back" onClick={()=>go(SCREENS.TOURBUS_PROFILE)}>â† Back to Public Page</button>
+                <button className="profile-back" onClick={()=>go(SCREENS.TOURBUS_PROFILE)}>Back to Public Page</button>
                 <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:4}}>
                   <div style={{fontFamily:"'Caveat',cursive",fontSize:38,color:darkMode?"#e6ff00":"#0e0e0e",letterSpacing:-2}}>tourbus</div>
                   <button className="nav-post-btn" onClick={()=>setTourbusNewPost(true)}>+ New Post</button>
@@ -2931,7 +2978,7 @@ export default function App() {
                     <div className="post-type-row">
                       <button className={`post-type-btn${postType==="photo"?" selected":""}`} onClick={()=>setPostType("photo")}><div className="post-type-icon">{E.photo}</div><div className="post-type-label">PHOTO</div></button>
                       <button className={`post-type-btn${postType==="video"?" selected":""}`} onClick={()=>setPostType("video")}><div className="post-type-icon">{E.video}</div><div className="post-type-label">VIDEO</div></button>
-                      <button className={`post-type-btn${postType==="announcement"?" selected":""}`} onClick={()=>setPostType("announcement")}><div className="post-type-icon">ðŸ“¢</div><div className="post-type-label">ANNOUNCE</div></button>
+                      <button className={`post-type-btn${postType==="announcement"?" selected":""}`} onClick={()=>setPostType("announcement")}><div className="post-type-icon">&#128226;</div><div className="post-type-label">ANNOUNCE</div></button>
                     </div>
                     <div style={{fontSize:10,letterSpacing:3,color:"#555",marginBottom:10,fontFamily:"'Anton',sans-serif"}}>CAPTION</div>
                     <textarea className="inp" placeholder="Write your post..." value={postCaption} onChange={e=>setPostCaption(e.target.value.slice(0,1340))}/>
@@ -2967,7 +3014,7 @@ export default function App() {
                     {tourbusRecos.map(a=>(
                       <div key={a.id} style={{position:"relative"}}>
                         <ArtistThumb artist={a} style={{width:44,height:44,borderRadius:2,border:`1px solid ${darkMode?"#2a2a00":"#d0cfc0"}`}}/>
-                        <button style={{position:"absolute",top:-4,right:-4,width:14,height:14,borderRadius:"50%",background:"#331111",border:"none",cursor:"pointer",fontSize:8,color:"#cc4444",display:"flex",alignItems:"center",justifyContent:"center"}} onClick={()=>setTourbusRecos(p=>p.filter(r=>r.id!==a.id))}>âœ•</button>
+                        <button style={{position:"absolute",top:-4,right:-4,width:14,height:14,borderRadius:"50%",background:"#331111",border:"none",cursor:"pointer",fontSize:8,color:"#cc4444",display:"flex",alignItems:"center",justifyContent:"center"}} onClick={()=>setTourbusRecos(p=>p.filter(r=>r.id!==a.id))}>&#10005;</button>
                       </div>
                     ))}
                   </div>
@@ -2993,10 +3040,10 @@ export default function App() {
                   <div style={{fontFamily:"'Anton',sans-serif",fontSize:11,letterSpacing:3,color:darkMode?"#e6ff00":"#ff4d1a",marginBottom:12}}>RECENT POSTS</div>
                   {feedPosts.filter(p=>p.isTourbus).map(p=>(
                     <div key={p.id} style={{display:"flex",gap:10,padding:"10px 12px",background:darkMode?"#161616":"#ffffff",border:`1px solid ${darkMode?"#1e1e00":"#e0dfd0"}`,borderRadius:2,marginBottom:8}}>
-                      <div style={{width:40,height:40,background:"#111",borderRadius:1,display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,flexShrink:0}}>{p.type==="photo"?E.photo:p.type==="video"?E.video:"ðŸ“¢"}</div>
+                      <div style={{width:40,height:40,background:"#111",borderRadius:1,display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,flexShrink:0}}>{p.type==="photo"?E.photo:p.type==="video"?E.video:"&#128226;"}</div>
                       <div style={{flex:1,minWidth:0}}>
                         <div style={{fontSize:11,color:darkMode?"#aaa":"#3a3a5a",lineHeight:1.5,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{p.label}</div>
-                        <div style={{fontSize:9,color:"#555",letterSpacing:1,marginTop:4}}>{p.time} Â· {E.clap} {(likes[p.id]?.count||0)} Â· {E.fire} {(amps[p.id]?.count||0)}</div>
+                        <div style={{fontSize:9,color:"#555",letterSpacing:1,marginTop:4}}>{p.time} - {E.clap} {(likes[p.id]?.count||0)} - {E.fire} {(amps[p.id]?.count||0)}</div>
                       </div>
                     </div>
                   ))}
