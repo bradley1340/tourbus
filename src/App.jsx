@@ -1496,7 +1496,7 @@ export default function App() {
   const [screen, setScreen] = useState(SCREENS.LANDING);
   const [prevScreen, setPrevScreen] = useState(null);
   const [allArtistPosts, setAllArtistPosts] = useState([]);
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
   const [userMode, setUserMode] = useState("rider");
   const [artistUser, setArtistUser] = useState(null);
   const [isTourbuAdmin, setIsTourbuAdmin] = useState(false);
@@ -1987,34 +1987,201 @@ export default function App() {
           </div>
         )}
 
+        {isLoggedIn&&(
+          <div className="nav">
+            <div className="nav-inner">
+              <div className="nav-logo" onClick={()=>go(isArtistMode?SCREENS.ARTIST_DASHBOARD:SCREENS.STREAM)}>tourbus</div>
+              <div className="nav-right">
+                {isArtistMode?(
+                  <>
+                    <button className="nav-post-btn" onClick={()=>go(SCREENS.NEW_POST)}>+ New Post</button>
+                    <button className={`nav-account-btn${screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?" active":""}`} onClick={()=>{if(screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id){go(SCREENS.ARTIST_DASHBOARD);}else{setPrevScreen(SCREENS.ARTIST_DASHBOARD);setSelectedArtist(artistUser);go(SCREENS.PROFILE);}}} title={screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?"Back to Dashboard":"View public profile"}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                    </button>
+                  </>
+                ):(
+                  <>
+                    <div className="nav-search-wrap">
+                      <span className="nav-search-icon">{E.search}</span>
+                      <input className="nav-search-inp" placeholder="Quick search..." value={navSearch} onChange={e=>{setNavSearch(e.target.value);setShowNavResults(true);}} onBlur={()=>setTimeout(()=>setShowNavResults(false),150)}/>
+                      {showNavResults&&navResults.length>0&&(
+                        <div className="nav-search-results">
+                          {navResults.map(a=>(
+                            <div key={a.id} className="nav-search-result" onClick={()=>{setSelectedArtist(a);setNavSearch("");go(SCREENS.PROFILE);}}>
+                              <div style={{width:24,height:24,borderRadius:2,background:a.color,flexShrink:0}}></div>
+                              <div><div className="nav-result-name">{a.name}</div><div className="nav-result-genre">{a.genre}</div></div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    <button className="nav-station-btn" onClick={()=>go(SCREENS.SEARCH)}>
+                      <span className="nav-station-label">Station</span>
+                      <span className="nav-station-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+                    </button>
+                    <button className={`nav-account-btn${screen===SCREENS.ACCOUNT?" active":""}`} onClick={()=>go(SCREENS.ACCOUNT)}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="9"/><line x1="12" y1="15" x2="12" y2="22"/><line x1="2" y1="12" x2="9" y2="12"/><line x1="15" y1="12" x2="22" y2="12"/></svg>
+                    </button>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {isLoggedIn&&(
+          <div className="nav">
+            <div className="nav-inner">
+              <div className="nav-logo" onClick={()=>go(isArtistMode?SCREENS.ARTIST_DASHBOARD:SCREENS.STREAM)}>tourbus</div>
+              <div className="nav-right">
+                {isArtistMode?(
+                  <>
+                    <button className="nav-post-btn" onClick={()=>go(SCREENS.NEW_POST)}>+ New Post</button>
+                    <button className={`nav-account-btn${screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?" active":""}`} onClick={()=>{if(screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id){go(SCREENS.ARTIST_DASHBOARD);}else{setPrevScreen(SCREENS.ARTIST_DASHBOARD);setSelectedArtist(artistUser);go(SCREENS.PROFILE);}}} title={screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?"Back to Dashboard":"View public profile"}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                    </button>
+                  </>
+                ):(
+                  <>
+                    <div className="nav-search-wrap">
+                      <span className="nav-search-icon">{E.search}</span>
+                      <input className="nav-search-inp" placeholder="Quick search..." value={navSearch} onChange={e=>{setNavSearch(e.target.value);setShowNavResults(true);}} onBlur={()=>setTimeout(()=>setShowNavResults(false),150)}/>
+                      {showNavResults&&navResults.length>0&&(
+                        <div className="nav-search-results">
+                          {navResults.map(a=>(
+                            <div key={a.id} className="nav-search-result" onClick={()=>{setSelectedArtist(a);setNavSearch("");go(SCREENS.PROFILE);}}>
+                              <div style={{width:24,height:24,borderRadius:2,background:a.color,flexShrink:0}}></div>
+                              <div><div className="nav-result-name">{a.name}</div><div className="nav-result-genre">{a.genre}</div></div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    <button className="nav-station-btn" onClick={()=>go(SCREENS.SEARCH)}>
+                      <span className="nav-station-label">Station</span>
+                      <span className="nav-station-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+                    </button>
+                    <button className={`nav-account-btn${screen===SCREENS.ACCOUNT?" active":""}`} onClick={()=>go(SCREENS.ACCOUNT)}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="9"/><line x1="12" y1="15" x2="12" y2="22"/><line x1="2" y1="12" x2="9" y2="12"/><line x1="15" y1="12" x2="22" y2="12"/></svg>
+                    </button>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {isLoggedIn&&(
+          <div className="nav">
+            <div className="nav-inner">
+              <div className="nav-logo" onClick={()=>go(isArtistMode?SCREENS.ARTIST_DASHBOARD:SCREENS.STREAM)}>tourbus</div>
+              <div className="nav-right">
+                {isArtistMode?(
+                  <>
+                    <button className="nav-post-btn" onClick={()=>go(SCREENS.NEW_POST)}>+ New Post</button>
+                    <button className={`nav-account-btn${screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?" active":""}`} onClick={()=>{if(screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id){go(SCREENS.ARTIST_DASHBOARD);}else{setPrevScreen(SCREENS.ARTIST_DASHBOARD);setSelectedArtist(artistUser);go(SCREENS.PROFILE);}}} title={screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?"Back to Dashboard":"View public profile"}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                    </button>
+                  </>
+                ):(
+                  <>
+                    <div className="nav-search-wrap">
+                      <span className="nav-search-icon">{E.search}</span>
+                      <input className="nav-search-inp" placeholder="Quick search..." value={navSearch} onChange={e=>{setNavSearch(e.target.value);setShowNavResults(true);}} onBlur={()=>setTimeout(()=>setShowNavResults(false),150)}/>
+                      {showNavResults&&navResults.length>0&&(
+                        <div className="nav-search-results">
+                          {navResults.map(a=>(
+                            <div key={a.id} className="nav-search-result" onClick={()=>{setSelectedArtist(a);setNavSearch("");go(SCREENS.PROFILE);}}>
+                              <div style={{width:24,height:24,borderRadius:2,background:a.color,flexShrink:0}}></div>
+                              <div><div className="nav-result-name">{a.name}</div><div className="nav-result-genre">{a.genre}</div></div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    <button className="nav-station-btn" onClick={()=>go(SCREENS.SEARCH)}>
+                      <span className="nav-station-label">Station</span>
+                      <span className="nav-station-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+                    </button>
+                    <button className={`nav-account-btn${screen===SCREENS.ACCOUNT?" active":""}`} onClick={()=>go(SCREENS.ACCOUNT)}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="9"/><line x1="12" y1="15" x2="12" y2="22"/><line x1="2" y1="12" x2="9" y2="12"/><line x1="15" y1="12" x2="22" y2="12"/></svg>
+                    </button>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {isLoggedIn&&(
+          <div className="nav">
+            <div className="nav-inner">
+              <div className="nav-logo" onClick={()=>go(isArtistMode?SCREENS.ARTIST_DASHBOARD:SCREENS.STREAM)}>tourbus</div>
+              <div className="nav-right">
+                {isArtistMode?(
+                  <>
+                    <button className="nav-post-btn" onClick={()=>go(SCREENS.NEW_POST)}>+ New Post</button>
+                    <button className={`nav-account-btn${screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?" active":""}`} onClick={()=>{if(screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id){go(SCREENS.ARTIST_DASHBOARD);}else{setPrevScreen(SCREENS.ARTIST_DASHBOARD);setSelectedArtist(artistUser);go(SCREENS.PROFILE);}}} title={screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?"Back to Dashboard":"View public profile"}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                    </button>
+                  </>
+                ):(
+                  <>
+                    <div className="nav-search-wrap">
+                      <span className="nav-search-icon">{E.search}</span>
+                      <input className="nav-search-inp" placeholder="Quick search..." value={navSearch} onChange={e=>{setNavSearch(e.target.value);setShowNavResults(true);}} onBlur={()=>setTimeout(()=>setShowNavResults(false),150)}/>
+                      {showNavResults&&navResults.length>0&&(
+                        <div className="nav-search-results">
+                          {navResults.map(a=>(
+                            <div key={a.id} className="nav-search-result" onClick={()=>{setSelectedArtist(a);setNavSearch("");go(SCREENS.PROFILE);}}>
+                              <div style={{width:24,height:24,borderRadius:2,background:a.color,flexShrink:0}}></div>
+                              <div><div className="nav-result-name">{a.name}</div><div className="nav-result-genre">{a.genre}</div></div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    <button className="nav-station-btn" onClick={()=>go(SCREENS.SEARCH)}>
+                      <span className="nav-station-label">Station</span>
+                      <span className="nav-station-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+                    </button>
+                    <button className={`nav-account-btn${screen===SCREENS.ACCOUNT?" active":""}`} onClick={()=>go(SCREENS.ACCOUNT)}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="9"/><line x1="12" y1="15" x2="12" y2="22"/><line x1="2" y1="12" x2="9" y2="12"/><line x1="15" y1="12" x2="22" y2="12"/></svg>
+                    </button>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
         {!isLoggedIn&&(
           <div style={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",minHeight:"100vh",width:"100%",padding:"24px",background:"#f5f4ef"}}>
           <style>{makeCSS(false)}</style>
-          <style>{makeCSS(false)}</style>
             {screen===SCREENS.LANDING&&(
               <div className="card fade">
-                <div className="logo" style={{color:"#ff4d1a"}}>tourbus</div>
+                <div className="logo" style={{color:"#0e0e0e",textShadow:"none"}}>tourbus</div>
                 <div className="logo-sub" style={{fontSize:"18px",letterSpacing:"2px",marginBottom:"26px"}}>"We're with the band."</div>
                 <div className="headline">The <em>inside seat</em> with your favorite artists on their musical journey.</div>
-                <p className="subtext" style={{fontFamily:"'Inter',sans-serif"}}>Support artists directly, and get on board for exclusive content only they can provide -- photos, videos and livestream moments from backstage to the main stage, and everything in between.<br/><br/>No ads. No subscriptions. No upsells.<br/>Just an app to make your <em style={{color:darkMode?"#e6ff00":"#ff4d1a",fontWeight:"bold",fontStyle:"italic"}}>live</em> better.</p>
-                <div style={{width:"100%",aspectRatio:"16/9",background:darkMode?"#0a0a0a":"#e8e8e4",border:`1px solid ${darkMode?"#2a2a00":"#d0cfc0"}`,borderRadius:2,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:10,marginBottom:24,position:"relative",overflow:"hidden"}}>
-                  <div style={{width:52,height:52,borderRadius:"50%",background:darkMode?"rgba(230,255,0,0.1)":"rgba(255,77,26,0.1)",border:`2px solid ${darkMode?"#e6ff00":"#ff4d1a"}`,display:"flex",alignItems:"center",justifyContent:"center"}}>
-                    <div style={{width:0,height:0,borderTop:"10px solid transparent",borderBottom:"10px solid transparent",borderLeft:`16px solid ${darkMode?"#e6ff00":"#ff4d1a"}`,marginLeft:4}}/>
+                <p className="subtext" style={{fontFamily:"'Inter',sans-serif"}}>Support artists directly, and get on board for exclusive content only they can provide -- photos, videos and livestream moments from backstage to the main stage, and everything in between.<br/><br/>No ads. No subscriptions. No upsells.<br/>Just an app to make your <em style={{color:"#ff4d1a",fontWeight:"bold",fontStyle:"italic"}}>live</em> better.</p>
+                <div style={{width:"100%",aspectRatio:"16/9",background:"#e8e8e4",border:"1px solid #d0cfc0",borderRadius:2,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:10,marginBottom:24,position:"relative",overflow:"hidden"}}>
+                  <div style={{width:52,height:52,borderRadius:"50%",background:"rgba(255,77,26,0.1)",border:"2px solid #ff4d1a",display:"flex",alignItems:"center",justifyContent:"center"}}>
+                    <div style={{width:0,height:0,borderTop:"10px solid transparent",borderBottom:"10px solid transparent",borderLeft:"16px solid #ff4d1a",marginLeft:4}}/>
                   </div>
-                  <div style={{fontFamily:"'Anton',sans-serif",fontSize:10,letterSpacing:3,color:darkMode?"#555":"#aaa"}}>TOURBUS EXPLAINED IN 30 SECONDS</div>
+                  <div style={{fontFamily:"'Anton',sans-serif",fontSize:10,letterSpacing:3,color:"#aaa"}}>TOURBUS EXPLAINED IN 30 SECONDS</div>
                 </div>
                 <div className="ticket-box">
                   <div className="ticket-price" style={{textAlign:"center"}}>$5 TICKET TO RIDE</div>
                   <div className="ticket-desc" style={{textAlign:"center"}}>One-time fee per artist / Transparent pricing</div>
                   <div style={{display:"flex",alignItems:"stretch",justifyContent:"center",gap:8,marginTop:8}}>
-                    <div style={{textAlign:"center",flex:1,background:"rgba(230,255,0,0.04)",border:"1px solid #3a3a00",borderRadius:2,padding:"16px 12px"}}>
-                      <div style={{fontFamily:"'Anton',sans-serif",fontSize:44,color:darkMode?"#e6ff00":"#ff4d1a",letterSpacing:2,lineHeight:1}}>$3</div>
-                      <div style={{fontFamily:"'Anton',sans-serif",fontSize:18,color:darkMode?"#e6ff00":"#ff4d1a",letterSpacing:3,marginTop:8,lineHeight:1}}>to ARTIST</div>
+                    <div style={{textAlign:"center",flex:1,background:"rgba(255,77,26,0.04)",border:"1px solid #e8ddd0",borderRadius:2,padding:"16px 12px"}}>
+                      <div style={{fontFamily:"'Anton',sans-serif",fontSize:44,color:"#ff4d1a",letterSpacing:2,lineHeight:1}}>$3</div>
+                      <div style={{fontFamily:"'Anton',sans-serif",fontSize:18,color:"#ff4d1a",letterSpacing:3,marginTop:8,lineHeight:1}}>to ARTIST</div>
                       <div style={{fontFamily:"'Playfair Display',serif",fontSize:11,fontWeight:700,color:"#888",marginTop:6}}>no fine print, just what's right and fair</div>
                     </div>
-                    <div style={{textAlign:"center",flex:1,background:"rgba(230,255,0,0.04)",border:"1px solid #3a3a00",borderRadius:2,padding:"16px 12px"}}>
-                      <div style={{fontFamily:"'Anton',sans-serif",fontSize:44,color:darkMode?"#e6ff00":"#ff4d1a",letterSpacing:2,lineHeight:1}}>$2</div>
-                      <div style={{fontFamily:"'Anton',sans-serif",fontSize:18,color:darkMode?"#e6ff00":"#ff4d1a",letterSpacing:3,marginTop:8,lineHeight:1}}>to TOURBUS</div>
+                    <div style={{textAlign:"center",flex:1,background:"rgba(255,77,26,0.04)",border:"1px solid #e8ddd0",borderRadius:2,padding:"16px 12px"}}>
+                      <div style={{fontFamily:"'Anton',sans-serif",fontSize:44,color:"#ff4d1a",letterSpacing:2,lineHeight:1}}>$2</div>
+                      <div style={{fontFamily:"'Anton',sans-serif",fontSize:18,color:"#ff4d1a",letterSpacing:3,marginTop:8,lineHeight:1}}>to TOURBUS</div>
                       <div style={{fontFamily:"'Playfair Display',serif",fontSize:11,fontWeight:700,color:"#888",marginTop:6}}>our charity and our amazing team</div>
                     </div>
                   </div>
@@ -2055,14 +2222,20 @@ export default function App() {
             )}
             {screen===SCREENS.CHOOSE_TYPE&&(
               <div className="card fade">
-                <div className="logo logo-sm">tourbus</div><div className="logo-sub">"We're with the band."</div>
+                <div className="logo logo-sm" style={{color:"#0e0e0e",textShadow:"none"}}>tourbus</div><div className="logo-sub">"We're with the band."</div>
                 <div className="headline">Who are you?</div>
 
-                <div style={{display:"flex",gap:12,marginBottom:12}}>
-                  <div className="type-card" style={{flex:1,marginBottom:0}} onClick={()=>go(SCREENS.RIDER_SIGNUP)}><div className="type-title">I'm a Rider</div><div className="type-desc">A fan looking to get closer to the artists I love. A one-time fee to ride on an artist's tourbus.</div></div>
-                  <div className="type-card" style={{flex:1,marginBottom:0}} onClick={()=>go(SCREENS.ARTIST_SIGNUP)}><div className="type-title">I'm an Artist</div><div className="type-desc">A musician or band ready to share the real tour experience. Requires validation.</div></div>
+                <div style={{display:"flex",flexDirection:"column",gap:12,marginBottom:16}}>
+                  <div onClick={()=>go(SCREENS.RIDER_SIGNUP)} style={{border:"2px solid #ff4d1a",borderRadius:2,padding:"20px",cursor:"pointer",background:"rgba(255,77,26,0.04)",transition:"all 0.2s"}}>
+                    <div style={{fontFamily:"'Anton',sans-serif",fontSize:18,letterSpacing:2,color:"#ff4d1a",marginBottom:6}}>I'M A RIDER</div>
+                    <div style={{fontSize:13,color:"#555",lineHeight:1.6}}>A fan looking to get closer to the artists I love. A one-time fee to ride on an artist's tourbus.</div>
+                  </div>
+                  <div onClick={()=>go(SCREENS.ARTIST_SIGNUP)} style={{border:"2px solid #1a1a2e",borderRadius:2,padding:"20px",cursor:"pointer",background:"rgba(26,26,46,0.04)",transition:"all 0.2s"}}>
+                    <div style={{fontFamily:"'Anton',sans-serif",fontSize:18,letterSpacing:2,color:"#1a1a2e",marginBottom:6}}>I'M AN ARTIST</div>
+                    <div style={{fontSize:13,color:"#555",lineHeight:1.6}}>A musician or band ready to share the real tour experience. Requires validation.</div>
+                  </div>
                 </div>
-                <button className="btn btn-ghost" onClick={()=>go(SCREENS.LANDING)}>Back</button>
+                <button className="btn btn-outline" onClick={()=>go(SCREENS.LANDING)}>Back to Home</button>
               </div>
             )}
             {screen===SCREENS.RIDER_SIGNUP&&(
