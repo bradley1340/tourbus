@@ -1276,7 +1276,7 @@ const makeCSS = (dark) => {
   .divider{border:none;border-top:1px solid ${t.borderMid};margin:20px 0;}
   .signin-divider{display:flex;align-items:center;gap:12px;margin:20px 0;width:100%;}
   .signin-divider-line{flex:1;border-top:1px solid ${t.borderMid};}
-  .signin-divider-text{font-family:'Anton',sans-serif;font-size:10px;letter-spacing:2px;color:${t.textDeeper};white-space:nowrap;}
+  .signin-divider-text{font-family:'Inter',sans-serif;font-size:12px;letter-spacing:1px;color:${t.textDeep};white-space:nowrap;}
   .code-hint{font-size:11px;color:${t.textDeep};letter-spacing:1px;line-height:1.6;text-align:center;margin-top:10px;}
   .section-label{font-family:'Anton',sans-serif;font-size:11px;letter-spacing:3px;color:${t.accentDark};margin-top:8px;}.success-icon{font-size:40px;text-align:center;margin-bottom:10px;}
   .type-card{border:2px solid ${t.border};border-radius:2px;padding:18px 20px;margin-bottom:12px;cursor:pointer;transition:all 0.2s;text-align:left;}
@@ -1435,7 +1435,7 @@ const makeCSS = (dark) => {
   .account-row-value{font-size:13px;color:${t.text};letter-spacing:0.5px;}
   .account-edit-btn{font-family:'Anton',sans-serif;font-size:9px;letter-spacing:2px;color:${t.textDeep};background:transparent;border:1px solid ${t.border};border-radius:1px;padding:4px 10px;cursor:pointer;}
   .account-edit-btn:hover{color:${t.accent};border-color:${t.accent};}
-  .account-signout{display:block;width:100%;padding:12px;font-family:'Anton',sans-serif;font-size:13px;letter-spacing:3px;color:${t.textDeeper};background:transparent;border:1px solid ${t.borderMid};border-radius:1px;cursor:pointer;transition:all 0.2s;text-align:center;margin-top:8px;}
+  .account-signout{display:inline-block;width:auto;padding:8px 20px;font-family:'Anton',sans-serif;font-size:13px;letter-spacing:3px;color:${t.textDeeper};background:transparent;border:1px solid ${t.borderMid};border-radius:1px;cursor:pointer;transition:all 0.2s;text-align:center;}
   .account-signout:hover{color:${t.text};border-color:${t.textDeep};}
   .ticket-row{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid ${t.borderMid};}
   .ticket-row:last-child{border-bottom:none;}
@@ -1487,7 +1487,7 @@ const makeCSS = (dark) => {
   .privacy-content,.terms-content{font-size:12px;color:${t.textFaint};line-height:1.8;letter-spacing:0.3px;}
   .privacy-content h3,.terms-content h3{font-family:'Anton',sans-serif;font-size:13px;letter-spacing:2px;color:${t.text};margin:16px 0 8px;}
   .privacy-content p,.terms-content p{margin-bottom:10px;}
-  .tourbus-bus-avatar{width:52px;height:52px;border-radius:2px;border:2px solid ${t.logoColor};background:${t.bg};display:flex;align-items:center;justify-content:center;font-family:'Caveat',cursive;font-size:13px;color:${t.logoColor};flex-shrink:0;text-shadow:0 0 8px ${t.logoGlow};}
+  .tourbus-bus-avatar{width:52px;height:52px;border-radius:2px;border:2px solid ${dark?"#e6ff00":"#ff4d1a"};background:${t.bg};display:flex;align-items:center;justify-content:center;font-family:'Caveat',cursive;font-size:13px;color:${dark?"#e6ff00":"#ff4d1a"};flex-shrink:0;text-shadow:0 0 8px ${t.logoGlow};}
   `;
 };
 
@@ -1604,7 +1604,7 @@ export default function App() {
   const videoRef = useRef(null);
   const cameraStreamRef = useRef(null);
 
-  const go = s => { setScreen(s); window.scrollTo(0,0); };
+  const go = s => { setScreen(s); window.scrollTo(0,0); setActiveTagInput(null); setTagDraft(''); };
   const toggleLike = id => setLikes(p=>({...p,[id]:{count:p[id].liked?p[id].count-1:p[id].count+1,liked:!p[id].liked}}));
   const toggleAmp = id => setAmps(p=>({...p,[id]:{count:p[id].amped?p[id].count-1:p[id].count+1,amped:!p[id].amped}}));
   const TAG_THRESHOLD = 20;
@@ -2171,8 +2171,8 @@ export default function App() {
                   <div style={{fontFamily:"'Anton',sans-serif",fontSize:10,letterSpacing:3,color:"#aaa"}}>TOURBUS EXPLAINED IN 30 SECONDS</div>
                 </div>
                 <div className="ticket-box">
-                  <div className="ticket-price" style={{textAlign:"center"}}>$5 TICKET TO RIDE</div>
-                  <div className="ticket-desc" style={{textAlign:"center"}}>One-time fee per artist / Transparent pricing</div>
+                  <div className="ticket-price" style={{textAlign:"center",color:"#0e0e0e"}}>How It Works</div>
+                  <div className="ticket-desc" style={{textAlign:"center"}}>One-time $5 fee per artist / Transparent Pricing</div>
                   <div style={{display:"flex",alignItems:"stretch",justifyContent:"center",gap:8,marginTop:8}}>
                     <div style={{textAlign:"center",flex:1,background:"rgba(255,77,26,0.04)",border:"1px solid #e8ddd0",borderRadius:2,padding:"16px 12px"}}>
                       <div style={{fontFamily:"'Anton',sans-serif",fontSize:44,color:"#ff4d1a",letterSpacing:2,lineHeight:1}}>$3</div>
@@ -2257,13 +2257,13 @@ export default function App() {
                 <hr className="divider"/>
                 <div className="policy-check-row">
                   <div className={`policy-checkbox${agreedPrivacy?" checked":""}`} onClick={()=>setAgreedPrivacy(p=>!p)}>
-                    {agreedPrivacy&&<span className="policy-checkbox-mark">&#10003;</span>}
+                    {agreedPrivacy&&<span className="policy-checkbox-mark">âœ“</span>}
                   </div>
                   <div className="policy-check-text">I have read and agree to the <span className="policy-link" onClick={()=>setShowPolicy("privacy")}>Privacy Policy</span></div>
                 </div>
                 <div className="policy-check-row">
                   <div className={`policy-checkbox${agreedTerms?" checked":""}`} onClick={()=>setAgreedTerms(p=>!p)}>
-                    {agreedTerms&&<span className="policy-checkbox-mark">&#10003;</span>}
+                    {agreedTerms&&<span className="policy-checkbox-mark">âœ“</span>}
                   </div>
                   <div className="policy-check-text">I have read and agree to the <span className="policy-link" onClick={()=>setShowPolicy("terms")}>Terms of Use</span></div>
                 </div>
@@ -2388,7 +2388,7 @@ export default function App() {
                       {(()=>{const topTags=Object.entries(tags[p.id]||{}).filter(([,cnt])=>cnt>=TAG_THRESHOLD).sort((a,b)=>b[1]-a[1]).slice(0,5);return topTags.length>0&&<div className="tag-pills">{topTags.map(([tag])=><span key={tag} className="tag-pill" style={{cursor:"pointer"}} onClick={()=>setTags(prev=>({...prev,[p.id]:{...prev[p.id],[tag]:(prev[p.id][tag]||0)+1}}))}>#{tag}</span>)}</div>;})()}
                       {activeTagInput===p.id&&(
                         <div className="tag-input-wrap">
-                          <input className="tag-input" placeholder="add a tag..." autoFocus maxLength={30} value={tagDraft} onChange={e=>setTagDraft(e.target.value.replace(/\s/g,''))} onKeyDown={e=>{if(e.key==='Enter')addTag(p.id,tagDraft);if(e.key==='Escape'){setActiveTagInput(null);setTagDraft('');}}}/>
+                          <input className="tag-input" placeholder="add a tag..." maxLength={30} value={tagDraft} onChange={e=>setTagDraft(e.target.value.replace(/\s/g,''))} onKeyDown={e=>{if(e.key==='Enter')addTag(p.id,tagDraft);if(e.key==='Escape'){setActiveTagInput(null);setTagDraft('');}}}/>
                           <button className="tag-submit" onClick={()=>addTag(p.id,tagDraft)}>ADD</button>
                         </div>
                       )}
@@ -2426,7 +2426,7 @@ export default function App() {
                       {(()=>{const topTags=Object.entries(tags[p.id]||{}).filter(([,cnt])=>cnt>=TAG_THRESHOLD).sort((a,b)=>b[1]-a[1]).slice(0,5);return topTags.length>0&&<div className="tag-pills">{topTags.map(([tag])=><span key={tag} className="tag-pill" style={{cursor:"pointer"}} onClick={()=>setTags(prev=>({...prev,[p.id]:{...prev[p.id],[tag]:(prev[p.id][tag]||0)+1}}))}>#{tag}</span>)}</div>;})()}
                       {activeTagInput===p.id&&(
                         <div className="tag-input-wrap">
-                          <input className="tag-input" placeholder="add a tag..." autoFocus maxLength={30} value={tagDraft} onChange={e=>setTagDraft(e.target.value.replace(/\s/g,''))} onKeyDown={e=>{if(e.key==='Enter')addTag(p.id,tagDraft);if(e.key==='Escape'){setActiveTagInput(null);setTagDraft('');}}}/>
+                          <input className="tag-input" placeholder="add a tag..." maxLength={30} value={tagDraft} onChange={e=>setTagDraft(e.target.value.replace(/\s/g,''))} onKeyDown={e=>{if(e.key==='Enter')addTag(p.id,tagDraft);if(e.key==='Escape'){setActiveTagInput(null);setTagDraft('');}}}/>
                           <button className="tag-submit" onClick={()=>addTag(p.id,tagDraft)}>ADD</button>
                         </div>
                       )}
@@ -2537,11 +2537,11 @@ export default function App() {
                         {a.active?(
                           <><div className="stub-count">{a.riders.toLocaleString()}</div><div className="stub-label">riders</div>
                           {purchased.has(a.id)
-                            ? <div style={{fontFamily:"'Anton',sans-serif",fontSize:9,letterSpacing:1,color:darkMode?"#e6ff00":"#ff4d1a",marginTop:4,textAlign:"center"}}>&#10003; RIDING</div>
+                            ? <div style={{fontFamily:"'Anton',sans-serif",fontSize:9,letterSpacing:1,color:darkMode?"#e6ff00":"#ff4d1a",marginTop:4,textAlign:"center"}}>âœ“ RIDING</div>
                             : <button className="stub-action" onClick={e=>{e.stopPropagation();setSelectedArtist(a);go(SCREENS.PROFILE);}}>Ride</button>
                           }</>
                         ):(
-                          <><div className="stub-count">{(standbyCounts[a.id]||0).toLocaleString()}</div><div className="stub-label">on standby</div><button className="stub-action" onClick={e=>{e.stopPropagation();toggleStandby(a.id);}}>{standby[a.id]?"&#10003; Standby":"Go Standby"}</button></>
+                          <><div className="stub-count">{(standbyCounts[a.id]||0).toLocaleString()}</div><div className="stub-label">on standby</div><button className="stub-action" onClick={e=>{e.stopPropagation();toggleStandby(a.id);}}>{standby[a.id]?"âœ“ Standby":"Go Standby"}</button></>
                         )}
                       </div>
                     </div>
@@ -2566,9 +2566,15 @@ export default function App() {
                     </div>
                   )}
                   {search.trim().length>1&&filteredArtists.length>0&&(
-                    <div style={{textAlign:"center",padding:"16px 0",borderTop:"1px solid #1e1e00",marginTop:4}}>
-                      <span style={{fontSize:11,color:"#333",letterSpacing:1}}>Not seeing who you're looking for? </span>
-                      <span style={{fontSize:11,color:darkMode?"#e6ff00":"#ff4d1a",letterSpacing:1,cursor:"pointer"}} onClick={()=>{setSuggestSubmitted(false);setSuggestNote("");}}>Suggest an artist -></span>
+                    <div style={{textAlign:"center",padding:"16px 0",borderTop:`1px solid ${darkMode?"#1e1e00":"#e8e0d0"}`,marginTop:4}}>
+                      <span style={{fontSize:11,color:"#888",letterSpacing:1}}>Not seeing who you're looking for? </span>
+                      <span style={{fontSize:11,color:darkMode?"#e6ff00":"#ff4d1a",letterSpacing:1,cursor:"pointer"}} onClick={()=>{setSuggestSubmitted(false);setSearch(search);}}>Suggest an artist -></span>
+                    </div>
+                  )}
+                  {search.trim().length===0&&(
+                    <div style={{textAlign:"center",padding:"16px 0",borderTop:`1px solid ${darkMode?"#1e1e00":"#e8e0d0"}`,marginTop:4}}>
+                      <span style={{fontSize:11,color:"#888",letterSpacing:1}}>Not seeing who you're looking for? </span>
+                      <span style={{fontSize:11,color:darkMode?"#e6ff00":"#ff4d1a",letterSpacing:1,cursor:"pointer"}} onClick={()=>{setSuggestSubmitted(false);setSearch(" ");}}>Suggest an artist -></span>
                     </div>
                   )}
                 </div>
@@ -2681,7 +2687,7 @@ export default function App() {
                             ));
                           })()}
                         </div>
-                        <div style={{textAlign:"center",padding:"12px 0",fontSize:11,color:"#3a5a00",letterSpacing:2,fontFamily:"'Anton',sans-serif"}}>&#10003; YOU'RE ON THIS BUS</div>
+                        <div style={{textAlign:"center",padding:"12px 0",fontSize:11,color:"#3a5a00",letterSpacing:2,fontFamily:"'Anton',sans-serif"}}>âœ“ YOU'RE ON THIS BUS</div>
                       </>
                     ):(
                       <>
@@ -2706,7 +2712,7 @@ export default function App() {
                       <div className="standby-count">{(standbyCounts[selectedArtist.id]||0).toLocaleString()}</div>
                       <div className="standby-lbl">riders waiting</div>
                       <button className={`btn btn-standby${standby[selectedArtist.id]?" on":""}`} onClick={()=>toggleStandby(selectedArtist.id)}>
-                        {standby[selectedArtist.id]?"&#10003; You're On Standby -- Cancel":"Go Standby"}
+                        {standby[selectedArtist.id]?"âœ“ On Standby - Cancel":"Go Standby"}
                       </button>
                       {standby[selectedArtist.id]&&<p style={{fontSize:11,color:"#555",marginTop:12,letterSpacing:1}}>You'll be charged automatically when {selectedArtist.name} goes live.</p>}
                       <div className="no-refund-notice" style={{marginTop:16,marginBottom:0}}>All sales are final. Once charged, tickets are non-refundable.</div>
@@ -2737,22 +2743,23 @@ export default function App() {
             )}
             {screen===SCREENS.CHECKOUT&&selectedArtist&&(
               <div className="card fade">
-                <div className="logo logo-sm">tourbus</div><div className="logo-sub">Your ticket to ride</div>
+                <div className="logo logo-sm" style={{color:"#0e0e0e",textShadow:"none"}}>tourbus</div><div className="logo-sub">Your ticket to ride</div>
                 <div className="checkout-artist">
-                  <ArtistThumb artist={selectedArtist} style={{width:48,height:48,borderRadius:2,border:"1px solid #2a2a00",flexShrink:0}}/>
-                  <div><div style={{fontFamily:"'Anton',sans-serif",fontSize:16,letterSpacing:2,color:"#f5f5f5"}}>{selectedArtist.name}</div><div style={{fontSize:11,color:"#555",letterSpacing:2}}>{selectedArtist.genre}</div></div>
+                  <ArtistThumb artist={selectedArtist} style={{width:48,height:48,borderRadius:2,border:`1px solid ${darkMode?"#2a2a00":"#d0cfc0"}`,flexShrink:0}}/>
+                  <div><div style={{fontFamily:"'Anton',sans-serif",fontSize:16,letterSpacing:2,color:darkMode?"#f5f5f5":"#1a1a2e"}}>{selectedArtist.name}</div><div style={{fontSize:11,color:darkMode?"#555":"#888",letterSpacing:2}}>{selectedArtist.genre}</div></div>
                 </div>
-                <label className="lbl">Card Number</label><input className="inp" placeholder=".... .... .... ...." value={ccForm.number} onChange={e=>setCcForm(p=>({...p,number:e.target.value}))}/>
+                <label className="lbl">Card Number</label>
+                <input className="inp" placeholder="Card on file: .... 4242" value={ccForm.number} onChange={e=>setCcForm(p=>({...p,number:e.target.value}))}/>
                 <div className="cc-row">
                   <div><label className="lbl">Expiry</label><input className="inp" placeholder="MM / YY" value={ccForm.exp} onChange={e=>setCcForm(p=>({...p,exp:e.target.value}))}/></div>
                   <div><label className="lbl">CVV</label><input className="inp" placeholder="..." maxLength={4} value={ccForm.cvv} onChange={e=>setCcForm(p=>({...p,cvv:e.target.value}))}/></div>
                   <div></div>
                 </div>
                 <hr className="divider"/>
-                <div style={{display:"flex",justifyContent:"space-between",fontSize:12,color:"#666",marginBottom:4}}><span>Ticket to {selectedArtist.name}</span><span style={{color:"#f5f5f5"}}>$5.00</span></div>
-                <div style={{fontSize:10,color:"#444",marginBottom:14}}>$3 artist - $1 tourbus - $1 Live Lives Here</div>
-                <div className="no-refund-notice">All sales are final. Tickets are non-refundable.</div>
-                <button className="btn btn-primary" onClick={()=>{if(selectedArtist){const date=new Date();setPurchased(p=>{const m=new Map(p);m.set(selectedArtist.id,date);return m;});if(riderUser)riderUser.purchased.set(selectedArtist.id,date);}go(SCREENS.UNLOCKED);}}>Confirm Purchase - $5</button>
+                <div style={{display:"flex",justifyContent:"space-between",fontSize:12,color:darkMode?"#666":"#888",marginBottom:4}}><span>Ticket to {selectedArtist.name}</span><span style={{color:darkMode?"#f5f5f5":"#1a1a2e",fontWeight:600}}>$5.00</span></div>
+                <div style={{fontSize:10,color:darkMode?"#444":"#aaa",marginBottom:14}}>$3 to artist &nbsp;Â·&nbsp; $2 to tourbus</div>
+                <div className="no-refund-notice" style={{marginBottom:16}}>All sales are final. Tickets are non-refundable.</div>
+                <button className="btn btn-primary" onClick={()=>{if(selectedArtist){const date=new Date();setPurchased(p=>{const m=new Map(p);m.set(selectedArtist.id,date);return m;});if(riderUser)riderUser.purchased.set(selectedArtist.id,date);}go(SCREENS.UNLOCKED);}}>Confirm Purchase</button>
               </div>
             )}
             {screen===SCREENS.UNLOCKED&&selectedArtist&&(
@@ -3248,7 +3255,7 @@ export default function App() {
                   <div className="profile-genre">The Official tourbus Channel</div>
                   <p className="profile-bio">Artist spotlights, platform news, and exclusive editorial content. Always free. Always on your bus.</p>
                   <div className="profile-stats" style={{justifyContent:"center"}}>
-                    <div className="stat"><div className="stat-num">{TOURBUS_STATS.tags.toLocaleString()}</div><div className="stat-lbl">Tags</div></div>
+
                   </div>
                 </div>
                 {/* Posts */}
@@ -3277,7 +3284,7 @@ export default function App() {
                     </div>
                   ))}
                 </div>
-                <div style={{textAlign:"center",padding:"12px 0",fontSize:11,color:darkMode?"#3a5a00":"#5a7a5a",letterSpacing:2,fontFamily:"'Anton',sans-serif"}}>&#10003; YOU'RE ON THIS BUS</div>
+                <div style={{textAlign:"center",padding:"12px 0",fontSize:11,color:darkMode?"#3a5a00":"#5a7a5a",letterSpacing:2,fontFamily:"'Anton',sans-serif"}}>âœ“ YOU'RE ON THIS BUS</div>
                 <div style={{textAlign:"center",marginTop:8}}>
                   <span style={{fontSize:10,color:"#333",letterSpacing:1,cursor:"pointer",fontFamily:"'Anton',sans-serif"}} onClick={()=>go(SCREENS.TOURBUS_DASHBOARD)}>Admin -></span>
                 </div>
