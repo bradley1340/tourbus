@@ -1118,21 +1118,21 @@ const RIDER_ACCOUNTS = {
 
 const mkDate = daysAgo => new Date(Date.now() - daysAgo*24*60*60*1000);
 const MOCK_CLAPPERS = [
-  {username:"nightowl88",    purchased: mkDate(312)},
-  {username:"synthwave_sara", purchased: mkDate(289)},
-  {username:"roadtrip_kyle",  purchased: mkDate(245)},
-  {username:"velvetears",     purchased: mkDate(201)},
-  {username:"jessicat",       purchased: mkDate(178)},
-  {username:"loud_louisa",    purchased: mkDate(155)},
-  {username:"driftwood99",    purchased: mkDate(134)},
-  {username:"hex_maren",      purchased: mkDate(112)},
-  {username:"tourbusrider",   purchased: mkDate(88)},
-  {username:"midnightfan42",  purchased: mkDate(67)},
-  {username:"reverbhead",     purchased: mkDate(54)},
-  {username:"cassette_carl",  purchased: mkDate(41)},
-  {username:"glitchgrrl",     purchased: mkDate(29)},
-  {username:"rider",          purchased: mkDate(22)},
-  {username:"mattbradley",    purchased: mkDate(9)},
+  {username:"nightowl88",    purchased: mkDate(312), zip:"90210"},
+  {username:"synthwave_sara",purchased: mkDate(289), zip:"10001"},
+  {username:"roadtrip_kyle", purchased: mkDate(245), zip:"60614"},
+  {username:"velvetears",    purchased: mkDate(201), zip:"78701"},
+  {username:"jessicat",      purchased: mkDate(178), zip:"30301"},
+  {username:"loud_louisa",   purchased: mkDate(155), zip:"94102"},
+  {username:"driftwood99",   purchased: mkDate(134), zip:"98101"},
+  {username:"hex_maren",     purchased: mkDate(112), zip:"55401"},
+  {username:"tourbusrider",  purchased: mkDate(88),  zip:"02101"},
+  {username:"midnightfan42", purchased: mkDate(67),  zip:"77001"},
+  {username:"reverbhead",    purchased: mkDate(54),  zip:"85001"},
+  {username:"cassette_carl", purchased: mkDate(41),  zip:"80201"},
+  {username:"glitchgrrl",    purchased: mkDate(29),  zip:"19101"},
+  {username:"rider",         purchased: mkDate(22),  zip:"90210"},
+  {username:"mattbradley",   purchased: mkDate(9),   zip:"60614"},
 ];
 
 const makeCSS = (dark) => {
@@ -1235,7 +1235,6 @@ const makeCSS = (dark) => {
   .nav-post-btn:hover{background:${t.accentHover};}
   .nav-account-btn{background:transparent;border:1px solid ${t.border};border-radius:1px;padding:6px 7px;cursor:pointer;color:${t.textDeep};transition:all 0.2s;display:flex;align-items:center;}
   .nav-account-btn:hover,.nav-account-btn.active{color:${t.accent};border-color:${t.accent};}
-  .nav-mode-btn{background:transparent;border:1px solid ${t.border};border-radius:1px;padding:6px 7px;cursor:pointer;font-size:13px;line-height:1;color:${t.accent};flex-shrink:0;}
   .nav-search-inp{background:${t.bgInput};border:1px solid ${t.border};border-radius:1px;padding:7px 12px 7px 30px;font-family:'Inter',sans-serif;font-size:12px;color:${t.text};outline:none;width:min(130px,35vw);transition:all 0.2s;}
   .nav-search-inp:focus{border-color:${t.accent};width:min(160px,40vw);}
   .nav-search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:12px;}
@@ -1495,6 +1494,8 @@ const makeCSS = (dark) => {
 
 export default function App() {
   const [screen, setScreen] = useState(SCREENS.LANDING);
+  const [prevScreen, setPrevScreen] = useState(null);
+  const [allArtistPosts, setAllArtistPosts] = useState([]);
   const [darkMode, setDarkMode] = useState(true);
   const [userMode, setUserMode] = useState("rider");
   const [artistUser, setArtistUser] = useState(null);
@@ -1826,10 +1827,9 @@ export default function App() {
                 {isArtistMode?(
                   <>
                     <button className="nav-post-btn" onClick={()=>go(SCREENS.NEW_POST)}>+ New Post</button>
-                    <button className={`nav-account-btn${screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?" active":""}`} onClick={()=>{if(screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id){go(SCREENS.ARTIST_DASHBOARD);}else{setSelectedArtist(artistUser);go(SCREENS.PROFILE);}}} title={screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?"Back to Dashboard":"View public profile"}>
+                    <button className={`nav-account-btn${screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?" active":""}`} onClick={()=>{if(screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id){go(SCREENS.ARTIST_DASHBOARD);}else{setPrevScreen(SCREENS.ARTIST_DASHBOARD);setSelectedArtist(artistUser);go(SCREENS.PROFILE);}}} title={screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?"Back to Dashboard":"View public profile"}>
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
                     </button>
-                    <button onClick={()=>setDarkMode(d=>!d)} title={darkMode?"Light mode":"Dark mode"} className="nav-mode-btn">{darkMode?E.sun:E.moon}</button>
                   </>
                 ):(
                   <>
@@ -1854,7 +1854,132 @@ export default function App() {
                     <button className={`nav-account-btn${screen===SCREENS.ACCOUNT?" active":""}`} onClick={()=>go(SCREENS.ACCOUNT)}>
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="9"/><line x1="12" y1="15" x2="12" y2="22"/><line x1="2" y1="12" x2="9" y2="12"/><line x1="15" y1="12" x2="22" y2="12"/></svg>
                     </button>
-                    <button onClick={()=>setDarkMode(d=>!d)} title={darkMode?"Light mode":"Dark mode"} className="nav-mode-btn">{darkMode?E.sun:E.moon}</button>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {isLoggedIn&&(
+          <div className="nav">
+            <div className="nav-inner">
+              <div className="nav-logo" onClick={()=>go(isArtistMode?SCREENS.ARTIST_DASHBOARD:SCREENS.STREAM)}>tourbus</div>
+              <div className="nav-right">
+                {isArtistMode?(
+                  <>
+                    <button className="nav-post-btn" onClick={()=>go(SCREENS.NEW_POST)}>+ New Post</button>
+                    <button className={`nav-account-btn${screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?" active":""}`} onClick={()=>{if(screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id){go(SCREENS.ARTIST_DASHBOARD);}else{setPrevScreen(SCREENS.ARTIST_DASHBOARD);setSelectedArtist(artistUser);go(SCREENS.PROFILE);}}} title={screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?"Back to Dashboard":"View public profile"}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                    </button>
+                  </>
+                ):(
+                  <>
+                    <div className="nav-search-wrap">
+                      <span className="nav-search-icon">{E.search}</span>
+                      <input className="nav-search-inp" placeholder="Quick search..." value={navSearch} onChange={e=>{setNavSearch(e.target.value);setShowNavResults(true);}} onBlur={()=>setTimeout(()=>setShowNavResults(false),150)}/>
+                      {showNavResults&&navResults.length>0&&(
+                        <div className="nav-search-results">
+                          {navResults.map(a=>(
+                            <div key={a.id} className="nav-search-result" onClick={()=>{setSelectedArtist(a);setNavSearch("");go(SCREENS.PROFILE);}}>
+                              <div style={{width:24,height:24,borderRadius:2,background:a.color,flexShrink:0}}></div>
+                              <div><div className="nav-result-name">{a.name}</div><div className="nav-result-genre">{a.genre}</div></div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    <button className="nav-station-btn" onClick={()=>go(SCREENS.SEARCH)}>
+                      <span className="nav-station-label">Station</span>
+                      <span className="nav-station-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+                    </button>
+                    <button className={`nav-account-btn${screen===SCREENS.ACCOUNT?" active":""}`} onClick={()=>go(SCREENS.ACCOUNT)}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="9"/><line x1="12" y1="15" x2="12" y2="22"/><line x1="2" y1="12" x2="9" y2="12"/><line x1="15" y1="12" x2="22" y2="12"/></svg>
+                    </button>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {isLoggedIn&&(
+          <div className="nav">
+            <div className="nav-inner">
+              <div className="nav-logo" onClick={()=>go(isArtistMode?SCREENS.ARTIST_DASHBOARD:SCREENS.STREAM)}>tourbus</div>
+              <div className="nav-right">
+                {isArtistMode?(
+                  <>
+                    <button className="nav-post-btn" onClick={()=>go(SCREENS.NEW_POST)}>+ New Post</button>
+                    <button className={`nav-account-btn${screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?" active":""}`} onClick={()=>{if(screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id){go(SCREENS.ARTIST_DASHBOARD);}else{setPrevScreen(SCREENS.ARTIST_DASHBOARD);setSelectedArtist(artistUser);go(SCREENS.PROFILE);}}} title={screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?"Back to Dashboard":"View public profile"}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                    </button>
+                  </>
+                ):(
+                  <>
+                    <div className="nav-search-wrap">
+                      <span className="nav-search-icon">{E.search}</span>
+                      <input className="nav-search-inp" placeholder="Quick search..." value={navSearch} onChange={e=>{setNavSearch(e.target.value);setShowNavResults(true);}} onBlur={()=>setTimeout(()=>setShowNavResults(false),150)}/>
+                      {showNavResults&&navResults.length>0&&(
+                        <div className="nav-search-results">
+                          {navResults.map(a=>(
+                            <div key={a.id} className="nav-search-result" onClick={()=>{setSelectedArtist(a);setNavSearch("");go(SCREENS.PROFILE);}}>
+                              <div style={{width:24,height:24,borderRadius:2,background:a.color,flexShrink:0}}></div>
+                              <div><div className="nav-result-name">{a.name}</div><div className="nav-result-genre">{a.genre}</div></div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    <button className="nav-station-btn" onClick={()=>go(SCREENS.SEARCH)}>
+                      <span className="nav-station-label">Station</span>
+                      <span className="nav-station-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+                    </button>
+                    <button className={`nav-account-btn${screen===SCREENS.ACCOUNT?" active":""}`} onClick={()=>go(SCREENS.ACCOUNT)}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="9"/><line x1="12" y1="15" x2="12" y2="22"/><line x1="2" y1="12" x2="9" y2="12"/><line x1="15" y1="12" x2="22" y2="12"/></svg>
+                    </button>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {isLoggedIn&&(
+          <div className="nav">
+            <div className="nav-inner">
+              <div className="nav-logo" onClick={()=>go(isArtistMode?SCREENS.ARTIST_DASHBOARD:SCREENS.STREAM)}>tourbus</div>
+              <div className="nav-right">
+                {isArtistMode?(
+                  <>
+                    <button className="nav-post-btn" onClick={()=>go(SCREENS.NEW_POST)}>+ New Post</button>
+                    <button className={`nav-account-btn${screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?" active":""}`} onClick={()=>{if(screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id){go(SCREENS.ARTIST_DASHBOARD);}else{setPrevScreen(SCREENS.ARTIST_DASHBOARD);setSelectedArtist(artistUser);go(SCREENS.PROFILE);}}} title={screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?"Back to Dashboard":"View public profile"}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                    </button>
+                  </>
+                ):(
+                  <>
+                    <div className="nav-search-wrap">
+                      <span className="nav-search-icon">{E.search}</span>
+                      <input className="nav-search-inp" placeholder="Quick search..." value={navSearch} onChange={e=>{setNavSearch(e.target.value);setShowNavResults(true);}} onBlur={()=>setTimeout(()=>setShowNavResults(false),150)}/>
+                      {showNavResults&&navResults.length>0&&(
+                        <div className="nav-search-results">
+                          {navResults.map(a=>(
+                            <div key={a.id} className="nav-search-result" onClick={()=>{setSelectedArtist(a);setNavSearch("");go(SCREENS.PROFILE);}}>
+                              <div style={{width:24,height:24,borderRadius:2,background:a.color,flexShrink:0}}></div>
+                              <div><div className="nav-result-name">{a.name}</div><div className="nav-result-genre">{a.genre}</div></div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    <button className="nav-station-btn" onClick={()=>go(SCREENS.SEARCH)}>
+                      <span className="nav-station-label">Station</span>
+                      <span className="nav-station-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+                    </button>
+                    <button className={`nav-account-btn${screen===SCREENS.ACCOUNT?" active":""}`} onClick={()=>go(SCREENS.ACCOUNT)}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="9"/><line x1="12" y1="15" x2="12" y2="22"/><line x1="2" y1="12" x2="9" y2="12"/><line x1="15" y1="12" x2="22" y2="12"/></svg>
+                    </button>
                   </>
                 )}
               </div>
@@ -1863,10 +1988,12 @@ export default function App() {
         )}
 
         {!isLoggedIn&&(
-          <div style={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",minHeight:"100vh",width:"100%",padding:"24px"}}>
+          <div style={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",minHeight:"100vh",width:"100%",padding:"24px",background:"#f5f4ef"}}>
+          <style>{makeCSS(false)}</style>
+          <style>{makeCSS(false)}</style>
             {screen===SCREENS.LANDING&&(
               <div className="card fade">
-                <div className="logo">tourbus</div>
+                <div className="logo" style={{color:"#ff4d1a"}}>tourbus</div>
                 <div className="logo-sub" style={{fontSize:"18px",letterSpacing:"2px",marginBottom:"26px"}}>"We're with the band."</div>
                 <div className="headline">The <em>inside seat</em> with your favorite artists on their musical journey.</div>
                 <p className="subtext" style={{fontFamily:"'Inter',sans-serif"}}>Support artists directly, and get on board for exclusive content only they can provide -- photos, videos and livestream moments from backstage to the main stage, and everything in between.<br/><br/>No ads. No subscriptions. No upsells.<br/>Just an app to make your <em style={{color:darkMode?"#e6ff00":"#ff4d1a",fontWeight:"bold",fontStyle:"italic"}}>live</em> better.</p>
@@ -1882,11 +2009,13 @@ export default function App() {
                   <div style={{display:"flex",alignItems:"stretch",justifyContent:"center",gap:8,marginTop:8}}>
                     <div style={{textAlign:"center",flex:1,background:"rgba(230,255,0,0.04)",border:"1px solid #3a3a00",borderRadius:2,padding:"16px 12px"}}>
                       <div style={{fontFamily:"'Anton',sans-serif",fontSize:44,color:darkMode?"#e6ff00":"#ff4d1a",letterSpacing:2,lineHeight:1}}>$3</div>
-                      <div style={{fontFamily:"'Playfair Display',serif",fontSize:12,fontWeight:700,color:"#888",marginTop:6}}>to <strong style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>ARTIST</strong>, no fine print, just what's right and fair</div>
+                      <div style={{fontFamily:"'Anton',sans-serif",fontSize:18,color:darkMode?"#e6ff00":"#ff4d1a",letterSpacing:3,marginTop:8,lineHeight:1}}>to ARTIST</div>
+                      <div style={{fontFamily:"'Playfair Display',serif",fontSize:11,fontWeight:700,color:"#888",marginTop:6}}>no fine print, just what's right and fair</div>
                     </div>
                     <div style={{textAlign:"center",flex:1,background:"rgba(230,255,0,0.04)",border:"1px solid #3a3a00",borderRadius:2,padding:"16px 12px"}}>
                       <div style={{fontFamily:"'Anton',sans-serif",fontSize:44,color:darkMode?"#e6ff00":"#ff4d1a",letterSpacing:2,lineHeight:1}}>$2</div>
-                      <div style={{fontFamily:"'Playfair Display',serif",fontSize:12,fontWeight:700,color:"#888",marginTop:6}}>to <strong style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>TOURBUS</strong>, our charity and our amazing team</div>
+                      <div style={{fontFamily:"'Anton',sans-serif",fontSize:18,color:darkMode?"#e6ff00":"#ff4d1a",letterSpacing:3,marginTop:8,lineHeight:1}}>to TOURBUS</div>
+                      <div style={{fontFamily:"'Playfair Display',serif",fontSize:11,fontWeight:700,color:"#888",marginTop:6}}>our charity and our amazing team</div>
                     </div>
                   </div>
                 </div>
@@ -1918,7 +2047,7 @@ export default function App() {
                 <label className="lbl">Email</label>
                 <input className={`inp${artistSignInError?" inp-error":""}`} placeholder="you@yourdomain.com" value={artistSignInForm.email} onChange={e=>{setArtistSignInForm(p=>({...p,email:e.target.value}));setArtistSignInError("");}}/>
                 <label className="lbl">Authentication Code</label>
-                <input className={`inp auth-code-inp${artistSignInError?" inp-error":""}`} placeholder=". - . - ." maxLength={5} value={artistSignInForm.code} onChange={e=>{setArtistSignInForm(p=>({...p,code:e.target.value.replace(/\D/g,"").slice(0,5)}));setArtistSignInError("");}}/>
+                <input className={`inp auth-code-inp${artistSignInError?" inp-error":""}`} placeholder="5-digit code" maxLength={5} value={artistSignInForm.code} onChange={e=>{setArtistSignInForm(p=>({...p,code:e.target.value.replace(/\D/g,"").slice(0,5)}));setArtistSignInError("");}}/>
                 {artistSignInError?<div className="error-msg">{artistSignInError}</div>:<div className="code-hint">We'll email you a code each time you sign in.</div>}
                 <div className="note" style={{marginTop:14}}>{E.bulb} Demo: use any artist email + code <strong style={{color:darkMode?"#e6ff00":"#ff4d1a",letterSpacing:3}}>12345</strong><br/>e.g. midnight@tourbus.live</div>
                 <button className="btn btn-primary" style={{marginTop:20}} onClick={handleArtistSignIn}>Sign In</button>
@@ -2308,9 +2437,11 @@ export default function App() {
             )}
             {screen===SCREENS.PROFILE&&selectedArtist&&(
               <div className="profile-wrap fade">
-                {purchased.has(selectedArtist.id)
-                  ? <button className="profile-back" onClick={()=>go(SCREENS.STREAM)}>Back to My Stream</button>
-                  : <button className="profile-back" onClick={()=>go(SCREENS.SEARCH)}>Back to Station</button>
+                {prevScreen===SCREENS.ARTIST_DASHBOARD
+                  ? <button className="profile-back" onClick={()=>{setPrevScreen(null);go(SCREENS.ARTIST_DASHBOARD);}}>Back to Dashboard</button>
+                  : purchased.has(selectedArtist.id)
+                    ? <button className="profile-back" onClick={()=>go(SCREENS.STREAM)}>Back to My Stream</button>
+                    : <button className="profile-back" onClick={()=>go(SCREENS.SEARCH)}>Back to Station</button>
                 }
                 {selectedArtist.active?(
                   <>
@@ -2366,16 +2497,16 @@ export default function App() {
                         )}
                         <div style={{fontSize:10,letterSpacing:3,color:"#444",marginBottom:12,fontFamily:"'Anton',sans-serif"}}>POSTS</div>
                         <div className="feed-grid">
-                          {feedPosts.filter(p=>p.artist===selectedArtist.name).map(p=>(
-                            <div key={p.id} className="feed-grid-item" style={{background:p.color}} onClick={()=>{setSelectedPost(p);go(SCREENS.POST_VIEW);}}>
-                              {p.previewUrl?<img src={p.previewUrl} alt={p.label}/>:<span>{p.type==="photo"?E.photo:E.video}</span>}
-                            </div>
-                          ))}
-                          {MOCK_POSTS.map((p,i)=>(
-                            <div key={`mock-${i}`} className="feed-grid-item" style={{background:p.color}} onClick={()=>{setSelectedPost({...p,id:`mock-${i}`,label:"Exclusive post",time:"recently",artist:selectedArtist.name,likes:Math.floor(Math.random()*500)+50});go(SCREENS.POST_VIEW);}}>
-                              <span>{p.type==="photo"?E.photo:E.video}</span>
-                            </div>
-                          ))}
+                          {(()=>{
+                            const realPosts = feedPosts.filter(p=>p.artist===selectedArtist.name);
+                            const mockPostsFull = MOCK_POSTS.map((p,i)=>({...p,id:`mock-${i}`,label:"Exclusive post",time:"recently",artist:selectedArtist.name,likes:Math.floor((i+1)*47+83)}));
+                            const allPosts = [...realPosts, ...mockPostsFull];
+                            return allPosts.map(p=>(
+                              <div key={p.id} className="feed-grid-item" style={{background:p.color}} onClick={()=>{setSelectedPost(p);setAllArtistPosts(allPosts);go(SCREENS.POST_VIEW);}}>
+                                {p.previewUrl?<img src={p.previewUrl} alt={p.label}/>:<span>{p.type==="photo"?E.photo:E.video}</span>}
+                              </div>
+                            ));
+                          })()}
                         </div>
                         <div style={{textAlign:"center",padding:"12px 0",fontSize:11,color:"#3a5a00",letterSpacing:2,fontFamily:"'Anton',sans-serif"}}>&#10003; YOU'RE ON THIS BUS</div>
                       </>
@@ -2416,9 +2547,10 @@ export default function App() {
                 <button className="profile-back" onClick={()=>go(SCREENS.PROFILE)}>Back to {selectedArtist.name}</button>
                 <div style={{width:"100%",aspectRatio:"16/9",background:selectedPost.color,display:"flex",alignItems:"center",justifyContent:"center",fontSize:64,position:"relative",overflow:"hidden",borderRadius:2,marginBottom:16}}>
                   {selectedPost.previewUrl?<img src={selectedPost.previewUrl} alt={selectedPost.label} style={{width:"100%",height:"100%",objectFit:"cover",position:"absolute",inset:0}}/>:<span style={{fontSize:48}}>{selectedPost.type==="photo"?E.photo:E.video}</span>}
-                  {(()=>{const artistPosts=feedPosts.filter(p=>p.artist===selectedArtist.name);const idx=artistPosts.findIndex(p=>p.id===selectedPost.id);return(<>
-                    {idx>0&&<button onClick={()=>setSelectedPost(artistPosts[idx-1])} style={{position:"absolute",left:8,top:"50%",transform:"translateY(-50%)",background:"rgba(0,0,0,0.6)",border:"1px solid #444",borderRadius:2,color:"#fff",padding:"8px 12px",cursor:"pointer",fontSize:16,zIndex:2}}>&lt;</button>}
-                    {idx<artistPosts.length-1&&<button onClick={()=>setSelectedPost(artistPosts[idx+1])} style={{position:"absolute",right:8,top:"50%",transform:"translateY(-50%)",background:"rgba(0,0,0,0.6)",border:"1px solid #444",borderRadius:2,color:"#fff",padding:"8px 12px",cursor:"pointer",fontSize:16,zIndex:2}}>&gt;</button>}
+                  {(()=>{const posts=allArtistPosts.length>0?allArtistPosts:feedPosts.filter(p=>p.artist===selectedArtist.name);const idx=posts.findIndex(p=>p.id===selectedPost.id);return(<>
+                    {idx>0&&<button onClick={()=>setSelectedPost(posts[idx-1])} style={{position:"absolute",left:8,top:"50%",transform:"translateY(-50%)",background:"rgba(0,0,0,0.6)",border:"1px solid #444",borderRadius:2,color:"#fff",padding:"8px 12px",cursor:"pointer",fontSize:16,zIndex:2}}>&lt;</button>}
+                    {idx<posts.length-1&&<button onClick={()=>setSelectedPost(posts[idx+1])} style={{position:"absolute",right:8,top:"50%",transform:"translateY(-50%)",background:"rgba(0,0,0,0.6)",border:"1px solid #444",borderRadius:2,color:"#fff",padding:"8px 12px",cursor:"pointer",fontSize:16,zIndex:2}}>&gt;</button>}
+                    <div style={{position:"absolute",bottom:8,left:"50%",transform:"translateX(-50%)",background:"rgba(0,0,0,0.5)",borderRadius:10,padding:"3px 8px",fontSize:10,color:"#aaa",letterSpacing:1}}>{idx+1} / {posts.length}</div>
                   </>);})()}
                 </div>
                 <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:12}}>
@@ -2471,6 +2603,13 @@ export default function App() {
                   <div className="account-row"><div><div className="account-row-label">Zip Code</div><div className="account-row-value">90210</div></div><button className="account-edit-btn">Edit</button></div>
                 </div>
                 <div className="account-section">
+                  <div className="account-section-title">Settings</div>
+                  <div className="account-row">
+                    <div><div className="account-row-label">Appearance</div><div className="account-row-value">{darkMode?"Dark mode":"Light mode"}</div></div>
+                    <button onClick={()=>setDarkMode(d=>!d)} style={{background:"transparent",border:"1px solid",borderColor:darkMode?"#2a2a00":"#d0cfc0",borderRadius:1,padding:"6px 10px",cursor:"pointer",fontSize:14,lineHeight:1,color:darkMode?"#e6ff00":"#ff4d1a"}}>{darkMode?E.sun:E.moon}</button>
+                  </div>
+                </div>
+                <div className="account-section">
                   <div className="account-section-title">Payment</div>
                   <div className="account-row"><div><div className="account-row-label">Card on File</div><div className="account-row-value">.... 4242</div></div><button className="account-edit-btn">Update</button></div>
                   <div className="account-row"><div><div className="account-row-label">Total Spent</div><div className="account-row-value">${purchased.size*5}.00</div></div></div>
@@ -2520,7 +2659,9 @@ export default function App() {
                 <div className="dashboard-header">
                   <ArtistThumb artist={artistUser} style={{width:56,height:56,borderRadius:2,flexShrink:0}}/>
                   <div><div className="dashboard-name">{artistUser.name}</div><div className="dashboard-genre">{artistUser.genre}</div></div>
-                  <button className="account-signout" style={{width:"auto",marginTop:0,marginLeft:"auto",padding:"8px 16px",fontSize:10}} onClick={()=>{setUserMode("rider");setArtistUser(null);go(SCREENS.LANDING);}}>Sign Out</button>
+                  <div style={{display:"flex",alignItems:"center",gap:8,marginLeft:"auto"}}>
+                    <button className="account-signout" style={{width:"auto",marginTop:0,padding:"8px 16px",fontSize:10}} onClick={()=>{setUserMode("rider");setArtistUser(null);go(SCREENS.LANDING);}}>Sign Out</button>
+                  </div>
                 </div>
                 <div className="dashboard-stats">
                   <div className="dash-stat"><div className="dash-stat-num">{artistUser.riders.toLocaleString()}</div><div className="dash-stat-lbl">Total Riders</div></div>
@@ -2640,10 +2781,16 @@ export default function App() {
                         <button className="reco-chip-remove" onClick={()=>setArtistRecos(p=>({...p,[artistUser.id]:(p[artistUser.id]||[]).filter(r=>r.id!==a.id)}))}>&#10005;</button>
                       </div>
                     ))}
+                    {(artistRecos[artistUser?.id]||[]).length<5&&(
+                      <div className="reco-chip" onClick={()=>document.querySelector('.reco-search-input')?.focus()}>
+                        <div className="reco-chip-avatar" style={{display:"flex",alignItems:"center",justifyContent:"center",background:"transparent",border:`1px dashed ${darkMode?"#3a3a00":"#c0c0b0"}`,color:darkMode?"#444":"#aaa",fontSize:22,cursor:"pointer"}}>+</div>
+                        <div className="reco-chip-name" style={{color:darkMode?"#444":"#aaa"}}>add</div>
+                      </div>
+                    )}
                   </div>
                   {(artistRecos[artistUser?.id]||[]).length<5&&(
                     <div style={{marginTop:10,position:"relative"}}>
-                      <input className="inp" style={{marginBottom:0}} placeholder="Search any artist..." value={recoSearch}
+                      <input className="inp reco-search-input" style={{marginBottom:0}} placeholder="Search any artist..." value={recoSearch}
                         onChange={e=>{setRecoSearch(e.target.value);setRecoSearchActive(true);}}
                         onFocus={()=>setRecoSearchActive(true)}
                         onBlur={()=>setTimeout(()=>setRecoSearchActive(false),150)}
@@ -2679,7 +2826,10 @@ export default function App() {
                         <div style={{fontSize:12,color:darkMode?"#f5f5f5":"#1a1a2e",letterSpacing:0.5}}>@{r.username}</div>
                         <div style={{fontSize:9,color:darkMode?"#444":"#8a8aaa",letterSpacing:1,marginTop:2}}>rider since {r.purchased.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</div>
                       </div>
-                      <div style={{fontSize:10,color:darkMode?"#e6ff00":"#ff4d1a",fontFamily:"'Anton',sans-serif",letterSpacing:1}}>{E.clap}</div>
+                      <div style={{textAlign:"right"}}>
+                        <div style={{fontSize:10,color:darkMode?"#e6ff00":"#ff4d1a",fontFamily:"'Anton',sans-serif",letterSpacing:1}}>{E.clap}</div>
+                        <div style={{fontSize:9,color:darkMode?"#444":"#8a8aaa",letterSpacing:1,marginTop:3}}>{r.zip}</div>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -2777,6 +2927,7 @@ export default function App() {
                         <div style={{fontSize:12,color:darkMode?"#f5f5f5":"#1a1a2e",letterSpacing:0.5}}>@{r.username}</div>
                         <div style={{fontSize:9,color:darkMode?"#444":"#8a8aaa",letterSpacing:1,marginTop:2}}>rider since {r.purchased.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</div>
                       </div>
+                      <div style={{fontSize:9,color:darkMode?"#444":"#8a8aaa",letterSpacing:1}}>{r.zip}</div>
                     </div>
                   ))}
                   <div className="modal-btns" style={{marginTop:16}}>
@@ -2924,9 +3075,7 @@ export default function App() {
                   <div className="profile-genre">The Official tourbus Channel</div>
                   <p className="profile-bio">Artist spotlights, platform news, and exclusive editorial content. Always free. Always on your bus.</p>
                   <div className="profile-stats" style={{justifyContent:"center"}}>
-                    <div className="stat"><div className="stat-num">{TOURBUS_STATS.riders.toLocaleString()}</div><div className="stat-lbl">Riders</div></div>
-                    <div className="stat"><div className="stat-num">{TOURBUS_STATS.artists}</div><div className="stat-lbl">Artists</div></div>
-                    <div className="stat"><div className="stat-num">{TOURBUS_STATS.posts}</div><div className="stat-lbl">Posts</div></div>
+                    <div className="stat"><div className="stat-num">{TOURBUS_STATS.tags.toLocaleString()}</div><div className="stat-lbl">Tags</div></div>
                   </div>
                 </div>
                 {/* Posts */}
