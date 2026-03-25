@@ -2159,32 +2159,31 @@ export default function App() {
         )}
 
         {!isLoggedIn&&(
-          <div style={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",minHeight:"100vh",width:"100%",padding:"24px",background:"#f5f4ef"}}>
-          <style>{makeCSS(false)}</style>
+          <div style={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",minHeight:"100vh",width:"100%",padding:"24px"}}>
             {screen===SCREENS.LANDING&&(
               <div className="card fade">
-                <div className="logo" style={{color:"#0e0e0e",textShadow:"none"}}>tourbus</div>
+                <div className="logo">tourbus</div>
                 <div className="logo-sub" style={{fontSize:"18px",letterSpacing:"2px",marginBottom:"26px"}}>"We're with the band."</div>
                 <div className="headline">The <em>inside seat</em> with your favorite artists on their musical journey.</div>
-                <p className="subtext" style={{fontFamily:"'Inter',sans-serif"}}>Support artists directly, and get on board for exclusive content only they can provide -- photos, videos and livestream moments from backstage to the main stage, and everything in between.<br/><br/>No ads. No subscriptions. No upsells.<br/>Just an app to make your <em style={{color:"#ff4d1a",fontWeight:"bold",fontStyle:"italic"}}>live</em> better.</p>
-                <div style={{width:"100%",aspectRatio:"16/9",background:"#e8e8e4",border:"1px solid #d0cfc0",borderRadius:2,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:10,marginBottom:24,position:"relative",overflow:"hidden"}}>
-                  <div style={{width:52,height:52,borderRadius:"50%",background:"rgba(255,77,26,0.1)",border:"2px solid #ff4d1a",display:"flex",alignItems:"center",justifyContent:"center"}}>
-                    <div style={{width:0,height:0,borderTop:"10px solid transparent",borderBottom:"10px solid transparent",borderLeft:"16px solid #ff4d1a",marginLeft:4}}/>
+                <p className="subtext" style={{fontFamily:"'Inter',sans-serif"}}>Support artists directly, and get on board for exclusive content only they can provide -- photos, videos and livestream moments from backstage to the main stage, and everything in between.<br/><br/>No ads. No subscriptions. No upsells.<br/>Just an app to make your <em style={{color:darkMode?"#e6ff00":"#ff4d1a",fontWeight:"bold",fontStyle:"italic"}}>live</em> better.</p>
+                <div style={{width:"100%",aspectRatio:"16/9",background:"#0a0a0a",border:"1px solid #d0cfc0",borderRadius:2,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:10,marginBottom:24,position:"relative",overflow:"hidden"}}>
+                  <div style={{width:52,height:52,borderRadius:"50%",background:"rgba(230,255,0,0.1)",border:"2px solid #e6ff00",display:"flex",alignItems:"center",justifyContent:"center"}}>
+                    <div style={{width:0,height:0,borderTop:"10px solid transparent",borderBottom:"10px solid transparent",borderLeft:"16px solid #e6ff00",marginLeft:4}}/>
                   </div>
-                  <div style={{fontFamily:"'Anton',sans-serif",fontSize:10,letterSpacing:3,color:"#aaa"}}>TOURBUS EXPLAINED IN 30 SECONDS</div>
+                  <div style={{fontFamily:"'Anton',sans-serif",fontSize:10,letterSpacing:3,color:"#555"}}>TOURBUS EXPLAINED IN 30 SECONDS</div>
                 </div>
                 <div className="ticket-box">
-                  <div className="ticket-price" style={{textAlign:"center",color:"#0e0e0e"}}>How It Works</div>
+                  <div className="ticket-price" style={{textAlign:"center"}}>How It Works</div>
                   <div className="ticket-desc" style={{textAlign:"center"}}>One-time $5 fee per artist / Transparent Pricing</div>
                   <div style={{display:"flex",alignItems:"stretch",justifyContent:"center",gap:8,marginTop:8}}>
-                    <div style={{textAlign:"center",flex:1,background:"rgba(255,77,26,0.04)",border:"1px solid #e8ddd0",borderRadius:2,padding:"16px 12px"}}>
-                      <div style={{fontFamily:"'Anton',sans-serif",fontSize:44,color:"#ff4d1a",letterSpacing:2,lineHeight:1}}>$3</div>
-                      <div style={{fontFamily:"'Anton',sans-serif",fontSize:18,color:"#ff4d1a",letterSpacing:3,marginTop:8,lineHeight:1}}>to ARTIST</div>
+                    <div style={{textAlign:"center",flex:1,background:"rgba(230,255,0,0.04)",border:"1px solid #3a3a00",borderRadius:2,padding:"16px 12px"}}>
+                      <div style={{fontFamily:"'Anton',sans-serif",fontSize:44,color:"#e6ff00",letterSpacing:2,lineHeight:1}}>$3</div>
+                      <div style={{fontFamily:"'Anton',sans-serif",fontSize:18,color:"#e6ff00",letterSpacing:3,marginTop:8,lineHeight:1}}>to ARTIST</div>
                       <div style={{fontFamily:"'Playfair Display',serif",fontSize:11,fontWeight:700,color:"#888",marginTop:6}}>no fine print, just what's right and fair</div>
                     </div>
-                    <div style={{textAlign:"center",flex:1,background:"rgba(255,77,26,0.04)",border:"1px solid #e8ddd0",borderRadius:2,padding:"16px 12px"}}>
-                      <div style={{fontFamily:"'Anton',sans-serif",fontSize:44,color:"#ff4d1a",letterSpacing:2,lineHeight:1}}>$2</div>
-                      <div style={{fontFamily:"'Anton',sans-serif",fontSize:18,color:"#ff4d1a",letterSpacing:3,marginTop:8,lineHeight:1}}>to TOURBUS</div>
+                    <div style={{textAlign:"center",flex:1,background:"rgba(230,255,0,0.04)",border:"1px solid #3a3a00",borderRadius:2,padding:"16px 12px"}}>
+                      <div style={{fontFamily:"'Anton',sans-serif",fontSize:44,color:"#e6ff00",letterSpacing:2,lineHeight:1}}>$2</div>
+                      <div style={{fontFamily:"'Anton',sans-serif",fontSize:18,color:"#e6ff00",letterSpacing:3,marginTop:8,lineHeight:1}}>to TOURBUS</div>
                       <div style={{fontFamily:"'Playfair Display',serif",fontSize:11,fontWeight:700,color:"#888",marginTop:6}}>our charity and our amazing team</div>
                     </div>
                   </div>
