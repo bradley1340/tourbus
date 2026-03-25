@@ -2261,13 +2261,13 @@ export default function App() {
                 <hr className="divider"/>
                 <div className="policy-check-row">
                   <div className={`policy-checkbox${agreedPrivacy?" checked":""}`} onClick={()=>setAgreedPrivacy(p=>!p)}>
-                    {agreedPrivacy&&<span className="policy-checkbox-mark">Ã¢Å“â€œ</span>}
+                    {agreedPrivacy&&<span className="policy-checkbox-mark">âœ“</span>}
                   </div>
                   <div className="policy-check-text">I have read and agree to the <span className="policy-link" onClick={()=>setShowPolicy("privacy")}>Privacy Policy</span></div>
                 </div>
                 <div className="policy-check-row">
                   <div className={`policy-checkbox${agreedTerms?" checked":""}`} onClick={()=>setAgreedTerms(p=>!p)}>
-                    {agreedTerms&&<span className="policy-checkbox-mark">Ã¢Å“â€œ</span>}
+                    {agreedTerms&&<span className="policy-checkbox-mark">âœ“</span>}
                   </div>
                   <div className="policy-check-text">I have read and agree to the <span className="policy-link" onClick={()=>setShowPolicy("terms")}>Terms of Use</span></div>
                 </div>
@@ -2539,11 +2539,11 @@ export default function App() {
                         {a.active?(
                           <><div className="stub-count">{a.riders.toLocaleString()}</div><div className="stub-label">riders</div>
                           {purchased.has(a.id)
-                            ? <div style={{fontFamily:"'Anton',sans-serif",fontSize:9,letterSpacing:1,color:darkMode?"#e6ff00":"#ff4d1a",marginTop:4,textAlign:"center"}}>Ã¢Å“â€œ RIDING</div>
+                            ? <div style={{fontFamily:"'Anton',sans-serif",fontSize:9,letterSpacing:1,color:darkMode?"#e6ff00":"#ff4d1a",marginTop:4,textAlign:"center"}}>âœ“ RIDING</div>
                             : <button className="stub-action" onClick={e=>{e.stopPropagation();setSelectedArtist(a);go(SCREENS.PROFILE);}}>Ride</button>
                           }</>
                         ):(
-                          <><div className="stub-count">{(standbyCounts[a.id]||0).toLocaleString()}</div><div className="stub-label">on standby</div><button className="stub-action" onClick={e=>{e.stopPropagation();toggleStandby(a.id);}}>{standby[a.id]?"Ã¢Å“â€œ Standby":"Go Standby"}</button></>
+                          <><div className="stub-count">{(standbyCounts[a.id]||0).toLocaleString()}</div><div className="stub-label">on standby</div><button className="stub-action" onClick={e=>{e.stopPropagation();toggleStandby(a.id);}}>{standby[a.id]?"âœ“ Standby":"Go Standby"}</button></>
                         )}
                       </div>
                     </div>
@@ -2689,7 +2689,7 @@ export default function App() {
                             ));
                           })()}
                         </div>
-                        <div style={{textAlign:"center",padding:"12px 0",fontSize:11,color:"#3a5a00",letterSpacing:2,fontFamily:"'Anton',sans-serif"}}>Ã¢Å“â€œ YOU'RE ON THIS BUS</div>
+                        <div style={{textAlign:"center",padding:"12px 0",fontSize:11,color:darkMode?"#e6ff00":"#3a7a00",letterSpacing:2,fontFamily:"'Anton',sans-serif"}}>âœ“ YOU'RE ON THIS BUS</div>
                       </>
                     ):(
                       <>
@@ -2714,7 +2714,7 @@ export default function App() {
                       <div className="standby-count">{(standbyCounts[selectedArtist.id]||0).toLocaleString()}</div>
                       <div className="standby-lbl">riders waiting</div>
                       <button className={`btn btn-standby${standby[selectedArtist.id]?" on":""}`} onClick={()=>toggleStandby(selectedArtist.id)}>
-                        {standby[selectedArtist.id]?"Ã¢Å“â€œ On Standby - Cancel":"Go Standby"}
+                        {standby[selectedArtist.id]?"âœ“ On Standby - Cancel":"Go Standby"}
                       </button>
                       {standby[selectedArtist.id]&&<p style={{fontSize:11,color:"#555",marginTop:12,letterSpacing:1}}>You'll be charged automatically when {selectedArtist.name} goes live.</p>}
                       <div className="no-refund-notice" style={{marginTop:16,marginBottom:0}}>All sales are final. Once charged, tickets are non-refundable.</div>
@@ -3250,8 +3250,8 @@ export default function App() {
                 <button className="profile-back" onClick={()=>go(SCREENS.STREAM)}>Back to My Stream</button>
                 {/* Header */}
                 <div className="profile-header" style={{width:"100%"}}>
-                  <div style={{width:"100%",maxWidth:"min(240px,100%)",height:160,borderRadius:2,background:"#0e0e0e",border:`2px solid ${darkMode?"#e6ff00":"#0e0e0e"}`,display:"flex",alignItems:"center",justifyContent:"center",marginBottom:14}}>
-                    <span style={{fontFamily:"'Caveat',cursive",fontSize:52,color:darkMode?"#e6ff00":"#0e0e0e",letterSpacing:-2,fontWeight:700}}>tourbus</span>
+                  <div style={{width:"100%",maxWidth:"min(240px,100%)",height:160,borderRadius:2,border:`2px solid ${darkMode?"#e6ff00":"#0e0e0e"}`,overflow:"hidden",marginBottom:14}}>
+                    <img src={darkMode?TOURBUS_BUS_IMG_DARK:TOURBUS_BUS_IMG} alt="tourbus" style={{width:"100%",height:"100%",objectFit:"cover",display:"block"}}/>
                   </div>
                   <div className="profile-name" style={{fontFamily:"'Caveat',cursive",letterSpacing:-1,color:darkMode?"#e6ff00":"#0e0e0e"}}>tourbus</div>
                   <div className="profile-genre">The Official tourbus Channel</div>
@@ -3284,7 +3284,7 @@ export default function App() {
                     </div>
                   ))}
                 </div>
-                <div style={{textAlign:"center",padding:"12px 0",fontSize:11,color:darkMode?"#3a5a00":"#5a7a5a",letterSpacing:2,fontFamily:"'Anton',sans-serif"}}>Ã¢Å“â€œ YOU'RE ON THIS BUS</div>
+                <div style={{textAlign:"center",padding:"12px 0",fontSize:11,color:darkMode?"#e6ff00":"#3a7a00",letterSpacing:2,fontFamily:"'Anton',sans-serif"}}>âœ“ YOU'RE ON THIS BUS</div>
                 <div style={{textAlign:"center",marginTop:8}}>
                   <span style={{fontSize:10,color:"#333",letterSpacing:1,cursor:"pointer",fontFamily:"'Anton',sans-serif"}} onClick={()=>go(SCREENS.TOURBUS_DASHBOARD)}>Admin -></span>
                 </div>
