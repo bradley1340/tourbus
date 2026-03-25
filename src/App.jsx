@@ -93,11 +93,15 @@ const Silhouette2 = ({opacity=0.18})=>(
   </svg>
 );
 
-const ArtistThumb = ({artist, style={}, className=""})=>{
+const ArtistThumb = ({artist, style={}, className="", photoOverride=null})=>{
   const dual = artist.name==="Brass & Bone"||artist.name==="Static Bloom"||artist.name==="Neon Palms";
+  const photo = photoOverride || artist.photo;
   return (
     <div className={className} style={{position:"relative",background:artist.color,overflow:"hidden",...style}}>
-      {dual?<Silhouette2 opacity={0.2}/>:<Silhouette opacity={0.2}/>}
+      {photo
+        ? <img src={photo} alt={artist.name} style={{width:"100%",height:"100%",objectFit:"cover",display:"block"}}/>
+        : dual?<Silhouette2 opacity={0.2}/>:<Silhouette opacity={0.2}/>
+      }
     </div>
   );
 };
@@ -1547,7 +1551,7 @@ export default function App() {
   const [isLive, setIsLive] = useState(false);
   const [goLiveModal, setGoLiveModal] = useState(false);
   const [closeRiderAccountModal, setCloseRiderAccountModal] = useState(false); // post object
-  const [profileDraft, setProfileDraft] = useState({bio:"",spotify:"",website:"",onTour:false});
+  const [profileDraft, setProfileDraft] = useState({bio:"",spotify:"",website:"",onTour:false,photo:""});
   const [artistProfiles, setArtistProfiles] = useState({});
   const [editingPost, setEditingPost] = useState(null);
   const [editPostCaption, setEditPostCaption] = useState("");
@@ -1719,13 +1723,13 @@ export default function App() {
   };
 
   const handleSaveProfile = () => {
-    setArtistProfiles(p=>({...p,[artistUser.id]:{bio:profileDraft.bio,spotify:profileDraft.spotify,website:profileDraft.website,onTour:profileDraft.onTour}}));
+    setArtistProfiles(p=>({...p,[artistUser.id]:{bio:profileDraft.bio,spotify:profileDraft.spotify,website:profileDraft.website,onTour:profileDraft.onTour,photo:profileDraft.photo||p[artistUser.id]?.photo||""}}));
     setEditingProfile(false);
   };
 
   const getArtistProfile = (artist) => {
     const ov = artistProfiles[artist.id];
-    return {bio: ov?.bio!==undefined?ov.bio:artist.bio||"", spotify: ov?.spotify!==undefined?ov.spotify:artist.spotify||"", website: ov?.website!==undefined?ov.website:artist.website||"", onTour: ov?.onTour!==undefined?ov.onTour:artist.onTour||false};
+    return {bio: ov?.bio!==undefined?ov.bio:artist.bio||"", spotify: ov?.spotify!==undefined?ov.spotify:artist.spotify||"", website: ov?.website!==undefined?ov.website:artist.website||"", onTour: ov?.onTour!==undefined?ov.onTour:artist.onTour||false, photo: ov?.photo||artist.photo||""};
   };
 
   const startCamera = async (videoEl) => {
@@ -2354,7 +2358,7 @@ export default function App() {
                     <div key={a.id} className="my-bus-chip-wrap" onClick={()=>{setSelectedArtist(a);go(SCREENS.PROFILE);}}>
                       <div style={{position:"relative"}}>
                         {LIVE_IDS.has(a.id)&&<div className="live-badge">LIVE</div>}
-                        <ArtistThumb artist={a} className={LIVE_IDS.has(a.id)?"live-thumb":""} style={{width:52,height:52,borderRadius:2,border:LIVE_IDS.has(a.id)?"1px solid #ff2222":"1px solid #3a3a00"}}/>
+                        <ArtistThumb artist={a} photoOverride={getArtistProfile(a).photo} className={LIVE_IDS.has(a.id)?"live-thumb":""} style={{width:52,height:52,borderRadius:2,border:LIVE_IDS.has(a.id)?"1px solid #ff2222":"1px solid #3a3a00"}}/>
                       </div>
                       <div className="my-bus-name">{a.name}</div>
                     </div>
@@ -2404,7 +2408,7 @@ export default function App() {
                   return (
                     <div key={p.id} className={`feed-post${isMuted?" muted":""}`}>
                       <div className="feed-post-header" style={{position:"relative"}}>
-                        {(()=>{const a=ARTISTS.find(a=>a.name===p.artist);return a?<ArtistThumb artist={a} style={{width:32,height:32,borderRadius:2,border:"1px solid #3a3a00",flexShrink:0,cursor:"pointer"}} onClick={()=>{setSelectedArtist(a);go(SCREENS.PROFILE);}}/>:<div className="feed-post-avatar" style={{background:"#1a1a1a"}}/>;})()} 
+                        {(()=>{const a=ARTISTS.find(a=>a.name===p.artist);return a?<ArtistThumb artist={a} photoOverride={getArtistProfile(a).photo} style={{width:32,height:32,borderRadius:2,border:"1px solid #3a3a00",flexShrink:0,cursor:"pointer"}} onClick={()=>{setSelectedArtist(a);go(SCREENS.PROFILE);}}/>:<div className="feed-post-avatar" style={{background:"#1a1a1a"}}/>;})()} 
                         <div style={{cursor:"pointer",flex:1}} onClick={()=>{const a=ARTISTS.find(a=>a.name===p.artist);if(a){setSelectedArtist(a);go(SCREENS.PROFILE);}}}><div className="feed-post-artist">{p.artist}{p.isNew&&<span className="new-post-badge">NEW</span>}{(()=>{const a=ARTISTS.find(a=>a.name===p.artist);return a&&getArtistProfile(a).onTour?<span className="on-tour-badge">ON TOUR</span>:null;})()}</div><div className="feed-post-time">{p.time}</div></div>
                         <div className="post-menu-wrap" style={{flexShrink:0,marginLeft:"auto"}}>
                           <button className="post-menu-btn" onClick={()=>setArtistMenu(artistMenu===p.artist+p.id?null:p.artist+p.id)}>...</button>
@@ -2628,7 +2632,7 @@ export default function App() {
                   <>
                     <div className="profile-header">
                       <div style={{position:"relative",width:"100%",maxWidth:"min(240px,100%)",marginBottom:14}}>
-                        <ArtistThumb artist={selectedArtist} style={{width:"100%",height:160,borderRadius:2,border:LIVE_IDS.has(selectedArtist.id)?"2px solid #ff2222":"1px solid #2a2a00",boxShadow:LIVE_IDS.has(selectedArtist.id)?"0 0 20px rgba(255,30,30,0.4)":undefined}}/>
+                        <ArtistThumb artist={selectedArtist} photoOverride={getArtistProfile(selectedArtist).photo} style={{width:"100%",height:160,borderRadius:2,border:LIVE_IDS.has(selectedArtist.id)?"2px solid #ff2222":"1px solid #2a2a00",boxShadow:LIVE_IDS.has(selectedArtist.id)?"0 0 20px rgba(255,30,30,0.4)":undefined}}/>
                         {LIVE_IDS.has(selectedArtist.id)&&<div className="live-badge" style={{top:8}}>LIVE</div>}
                       </div>
                       <div className="profile-name">{selectedArtist.name}</div>
@@ -2684,7 +2688,7 @@ export default function App() {
                             const allPosts = [...realPosts, ...mockPostsFull];
                             return allPosts.map(p=>(
                               <div key={p.id} className="feed-grid-item" style={{background:p.color}} onClick={()=>{setSelectedPost(p);setAllArtistPosts(allPosts);go(SCREENS.POST_VIEW);}}>
-                                {p.previewUrl?<img src={p.previewUrl} alt={p.label}/>:<span>{p.type==="photo"?E.photo:E.video}</span>}
+                                {p.previewUrl?<img src={p.previewUrl} alt={p.label} style={{width:"100%",height:"100%",objectFit:"cover",display:"block"}}/>:<span>{p.type==="photo"?E.photo:E.video}</span>}
                               </div>
                             ));
                           })()}
@@ -2839,7 +2843,7 @@ export default function App() {
             {screen===SCREENS.ARTIST_DASHBOARD&&artistUser&&(
               <div className="dashboard-wrap fade">
                 <div className="dashboard-header">
-                  <ArtistThumb artist={artistUser} style={{width:56,height:56,borderRadius:2,flexShrink:0}}/>
+                  <ArtistThumb artist={artistUser} photoOverride={getArtistProfile(artistUser).photo} style={{width:56,height:56,borderRadius:2,flexShrink:0}}/>
                   <div><div className="dashboard-name">{artistUser.name}</div><div className="dashboard-genre">{artistUser.genre}</div></div>
                   <div style={{display:"flex",alignItems:"center",gap:8,marginLeft:"auto"}}>
                     <button className="account-signout" style={{width:"auto",marginTop:0,padding:"8px 16px",fontSize:10}} onClick={()=>{setUserMode("rider");setArtistUser(null);go(SCREENS.LANDING);}}>Sign Out</button>
@@ -2901,6 +2905,16 @@ export default function App() {
                           <div className={`tour-toggle-status${getArtistProfile(artistUser).onTour?" on-tour":""}`} style={{marginTop:4}}>{getArtistProfile(artistUser).onTour?E.bus+" Currently on tour":"Not currently on tour"}</div>
                         </div>
                       </div>
+                      {getArtistProfile(artistUser).photo&&(
+                        <div className="account-row">
+                          <div style={{flex:1}}>
+                            <div className="account-row-label">Profile Photo</div>
+                            <div style={{marginTop:8,width:64,height:64,borderRadius:2,overflow:"hidden",border:`1px solid ${darkMode?"#3a3a00":"#ddd"}`}}>
+                              <img src={getArtistProfile(artistUser).photo} alt="profile" style={{width:"100%",height:"100%",objectFit:"cover"}}/>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                       <div className="account-row">
                         <div style={{flex:1}}>
                           <div className="account-row-label">Bio</div>
@@ -2919,7 +2933,7 @@ export default function App() {
                           <div style={{fontSize:13,color: getArtistProfile(artistUser).website?darkMode?"#e6ff00":"#ff4d1a":"#333",marginTop:4}}>{getArtistProfile(artistUser).website||"--"}</div>
                         </div>
                       </div>
-                      <button className="btn btn-outline" style={{marginTop:16,fontSize:12,padding:"10px",letterSpacing:2}} onClick={()=>{const p=getArtistProfile(artistUser);setProfileDraft({bio:p.bio,spotify:p.spotify,website:p.website,onTour:p.onTour});setEditingProfile(true);}}>Edit Profile</button>
+                      <button className="btn btn-outline" style={{marginTop:16,fontSize:12,padding:"10px",letterSpacing:2}} onClick={()=>{const p=getArtistProfile(artistUser);setProfileDraft({bio:p.bio,spotify:p.spotify,website:p.website,onTour:p.onTour,photo:p.photo||""});setEditingProfile(true);}}>Edit Profile</button>
                     </>
                   ):(
                     <>
@@ -2941,6 +2955,20 @@ export default function App() {
                       <input className="inp" placeholder="https://open.spotify.com/artist/..." value={profileDraft.spotify} onChange={e=>setProfileDraft(p=>({...p,spotify:e.target.value}))}/>
                       <label className="lbl">Website</label>
                       <input className="inp" placeholder="https://yoursite.com" value={profileDraft.website} onChange={e=>setProfileDraft(p=>({...p,website:e.target.value}))}/>
+                      <label className="lbl" style={{marginTop:12}}>Profile Photo</label>
+                      <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:4}}>
+                        {(profileDraft.photo||getArtistProfile(artistUser).photo)&&(
+                          <div style={{width:52,height:52,borderRadius:2,overflow:"hidden",flexShrink:0,border:`1px solid ${darkMode?"#3a3a00":"#ddd"}`}}>
+                            <img src={profileDraft.photo||getArtistProfile(artistUser).photo} alt="preview" style={{width:"100%",height:"100%",objectFit:"cover"}}/>
+                          </div>
+                        )}
+                        <label style={{flex:1,display:"flex",alignItems:"center",gap:8,background:darkMode?"#1a1a00":"#f5f5f5",border:`1px solid ${darkMode?"#3a3a00":"#ddd"}`,borderRadius:2,padding:"10px 14px",cursor:"pointer",fontSize:12,color:darkMode?"#888":"#555",letterSpacing:1,fontFamily:"'Anton',sans-serif"}}>
+                          <span style={{fontSize:16}}>ðŸ“·</span>
+                          <span>{profileDraft.photo||getArtistProfile(artistUser).photo?"CHANGE PHOTO":"UPLOAD PHOTO"}</span>
+                          <input type="file" accept="image/*" style={{display:"none"}} onChange={e=>{const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=ev=>setProfileDraft(p=>({...p,photo:ev.target.result}));reader.readAsDataURL(file);}}/>
+                        </label>
+                        {profileDraft.photo&&<button onClick={()=>setProfileDraft(p=>({...p,photo:""}))} style={{background:"transparent",border:"none",color:"#555",cursor:"pointer",fontSize:18,padding:4}}>Ã—</button>}
+                      </div>
                       <div style={{display:"flex",gap:10,marginTop:16}}>
                         <button className="btn btn-primary" style={{marginBottom:0}} onClick={handleSaveProfile}>Save Profile</button>
                         <button className="btn btn-ghost" style={{flex:"none"}} onClick={()=>setEditingProfile(false)}>Cancel</button>
