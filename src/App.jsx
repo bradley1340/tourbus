@@ -35,7 +35,7 @@ const SCREENS = {
   ARTIST_SIGNUP:"artist_signup", RIDER_SUCCESS:"rider_success", ARTIST_SUCCESS:"artist_success",
   RIDER_SIGNIN:"rider_signin", ARTIST_SIGNIN:"artist_signin",
   STREAM:"stream", SEARCH:"search", PROFILE:"profile", CHECKOUT:"checkout", UNLOCKED:"unlocked",
-  ACCOUNT:"account", ARTIST_DASHBOARD:"artist_dashboard", NEW_POST:"new_post", POST_VIEW:"post_view", ARTIST_CLOSED:"artist_closed", ARTIST_LIVE:"artist_live", RIDER_CLOSED:"rider_closed", TAG_FEED:"tag_feed",
+  ACCOUNT:"account", ARTIST_DASHBOARD:"artist_dashboard", NEW_POST:"new_post", POST_VIEW:"post_view", ARTIST_CLOSED:"artist_closed", ARTIST_LIVE:"artist_live", RIDER_CLOSED:"rider_closed", TAG_FEED:"tag_feed", VENUE_FEED:"venue_feed",
   TOURBUS_PROFILE:"tourbus_profile", TOURBUS_DASHBOARD:"tourbus_dashboard",
 };
 
@@ -56,18 +56,18 @@ const ARTISTS = [
 const LIVE_IDS = new Set([1, 5, 9]); // The Midnight, Colt Reyes, Dusk Radio
 
 const INIT_FEED = [
-  {id:11,artist:"The Midnight",type:"photo",color:"#0a0a2e",label:"Lollapalooza 2026 confirmed. See you in Grant Park. This one is going to be something else. #lollapalooza2026",time:"3d ago",likes:892},
+  {id:11,artist:"The Midnight",type:"photo",color:"#0a0a2e",label:"Lollapalooza 2026 confirmed. See you in Grant Park. This one is going to be something else. Then @metrochicago the following night. #lollapalooza2026",time:"3d ago",likes:892},
   {id:12,artist:"Jade Carver",type:"photo",color:"#1a2e0a",label:"Just got the call. @Jade Carver is playing Lollapalooza 2026. I have been waiting for this moment my entire life. #lollapalooza2026",time:"4d ago",likes:634},
   {id:13,artist:"Neon Palms",type:"video",color:"#001a2e",label:"Grant Park, Chicago. July 2026. We will be there. #lollapalooza2026 #dreampop",time:"5d ago",likes:441},
 
   {id:8,artist:"The Midnight",type:"photo",color:"#0a0a2e",label:"Soundcheck @ The Roxy -- LA, you have no idea what's coming tonight. We've been sitting on this new arrangement for three months and we're finally letting it loose. Doors at 8. We wouldn't be here if it wasn't for @Wilco.",time:"1h ago",likes:198},
-  {id:1,artist:"The Midnight",type:"photo",color:"#0a0a2e",label:"Soundcheck @ The Roxy -- LA, you have no idea what's coming tonight. We've been sitting on this new arrangement for three months and we're finally letting it loose. Doors at 8.",time:"2h ago",likes:312},
-  {id:2,artist:"Colt Reyes",type:"video",color:"#2e1800",label:"Mile 1,200 on the bus. Somewhere outside Amarillo, coffee's cold, Jake's already asleep, and I'm watching the sun come up over nothing but flat. Wrote half a song. Might be the best thing I've ever done or complete garbage -- too early to tell.",time:"5h ago",likes:87},
+  {id:1,artist:"The Midnight",type:"photo",color:"#0a0a2e",label:"Soundcheck at @thaliahall tonight -- Chicago, you have no idea what's coming. We've been sitting on this new arrangement for three months and we're finally letting it loose. Doors at 8.",time:"2h ago",likes:312},
+  {id:2,artist:"Colt Reyes",type:"video",color:"#2e1800",label:"Mile 1,200 on the bus. Somewhere outside Amarillo, coffee's cold, Jake's already asleep, and I'm watching the sun come up over nothing but flat. Wrote half a song. Might be the best thing I've ever done or complete garbage -- too early to tell. Chicago next week @saltshed.",time:"5h ago",likes:87},
   {id:3,artist:"Neon Palms",type:"photo",color:"#001a2e",label:"Wrapped our last studio session for the record tonight. 11 tracks. 14 months. A lot of late nights and bad takeout and moments where we almost scrapped the whole thing. Feels unreal to finally say it's done.",time:"8h ago",likes:204},
-  {id:9,artist:"tourbus",type:"video",color:"#0e0e0e",label:"We sat down with @Jade Carver ahead of her first headline tour to talk about the road, the songs, and what it feels like when it's finally real. One of the most honest conversations we've had. Don't miss her.",time:"12h ago",likes:0,isTourbus:true},
+  {id:9,artist:"tourbus",type:"video",color:"#0e0e0e",label:"We sat down with @Jade Carver ahead of her first headline tour to talk about the road, the songs, and what it feels like when it's finally real. Catch her at @victheater and @saltshed this spring. Don't miss her.",time:"12h ago",likes:0,isTourbus:true},
   {id:10,artist:"tourbus",type:"photo",color:"#0e0e0e",label:"Caught up with @Static Bloom on their first night in the van somewhere in New Jersey. It's raining, they're laughing, and they have no idea what's about to hit them. Get on their bus before everyone else does.",time:"14h ago",likes:0,isTourbus:true},
-  {id:4,artist:"The Midnight",type:"video",color:"#1a0a3e",label:"Here's how the setlist comes together the day of a show. Tyler and I go back and forth for hours -- we pulled three songs tonight and added one we haven't played live since 2022. No spoilers.",time:"1d ago",likes:519},
-  {id:5,artist:"Jade Carver",type:"photo",color:"#1a2e0a",label:"Playing my hometown tonight for the first time since I left at 19. My mom's in the front row. My high school English teacher bought a ticket. I am not going to hold it together and I am completely okay with that.",time:"1d ago",likes:143},
+  {id:4,artist:"The Midnight",type:"video",color:"#1a0a3e",label:"Here's how the setlist comes together the day of a show. Tyler and I go back and forth for hours -- we pulled three songs tonight and added one we haven't played live since 2022. No spoilers. Next up: @metrochicago and @rivieratheatre.",time:"1d ago",likes:519},
+  {id:5,artist:"Jade Carver",type:"photo",color:"#1a2e0a",label:"Playing my hometown tonight for the first time since I left at 19. My mom's in the front row. My high school English teacher bought a ticket. I am not going to hold it together and I am completely okay with that. ðŸŽ¤ @spaceevanston",time:"1d ago",likes:143},
   {id:6,artist:"Colt Reyes",type:"photo",color:"#2e1000",label:"Meet the crew that makes this whole thing run. L to R: Jake (merch + moral support), Dani (tour manager, actual backbone of this operation), T-Ray (sound), and Boots (driver, 22 years, never late once). Buy them a drink if you see them.",time:"2d ago",likes:76},
   {id:7,artist:"tourbus",type:"announcement",color:"#0e0e0e",label:"New artist alert: Static Bloom just joined tourbus. The UK shoegaze duo is documenting their first US tour from a van. Grab your $5 ticket at the Station.",time:"3d ago",likes:0,isTourbus:true},
 ];
@@ -1591,6 +1591,7 @@ export default function App() {
   });
   const [activeTagInput, setActiveTagInput] = useState(null);
   const [activeTag, setActiveTag] = useState(null);
+  const [activeVenue, setActiveVenue] = useState(null);
   const [stationView, setStationView] = useState("artists"); // "artists" | "tags"
   const [tagDraft, setTagDraft] = useState("");
   const [standby, setStandby] = useState({});
@@ -1648,6 +1649,18 @@ export default function App() {
   };
 
   const ALL_ARTISTS = [...ARTISTS, ...SPOTIFY_ARTISTS];
+  const VENUES = [
+    {slug:"thaliahall",     name:"Thalia Hall",        city:"Chicago, IL"},
+    {slug:"spaceevanston",  name:"Space Evanston",      city:"Evanston, IL"},
+    {slug:"saltshed",       name:"Salt Shed",           city:"Chicago, IL"},
+    {slug:"aragon",         name:"Aragon Ballroom",     city:"Chicago, IL"},
+    {slug:"chicagotheater", name:"Chicago Theater",     city:"Chicago, IL"},
+    {slug:"rivieratheatre", name:"Riviera Theatre",     city:"Chicago, IL"},
+    {slug:"metrochicago",   name:"Metro Chicago",       city:"Chicago, IL"},
+    {slug:"victheater",     name:"Vic Theater",         city:"Chicago, IL"},
+    {slug:"unitedcenter",   name:"United Center",       city:"Chicago, IL"},
+    {slug:"soldierfield",   name:"Soldier Field",       city:"Chicago, IL"},
+  ];
   const parseCaption = (text) => {
     if (!text) return text;
     const results = [];
@@ -1667,7 +1680,12 @@ export default function App() {
       } else {
         const wordMatch = afterAt.match(/^[\w&]+/);
         const tag = wordMatch ? wordMatch[0] : '';
-        results.push(<span key={key++} style={{color:darkMode?"#e6ff00":"#cc3300",cursor:"pointer"}} onClick={()=>{setSuggestNote(tag);go(SCREENS.SEARCH);}}>@{tag}</span>);
+        const venueMatch = VENUES.find(v=>v.slug===tag.toLowerCase());
+        if (venueMatch) {
+          results.push(<span key={key++} style={{color:darkMode?"#e6ff00":"#cc3300",cursor:"pointer"}} onClick={()=>{setActiveVenue(venueMatch.slug);go(SCREENS.VENUE_FEED);}}>@{tag}</span>);
+        } else {
+          results.push(<span key={key++} style={{color:darkMode?"#e6ff00":"#cc3300",cursor:"pointer"}} onClick={()=>{setSuggestNote(tag);go(SCREENS.SEARCH);}}>@{tag}</span>);
+        }
         remaining = afterAt.slice(tag.length);
       }
     }
@@ -1812,17 +1830,19 @@ export default function App() {
     setPostCaption(""); setPostFile(null); setPostPreviewUrl(null); go(SCREENS.ARTIST_DASHBOARD);
   };
 
-  const GENRE_FILTERS = ["Top This Month","Newly Added","On The Road","Lollapalooza 2026"];
+  const GENRE_FILTERS = ["Top This Month","Newly Added","On The Road","Lollapalooza 2026","Riot Fest 2026"];
   const GENRE_TAGS = ["Synthwave","Indie Folk","Jazz Fusion","Dream Pop","Country","Shoegaze","Punk","Psych Rock","Ambient Folk"];
   const filteredArtists = ALL_ARTISTS.filter(a=>{
     const ms=a.name.toLowerCase().includes(search.toLowerCase())||a.genre.toLowerCase().includes(search.toLowerCase());
-    const LOLLA_IDS=new Set([1,2,3,4,5,6,7,8,9,10,11,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149]);const mg=genre==="Top This Month"?a.active:genre==="Newly Added"?a.newlyAdded:genre==="On The Road"?a.onTour:genre==="Lollapalooza 2026"?LOLLA_IDS.has(a.id):a.genre===genre;
+    const LOLLA_IDS=new Set([1,2,3,4,5,6,7,8,9,10,11,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149]);
+    const RIOT_IDS=new Set([9,6,3,7,218,149,164,191,237,530,853,844,845,840,873,894,542,483,529,534,501,878,888,874,856,839,855,851,869,531,535,525,730,737,866,880,541,843,865,871,832,847,884]);
+    const mg=genre==="Top This Month"?a.active:genre==="Newly Added"?a.newlyAdded:genre==="On The Road"?a.onTour:genre==="Lollapalooza 2026"?LOLLA_IDS.has(a.id):genre==="Riot Fest 2026"?RIOT_IDS.has(a.id):a.genre===genre;
     const showInSearch = search.length>0;
     return (showInSearch?ms:ms&&mg);
   }).sort((a,b)=>genre==="Top This Month"?(b.riders+b.standby)-(a.riders+a.standby):0);
 
   const navResults = ALL_ARTISTS.filter(a=>navSearch.length>1&&a.name.toLowerCase().includes(navSearch.toLowerCase()));
-  const isLoggedIn = [SCREENS.STREAM,SCREENS.SEARCH,SCREENS.PROFILE,SCREENS.CHECKOUT,SCREENS.UNLOCKED,SCREENS.ACCOUNT,SCREENS.ARTIST_DASHBOARD,SCREENS.NEW_POST,SCREENS.POST_VIEW,SCREENS.TAG_FEED,SCREENS.ARTIST_LIVE,SCREENS.ARTIST_CLOSED,SCREENS.RIDER_CLOSED,SCREENS.TOURBUS_PROFILE,SCREENS.TOURBUS_DASHBOARD].includes(screen);
+  const isLoggedIn = [SCREENS.STREAM,SCREENS.SEARCH,SCREENS.PROFILE,SCREENS.CHECKOUT,SCREENS.UNLOCKED,SCREENS.ACCOUNT,SCREENS.ARTIST_DASHBOARD,SCREENS.NEW_POST,SCREENS.POST_VIEW,SCREENS.TAG_FEED,SCREENS.VENUE_FEED,SCREENS.ARTIST_LIVE,SCREENS.ARTIST_CLOSED,SCREENS.RIDER_CLOSED,SCREENS.TOURBUS_PROFILE,SCREENS.TOURBUS_DASHBOARD].includes(screen);
   const isArtistMode = userMode==="artist"&&!!artistUser;
   const myArtistPosts = feedPosts.filter(p=>artistUser&&p.artist===artistUser.name);
 
@@ -2181,7 +2201,7 @@ export default function App() {
                   <div style={{fontFamily:"'Anton',sans-serif",fontSize:10,letterSpacing:3,color:"#555"}}>TOURBUS EXPLAINED IN 30 SECONDS</div>
                 </div>
                 <div className="ticket-box">
-                  <div className="ticket-price" style={{textAlign:"center"}}>How It Works</div>
+                  <div className="ticket-price" style={{textAlign:"center",color:darkMode?"#ffffff":"#000000"}}>How It Works</div>
                   <div className="ticket-desc" style={{textAlign:"center"}}>One-time $5 fee per artist / Transparent Pricing</div>
                   <div style={{display:"flex",alignItems:"stretch",justifyContent:"center",gap:8,marginTop:8}}>
                     <div style={{textAlign:"center",flex:1,background:"rgba(230,255,0,0.04)",border:"1px solid #3a3a00",borderRadius:2,padding:"16px 12px"}}>
@@ -2224,7 +2244,7 @@ export default function App() {
                 <label className="lbl">Email</label>
                 <input className={`inp${artistSignInError?" inp-error":""}`} placeholder="you@yourdomain.com" value={artistSignInForm.email} onChange={e=>{setArtistSignInForm(p=>({...p,email:e.target.value}));setArtistSignInError("");}}/>
                 <label className="lbl">Authentication Code</label>
-                <input className={`inp auth-code-inp${artistSignInError?" inp-error":""}`} placeholder="Â·Â·Â·Â·Â·" maxLength={5} value={artistSignInForm.code} onChange={e=>{setArtistSignInForm(p=>({...p,code:e.target.value.replace(/\D/g,"").slice(0,5)}));setArtistSignInError("");}}/>
+                <input className={`inp auth-code-inp${artistSignInError?" inp-error":""}`} placeholder="Â· Â· Â· Â· Â·" maxLength={5} value={artistSignInForm.code} onChange={e=>{setArtistSignInForm(p=>({...p,code:e.target.value.replace(/\D/g,"").slice(0,5)}));setArtistSignInError("");}}/>
                 {artistSignInError?<div className="error-msg">{artistSignInError}</div>:<div className="code-hint">We'll email you a code each time you sign in.</div>}
                 <div className="note" style={{marginTop:14}}>{E.bulb} Demo: use any artist email + code <strong style={{color:darkMode?"#e6ff00":"#ff4d1a",letterSpacing:3}}>12345</strong><br/>e.g. midnight@tourbus.live</div>
                 <button className="btn btn-primary" style={{marginTop:20}} onClick={handleArtistSignIn}>Sign In</button>
@@ -2241,7 +2261,7 @@ export default function App() {
                     <div style={{fontSize:13,color:darkMode?"#888":"#555",lineHeight:1.6}}>A fan looking to get closer to the artists I love. A one-time fee to ride on an artist's tourbus.</div>
                   </div>
                   <div onClick={()=>go(SCREENS.ARTIST_SIGNUP)} onMouseEnter={e=>{e.currentTarget.style.borderColor=darkMode?"#e6ff00":"#1a1a2e";e.currentTarget.style.background=darkMode?"rgba(255,255,255,0.05)":"rgba(26,26,46,0.06)";}} onMouseLeave={e=>{e.currentTarget.style.borderColor=darkMode?"#3a3a00":"#ccc";e.currentTarget.style.background="transparent";}} style={{border:`2px solid ${darkMode?"#3a3a00":"#ccc"}`,borderRadius:2,padding:"20px",cursor:"pointer",background:"transparent",transition:"all 0.2s"}}>
-                    <div style={{fontFamily:"'Anton',sans-serif",fontSize:18,letterSpacing:2,color:darkMode?"#aaa":"#1a1a2e",marginBottom:6}}>I'M AN ARTIST</div>
+                    <div style={{fontFamily:"'Anton',sans-serif",fontSize:18,letterSpacing:2,color:darkMode?"#e6ff00":"#ff4d1a",marginBottom:6}}>I'M AN ARTIST</div>
                     <div style={{fontSize:13,color:darkMode?"#888":"#555",lineHeight:1.6}}>A musician or band ready to share the real tour experience. Requires validation.</div>
                   </div>
                 </div>
@@ -2516,6 +2536,7 @@ export default function App() {
                 <div className="station-tabs">
                   <button className={`station-tab${stationView==="artists"?" active":""}`} onClick={()=>setStationView("artists")}>ARTISTS</button>
                   <button className={`station-tab${stationView==="tags"?" active":""}`} onClick={()=>setStationView("tags")}>TAGS</button>
+                  <button className={`station-tab${stationView==="venues"?" active":""}`} onClick={()=>setStationView("venues")}>VENUES</button>
                 </div>
                 {stationView==="artists"&&(
                   <>
@@ -2576,13 +2597,13 @@ export default function App() {
                   {search.trim().length>1&&filteredArtists.length>0&&(
                     <div style={{textAlign:"center",padding:"16px 0",borderTop:`1px solid ${darkMode?"#1e1e00":"#e8e0d0"}`,marginTop:4}}>
                       <span style={{fontSize:11,color:"#888",letterSpacing:1}}>Not seeing who you're looking for? </span>
-                      <span style={{fontSize:11,color:darkMode?"#e6ff00":"#ff4d1a",letterSpacing:1,cursor:"pointer"}} onClick={()=>{setSuggestSubmitted(false);setSearch(search);}}>Suggest an artist -></span>
+                      <span style={{fontSize:11,color:darkMode?"#e6ff00":"#ff4d1a",letterSpacing:1,cursor:"pointer"}} onClick={()=>{setSuggestSubmitted(false);setSearch(search+" ");}}>Suggest an artist -></span>
                     </div>
                   )}
                   {search.trim().length===0&&(
                     <div style={{textAlign:"center",padding:"16px 0",borderTop:`1px solid ${darkMode?"#1e1e00":"#e8e0d0"}`,marginTop:4}}>
                       <span style={{fontSize:11,color:"#888",letterSpacing:1}}>Not seeing who you're looking for? </span>
-                      <span style={{fontSize:11,color:darkMode?"#e6ff00":"#ff4d1a",letterSpacing:1,cursor:"pointer"}} onClick={()=>{setSuggestSubmitted(false);setSearch(" ");}}>Suggest an artist -></span>
+                      <span style={{fontSize:11,color:darkMode?"#e6ff00":"#ff4d1a",letterSpacing:1,cursor:"pointer"}} onClick={()=>{setSuggestSubmitted(false);setSearch("an artist");}}>Suggest an artist -></span>
                     </div>
                   )}
                 </div>
@@ -2622,6 +2643,79 @@ export default function App() {
                 })()}
               </div>
             )}
+            {screen===SCREENS.SEARCH&&stationView==="venues"&&(
+              <div style={{width:"100%"}}>
+                {VENUES.map(venue=>{
+                  const venuePosts = feedPosts.filter(p=>{
+                    if(!p.label) return false;
+                    const re = new RegExp("@"+venue.slug, "i");
+                    return re.test(p.label);
+                  });
+                  return (
+                    <div key={venue.slug} className="tag-summary-card" style={{cursor:"pointer"}} onClick={()=>{setActiveVenue(venue.slug);go(SCREENS.VENUE_FEED);}}>
+                      <div>
+                        <div className="tag-summary-name" style={{fontSize:14}}>{venue.name}</div>
+                        <div className="tag-summary-meta" style={{marginTop:2}}>{venue.city}</div>
+                      </div>
+                      <div style={{textAlign:"right"}}>
+                        <div className="tag-summary-count">{venuePosts.length}</div>
+                        <div className="tag-summary-count-lbl">POST{venuePosts.length!==1?"S":""}</div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+            {screen===SCREENS.VENUE_FEED&&activeVenue&&(()=>{
+              const venue = VENUES.find(v=>v.slug===activeVenue);
+              const venuePosts = feedPosts.filter(p=>{
+                if(!p.label) return false;
+                const re = new RegExp("@"+activeVenue,"i");
+                return re.test(p.label);
+              }).sort((a,b)=>(amps[b.id]?.count||0)-(amps[a.id]?.count||0));
+              return (
+                <div className="fade" style={{width:"100%",maxWidth:"min(560px,100%)",display:"flex",flexDirection:"column",alignItems:"center"}}>
+                  <button className="profile-back" onClick={()=>{go(SCREENS.SEARCH);setStationView("venues");}}>Back to Venues</button>
+                  <div style={{fontFamily:"'Anton',sans-serif",fontSize:30,letterSpacing:3,color:darkMode?"#e6ff00":"#ff4d1a",marginBottom:2,textAlign:"center"}}>{venue?.name||activeVenue}</div>
+                  <div style={{fontSize:10,color:"#555",letterSpacing:3,fontFamily:"'Anton',sans-serif",marginBottom:4}}>{venue?.city}</div>
+                  <div style={{fontSize:10,color:"#555",letterSpacing:3,fontFamily:"'Anton',sans-serif",marginBottom:24}}>{venuePosts.length} POST{venuePosts.length!==1?"S":""}</div>
+                  {venuePosts.length===0&&<div style={{color:"#555",fontFamily:"'Inter',sans-serif",fontSize:13}}>No posts yet for this venue. Artists, tag your posts with @{activeVenue}.</div>}
+                  {venuePosts.map(p=>{
+                    const artist = ARTISTS.find(a=>a.name===p.artist);
+                    const isUnlocked = p.isTourbus || (artist && purchased.has(artist.id) && !offBus[p.artist]);
+                    return (
+                      <div key={p.id} style={{width:"100%",background:"#161616",border:"1px solid #2a2a00",borderRadius:2,marginBottom:16,overflow:"hidden"}}>
+                        <div style={{display:"flex",alignItems:"center",gap:10,padding:"12px 14px"}}>
+                          {p.isTourbus
+                            ? <img src={darkMode?TOURBUS_BUS_IMG_DARK:TOURBUS_BUS_IMG} alt="tourbus" style={{width:32,height:32,borderRadius:2,border:`2px solid ${darkMode?"#e6ff00":"#ff4d1a"}`,objectFit:"cover",background:darkMode?"#0e0e0e":"#fff",flexShrink:0}}/>
+                            : artist?<ArtistThumb artist={artist} style={{width:32,height:32,borderRadius:2,border:"1px solid #3a3a00",flexShrink:0}}/>:<div style={{width:32,height:32,background:"#1a1a1a",borderRadius:2,flexShrink:0}}/>
+                          }
+                          <div style={{flex:1}}>
+                            <div style={{fontFamily:"'Anton',sans-serif",fontSize:13,letterSpacing:1,color:darkMode?"#f5f5f5":"#1a1a2e"}}>{p.artist}</div>
+                            <div style={{fontSize:10,color:"#555",letterSpacing:1}}>{p.time}</div>
+                          </div>
+                        </div>
+                        <div style={{width:"100%",aspectRatio:"16/9",background:p.color,display:"flex",alignItems:"center",justifyContent:"center",fontSize:64,position:"relative",overflow:"hidden",filter:isUnlocked?"none":"blur(8px)"}}>
+                          {p.previewUrl?<img src={p.previewUrl} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>:
+                            <span>{p.type==="photo"?E.photo:E.video}</span>}
+                        </div>
+                        <div style={{padding:"10px 14px 4px",fontSize:13,color:darkMode?"#aaa":"#3a3a5a",fontFamily:"'Inter',sans-serif",lineHeight:1.6}}>{parseCaption(p.label)}</div>
+                        {!isUnlocked&&(
+                          <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"10px 14px",background:darkMode?"#0e0e0e":"#f4f4f0",borderTop:`1px solid ${darkMode?"#2a2a00":"#e0dfd0"}`}}>
+                            <div style={{fontSize:11,color:"#555",letterSpacing:1,fontFamily:"'Anton',sans-serif"}}>Ride {p.artist} to see photos & videos</div>
+                            <button className="btn btn-primary" style={{width:"auto",padding:"6px 16px",fontSize:11,letterSpacing:2,marginBottom:0}} onClick={()=>{setSelectedArtist(artist);go(SCREENS.CHECKOUT);}}>Ride -></button>
+                          </div>
+                        )}
+                        <div style={{display:"flex",alignItems:"center",gap:16,padding:"8px 14px 12px"}}>
+                          <button className={`like-btn${likes[p.id]?.liked?" liked":""}`} onClick={()=>toggleLike(p.id)}>{E.clap} {(likes[p.id]?.count||0).toLocaleString()}</button>
+                          <button className={`like-btn${amps[p.id]?.amped?" liked":""}`} onClick={()=>toggleAmp(p.id)}>{E.fire} {(amps[p.id]?.count||0).toLocaleString()}</button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })()}
             {screen===SCREENS.PROFILE&&selectedArtist&&(
               <div className="profile-wrap fade">
                 {prevScreen===SCREENS.ARTIST_DASHBOARD
@@ -2968,7 +3062,7 @@ export default function App() {
                           <span>{profileDraft.photo||getArtistProfile(artistUser).photo?"CHANGE PHOTO":"+ UPLOAD PHOTO"}</span>
                           <input type="file" accept="image/*" style={{display:"none"}} onChange={e=>{const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=ev=>setProfileDraft(p=>({...p,photo:ev.target.result}));reader.readAsDataURL(file);}}/>
                         </label>
-                        {profileDraft.photo&&<button onClick={()=>setProfileDraft(p=>({...p,photo:""}))} style={{background:"transparent",border:"none",color:"#555",cursor:"pointer",fontSize:18,padding:4}}>Ã—</button>}
+                        {profileDraft.photo&&<button onClick={()=>setProfileDraft(p=>({...p,photo:""}))} style={{background:"transparent",border:"none",color:"#555",cursor:"pointer",fontSize:18,padding:4}}>Ãƒâ€”</button>}
                       </div>
                       <div style={{display:"flex",gap:10,marginTop:16}}>
                         <button className="btn btn-primary" style={{marginBottom:0}} onClick={handleSaveProfile}>Save Profile</button>
