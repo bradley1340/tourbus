@@ -1269,7 +1269,7 @@ const makeCSS = (dark) => {
   .inp-error{border-color:#ff4444!important;}
   .inp-label{font-size:10px;letter-spacing:2px;color:${t.textDeeper};margin-bottom:6px;font-family:'Anton',sans-serif;}
   .lbl{display:block;font-size:10px;letter-spacing:2px;color:${t.textDeeper};margin-bottom:6px;font-family:'Anton',sans-serif;}
-  .auth-code-inp{font-family:'Anton',sans-serif;font-size:28px;letter-spacing:12px;text-align:center;padding:14px;}
+  .auth-code-inp{font-family:'Anton',sans-serif;font-size:28px;letter-spacing:12px;text-align:center;padding:14px;}.auth-code-inp::placeholder{font-size:14px;letter-spacing:2px;font-family:'Courier Prime',monospace;}
   .char-count{font-size:10px;color:${t.textDeeper};letter-spacing:1px;text-align:right;margin-top:-8px;margin-bottom:8px;}
   .note{background:${t.accentBg3};border:1px solid ${t.border};border-radius:1px;padding:12px 14px;font-size:11px;color:${t.textFaint};line-height:1.7;letter-spacing:0.5px;}
   .no-refund-notice{font-size:11px;color:${t.textDeeper};letter-spacing:0.5px;line-height:1.6;margin-bottom:12px;}
@@ -2218,7 +2218,7 @@ export default function App() {
                 <label className="lbl">Email</label>
                 <input className={`inp${artistSignInError?" inp-error":""}`} placeholder="you@yourdomain.com" value={artistSignInForm.email} onChange={e=>{setArtistSignInForm(p=>({...p,email:e.target.value}));setArtistSignInError("");}}/>
                 <label className="lbl">Authentication Code</label>
-                <input className={`inp auth-code-inp${artistSignInError?" inp-error":""}`} placeholder="5-digit code" maxLength={5} value={artistSignInForm.code} onChange={e=>{setArtistSignInForm(p=>({...p,code:e.target.value.replace(/\D/g,"").slice(0,5)}));setArtistSignInError("");}}/>
+                <input className={`inp auth-code-inp${artistSignInError?" inp-error":""}`} placeholder="Â·Â·Â·Â·Â·" maxLength={5} value={artistSignInForm.code} onChange={e=>{setArtistSignInForm(p=>({...p,code:e.target.value.replace(/\D/g,"").slice(0,5)}));setArtistSignInError("");}}/>
                 {artistSignInError?<div className="error-msg">{artistSignInError}</div>:<div className="code-hint">We'll email you a code each time you sign in.</div>}
                 <div className="note" style={{marginTop:14}}>{E.bulb} Demo: use any artist email + code <strong style={{color:darkMode?"#e6ff00":"#ff4d1a",letterSpacing:3}}>12345</strong><br/>e.g. midnight@tourbus.live</div>
                 <button className="btn btn-primary" style={{marginTop:20}} onClick={handleArtistSignIn}>Sign In</button>
@@ -2226,17 +2226,17 @@ export default function App() {
             )}
             {screen===SCREENS.CHOOSE_TYPE&&(
               <div className="card fade">
-                <div className="logo logo-sm" style={{color:"#0e0e0e",textShadow:"none"}}>tourbus</div><div className="logo-sub">"We're with the band."</div>
+                <div className="logo logo-sm">tourbus</div><div className="logo-sub">"We're with the band."</div>
                 <div className="headline">Who are you?</div>
 
                 <div style={{display:"flex",flexDirection:"column",gap:12,marginBottom:16}}>
-                  <div onClick={()=>go(SCREENS.RIDER_SIGNUP)} style={{border:"2px solid #ff4d1a",borderRadius:2,padding:"20px",cursor:"pointer",background:"rgba(255,77,26,0.04)",transition:"all 0.2s"}}>
-                    <div style={{fontFamily:"'Anton',sans-serif",fontSize:18,letterSpacing:2,color:"#ff4d1a",marginBottom:6}}>I'M A RIDER</div>
-                    <div style={{fontSize:13,color:"#555",lineHeight:1.6}}>A fan looking to get closer to the artists I love. A one-time fee to ride on an artist's tourbus.</div>
+                  <div onClick={()=>go(SCREENS.RIDER_SIGNUP)} onMouseEnter={e=>{e.currentTarget.style.borderColor=darkMode?"#e6ff00":"#ff4d1a";e.currentTarget.style.background=darkMode?"rgba(230,255,0,0.05)":"rgba(255,77,26,0.06)";}} onMouseLeave={e=>{e.currentTarget.style.borderColor=darkMode?"#3a3a00":"#ccc";e.currentTarget.style.background="transparent";}} style={{border:`2px solid ${darkMode?"#3a3a00":"#ccc"}`,borderRadius:2,padding:"20px",cursor:"pointer",background:"transparent",transition:"all 0.2s"}}>
+                    <div style={{fontFamily:"'Anton',sans-serif",fontSize:18,letterSpacing:2,color:darkMode?"#e6ff00":"#ff4d1a",marginBottom:6}}>I'M A RIDER</div>
+                    <div style={{fontSize:13,color:darkMode?"#888":"#555",lineHeight:1.6}}>A fan looking to get closer to the artists I love. A one-time fee to ride on an artist's tourbus.</div>
                   </div>
-                  <div onClick={()=>go(SCREENS.ARTIST_SIGNUP)} style={{border:"2px solid #1a1a2e",borderRadius:2,padding:"20px",cursor:"pointer",background:"rgba(26,26,46,0.04)",transition:"all 0.2s"}}>
-                    <div style={{fontFamily:"'Anton',sans-serif",fontSize:18,letterSpacing:2,color:"#1a1a2e",marginBottom:6}}>I'M AN ARTIST</div>
-                    <div style={{fontSize:13,color:"#555",lineHeight:1.6}}>A musician or band ready to share the real tour experience. Requires validation.</div>
+                  <div onClick={()=>go(SCREENS.ARTIST_SIGNUP)} onMouseEnter={e=>{e.currentTarget.style.borderColor=darkMode?"#e6ff00":"#1a1a2e";e.currentTarget.style.background=darkMode?"rgba(255,255,255,0.05)":"rgba(26,26,46,0.06)";}} onMouseLeave={e=>{e.currentTarget.style.borderColor=darkMode?"#3a3a00":"#ccc";e.currentTarget.style.background="transparent";}} style={{border:`2px solid ${darkMode?"#3a3a00":"#ccc"}`,borderRadius:2,padding:"20px",cursor:"pointer",background:"transparent",transition:"all 0.2s"}}>
+                    <div style={{fontFamily:"'Anton',sans-serif",fontSize:18,letterSpacing:2,color:darkMode?"#aaa":"#1a1a2e",marginBottom:6}}>I'M AN ARTIST</div>
+                    <div style={{fontSize:13,color:darkMode?"#888":"#555",lineHeight:1.6}}>A musician or band ready to share the real tour experience. Requires validation.</div>
                   </div>
                 </div>
                 <button className="btn btn-outline" onClick={()=>go(SCREENS.LANDING)}>Back to Home</button>
@@ -2745,7 +2745,7 @@ export default function App() {
             )}
             {screen===SCREENS.CHECKOUT&&selectedArtist&&(
               <div className="card fade">
-                <div className="logo logo-sm" style={{color:"#0e0e0e",textShadow:"none"}}>tourbus</div><div className="logo-sub">Your ticket to ride</div>
+                <div className="logo logo-sm" >tourbus</div><div className="logo-sub">Your ticket to ride</div>
                 <div className="checkout-artist">
                   <ArtistThumb artist={selectedArtist} style={{width:48,height:48,borderRadius:2,border:`1px solid ${darkMode?"#2a2a00":"#d0cfc0"}`,flexShrink:0}}/>
                   <div><div style={{fontFamily:"'Anton',sans-serif",fontSize:16,letterSpacing:2,color:darkMode?"#f5f5f5":"#1a1a2e"}}>{selectedArtist.name}</div><div style={{fontSize:11,color:darkMode?"#555":"#888",letterSpacing:2}}>{selectedArtist.genre}</div></div>
