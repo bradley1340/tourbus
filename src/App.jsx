@@ -3250,8 +3250,8 @@ export default function App() {
                 <button className="profile-back" onClick={()=>go(SCREENS.STREAM)}>Back to My Stream</button>
                 {/* Header */}
                 <div className="profile-header" style={{width:"100%"}}>
-                  <div style={{width:"100%",maxWidth:"min(240px,100%)",height:160,borderRadius:2,border:`2px solid ${darkMode?"#e6ff00":"#0e0e0e"}`,overflow:"hidden",marginBottom:14}}>
-                    <img src={darkMode?TOURBUS_BUS_IMG_DARK:TOURBUS_BUS_IMG} alt="tourbus" style={{width:"100%",height:"100%",objectFit:"cover",display:"block"}}/>
+                  <div style={{width:120,height:120,borderRadius:2,border:`2px solid ${darkMode?"#e6ff00":"#0e0e0e"}`,overflow:"hidden",marginBottom:14,display:"flex",alignItems:"center",justifyContent:"center",background:darkMode?"#0e0e0e":"#fff"}}>
+                    <img src={darkMode?TOURBUS_BUS_IMG_DARK:TOURBUS_BUS_IMG} alt="tourbus" style={{width:"90%",height:"90%",objectFit:"contain",display:"block"}}/>
                   </div>
                   <div className="profile-name" style={{fontFamily:"'Caveat',cursive",letterSpacing:-1,color:darkMode?"#e6ff00":"#0e0e0e"}}>tourbus</div>
                   <div className="profile-genre">The Official tourbus Channel</div>
