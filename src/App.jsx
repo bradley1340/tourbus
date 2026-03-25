@@ -1555,6 +1555,7 @@ export default function App() {
   const [artistProfiles, setArtistProfiles] = useState({});
   const [editingPost, setEditingPost] = useState(null);
   const [editPostCaption, setEditPostCaption] = useState("");
+  const [editPostMedia, setEditPostMedia] = useState(null);
   const [confirmDeletePost, setConfirmDeletePost] = useState(null);
   const [selectedArtist, setSelectedArtist] = useState(null);
   const [riderUser, setRiderUser] = useState(null);
@@ -1712,7 +1713,8 @@ export default function App() {
 
   const handleSaveEditPost = () => {
     if (!editPostCaption.trim()) return;
-    setFeedPosts(prev=>prev.map(p=>p.id===editingPost.id?{...p,label:editPostCaption}:p));
+    setFeedPosts(prev=>prev.map(p=>p.id===editingPost.id?{...p,label:editPostCaption,...(editPostMedia?{previewUrl:editPostMedia}:{})}:p));
+    setEditPostMedia(null);
     setEditingPost(null); setEditPostCaption("");
   };
 
@@ -2963,8 +2965,7 @@ export default function App() {
                           </div>
                         )}
                         <label style={{flex:1,display:"flex",alignItems:"center",gap:8,background:darkMode?"#1a1a00":"#f5f5f5",border:`1px solid ${darkMode?"#3a3a00":"#ddd"}`,borderRadius:2,padding:"10px 14px",cursor:"pointer",fontSize:12,color:darkMode?"#888":"#555",letterSpacing:1,fontFamily:"'Anton',sans-serif"}}>
-                          <span style={{fontSize:16}}>ðŸ“·</span>
-                          <span>{profileDraft.photo||getArtistProfile(artistUser).photo?"CHANGE PHOTO":"UPLOAD PHOTO"}</span>
+                          <span>{profileDraft.photo||getArtistProfile(artistUser).photo?"CHANGE PHOTO":"+ UPLOAD PHOTO"}</span>
                           <input type="file" accept="image/*" style={{display:"none"}} onChange={e=>{const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=ev=>setProfileDraft(p=>({...p,photo:ev.target.result}));reader.readAsDataURL(file);}}/>
                         </label>
                         {profileDraft.photo&&<button onClick={()=>setProfileDraft(p=>({...p,photo:""}))} style={{background:"transparent",border:"none",color:"#555",cursor:"pointer",fontSize:18,padding:4}}>Ã—</button>}
@@ -3061,16 +3062,30 @@ export default function App() {
                       </div>
                       {editingPost?.id===p.id?(
                         <div>
+                          <label style={{display:"flex",alignItems:"center",gap:8,background:darkMode?"#1a1a00":"#f5f5f5",border:`1px solid ${darkMode?"#3a3a00":"#ddd"}`,borderRadius:2,padding:"10px 14px",cursor:"pointer",fontSize:11,color:darkMode?"#888":"#555",letterSpacing:1,fontFamily:"'Anton',sans-serif",marginBottom:8}}>
+                            <span>{editPostMedia?"CHANGE MEDIA":"+ REPLACE PHOTO / VIDEO"}</span>
+                            <input type="file" accept="image/*,video/*" style={{display:"none"}} onChange={e=>{const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=ev=>setEditPostMedia(ev.target.result);reader.readAsDataURL(file);}}/>
+                          </label>
+                          {editPostMedia&&(
+                            <div style={{marginBottom:8,borderRadius:2,overflow:"hidden",maxHeight:120,background:"#111",display:"flex",alignItems:"center",justifyContent:"center"}}>
+                              {editPostMedia.startsWith("data:video")?<div style={{fontSize:11,color:"#888",padding:8}}>Video selected</div>:<img src={editPostMedia} alt="new media" style={{maxWidth:"100%",maxHeight:120,objectFit:"contain"}}/>}
+                            </div>
+                          )}
+                          {(p.previewUrl&&!editPostMedia)&&(
+                            <div style={{marginBottom:8,borderRadius:2,overflow:"hidden",maxHeight:80,background:"#111",display:"flex",alignItems:"center",justifyContent:"center",opacity:0.5}}>
+                              <img src={p.previewUrl} alt="current" style={{maxWidth:"100%",maxHeight:80,objectFit:"contain"}}/>
+                            </div>
+                          )}
                           <textarea className="inp" style={{height:80,marginBottom:4}} value={editPostCaption} onChange={e=>setEditPostCaption(e.target.value.slice(0,1340))}/>
                           <div className="char-count" style={{marginBottom:8}}>{editPostCaption.length}/1340</div>
                           <div style={{display:"flex",gap:8}}>
                             <button className="btn btn-primary" style={{marginBottom:0,padding:"8px",fontSize:12}} onClick={handleSaveEditPost}>Save</button>
-                            <button className="btn btn-ghost" style={{padding:"8px"}} onClick={()=>{setEditingPost(null);setEditPostCaption("");}}>Cancel</button>
+                            <button className="btn btn-ghost" style={{padding:"8px"}} onClick={()=>{setEditingPost(null);setEditPostCaption("");setEditPostMedia(null);}}>Cancel</button>
                           </div>
                         </div>
                       ):(
                         <div style={{display:"flex",gap:8,borderTop:"1px solid #1e1e00",paddingTop:8}}>
-                          <button style={{fontFamily:"'Anton',sans-serif",fontSize:10,letterSpacing:2,color:"#555",background:"transparent",border:"1px solid #2a2a00",borderRadius:1,padding:"5px 12px",cursor:"pointer",transition:"all 0.2s"}} onMouseOver={e=>e.target.style.color=darkMode?"#e6ff00":"#ff4d1a"} onMouseOut={e=>e.target.style.color="#555"} onClick={()=>{setEditingPost(p);setEditPostCaption(p.label);}}>Edit</button>
+                          <button style={{fontFamily:"'Anton',sans-serif",fontSize:10,letterSpacing:2,color:"#555",background:"transparent",border:"1px solid #2a2a00",borderRadius:1,padding:"5px 12px",cursor:"pointer",transition:"all 0.2s"}} onMouseOver={e=>e.target.style.color=darkMode?"#e6ff00":"#ff4d1a"} onMouseOut={e=>e.target.style.color="#555"} onClick={()=>{setEditingPost(p);setEditPostCaption(p.label);setEditPostMedia(null);}}>Edit</button>
                           <button style={{fontFamily:"'Anton',sans-serif",fontSize:10,letterSpacing:2,color:"#663333",background:"transparent",border:"1px solid #331111",borderRadius:1,padding:"5px 12px",cursor:"pointer",transition:"all 0.2s"}} onMouseOver={e=>e.target.style.color="#ff6633"} onMouseOut={e=>e.target.style.color="#663333"} onClick={()=>setConfirmDeletePost(p)}>Delete</button>
                         </div>
                       )}
