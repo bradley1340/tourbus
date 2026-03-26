@@ -56,7 +56,7 @@ const ARTISTS = [
 const LIVE_IDS = new Set([1, 5, 9]); // The Midnight, Colt Reyes, Dusk Radio
 
 const INIT_FEED = [
-  {id:14,artist:"Dusk Radio",type:"photo",color:"#2e0a00",label:"Riot Fest 2026. We are on the bill. Three-piece punk from Chicago playing the fest we grew up sneaking into. If you know, you know. @soldierfield in September. #riotfest2026 #punk #chicago",time:"just now",likes:341},
+  {id:14,artist:"Dusk Radio",type:"photo",color:"#2e0a00",label:"Riot Fest 2026. We are on the bill. Three-piece punk from Chicago playing the fest we grew up sneaking into. If you know, you know. Douglass Park in September. After show at @thaliahall. #riotfest2026 #punk #chicago",time:"just now",likes:341},
   {id:11,artist:"The Midnight",type:"photo",color:"#0a0a2e",label:"Lollapalooza 2026 confirmed. See you in Grant Park. This one is going to be something else. Then @metrochicago the following night. #lollapalooza2026",time:"3d ago",likes:892},
   {id:12,artist:"Jade Carver",type:"photo",color:"#1a2e0a",label:"Just got the call. @Jade Carver is playing Lollapalooza 2026. I have been waiting for this moment my entire life. #lollapalooza2026",time:"4d ago",likes:634},
   {id:13,artist:"Neon Palms",type:"video",color:"#001a2e",label:"Grant Park, Chicago. July 2026. We will be there. #lollapalooza2026 #dreampop",time:"5d ago",likes:441},
@@ -2593,11 +2593,11 @@ export default function App() {
                         {a.active?(
                           <><div className="stub-count">{a.riders.toLocaleString()}</div><div className="stub-label">riders</div>
                           {purchased.has(a.id)
-                            ? <div style={{fontFamily:"'Anton',sans-serif",fontSize:9,letterSpacing:1,color:darkMode?"#e6ff00":"#ff4d1a",marginTop:4,textAlign:"center"}}>âœ“ RIDING</div>
+                            ? <div style={{fontFamily:"'Anton',sans-serif",fontSize:9,letterSpacing:1,color:darkMode?"#e6ff00":"#ff4d1a",marginTop:4,textAlign:"center"}}>RIDING</div>
                             : <button className="stub-action" onClick={e=>{e.stopPropagation();setSelectedArtist(a);go(SCREENS.PROFILE);}}>Ride</button>
                           }</>
                         ):(
-                          <><div className="stub-count">{(standbyCounts[a.id]||0).toLocaleString()}</div><div className="stub-label">on standby</div><button className="stub-action" onClick={e=>{e.stopPropagation();toggleStandby(a.id);}}>{standby[a.id]?"âœ“ Standby":"Go Standby"}</button></>
+                          <><div className="stub-count">{(standbyCounts[a.id]||0).toLocaleString()}</div><div className="stub-label">on standby</div><button className="stub-action" onClick={e=>{e.stopPropagation();toggleStandby(a.id);}}>{standby[a.id]?"Standby":"Go Standby"}</button></>
                         )}
                       </div>
                     </div>
@@ -2816,7 +2816,7 @@ export default function App() {
                             ));
                           })()}
                         </div>
-                        <div style={{textAlign:"center",padding:"12px 0",fontSize:11,color:darkMode?"#e6ff00":"#3a7a00",letterSpacing:2,fontFamily:"'Anton',sans-serif"}}>âœ“ YOU'RE ON THIS BUS</div>
+                        <div style={{textAlign:"center",padding:"12px 0",fontSize:11,color:darkMode?"#e6ff00":"#3a7a00",letterSpacing:2,fontFamily:"'Anton',sans-serif"}}>YOU'RE ON THIS BUS</div>
                       </>
                     ):(
                       <>
@@ -2841,7 +2841,7 @@ export default function App() {
                       <div className="standby-count">{(standbyCounts[selectedArtist.id]||0).toLocaleString()}</div>
                       <div className="standby-lbl">riders waiting</div>
                       <button className={`btn btn-standby${standby[selectedArtist.id]?" on":""}`} onClick={()=>toggleStandby(selectedArtist.id)}>
-                        {standby[selectedArtist.id]?"âœ“ On Standby - Cancel":"Go Standby"}
+                        {standby[selectedArtist.id]?"On Standby - Cancel":"Go Standby"}
                       </button>
                       {standby[selectedArtist.id]&&<p style={{fontSize:11,color:"#555",marginTop:12,letterSpacing:1}}>You'll be charged automatically when {selectedArtist.name} goes live.</p>}
                       <div className="no-refund-notice" style={{marginTop:16,marginBottom:0}}>All sales are final. Once charged, tickets are non-refundable.</div>
@@ -3481,7 +3481,7 @@ export default function App() {
                     </div>
                   ))}
                 </div>
-                <div style={{textAlign:"center",padding:"12px 0",fontSize:11,color:darkMode?"#e6ff00":"#3a7a00",letterSpacing:2,fontFamily:"'Anton',sans-serif"}}>âœ“ YOU'RE ON THIS BUS</div>
+                <div style={{textAlign:"center",padding:"12px 0",fontSize:11,color:darkMode?"#e6ff00":"#3a7a00",letterSpacing:2,fontFamily:"'Anton',sans-serif"}}>YOU'RE ON THIS BUS</div>
                 <div style={{textAlign:"center",marginTop:8}}>
                   <span style={{fontSize:10,color:"#333",letterSpacing:1,cursor:"pointer",fontFamily:"'Anton',sans-serif"}} onClick={()=>go(SCREENS.TOURBUS_DASHBOARD)}>Admin -></span>
                 </div>
