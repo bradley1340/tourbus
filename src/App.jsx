@@ -72,7 +72,7 @@ const INIT_FEED = [
   {id:9,artist:"tourbus",type:"video",color:"#0e0e0e",label:"We sat down with @Jade Carver ahead of her first headline tour to talk about the road, the songs, and what it feels like when it's finally real. Catch her at @victheater and @saltshed this spring. Don't miss her.",time:"12h ago",likes:0,isTourbus:true},
   {id:10,artist:"tourbus",type:"photo",color:"#0e0e0e",label:"Caught up with @Static Bloom on their first night in the van somewhere in New Jersey. It's raining, they're laughing, and they have no idea what's about to hit them. Get on their bus before everyone else does.",time:"14h ago",likes:0,isTourbus:true},
   {id:4,artist:"The Midnight",type:"video",color:"#1a0a3e",label:"Here's how the setlist comes together the day of a show. Tyler and I go back and forth for hours -- we pulled three songs tonight and added one we haven't played live since 2022. No spoilers. Next up: @metrochicago and @rivieratheatre.",time:"1d ago",likes:519},
-  {id:5,artist:"Jade Carver",type:"photo",color:"#1a2e0a",label:"Playing my hometown tonight for the first time since I left at 19. My mom's in the front row. My high school English teacher bought a ticket. I am not going to hold it together and I am completely okay with that. ðŸŽ¤ @spaceevanston",time:"1d ago",likes:143},
+  {id:5,artist:"Jade Carver",type:"photo",color:"#1a2e0a",label:"Playing my hometown tonight for the first time since I left at 19. My mom's in the front row. My high school English teacher bought a ticket. I am not going to hold it together and I am completely okay with that. Ã°Å¸Å½Â¤ @spaceevanston",time:"1d ago",likes:143},
   {id:6,artist:"Colt Reyes",type:"photo",color:"#2e1000",label:"Meet the crew that makes this whole thing run. L to R: Jake (merch + moral support), Dani (tour manager, actual backbone of this operation), T-Ray (sound), and Boots (driver, 22 years, never late once). Buy them a drink if you see them.",time:"2d ago",likes:76},
   {id:7,artist:"tourbus",type:"announcement",color:"#0e0e0e",label:"New artist alert: Static Bloom just joined tourbus. The UK shoegaze duo is documenting their first US tour from a van. Grab your $5 ticket at the Station.",time:"3d ago",likes:0,isTourbus:true},
 ];
@@ -1418,7 +1418,7 @@ const makeCSS = (dark) => {
   .unlock-title{font-family:'Anton',sans-serif;font-size:18px;letter-spacing:2px;color:${t.text};margin-bottom:8px;}
   .unlock-desc{font-size:12px;color:${t.textFaint};letter-spacing:0.5px;line-height:1.6;margin-bottom:16px;}
   .feed-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-bottom:20px;position:relative;}
-  .feed-grid-item{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;overflow:hidden;}
+  .feed-grid-item{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;overflow:hidden;position:relative;}
   .feed-grid-lock{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:36px;z-index:2;}
   .standby-box{border:1px solid ${t.border};border-radius:2px;padding:20px;text-align:center;background:rgba(100,100,100,0.03);margin-bottom:20px;}
   .standby-count{font-family:'Anton',sans-serif;font-size:36px;color:${t.textDeep};letter-spacing:2px;}.standby-lbl{font-size:10px;color:${t.textDeeper};letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;}
@@ -1508,7 +1508,8 @@ const makeCSS = (dark) => {
 
 export default function App() {
   const [screen, setScreen] = useState(SCREENS.LANDING);
-  const [prevScreen, setPrevScreen] = useState(null);
+  const [screenStack, setScreenStack] = useState([]);
+  const [swipeIndicator, setSwipeIndicator] = useState(0); // 0-1 pull progress
   const [allArtistPosts, setAllArtistPosts] = useState([]);
   const [darkMode, setDarkMode] = useState(true);
   const [userMode, setUserMode] = useState("rider");
@@ -1620,15 +1621,40 @@ export default function App() {
   const [confirmOff, setConfirmOff] = useState(null);
   const [suggestNote, setSuggestNote] = useState("");
   const [suggestSubmitted, setSuggestSubmitted] = useState(false);
-  const [postType, setPostType] = useState("photo");
   const [postCaption, setPostCaption] = useState("");
-  const [postPreviewUrl, setPostPreviewUrl] = useState(null);
-  const [postFile, setPostFile] = useState(null);
+  const [postMediaItems, setPostMediaItems] = useState([]); // [{url, file, type:"photo"|"video"}]
+  const [postSlides, setPostSlides] = useState({}); // {postId: slideIndex}
   const fileInputRef = useRef(null);
   const videoRef = useRef(null);
   const cameraStreamRef = useRef(null);
 
-  const go = s => { setScreen(s); window.scrollTo(0,0); setActiveTagInput(null); setTagDraft(''); };
+  // Root screens that should never be 'backed into'
+  const ROOT_SCREENS = new Set([SCREENS.LANDING, SCREENS.STREAM, SCREENS.ARTIST_DASHBOARD]);
+
+  const go = (s, opts={}) => {
+    if (!opts.replace) {
+      setScreenStack(prev => [...prev, screen]);
+    }
+    setScreen(s);
+    window.scrollTo(0,0);
+    setActiveTagInput(null);
+    setTagDraft('');
+  };
+
+  const goBack = () => {
+    setScreenStack(prev => {
+      if (prev.length === 0) return prev;
+      const next = [...prev];
+      const target = next.pop();
+      setScreen(target);
+      window.scrollTo(0,0);
+      setActiveTagInput(null);
+      setTagDraft('');
+      return next;
+    });
+  };
+
+  const canGoBack = screenStack.length > 0;
   const toggleLike = id => setLikes(p=>({...p,[id]:{count:p[id].liked?p[id].count-1:p[id].count+1,liked:!p[id].liked}}));
   const toggleAmp = id => setAmps(p=>({...p,[id]:{count:p[id].amped?p[id].count-1:p[id].count+1,amped:!p[id].amped}}));
   const TAG_THRESHOLD = 20;
@@ -1741,7 +1767,8 @@ export default function App() {
     if (acct.purchased && acct.purchased.size > 0) {
       setFeedPosts(INIT_FEED.filter(p => !p.newRiderOnly));
     }
-    go(SCREENS.STREAM);
+    setScreenStack([]);
+    go(SCREENS.STREAM, {replace:true});
   };
 
   const handleArtistSignIn = () => {
@@ -1749,10 +1776,20 @@ export default function App() {
     if (idx===undefined) { setArtistSignInError("No artist account found for that email."); return; }
     if (artistSignInForm.code.trim()!==DEMO_AUTH_CODE) { setArtistSignInError("Invalid authentication code. Check your email."); return; }
     setArtistUser(ARTISTS[idx]); setUserMode("artist"); setArtistSignInError(""); setArtistSignInForm({email:"",code:""});
-    go(SCREENS.ARTIST_DASHBOARD);
+    setScreenStack([]);
+    go(SCREENS.ARTIST_DASHBOARD, {replace:true});
   };
 
-  const handleFileChange = e => { const file = e.target.files[0]; if (!file) return; setPostFile(file); setPostPreviewUrl(URL.createObjectURL(file)); };
+  const handleFileChange = e => {
+    const files = Array.from(e.target.files);
+    if (!files.length) return;
+    files.forEach(file => {
+      const isVideo = file.type.startsWith("video/");
+      const url = URL.createObjectURL(file);
+      setPostMediaItems(prev => [...prev, {url, file, type: isVideo ? "video" : "photo"}]);
+    });
+    e.target.value = ""; // allow re-selecting same file
+  };
 
   const handleSaveEditPost = () => {
     if (!editPostCaption.trim()) return;
@@ -1848,11 +1885,86 @@ export default function App() {
     }
   }, [screen]);
 
+  // Global swipe-from-left-edge to go back
+  useEffect(() => {
+    const EDGE_ZONE = 30;   // px from left edge to start a swipe
+    const MIN_SWIPE = 60;   // px horizontal travel to trigger back
+    const MAX_VERT  = 80;   // px vertical drift still allowed
+    let startX = null, startY = null, tracking = false;
+
+    const onTouchStart = e => {
+      const t = e.touches[0];
+      if (t.clientX <= EDGE_ZONE) {
+        startX = t.clientX;
+        startY = t.clientY;
+        tracking = true;
+      }
+    };
+
+    const onTouchMove = e => {
+      if (!tracking) return;
+      const t = e.touches[0];
+      const dx = t.clientX - startX;
+      const dy = Math.abs(t.clientY - startY);
+      if (dy > MAX_VERT) { tracking = false; setSwipeIndicator(0); return; }
+      if (dx > 0) {
+        // Show pull indicator (0-1 clamped)
+        setSwipeIndicator(Math.min(dx / MIN_SWIPE, 1));
+      }
+    };
+
+    const onTouchEnd = e => {
+      if (!tracking) return;
+      tracking = false;
+      setSwipeIndicator(0);
+      const t = e.changedTouches[0];
+      const dx = t.clientX - startX;
+      const dy = Math.abs(t.clientY - startY);
+      if (dx >= MIN_SWIPE && dy <= MAX_VERT) {
+        // Trigger back
+        setScreenStack(prev => {
+          if (prev.length === 0) return prev;
+          const next = [...prev];
+          const target = next.pop();
+          setScreen(target);
+          window.scrollTo(0,0);
+          return next;
+        });
+      }
+      startX = null; startY = null;
+    };
+
+    document.addEventListener('touchstart', onTouchStart, { passive: true });
+    document.addEventListener('touchmove',  onTouchMove,  { passive: true });
+    document.addEventListener('touchend',   onTouchEnd,   { passive: true });
+    return () => {
+      document.removeEventListener('touchstart', onTouchStart);
+      document.removeEventListener('touchmove',  onTouchMove);
+      document.removeEventListener('touchend',   onTouchEnd);
+    };
+  }, [screenStack]);
+
   const handlePublishPost = () => {
     if (!postCaption.trim()) return;
-    const p = {id:Date.now(),artist:artistUser.name,type:postType,color:artistUser.color,label:postCaption,time:"just now",likes:0,previewUrl:postPreviewUrl,isNew:true};
-    setFeedPosts(prev=>[p,...prev]); setLikes(prev=>({...prev,[p.id]:{count:0,liked:false}})); setAmps(prev=>({...prev,[p.id]:{count:0,amped:false}}));
-    setPostCaption(""); setPostFile(null); setPostPreviewUrl(null); go(SCREENS.ARTIST_DASHBOARD);
+    const hasVideo = postMediaItems.some(m => m.type === "video");
+    const hasPhoto = postMediaItems.some(m => m.type === "photo");
+    const autoType = hasVideo && hasPhoto ? "mixed" : hasVideo ? "video" : postMediaItems.length ? "photo" : "photo";
+    const p = {
+      id: Date.now(),
+      artist: artistUser.name,
+      type: autoType,
+      color: artistUser.color,
+      label: postCaption,
+      time: "just now",
+      likes: 0,
+      previewUrl: postMediaItems[0]?.url || null,
+      mediaItems: postMediaItems.length > 0 ? postMediaItems : null,
+      isNew: true,
+    };
+    setFeedPosts(prev=>[p,...prev]);
+    setLikes(prev=>({...prev,[p.id]:{count:0,liked:false}}));
+    setAmps(prev=>({...prev,[p.id]:{count:0,amped:false}}));
+    setPostCaption(""); setPostMediaItems([]); go(SCREENS.ARTIST_DASHBOARD);
   };
 
   const GENRE_FILTERS = ["Top This Month","Newly Added","On The Road","Lollapalooza 2026","Riot Fest 2026"];
@@ -1875,6 +1987,21 @@ export default function App() {
     <>
       <style>{makeCSS(darkMode)}</style>
       <div className="root">
+        {/* Swipe-back pull indicator */}
+        {canGoBack && swipeIndicator > 0 && (
+          <div style={{
+            position: 'fixed', left: 0, top: 0, bottom: 0, zIndex: 9999,
+            width: Math.round(swipeIndicator * 48) + 'px',
+            background: 'linear-gradient(to right, rgba(230,255,0,0.18), transparent)',
+            pointerEvents: 'none', transition: 'width 0.05s',
+          }}>
+            <div style={{
+              position: 'absolute', left: 6, top: '50%', transform: 'translateY(-50%)',
+              opacity: swipeIndicator, fontSize: 18, color: darkMode ? '#e6ff00' : '#ff4d1a',
+              transition: 'opacity 0.05s', fontFamily: 'Anton,sans-serif',
+            }}>â€º</div>
+          </div>
+        )}
         {isLoggedIn&&(
           <div className="nav">
             <div className="nav-inner">
@@ -1883,7 +2010,7 @@ export default function App() {
                 {isArtistMode?(
                   <>
                     <button className="nav-post-btn" onClick={()=>go(SCREENS.NEW_POST)}>+ New Post</button>
-                    <button className={`nav-account-btn${screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?" active":""}`} onClick={()=>{if(screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id){go(SCREENS.ARTIST_DASHBOARD);}else{setPrevScreen(SCREENS.ARTIST_DASHBOARD);setSelectedArtist(artistUser);go(SCREENS.PROFILE);}}} title={screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?"Back to Dashboard":"View public profile"}>
+                    <button className={`nav-account-btn${screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?" active":""}`} onClick={()=>{if(screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id){go(SCREENS.ARTIST_DASHBOARD);}else{setSelectedArtist(artistUser);go(SCREENS.PROFILE);}}} title={screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?"Back to Dashboard":"View public profile"}>
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
                     </button>
                   </>
@@ -1925,7 +2052,7 @@ export default function App() {
                 {isArtistMode?(
                   <>
                     <button className="nav-post-btn" onClick={()=>go(SCREENS.NEW_POST)}>+ New Post</button>
-                    <button className={`nav-account-btn${screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?" active":""}`} onClick={()=>{if(screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id){go(SCREENS.ARTIST_DASHBOARD);}else{setPrevScreen(SCREENS.ARTIST_DASHBOARD);setSelectedArtist(artistUser);go(SCREENS.PROFILE);}}} title={screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?"Back to Dashboard":"View public profile"}>
+                    <button className={`nav-account-btn${screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?" active":""}`} onClick={()=>{if(screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id){go(SCREENS.ARTIST_DASHBOARD);}else{setSelectedArtist(artistUser);go(SCREENS.PROFILE);}}} title={screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?"Back to Dashboard":"View public profile"}>
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
                     </button>
                   </>
@@ -1967,7 +2094,7 @@ export default function App() {
                 {isArtistMode?(
                   <>
                     <button className="nav-post-btn" onClick={()=>go(SCREENS.NEW_POST)}>+ New Post</button>
-                    <button className={`nav-account-btn${screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?" active":""}`} onClick={()=>{if(screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id){go(SCREENS.ARTIST_DASHBOARD);}else{setPrevScreen(SCREENS.ARTIST_DASHBOARD);setSelectedArtist(artistUser);go(SCREENS.PROFILE);}}} title={screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?"Back to Dashboard":"View public profile"}>
+                    <button className={`nav-account-btn${screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?" active":""}`} onClick={()=>{if(screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id){go(SCREENS.ARTIST_DASHBOARD);}else{setSelectedArtist(artistUser);go(SCREENS.PROFILE);}}} title={screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?"Back to Dashboard":"View public profile"}>
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
                     </button>
                   </>
@@ -2009,7 +2136,7 @@ export default function App() {
                 {isArtistMode?(
                   <>
                     <button className="nav-post-btn" onClick={()=>go(SCREENS.NEW_POST)}>+ New Post</button>
-                    <button className={`nav-account-btn${screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?" active":""}`} onClick={()=>{if(screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id){go(SCREENS.ARTIST_DASHBOARD);}else{setPrevScreen(SCREENS.ARTIST_DASHBOARD);setSelectedArtist(artistUser);go(SCREENS.PROFILE);}}} title={screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?"Back to Dashboard":"View public profile"}>
+                    <button className={`nav-account-btn${screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?" active":""}`} onClick={()=>{if(screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id){go(SCREENS.ARTIST_DASHBOARD);}else{setSelectedArtist(artistUser);go(SCREENS.PROFILE);}}} title={screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?"Back to Dashboard":"View public profile"}>
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
                     </button>
                   </>
@@ -2051,7 +2178,7 @@ export default function App() {
                 {isArtistMode?(
                   <>
                     <button className="nav-post-btn" onClick={()=>go(SCREENS.NEW_POST)}>+ New Post</button>
-                    <button className={`nav-account-btn${screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?" active":""}`} onClick={()=>{if(screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id){go(SCREENS.ARTIST_DASHBOARD);}else{setPrevScreen(SCREENS.ARTIST_DASHBOARD);setSelectedArtist(artistUser);go(SCREENS.PROFILE);}}} title={screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?"Back to Dashboard":"View public profile"}>
+                    <button className={`nav-account-btn${screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?" active":""}`} onClick={()=>{if(screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id){go(SCREENS.ARTIST_DASHBOARD);}else{setSelectedArtist(artistUser);go(SCREENS.PROFILE);}}} title={screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?"Back to Dashboard":"View public profile"}>
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
                     </button>
                   </>
@@ -2093,7 +2220,7 @@ export default function App() {
                 {isArtistMode?(
                   <>
                     <button className="nav-post-btn" onClick={()=>go(SCREENS.NEW_POST)}>+ New Post</button>
-                    <button className={`nav-account-btn${screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?" active":""}`} onClick={()=>{if(screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id){go(SCREENS.ARTIST_DASHBOARD);}else{setPrevScreen(SCREENS.ARTIST_DASHBOARD);setSelectedArtist(artistUser);go(SCREENS.PROFILE);}}} title={screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?"Back to Dashboard":"View public profile"}>
+                    <button className={`nav-account-btn${screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?" active":""}`} onClick={()=>{if(screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id){go(SCREENS.ARTIST_DASHBOARD);}else{setSelectedArtist(artistUser);go(SCREENS.PROFILE);}}} title={screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?"Back to Dashboard":"View public profile"}>
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
                     </button>
                   </>
@@ -2135,7 +2262,7 @@ export default function App() {
                 {isArtistMode?(
                   <>
                     <button className="nav-post-btn" onClick={()=>go(SCREENS.NEW_POST)}>+ New Post</button>
-                    <button className={`nav-account-btn${screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?" active":""}`} onClick={()=>{if(screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id){go(SCREENS.ARTIST_DASHBOARD);}else{setPrevScreen(SCREENS.ARTIST_DASHBOARD);setSelectedArtist(artistUser);go(SCREENS.PROFILE);}}} title={screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?"Back to Dashboard":"View public profile"}>
+                    <button className={`nav-account-btn${screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?" active":""}`} onClick={()=>{if(screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id){go(SCREENS.ARTIST_DASHBOARD);}else{setSelectedArtist(artistUser);go(SCREENS.PROFILE);}}} title={screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?"Back to Dashboard":"View public profile"}>
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
                     </button>
                   </>
@@ -2177,7 +2304,7 @@ export default function App() {
                 {isArtistMode?(
                   <>
                     <button className="nav-post-btn" onClick={()=>go(SCREENS.NEW_POST)}>+ New Post</button>
-                    <button className={`nav-account-btn${screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?" active":""}`} onClick={()=>{if(screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id){go(SCREENS.ARTIST_DASHBOARD);}else{setPrevScreen(SCREENS.ARTIST_DASHBOARD);setSelectedArtist(artistUser);go(SCREENS.PROFILE);}}} title={screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?"Back to Dashboard":"View public profile"}>
+                    <button className={`nav-account-btn${screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?" active":""}`} onClick={()=>{if(screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id){go(SCREENS.ARTIST_DASHBOARD);}else{setSelectedArtist(artistUser);go(SCREENS.PROFILE);}}} title={screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?"Back to Dashboard":"View public profile"}>
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
                     </button>
                   </>
@@ -2249,7 +2376,7 @@ export default function App() {
             )}
             {screen===SCREENS.RIDER_SIGNIN&&(
               <div className="card fade">
-                <button className="back" onClick={()=>go(SCREENS.LANDING)}>Back</button>
+                <button className="back" onClick={goBack}>Back</button>
                 <div className="logo logo-sm" style={{marginBottom:16}}>tourbus</div>
                 <div className="headline">Welcome back, rider!</div>
                 <label className="lbl">Username</label>
@@ -2263,13 +2390,13 @@ export default function App() {
             )}
             {screen===SCREENS.ARTIST_SIGNIN&&(
               <div className="card fade">
-                <button className="back" onClick={()=>go(SCREENS.LANDING)}>Back</button>
+                <button className="back" onClick={goBack}>Back</button>
                 <div className="logo logo-sm">tourbus</div><div className="logo-sub">Artist sign in</div>
                 <div className="headline">Your <em>tourbus</em> awaits.</div>
                 <label className="lbl">Email</label>
                 <input className={`inp${artistSignInError?" inp-error":""}`} placeholder="you@yourdomain.com" value={artistSignInForm.email} onChange={e=>{setArtistSignInForm(p=>({...p,email:e.target.value}));setArtistSignInError("");}}/>
                 <label className="lbl">Authentication Code</label>
-                <input className={`inp auth-code-inp${artistSignInError?" inp-error":""}`} placeholder="Â· Â· Â· Â· Â·" maxLength={5} value={artistSignInForm.code} onChange={e=>{setArtistSignInForm(p=>({...p,code:e.target.value.replace(/\D/g,"").slice(0,5)}));setArtistSignInError("");}}/>
+                <input className={`inp auth-code-inp${artistSignInError?" inp-error":""}`} placeholder="Ã‚Â· Ã‚Â· Ã‚Â· Ã‚Â· Ã‚Â·" maxLength={5} value={artistSignInForm.code} onChange={e=>{setArtistSignInForm(p=>({...p,code:e.target.value.replace(/\D/g,"").slice(0,5)}));setArtistSignInError("");}}/>
                 {artistSignInError?<div className="error-msg">{artistSignInError}</div>:<div className="code-hint">We'll email you a code each time you sign in.</div>}
                 <div className="note" style={{marginTop:14}}>{E.bulb} Demo: use any artist email + code <strong style={{color:darkMode?"#e6ff00":"#ff4d1a",letterSpacing:3}}>12345</strong><br/>e.g. midnight@tourbus.live</div>
                 <button className="btn btn-primary" style={{marginTop:20}} onClick={handleArtistSignIn}>Sign In</button>
@@ -2295,7 +2422,7 @@ export default function App() {
             )}
             {screen===SCREENS.RIDER_SIGNUP&&(
               <div className="card fade">
-                <button className="back" onClick={()=>go(SCREENS.CHOOSE_TYPE)}>Back</button>
+                <button className="back" onClick={goBack}>Back</button>
                 <div className="logo logo-sm">tourbus</div><div className="logo-sub">Rider Registration</div>
                 <div className="headline">Climb aboard.</div>
                 <p className="subtext" style={{marginBottom:8}}>Here's how it works. Free to join. Once you set up your account with a valid payment method, you will be able to buy a ticket (one-time $5) to ride on an artist's tourbus.</p>
@@ -2314,13 +2441,13 @@ export default function App() {
                 <hr className="divider"/>
                 <div className="policy-check-row">
                   <div className={`policy-checkbox${agreedPrivacy?" checked":""}`} onClick={()=>setAgreedPrivacy(p=>!p)}>
-                    {agreedPrivacy&&<span className="policy-checkbox-mark">âœ“</span>}
+                    {agreedPrivacy&&<span className="policy-checkbox-mark">Ã¢Å“â€œ</span>}
                   </div>
                   <div className="policy-check-text">I have read and agree to the <span className="policy-link" onClick={()=>setShowPolicy("privacy")}>Privacy Policy</span></div>
                 </div>
                 <div className="policy-check-row">
                   <div className={`policy-checkbox${agreedTerms?" checked":""}`} onClick={()=>setAgreedTerms(p=>!p)}>
-                    {agreedTerms&&<span className="policy-checkbox-mark">âœ“</span>}
+                    {agreedTerms&&<span className="policy-checkbox-mark">Ã¢Å“â€œ</span>}
                   </div>
                   <div className="policy-check-text">I have read and agree to the <span className="policy-link" onClick={()=>setShowPolicy("terms")}>Terms of Use</span></div>
                 </div>
@@ -2329,7 +2456,7 @@ export default function App() {
             )}
             {screen===SCREENS.ARTIST_SIGNUP&&(
               <div className="card fade">
-                <button className="back" onClick={()=>go(SCREENS.CHOOSE_TYPE)}>Back</button>
+                <button className="back" onClick={goBack}>Back</button>
                 <div className="logo logo-sm">tourbus</div><div className="logo-sub">Artist Application</div>
                 <div className="headline">Start your <em>tourbus.</em></div>
                 <p className="subtext" style={{marginBottom:8}}>We'll reach out within 2-3 business days.</p>
@@ -2457,8 +2584,12 @@ export default function App() {
                   return (
                     <div key={p.id} className={`feed-post${isMuted?" muted":""}`}>
                       <div className="feed-post-header" style={{position:"relative"}}>
-                        {(()=>{const a=ARTISTS.find(a=>a.name===p.artist);return a?<ArtistThumb artist={a} photoOverride={getArtistProfile(a).photo} style={{width:32,height:32,borderRadius:2,border:"1px solid #3a3a00",flexShrink:0,cursor:"pointer"}} onClick={()=>{setSelectedArtist(a);go(SCREENS.PROFILE);}}/>:<div className="feed-post-avatar" style={{background:"#1a1a1a"}}/>;})()} 
-                        <div style={{cursor:"pointer",flex:1}} onClick={()=>{const a=ARTISTS.find(a=>a.name===p.artist);if(a){setSelectedArtist(a);go(SCREENS.PROFILE);}}}><div className="feed-post-artist">{p.artist}{p.isNew&&<span className="new-post-badge">NEW</span>}{(()=>{const a=ARTISTS.find(a=>a.name===p.artist);return a&&getArtistProfile(a).onTour?<span className="on-tour-badge">ON TOUR</span>:null;})()}</div><div className="feed-post-time">{p.time}</div></div>
+                        {(()=>{const a=ARTISTS.find(a=>a.name===p.artist);return(
+                          <div style={{display:"flex",alignItems:"center",gap:8,cursor:"pointer",flex:1,minWidth:0}} onClick={()=>{if(a){setSelectedArtist(a);go(SCREENS.PROFILE);}}}>
+                            {a?<ArtistThumb artist={a} photoOverride={getArtistProfile(a).photo} style={{width:32,height:32,borderRadius:2,border:"1px solid #3a3a00",flexShrink:0}}/>:<div className="feed-post-avatar" style={{background:"#1a1a1a"}}/>}
+                            <div style={{minWidth:0}}><div className="feed-post-artist">{p.artist}{p.isNew&&<span className="new-post-badge">NEW</span>}{a&&getArtistProfile(a).onTour?<span className="on-tour-badge">ON TOUR</span>:null}</div><div className="feed-post-time">{p.time}</div></div>
+                          </div>
+                        );})()} 
                         <div className="post-menu-wrap" style={{flexShrink:0,marginLeft:"auto"}}>
                           <button className="post-menu-btn" onClick={()=>setArtistMenu(artistMenu===p.artist+p.id?null:p.artist+p.id)}>...</button>
                           {artistMenu===p.artist+p.id&&(
@@ -2474,7 +2605,7 @@ export default function App() {
                           )}
                         </div>
                       </div>
-                      <div className="feed-post-thumb" style={{background:p.color}}>
+                      <div className="feed-post-thumb" style={{background:p.color,cursor:"pointer"}} onClick={()=>{const a=ARTISTS.find(a=>a.name===p.artist);if(a){setSelectedArtist(a);setSelectedPost(p);setAllArtistPosts(feedPosts.filter(fp=>fp.artist===p.artist));go(SCREENS.POST_VIEW);}}}>
                         {p.previewUrl?<img src={p.previewUrl} alt={p.label}/>:<span style={{fontSize:64}}>{p.type==="photo"?E.photo:E.video}</span>}
                       </div>
                       <div className="feed-post-label">{parseCaption(p.label)}</div>
@@ -2702,7 +2833,7 @@ export default function App() {
               }).sort((a,b)=>(amps[b.id]?.count||0)-(amps[a.id]?.count||0));
               return (
                 <div className="fade" style={{width:"100%",maxWidth:"min(560px,100%)",display:"flex",flexDirection:"column",alignItems:"center"}}>
-                  <button className="profile-back" onClick={()=>{go(SCREENS.SEARCH);setStationView("venues");}}>Back to Venues</button>
+                  <button className="profile-back" onClick={()=>{goBack();setStationView("venues");}}>Back to Venues</button>
                   <div style={{fontFamily:"'Anton',sans-serif",fontSize:30,letterSpacing:3,color:darkMode?"#e6ff00":"#ff4d1a",marginBottom:2,textAlign:"center"}}>{venue?.name||activeVenue}</div>
                   <div style={{fontSize:10,color:"#555",letterSpacing:3,fontFamily:"'Anton',sans-serif",marginBottom:4}}>{venue?.city}</div>
                   <div style={{fontSize:10,color:"#555",letterSpacing:3,fontFamily:"'Anton',sans-serif",marginBottom:24}}>{venuePosts.length} POST{venuePosts.length!==1?"S":""}</div>
@@ -2712,7 +2843,7 @@ export default function App() {
                     const isUnlocked = p.isTourbus || (artist && purchased.has(artist.id) && !offBus[p.artist]);
                     return (
                       <div key={p.id} style={{width:"100%",background:darkMode?"#161616":"#ffffff",border:`1px solid ${darkMode?"#2a2a00":"#e0dfd0"}`,borderRadius:2,marginBottom:16,overflow:"hidden"}}>
-                        <div style={{display:"flex",alignItems:"center",gap:10,padding:"12px 14px"}}>
+                        <div style={{display:"flex",alignItems:"center",gap:10,padding:"12px 14px",cursor:p.isTourbus||!artist?"default":"pointer"}} onClick={()=>{if(artist&&!p.isTourbus){setSelectedArtist(artist);go(SCREENS.PROFILE);}}}>
                           {p.isTourbus
                             ? <div style={{width:32,height:32,borderRadius:2,border:`2px solid ${darkMode?"#e6ff00":"#ff4d1a"}`,background:darkMode?"#0e0e0e":"#fff",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Caveat',cursive",fontSize:14,fontWeight:700,color:darkMode?"#e6ff00":"#0e0e0e",flexShrink:0,letterSpacing:-1}}>tb</div>
                             : artist?<ArtistThumb artist={artist} style={{width:32,height:32,borderRadius:2,border:`1px solid ${darkMode?"#3a3a00":"#d0cfc0"}`,flexShrink:0}}/>:<div style={{width:32,height:32,background:darkMode?"#1a1a1a":"#e8e8e8",borderRadius:2,flexShrink:0}}/>
@@ -2745,12 +2876,14 @@ export default function App() {
             })()}
             {screen===SCREENS.PROFILE&&selectedArtist&&(
               <div className="profile-wrap fade">
-                {prevScreen===SCREENS.ARTIST_DASHBOARD
-                  ? <button className="profile-back" onClick={()=>{setPrevScreen(null);go(SCREENS.ARTIST_DASHBOARD);}}>Back to Dashboard</button>
-                  : purchased.has(selectedArtist.id)
-                    ? <button className="profile-back" onClick={()=>go(SCREENS.STREAM)}>Back to My Stream</button>
-                    : <button className="profile-back" onClick={()=>go(SCREENS.SEARCH)}>Back to Station</button>
-                }
+                {canGoBack && (
+                  <button className="profile-back" onClick={goBack}>
+                    {screenStack[screenStack.length-1]===SCREENS.ARTIST_DASHBOARD ? "Back to Dashboard"
+                      : screenStack[screenStack.length-1]===SCREENS.STREAM ? "Back to My Stream"
+                      : screenStack[screenStack.length-1]===SCREENS.SEARCH ? "Back to Station"
+                      : "Back"}
+                  </button>
+                )}
                 {selectedArtist.active?(
                   <>
                     <div className="profile-header">
@@ -2812,6 +2945,11 @@ export default function App() {
                             return allPosts.map(p=>(
                               <div key={p.id} className="feed-grid-item" style={{background:p.color}} onClick={()=>{setSelectedPost(p);setAllArtistPosts(allPosts);go(SCREENS.POST_VIEW);}}>
                                 {p.previewUrl?<img src={p.previewUrl} alt={p.label} style={{width:"100%",height:"100%",objectFit:"cover",display:"block"}}/>:<span>{p.type==="photo"?E.photo:E.video}</span>}
+                                {p.mediaItems && p.mediaItems.length > 1 && (
+                                  <div style={{position:"absolute",top:4,right:4,background:"rgba(0,0,0,0.65)",borderRadius:2,padding:"2px 5px",fontSize:9,color:"#fff",fontFamily:"'Anton',sans-serif",letterSpacing:1,display:"flex",alignItems:"center",gap:3}}>
+                                    <span style={{fontSize:8}}>â§‰</span>{p.mediaItems.length}
+                                  </div>
+                                )}
                               </div>
                             ));
                           })()}
@@ -2851,23 +2989,75 @@ export default function App() {
               </div>
             )}
             {screen===SCREENS.POST_VIEW&&selectedPost&&selectedArtist&&(
-              <div className="post-view-wrap fade">
-                <button className="profile-back" onClick={()=>go(SCREENS.PROFILE)}>Back to {selectedArtist.name}</button>
-                <div style={{width:"100%",aspectRatio:"16/9",background:selectedPost.color,display:"flex",alignItems:"center",justifyContent:"center",fontSize:64,position:"relative",overflow:"hidden",borderRadius:2,marginBottom:16}}>
-                  {selectedPost.previewUrl?<img src={selectedPost.previewUrl} alt={selectedPost.label} style={{width:"100%",height:"100%",objectFit:"cover",position:"absolute",inset:0}}/>:<span style={{fontSize:48}}>{selectedPost.type==="photo"?E.photo:E.video}</span>}
-                  {(()=>{const posts=allArtistPosts.length>0?allArtistPosts:feedPosts.filter(p=>p.artist===selectedArtist.name);const idx=posts.findIndex(p=>p.id===selectedPost.id);return(<>
-                    {idx>0&&<button onClick={()=>setSelectedPost(posts[idx-1])} style={{position:"absolute",left:8,top:"50%",transform:"translateY(-50%)",background:"rgba(0,0,0,0.6)",border:"1px solid #444",borderRadius:2,color:"#fff",padding:"8px 12px",cursor:"pointer",fontSize:16,zIndex:2}}>&lt;</button>}
-                    {idx<posts.length-1&&<button onClick={()=>setSelectedPost(posts[idx+1])} style={{position:"absolute",right:8,top:"50%",transform:"translateY(-50%)",background:"rgba(0,0,0,0.6)",border:"1px solid #444",borderRadius:2,color:"#fff",padding:"8px 12px",cursor:"pointer",fontSize:16,zIndex:2}}>&gt;</button>}
-                    <div style={{position:"absolute",bottom:8,left:"50%",transform:"translateX(-50%)",background:"rgba(0,0,0,0.5)",borderRadius:10,padding:"3px 8px",fontSize:10,color:"#aaa",letterSpacing:1}}>{idx+1} / {posts.length}</div>
-                  </>);})()}
-                </div>
-                <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:12}}>
-                  <ArtistThumb artist={selectedArtist} style={{width:32,height:32,borderRadius:2,border:"1px solid #2a2a00",flexShrink:0}}/>
-                  <div style={{fontFamily:"'Anton',sans-serif",fontSize:14,letterSpacing:1,color:"#f5f5f5"}}>{selectedArtist.name}</div>
-                  <div style={{fontSize:10,color:"#444",marginLeft:"auto",letterSpacing:1}}>{selectedPost.time}</div>
-                </div>
-                <div style={{fontFamily:"'Inter',sans-serif",fontSize:14,color:"#aaa",letterSpacing:0,lineHeight:1.7,marginBottom:16}}>{parseCaption(selectedPost.label)}</div>
-                <button className={`like-btn${likes[selectedPost.id]?.liked?" liked":""}`} onClick={()=>toggleLike(selectedPost.id)}>{E.clap} {(likes[selectedPost.id]?.count||selectedPost.likes||0).toLocaleString()}</button>
+              <div className="fade" style={{width:"100%",maxWidth:"min(560px,100%)"}}>
+                <button className="profile-back" onClick={goBack}>Back to {selectedArtist.name}</button>
+                {(()=>{
+                  const allPosts = allArtistPosts.length > 0 ? allArtistPosts : feedPosts.filter(p=>p.artist===selectedArtist.name);
+                  const anchorIdx = allPosts.findIndex(p=>p.id===selectedPost.id);
+                  const streamPosts = anchorIdx >= 0 ? allPosts.slice(anchorIdx) : allPosts;
+                  return streamPosts.map((p, streamI) => {
+                    const mediaItems = p.mediaItems && p.mediaItems.length > 0
+                      ? p.mediaItems
+                      : p.previewUrl
+                        ? [{url: p.previewUrl, type: p.type==="video"?"video":"photo"}]
+                        : [];
+                    const curSlide = (postSlides[p.id]||0);
+                    const clampedSlide = Math.min(curSlide, Math.max(mediaItems.length-1, 0));
+                    const currentMedia = mediaItems[clampedSlide];
+                    return (
+                      <div key={p.id} style={{width:"100%",background:darkMode?"#161616":"#ffffff",border:`1px solid ${darkMode?"#2a2a00":"#e0dfd0"}`,borderRadius:2,marginBottom:20,overflow:"hidden"}}>
+                        {/* Header */}
+                        <div style={{display:"flex",alignItems:"center",gap:10,padding:"12px 14px"}}>
+                          <ArtistThumb artist={selectedArtist} photoOverride={getArtistProfile(selectedArtist).photo} style={{width:32,height:32,borderRadius:2,border:`1px solid ${darkMode?"#3a3a00":"#d0cfc0"}`,flexShrink:0,cursor:"pointer"}} onClick={goBack}/>
+                          <div style={{flex:1}}>
+                            <div style={{fontFamily:"'Anton',sans-serif",fontSize:13,letterSpacing:1,color:darkMode?"#f5f5f5":"#1a1a2e"}}>{selectedArtist.name}</div>
+                            <div style={{fontSize:10,color:"#555",letterSpacing:1}}>{p.time}</div>
+                          </div>
+                          {streamI===0&&<div style={{fontFamily:"'Anton',sans-serif",fontSize:9,letterSpacing:2,color:darkMode?"#e6ff00":"#ff4d1a",border:`1px solid ${darkMode?"#3a3a00":"#ffb399"}`,borderRadius:1,padding:"2px 6px"}}>LATEST</div>}
+                        </div>
+                        {/* Media */}
+                        {mediaItems.length > 0 && (
+                          <div style={{width:"100%",aspectRatio:"16/9",background:p.color,position:"relative",overflow:"hidden",display:"flex",alignItems:"center",justifyContent:"center"}}>
+                            {currentMedia.type==="photo"
+                              ? <img src={currentMedia.url} alt={p.label} style={{width:"100%",height:"100%",objectFit:"cover",position:"absolute",inset:0}}/>
+                              : <div style={{width:"100%",height:"100%",display:"flex",alignItems:"center",justifyContent:"center",position:"absolute",inset:0,background:"#111"}}><span style={{fontSize:48}}>{E.video}</span></div>
+                            }
+                            {mediaItems.length > 1 && clampedSlide > 0 && (
+                              <button onClick={e=>{e.stopPropagation();setPostSlides(s=>({...s,[p.id]:clampedSlide-1}));}} style={{position:"absolute",left:8,top:"50%",transform:"translateY(-50%)",background:"rgba(0,0,0,0.6)",border:"1px solid #444",borderRadius:2,color:"#fff",padding:"8px 12px",cursor:"pointer",fontSize:16,zIndex:2}}>&lt;</button>
+                            )}
+                            {mediaItems.length > 1 && clampedSlide < mediaItems.length-1 && (
+                              <button onClick={e=>{e.stopPropagation();setPostSlides(s=>({...s,[p.id]:clampedSlide+1}));}} style={{position:"absolute",right:8,top:"50%",transform:"translateY(-50%)",background:"rgba(0,0,0,0.6)",border:"1px solid #444",borderRadius:2,color:"#fff",padding:"8px 12px",cursor:"pointer",fontSize:16,zIndex:2}}>&gt;</button>
+                            )}
+                            {mediaItems.length > 1 && (
+                              <div style={{position:"absolute",bottom:8,left:"50%",transform:"translateX(-50%)",background:"rgba(0,0,0,0.5)",borderRadius:10,padding:"3px 8px",fontSize:10,color:"#aaa",letterSpacing:1}}>{clampedSlide+1} / {mediaItems.length}</div>
+                            )}
+                            {mediaItems.length > 1 && mediaItems.length <= 10 && (
+                              <div style={{position:"absolute",bottom:28,left:"50%",transform:"translateX(-50%)",display:"flex",gap:5}}>
+                                {mediaItems.map((_,di)=>(
+                                  <div key={di} onClick={()=>setPostSlides(s=>({...s,[p.id]:di}))} style={{width:di===clampedSlide?16:6,height:6,borderRadius:3,background:di===clampedSlide?"#fff":"rgba(255,255,255,0.4)",cursor:"pointer",transition:"width 0.2s"}}/>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        )}
+                        {mediaItems.length === 0 && (
+                          <div style={{width:"100%",aspectRatio:"16/9",background:p.color,display:"flex",alignItems:"center",justifyContent:"center",fontSize:48}}>
+                            <span>{p.type==="video"?E.video:E.photo}</span>
+                          </div>
+                        )}
+                        {/* Caption */}
+                        <div style={{padding:"12px 14px 6px",fontSize:14,color:darkMode?"#aaa":"#3a3a5a",fontFamily:"'Inter',sans-serif",lineHeight:1.7}}>{parseCaption(p.label)}</div>
+                        {/* Tags */}
+                        {(()=>{const topTags=Object.entries(tags[p.id]||{}).filter(([,cnt])=>cnt>=TAG_THRESHOLD).sort((a,b)=>b[1]-a[1]).slice(0,5);return topTags.length>0&&<div className="tag-pills" style={{paddingLeft:14,paddingRight:14,marginBottom:4}}>{topTags.map(([tag])=><span key={tag} className="tag-pill" style={{cursor:"pointer"}} onClick={()=>{setActiveTag(tag);go(SCREENS.TAG_FEED);}}>#{tag}</span>)}</div>;})()}
+                        {/* Footer */}
+                        <div style={{display:"flex",alignItems:"center",gap:12,padding:"8px 14px 12px"}}>
+                          <button className={`like-btn${likes[p.id]?.liked?" liked":""}`} onClick={()=>toggleLike(p.id)}>{E.clap} {(likes[p.id]?.count||p.likes||0).toLocaleString()}</button>
+                          <button className={`like-btn${amps[p.id]?.amped?" liked":""}`} onClick={()=>toggleAmp(p.id)}>{E.fire} {(amps[p.id]?.count||0).toLocaleString()}</button>
+                        </div>
+                      </div>
+                    );
+                  });
+                })()}
               </div>
             )}
             {screen===SCREENS.CHECKOUT&&selectedArtist&&(
@@ -2909,7 +3099,7 @@ export default function App() {
                   <div className="account-section-title">Profile</div>
                   <div className="account-row"><div><div className="account-row-label">Username</div><div className="account-row-value">@{riderUser?.username||"rider"}</div></div></div>
                   <div className="account-row"><div><div className="account-row-label">Email</div><div className="account-row-value">rider@email.com</div></div></div>
-                  <div className="account-row"><div><div className="account-row-label">Password</div><div className="account-row-value">â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢</div></div><button className="account-edit-btn" onClick={()=>{setChangingPassword(p=>!p);setPwError("");setPwSuccess(false);setPwForm({current:"",next:"",confirm:""});}}>{changingPassword?"Cancel":"Change"}</button></div>
+                  <div className="account-row"><div><div className="account-row-label">Password</div><div className="account-row-value">Ã¢â‚¬Â¢Ã¢â‚¬Â¢Ã¢â‚¬Â¢Ã¢â‚¬Â¢Ã¢â‚¬Â¢Ã¢â‚¬Â¢Ã¢â‚¬Â¢Ã¢â‚¬Â¢</div></div><button className="account-edit-btn" onClick={()=>{setChangingPassword(p=>!p);setPwError("");setPwSuccess(false);setPwForm({current:"",next:"",confirm:""});}}>{changingPassword?"Cancel":"Change"}</button></div>
                   {changingPassword&&(
                     <div style={{padding:"12px 16px 16px",borderBottom:`1px solid ${darkMode?"#1e1e00":"#e0dfd0"}`}}>
                       {pwSuccess?(
@@ -2951,12 +3141,18 @@ export default function App() {
                 <div className="account-section">
                   <div className="account-section-title">Tickets</div>
                   {ARTISTS.filter(a=>purchased.has(a.id)&&!offBus[a.name]).map(a=>(
-                    <div key={a.id} className="ticket-row">
-                      <div className="ticket-color" style={{background:a.color}}></div>
-                      <div style={{flex:1}}><div className="ticket-name">{a.name}</div><div className="ticket-genre">{a.genre}</div></div>
-                      <div style={{textAlign:"right"}}>
+                    <div key={a.id} className="ticket-row" style={{alignItems:"center",gap:12}}>
+                      <div style={{display:"flex",alignItems:"center",gap:10,flex:1,minWidth:0,cursor:"pointer"}} onClick={()=>{setSelectedArtist(a);go(SCREENS.PROFILE);}}>
+                        <ArtistThumb artist={a} photoOverride={getArtistProfile(a).photo} style={{width:40,height:40,borderRadius:2,flexShrink:0,border:`1px solid ${darkMode?"#2a2a00":"#d0cfc0"}`}}/>
+                        <div style={{minWidth:0}}>
+                          <div className="ticket-name" style={{cursor:"pointer"}}>{a.name}</div>
+                          <div className="ticket-genre">{a.genre}</div>
+                          <div style={{fontSize:9,color:"#444",letterSpacing:1,marginTop:2}}>{purchased.get(a.id)?.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</div>
+                        </div>
+                      </div>
+                      <div style={{display:"flex",flexDirection:"column",alignItems:"flex-end",gap:6,flexShrink:0}}>
                         <div className="ticket-status">ON THE BUS</div>
-                        <div style={{fontSize:9,color:"#444",letterSpacing:1,marginTop:3}}>{purchased.get(a.id)?.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</div>
+                        <button onClick={()=>setConfirmOff(a.name)} style={{fontFamily:"'Anton',sans-serif",fontSize:9,letterSpacing:1,color:"#cc4444",background:"transparent",border:"1px solid #441111",borderRadius:1,padding:"3px 8px",cursor:"pointer"}}>GET OFF</button>
                       </div>
                     </div>
                   ))}
@@ -3114,7 +3310,7 @@ export default function App() {
                           <span>{profileDraft.photo||getArtistProfile(artistUser).photo?"CHANGE PHOTO":"+ UPLOAD PHOTO"}</span>
                           <input type="file" accept="image/*" style={{display:"none"}} onChange={e=>{const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=ev=>setProfileDraft(p=>({...p,photo:ev.target.result}));reader.readAsDataURL(file);}}/>
                         </label>
-                        {profileDraft.photo&&<button onClick={()=>setProfileDraft(p=>({...p,photo:""}))} style={{background:"transparent",border:"none",color:"#555",cursor:"pointer",fontSize:18,padding:4}}>Ãƒâ€”</button>}
+                        {profileDraft.photo&&<button onClick={()=>setProfileDraft(p=>({...p,photo:""}))} style={{background:"transparent",border:"none",color:"#555",cursor:"pointer",fontSize:18,padding:4}}>ÃƒÆ’Ã¢â‚¬â€</button>}
                       </div>
                       <div style={{display:"flex",gap:10,marginTop:16}}>
                         <button className="btn btn-primary" style={{marginBottom:0}} onClick={handleSaveProfile}>Save Profile</button>
@@ -3347,26 +3543,55 @@ export default function App() {
             )}
             {screen===SCREENS.NEW_POST&&artistUser&&(
               <div className="new-post-wrap fade">
-                <button className="back" onClick={()=>go(SCREENS.ARTIST_DASHBOARD)}>Back to Dashboard</button>
+                <button className="back" onClick={goBack}>Back to Dashboard</button>
                 <div style={{fontFamily:"'Anton',sans-serif",fontSize:28,letterSpacing:4,color:darkMode?"#e6ff00":"#ff4d1a",marginBottom:24}}>NEW POST</div>
-                <div style={{fontSize:10,letterSpacing:3,color:"#555",marginBottom:10,fontFamily:"'Anton',sans-serif"}}>POST TYPE</div>
-                <div className="post-type-row">
-                  <button className={`post-type-btn${postType==="photo"?" selected":""}`} onClick={()=>setPostType("photo")}><div className="post-type-icon">{E.photo}</div><div className="post-type-label">PHOTO</div></button>
-                  <button className={`post-type-btn${postType==="video"?" selected":""}`} onClick={()=>setPostType("video")}><div className="post-type-icon">{E.video}</div><div className="post-type-label">VIDEO</div></button>
-                </div>
-                <div style={{fontSize:10,letterSpacing:3,color:"#555",marginBottom:10,fontFamily:"'Anton',sans-serif"}}>UPLOAD {postType.toUpperCase()}</div>
-                <div className={`upload-zone${postPreviewUrl?" has-file":""}`} onClick={()=>fileInputRef.current?.click()}>
-                  <input ref={fileInputRef} type="file" accept={postType==="photo"?"image/*":"video/*"} onChange={handleFileChange} style={{display:"none"}}/>
-                  {postPreviewUrl?(
-                    postType==="photo"?<img src={postPreviewUrl} alt="preview" className="upload-preview"/>
-                    :<div style={{width:"100%",aspectRatio:"16/9",background:"#1a1a00",display:"flex",alignItems:"center",justifyContent:"center",flexDirection:"column",gap:8,borderRadius:2}}><span style={{fontSize:32}}>{E.video}</span><span style={{fontSize:11,color:"#888",letterSpacing:1}}>{postFile?.name}</span></div>
-                  ):(
-                    <div><div className="upload-placeholder-icon">{postType==="photo"?E.img:E.vidcam}</div><div className="upload-placeholder-text">Click to upload {postType}</div><div className="upload-placeholder-sub">{postType==="photo"?"JPG, PNG, WEBP / Max 20MB":"MP4, MOV - Max 500MB"}</div></div>
-                  )}
-                </div>
+
+                {/* Media Upload Zone */}
+                <div style={{fontSize:10,letterSpacing:3,color:"#555",marginBottom:10,fontFamily:"'Anton',sans-serif"}}>PHOTOS &amp; VIDEOS <span style={{color:darkMode?"#555":"#aaa",fontFamily:"'Inter',sans-serif",fontSize:10,letterSpacing:0,textTransform:"none"}}>â€” add up to 10</span></div>
+
+                {/* Thumbnail strip of added media */}
+                {postMediaItems.length > 0 && (
+                  <div style={{display:"flex",gap:8,flexWrap:"wrap",marginBottom:12}}>
+                    {postMediaItems.map((item, idx) => (
+                      <div key={idx} style={{position:"relative",width:80,height:80,borderRadius:2,overflow:"hidden",border:`1px solid ${darkMode?"#2a2a00":"#d0cfc0"}`,background:"#111",flexShrink:0}}>
+                        {item.type === "photo"
+                          ? <img src={item.url} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>
+                          : <div style={{width:"100%",height:"100%",display:"flex",alignItems:"center",justifyContent:"center",flexDirection:"column",gap:2,background:"#1a1a00"}}>
+                              <span style={{fontSize:22}}>{E.video}</span>
+                              <span style={{fontSize:8,color:"#888",letterSpacing:1}}>VIDEO</span>
+                            </div>
+                        }
+                        {/* Item number badge */}
+                        <div style={{position:"absolute",top:3,left:3,background:"rgba(0,0,0,0.7)",borderRadius:1,padding:"1px 5px",fontSize:9,color:"#fff",fontFamily:"'Anton',sans-serif",letterSpacing:1}}>{idx+1}</div>
+                        {/* Remove button */}
+                        <button onClick={()=>setPostMediaItems(prev=>prev.filter((_,i)=>i!==idx))} style={{position:"absolute",top:3,right:3,width:18,height:18,borderRadius:"50%",background:"rgba(180,0,0,0.85)",border:"none",cursor:"pointer",fontSize:10,color:"#fff",display:"flex",alignItems:"center",justifyContent:"center",lineHeight:1}}>âœ•</button>
+                      </div>
+                    ))}
+                    {/* Add more button */}
+                    {postMediaItems.length < 10 && (
+                      <div onClick={()=>fileInputRef.current?.click()} style={{width:80,height:80,borderRadius:2,border:`1px dashed ${darkMode?"#3a3a00":"#bbb"}`,display:"flex",alignItems:"center",justifyContent:"center",flexDirection:"column",gap:4,cursor:"pointer",color:darkMode?"#555":"#aaa",background:"transparent",flexShrink:0}}>
+                        <span style={{fontSize:22}}>+</span>
+                        <span style={{fontSize:8,letterSpacing:1,fontFamily:"'Anton',sans-serif"}}>ADD</span>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Main upload zone â€” only show when no media yet */}
+                {postMediaItems.length === 0 && (
+                  <div className={`upload-zone`} onClick={()=>fileInputRef.current?.click()}>
+                    <div><div className="upload-placeholder-icon">{E.img}</div><div className="upload-placeholder-text">Click to upload photos or videos</div><div className="upload-placeholder-sub">JPG, PNG, WEBP, MP4, MOV Â· up to 10 files</div></div>
+                  </div>
+                )}
+
+                {/* Hidden file input â€” multiple allowed */}
+                <input ref={fileInputRef} type="file" accept="image/*,video/*" multiple onChange={handleFileChange} style={{display:"none"}}/>
+
                 <div style={{fontSize:10,letterSpacing:3,color:"#555",marginBottom:10,fontFamily:"'Anton',sans-serif"}}>CAPTION</div>
                 <textarea className="inp" placeholder="Insert genius-level post content here. Or don't. Your call." value={postCaption} onChange={e=>setPostCaption(e.target.value.slice(0,1340))}/>
                 <div className="char-count">{postCaption.length}/1340</div>
+
+                {/* Preview */}
                 {postCaption.trim()&&(
                   <>
                     <div style={{fontSize:10,letterSpacing:3,color:"#555",margin:"20px 0 10px",fontFamily:"'Anton',sans-serif"}}>PREVIEW</div>
@@ -3376,9 +3601,22 @@ export default function App() {
                         <div style={{fontFamily:"'Anton',sans-serif",fontSize:14,letterSpacing:1}}>{artistUser.name}</div>
                         <div style={{fontSize:10,color:"#444",marginLeft:"auto",letterSpacing:1}}>just now</div>
                       </div>
-                      <div style={{width:"100%",aspectRatio:"16/9",background:artistUser.color,display:"flex",alignItems:"center",justifyContent:"center",borderTop:"1px solid #1e1e00",overflow:"hidden"}}>
-                        {postPreviewUrl&&postType==="photo"?<img src={postPreviewUrl} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>:<span style={{fontSize:36}}>{postType==="photo"?E.photo:E.video}</span>}
-                      </div>
+                      {postMediaItems.length > 0 && (
+                        <div style={{position:"relative",width:"100%",aspectRatio:"16/9",background:artistUser.color,borderTop:"1px solid #1e1e00",overflow:"hidden"}}>
+                          {postMediaItems[0].type==="photo"
+                            ? <img src={postMediaItems[0].url} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>
+                            : <div style={{width:"100%",height:"100%",display:"flex",alignItems:"center",justifyContent:"center"}}><span style={{fontSize:36}}>{E.video}</span></div>
+                          }
+                          {postMediaItems.length > 1 && (
+                            <div style={{position:"absolute",bottom:8,right:8,background:"rgba(0,0,0,0.65)",borderRadius:2,padding:"3px 8px",fontSize:10,color:"#fff",fontFamily:"'Anton',sans-serif",letterSpacing:1}}>1 / {postMediaItems.length}</div>
+                          )}
+                        </div>
+                      )}
+                      {postMediaItems.length === 0 && (
+                        <div style={{width:"100%",aspectRatio:"16/9",background:artistUser.color,display:"flex",alignItems:"center",justifyContent:"center",borderTop:"1px solid #1e1e00"}}>
+                          <span style={{fontSize:36}}>{E.photo}</span>
+                        </div>
+                      )}
                       <div style={{padding:"10px 14px",fontSize:13,color:"#aaa",letterSpacing:1}}>{postCaption}</div>
                     </div>
                   </>
@@ -3393,7 +3631,7 @@ export default function App() {
               const sorted = [...taggedPosts].sort((a,b)=>(amps[b.id]?.count||0)-(amps[a.id]?.count||0));
               return (
                 <div className="fade" style={{width:"100%",maxWidth:"min(560px,100%)",display:"flex",flexDirection:"column",alignItems:"center"}}>
-                  <button className="profile-back" onClick={()=>go(SCREENS.STREAM)}>Back to My Stream</button>
+                  <button className="profile-back" onClick={goBack}>Back to My Stream</button>
                   <div style={{fontFamily:"'Anton',sans-serif",fontSize:36,letterSpacing:4,color:darkMode?"#e6ff00":"#ff4d1a",marginBottom:4}}>#{activeTag}</div>
                   <div style={{fontSize:10,color:"#555",letterSpacing:3,fontFamily:"'Anton',sans-serif",marginBottom:24}}>{sorted.length} POST{sorted.length!==1?"S":""}</div>
                   {sorted.length===0&&<div style={{color:"#555",fontFamily:"'Inter',sans-serif",fontSize:13}}>No posts tagged with #{activeTag} yet.</div>}
@@ -3402,7 +3640,7 @@ export default function App() {
                     const isUnlocked = p.isTourbus || (artist && purchased.has(artist.id) && !offBus[p.artist]);
                     return (
                       <div key={p.id} style={{width:"100%",background:darkMode?"#161616":"#ffffff",border:`1px solid ${darkMode?"#2a2a00":"#e0dfd0"}`,borderRadius:2,marginBottom:16,overflow:"hidden"}}>
-                        <div style={{display:"flex",alignItems:"center",gap:10,padding:"12px 14px"}}>
+                        <div style={{display:"flex",alignItems:"center",gap:10,padding:"12px 14px",cursor:p.isTourbus||!artist?"default":"pointer"}} onClick={()=>{if(artist&&!p.isTourbus){setSelectedArtist(artist);go(SCREENS.PROFILE);}}}>
                           {p.isTourbus
                             ? <div style={{width:32,height:32,borderRadius:2,border:`2px solid ${darkMode?"#e6ff00":"#ff4d1a"}`,background:darkMode?"#0e0e0e":"#fff",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Caveat',cursive",fontSize:14,fontWeight:700,color:darkMode?"#e6ff00":"#0e0e0e",flexShrink:0,letterSpacing:-1}}>tb</div>
                             : artist?<ArtistThumb artist={artist} style={{width:32,height:32,borderRadius:2,border:`1px solid ${darkMode?"#3a3a00":"#d0cfc0"}`,flexShrink:0}}/>:<div style={{width:32,height:32,background:darkMode?"#1a1a1a":"#e8e8e8",borderRadius:2,flexShrink:0}}/>
@@ -3436,7 +3674,7 @@ export default function App() {
 
             {screen===SCREENS.TOURBUS_PROFILE&&(
               <div className="fade" style={{width:"100%",maxWidth:"min(560px,100%)",display:"flex",flexDirection:"column",alignItems:"center"}}>
-                <button className="profile-back" onClick={()=>go(SCREENS.STREAM)}>Back to My Stream</button>
+                <button className="profile-back" onClick={goBack}>Back to My Stream</button>
                 {/* Header */}
                 <div className="profile-header" style={{width:"100%"}}>
                   <div style={{width:120,height:120,borderRadius:2,border:`2px solid ${darkMode?"#e6ff00":"#0e0e0e"}`,overflow:"hidden",marginBottom:14,display:"flex",alignItems:"center",justifyContent:"center",background:darkMode?"#0e0e0e":"#fff"}}>
@@ -3490,7 +3728,7 @@ export default function App() {
 
             {screen===SCREENS.TOURBUS_DASHBOARD&&(
               <div className="fade" style={{width:"100%",maxWidth:"min(560px,100%)"}}>
-                <button className="profile-back" onClick={()=>go(SCREENS.TOURBUS_PROFILE)}>Back to Public Page</button>
+                <button className="profile-back" onClick={goBack}>Back to Public Page</button>
                 <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:4}}>
                   <div style={{fontFamily:"'Caveat',cursive",fontSize:38,color:darkMode?"#e6ff00":"#0e0e0e",letterSpacing:-2}}>tourbus</div>
                   <button className="nav-post-btn" onClick={()=>setTourbusNewPost(true)}>+ New Post</button>
