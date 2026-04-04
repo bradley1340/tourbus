@@ -1509,7 +1509,7 @@ const makeCSS = (dark) => {
 export default function App() {
   const [screen, setScreen] = useState(SCREENS.LANDING);
   const [screenStack, setScreenStack] = useState([]);
-  const [swipeIndicator, setSwipeIndicator] = useState(0); // 0-1 pull progress
+  const [swipeDx, setSwipeDx] = useState(0); // raw px drag distance for transform
   const [allArtistPosts, setAllArtistPosts] = useState([]);
   const [darkMode, setDarkMode] = useState(true);
   const [userMode, setUserMode] = useState("rider");
@@ -1570,6 +1570,7 @@ export default function App() {
   const [selectedArtist, setSelectedArtist] = useState(null);
   const [riderUser, setRiderUser] = useState(null);
   const [purchased, setPurchased] = useState(()=>new Map(MY_ARTISTS.map((a,i)=>[a.id, new Date(Date.now()-(i+1)*30*24*60*60*1000)])));
+  const [riderBookmarks, setRiderBookmarks] = useState([ARTISTS[0].id, ARTISTS[4].id, ARTISTS[9].id]); // ordered list of artist IDs, max 7
   const [selectedPost, setSelectedPost] = useState(null);
   const [search, setSearch] = useState("");
   const [navSearch, setNavSearch] = useState("");
@@ -1690,7 +1691,14 @@ export default function App() {
     setTags(p=>{ const prev=p[id]||{}; return {...p,[id]:{...prev,[tag]:(prev[tag]||0)+1}}; });
     setActiveTagInput(null); setTagDraft("");
   };
-  const toggleStandby = id => {
+  const toggleBookmark = (id) => {
+    setRiderBookmarks(prev => {
+      if (prev.includes(id)) return prev.filter(x => x !== id);
+      if (prev.length >= 7) return prev; // max 7
+      return [...prev, id];
+    });
+  };
+  const isBookmarked = (id) => riderBookmarks.includes(id);
     setStandby(p => {
       const next = {...p,[id]:!p[id]};
       if(riderUser) riderUser.standby = next;
@@ -1887,9 +1895,9 @@ export default function App() {
 
   // Global swipe-from-left-edge to go back
   useEffect(() => {
-    const EDGE_ZONE = 30;   // px from left edge to start a swipe
-    const MIN_SWIPE = 60;   // px horizontal travel to trigger back
-    const MAX_VERT  = 80;   // px vertical drift still allowed
+    const EDGE_ZONE = 44;   // px from left edge to begin tracking
+    const TRIGGER   = 100;  // px to commit navigation
+    const MAX_VERT  = 80;   // px vertical drift allowed
     let startX = null, startY = null, tracking = false;
 
     const onTouchStart = e => {
@@ -1906,22 +1914,22 @@ export default function App() {
       const t = e.touches[0];
       const dx = t.clientX - startX;
       const dy = Math.abs(t.clientY - startY);
-      if (dy > MAX_VERT) { tracking = false; setSwipeIndicator(0); return; }
+      if (dy > MAX_VERT) { tracking = false; setSwipeDx(0); return; }
       if (dx > 0) {
-        // Show pull indicator (0-1 clamped)
-        setSwipeIndicator(Math.min(dx / MIN_SWIPE, 1));
+        // Apply rubber-band damping past trigger point
+        const damped = dx < TRIGGER ? dx : TRIGGER + (dx - TRIGGER) * 0.3;
+        setSwipeDx(Math.round(damped));
       }
     };
 
     const onTouchEnd = e => {
       if (!tracking) return;
       tracking = false;
-      setSwipeIndicator(0);
       const t = e.changedTouches[0];
       const dx = t.clientX - startX;
       const dy = Math.abs(t.clientY - startY);
-      if (dx >= MIN_SWIPE && dy <= MAX_VERT) {
-        // Trigger back
+      setSwipeDx(0);
+      if (dx >= TRIGGER && dy <= MAX_VERT) {
         setScreenStack(prev => {
           if (prev.length === 0) return prev;
           const next = [...prev];
@@ -1986,20 +1994,68 @@ export default function App() {
   return (
     <>
       <style>{makeCSS(darkMode)}</style>
-      <div className="root">
-        {/* Swipe-back pull indicator */}
-        {canGoBack && swipeIndicator > 0 && (
+      <div className="root" style={{
+        transform: swipeDx > 0 ? `translateX(${swipeDx}px)` : 'none',
+        transition: swipeDx > 0 ? 'none' : 'transform 0.25s cubic-bezier(0.25,0.46,0.45,0.94)',
+        willChange: 'transform',
+      }}>
+        {/* Swipe-back: previous screen peek panel, slides in behind current page */}
+        {canGoBack && swipeDx > 0 && (
           <div style={{
-            position: 'fixed', left: 0, top: 0, bottom: 0, zIndex: 9999,
-            width: Math.round(swipeIndicator * 48) + 'px',
-            background: 'linear-gradient(to right, rgba(230,255,0,0.18), transparent)',
-            pointerEvents: 'none', transition: 'width 0.05s',
+            position: 'fixed',
+            left: -(swipeDx),   // peeks in from left as current page slides away
+            top: 0, bottom: 0,
+            width: swipeDx,
+            overflow: 'hidden',
+            zIndex: 9998,
+            background: darkMode ? '#0e0e0e' : '#f4f4f0',
+            borderRight: `1px solid ${darkMode ? '#2a2a00' : '#d0cfc0'}`,
+            pointerEvents: 'none',
+            boxShadow: '4px 0 24px rgba(0,0,0,0.4)',
           }}>
+            {/* Back screen label */}
             <div style={{
-              position: 'absolute', left: 6, top: '50%', transform: 'translateY(-50%)',
-              opacity: swipeIndicator, fontSize: 18, color: darkMode ? '#e6ff00' : '#ff4d1a',
-              transition: 'opacity 0.05s', fontFamily: 'Anton,sans-serif',
-            }}>â€º</div>
+              position: 'absolute', bottom: 0, left: 0, right: 0, top: 0,
+              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+              gap: 8,
+            }}>
+              {/* Chevron arrow â€” pure CSS, no font dependency */}
+              <div style={{
+                width: 28, height: 28,
+                borderLeft: `3px solid ${darkMode ? '#e6ff00' : '#ff4d1a'}`,
+                borderBottom: `3px solid ${darkMode ? '#e6ff00' : '#ff4d1a'}`,
+                transform: 'rotate(45deg)',
+                opacity: Math.min(swipeDx / 60, 1),
+                marginBottom: 6,
+              }}/>
+              <div style={{
+                fontFamily: "'Anton',sans-serif",
+                fontSize: 10, letterSpacing: 3,
+                color: darkMode ? '#e6ff00' : '#ff4d1a',
+                opacity: Math.min(swipeDx / 60, 1),
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                maxWidth: swipeDx - 12,
+                textOverflow: 'ellipsis',
+                padding: '0 6px',
+                textAlign: 'center',
+              }}>
+                {screenStack.length > 0
+                  ? (() => {
+                      const prev = screenStack[screenStack.length - 1];
+                      if (prev === SCREENS.STREAM) return 'MY STREAM';
+                      if (prev === SCREENS.SEARCH) return 'STATION';
+                      if (prev === SCREENS.PROFILE) return selectedArtist?.name?.toUpperCase() || 'BACK';
+                      if (prev === SCREENS.ARTIST_DASHBOARD) return 'DASHBOARD';
+                      if (prev === SCREENS.ACCOUNT) return 'ACCOUNT';
+                      if (prev === SCREENS.TAG_FEED) return activeTag ? `#${activeTag}`.toUpperCase() : 'BACK';
+                      if (prev === SCREENS.TOURBUS_PROFILE) return 'TOURBUS';
+                      return 'BACK';
+                    })()
+                  : 'BACK'
+                }
+              </div>
+            </div>
           </div>
         )}
         {isLoggedIn&&(
@@ -2371,7 +2427,7 @@ export default function App() {
                 <button className="btn btn-primary" onClick={()=>go(SCREENS.CHOOSE_TYPE)}>Get On The Bus</button>
                 <div className="signin-divider"><div className="signin-divider-line"/><div className="signin-divider-text">Already have an account?</div><div className="signin-divider-line"/></div>
                 <button className="btn btn-outline" onClick={()=>go(SCREENS.RIDER_SIGNIN)}>Rider Sign In</button>
-                <div className="artist-signin-hint">Are you an artist? <span onClick={()=>go(SCREENS.ARTIST_SIGNIN)}>Sign in here -></span></div>
+                <div className="artist-signin-hint">Are you an artist? <span onClick={()=>go(SCREENS.ARTIST_SIGNIN)}>Sign in here</span></div>
               </div>
             )}
             {screen===SCREENS.RIDER_SIGNIN&&(
@@ -2482,7 +2538,7 @@ export default function App() {
                 <div className="success-icon">{E.ticket}</div><div className="logo logo-sm">you're on</div>
                 <div className="logo-sub">Welcome, {riderForm.username||"Rider"}</div>
                 <p className="subtext" style={{margin:"14px 0 26px"}}>Your account is ready. Head to the Station to find an artist and grab your $5 ticket.</p>
-                <button className="btn btn-primary" onClick={()=>go(SCREENS.STREAM)}>Go to My Stream -></button>
+                <button className="btn btn-primary" onClick={()=>go(SCREENS.STREAM)}>Go to My Stream</button>
               </div>
             )}
             {screen===SCREENS.ARTIST_SUCCESS&&(
@@ -2522,25 +2578,60 @@ export default function App() {
                 <p className="stream-greeting">Good to see you, <b>@{riderUser?.username||"rider"}</b></p>
                 <div className="stream-label">Your buses</div>
                 <div className="my-buses">
+                  {/* 1. tourbus â€” always first */}
                   <div className="my-bus-chip" onClick={()=>go(SCREENS.TOURBUS_PROFILE)}>
                     <div style={{width:52,height:52,borderRadius:2,border:`2px solid ${darkMode?"#e6ff00":"#ff4d1a"}`,background:darkMode?"#0e0e0e":"#fff",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Caveat',cursive",fontSize:20,fontWeight:700,color:darkMode?"#e6ff00":"#0e0e0e",flexShrink:0,letterSpacing:-1}}>tb</div>
                     <div className="my-bus-name" style={{color:darkMode?"#e6ff00":"#0e0e0e"}}>tourbus</div>
                   </div>
+                  {/* 2. LIVE artists â€” always next, prominent */}
+                  {ARTISTS.filter(a=>purchased.has(a.id)&&!offBus[a.name]&&LIVE_IDS.has(a.id)).map(a=>(
+                    <div key={`live-${a.id}`} className="my-bus-chip-wrap" onClick={()=>{setSelectedArtist(a);go(SCREENS.PROFILE);}}>
+                      <div style={{position:"relative"}}>
+                        <div className="live-badge">LIVE</div>
+                        <ArtistThumb artist={a} photoOverride={getArtistProfile(a).photo} className="live-thumb" style={{width:60,height:60,borderRadius:2,border:"2px solid #ff2222",boxShadow:"0 0 12px rgba(255,30,30,0.6)"}}/>
+                      </div>
+                      <div className="my-bus-name" style={{color:"#ff4444"}}>{a.name}</div>
+                    </div>
+                  ))}
+                  {/* 3. Bookmarked buses â€” user's up to 7, in their chosen order, skip if already shown as LIVE */}
+                  {riderBookmarks
+                    .map(id=>ARTISTS.find(a=>a.id===id))
+                    .filter(a=>a&&purchased.has(a.id)&&!offBus[a.name]&&!LIVE_IDS.has(a.id))
+                    .map(a=>(
+                      <div key={a.id} className="my-bus-chip-wrap" onClick={()=>{setSelectedArtist(a);go(SCREENS.PROFILE);}}>
+                        <div style={{position:"relative"}}>
+                          <ArtistThumb artist={a} photoOverride={getArtistProfile(a).photo} style={{width:52,height:52,borderRadius:2,border:`1px solid ${darkMode?"#3a3a00":"#d0cfc0"}`}}/>
+                          {/* bookmark indicator dot */}
+                          <div style={{position:"absolute",bottom:-3,left:"50%",transform:"translateX(-50%)",width:4,height:4,borderRadius:"50%",background:darkMode?"#e6ff00":"#ff4d1a"}}/>
+                        </div>
+                        <div className="my-bus-name">{a.name}</div>
+                      </div>
+                    ))
+                  }
+                  {/* 4. + add button â€” always last */}
                   <div className="my-bus-chip" onClick={()=>go(SCREENS.SEARCH)}>
                     <div className="my-bus-avatar" style={{display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,color:"#444"}}>+</div>
                     <div className="my-bus-name" style={{color:"#3a3a00"}}>add</div>
                   </div>
-                  {ARTISTS.filter(a=>purchased.has(a.id)&&!offBus[a.name]).map(a=>(
-                    <div key={a.id} className="my-bus-chip-wrap" onClick={()=>{setSelectedArtist(a);go(SCREENS.PROFILE);}}>
-                      <div style={{position:"relative"}}>
-                        {LIVE_IDS.has(a.id)&&<div className="live-badge">LIVE</div>}
-                        <ArtistThumb artist={a} photoOverride={getArtistProfile(a).photo} className={LIVE_IDS.has(a.id)?"live-thumb":""} style={{width:52,height:52,borderRadius:2,border:LIVE_IDS.has(a.id)?"1px solid #ff2222":"1px solid #3a3a00"}}/>
-                      </div>
-                      <div className="my-bus-name">{a.name}</div>
-                    </div>
-                  ))}
                 </div>
-                {Object.keys(snoozed).filter(k=>snoozed[k]).map(name=>(
+                {/* Other purchased buses not bookmarked â€” tap star on their profile to pin */}
+                {(()=>{
+                  const otherBuses = ARTISTS.filter(a=>
+                    purchased.has(a.id) && !offBus[a.name] &&
+                    !riderBookmarks.includes(a.id) && !LIVE_IDS.has(a.id)
+                  );
+                  if (otherBuses.length === 0) return null;
+                  return (
+                    <div style={{display:"flex",gap:8,overflowX:"auto",paddingBottom:6,marginBottom:20,scrollbarWidth:"none",WebkitOverflowScrolling:"touch",marginTop:-16}}>
+                      {otherBuses.map(a=>(
+                        <div key={a.id} style={{display:"flex",flexDirection:"column",alignItems:"center",gap:4,flexShrink:0,cursor:"pointer",opacity:0.55}} onClick={()=>{setSelectedArtist(a);go(SCREENS.PROFILE);}}>
+                          <ArtistThumb artist={a} photoOverride={getArtistProfile(a).photo} style={{width:36,height:36,borderRadius:2,border:`1px solid ${darkMode?"#2a2a00":"#d0cfc0"}`}}/>
+                          <div style={{fontFamily:"'Inter',sans-serif",fontSize:8,letterSpacing:1,color:"#555",maxWidth:44,whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis",textAlign:"center"}}>{a.name}</div>
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })()}
                   <div key={name} className="status-bar"><span>{E.sleep} {name} snoozed for 30 days</span><button className="status-bar-undo" onClick={()=>doUnsnooze(name)}>UNDO</button></div>
                 ))}
                 {Object.keys(hidden).filter(k=>hidden[k]).map(name=>(
@@ -2861,7 +2952,7 @@ export default function App() {
                         {!isUnlocked&&(
                           <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"10px 14px",background:darkMode?"#0e0e0e":"#f4f4f0",borderTop:`1px solid ${darkMode?"#2a2a00":"#e0dfd0"}`}}>
                             <div style={{fontSize:11,color:"#555",letterSpacing:1,fontFamily:"'Anton',sans-serif"}}>Ride {p.artist} to see photos & videos</div>
-                            <button className="btn btn-primary" style={{width:"auto",padding:"6px 16px",fontSize:11,letterSpacing:2,marginBottom:0}} onClick={()=>{setSelectedArtist(artist);go(SCREENS.CHECKOUT);}}>Ride -></button>
+                            <button className="btn btn-primary" style={{width:"auto",padding:"6px 16px",fontSize:11,letterSpacing:2,marginBottom:0}} onClick={()=>{setSelectedArtist(artist);go(SCREENS.CHECKOUT);}}>Ride</button>
                           </div>
                         )}
                         <div style={{display:"flex",alignItems:"center",gap:16,padding:"8px 14px 12px"}}>
@@ -2892,7 +2983,24 @@ export default function App() {
                         {LIVE_IDS.has(selectedArtist.id)&&<div className="live-badge" style={{top:8}}>LIVE</div>}
                       </div>
                       <div className="profile-name">{selectedArtist.name}</div>
-                      <div className="profile-genre">{selectedArtist.genre}</div>
+                      <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:4}}>
+                        <div className="profile-genre">{selectedArtist.genre}</div>
+                        {!isArtistMode&&(
+                          <button
+                            onClick={()=>toggleBookmark(selectedArtist.id)}
+                            title={isBookmarked(selectedArtist.id)?"Remove from Your Buses":riderBookmarks.length>=7?"Your Buses are full (max 7)":"Add to Your Buses"}
+                            style={{
+                              background:"transparent",border:"none",cursor:riderBookmarks.length>=7&&!isBookmarked(selectedArtist.id)?"not-allowed":"pointer",
+                              padding:"2px 4px",fontSize:18,lineHeight:1,
+                              color:isBookmarked(selectedArtist.id)?darkMode?"#e6ff00":"#ff4d1a":"#444",
+                              opacity:riderBookmarks.length>=7&&!isBookmarked(selectedArtist.id)?0.4:1,
+                              flexShrink:0,
+                            }}
+                          >
+                            {isBookmarked(selectedArtist.id) ? "â˜…" : "â˜†"}
+                          </button>
+                        )}
+                      </div>
                       <p className="profile-bio">{getArtistProfile(selectedArtist).bio}</p>
                       {(getArtistProfile(selectedArtist).spotify||getArtistProfile(selectedArtist).website)&&(
                         <div style={{display:"flex",gap:10,flexWrap:"wrap",justifyContent:"center",marginBottom:16}}>
@@ -2964,7 +3072,7 @@ export default function App() {
                         </div>
                         <div className="unlock-box">
                           <div className="unlock-desc">A one-time fee to ride on {selectedArtist.name}'s tourbus and access their exclusive feed.</div>
-                          <button className="btn btn-primary" onClick={()=>go(SCREENS.CHECKOUT)}>Ride -></button>
+                          <button className="btn btn-primary" onClick={()=>go(SCREENS.CHECKOUT)}>Ride</button>
                         </div>
                       </>
                     )}
@@ -3086,7 +3194,7 @@ export default function App() {
                 <div className="success-icon">{E.ticket}</div><div className="logo logo-sm">you're on</div>
                 <div className="logo-sub">{selectedArtist.name}</div>
                 <p className="subtext" style={{margin:"14px 0 26px"}}>You're on the bus. Welcome to {selectedArtist?.name}'s exclusive feed.</p>
-                <button className="btn btn-primary" onClick={()=>go(SCREENS.STREAM)}>Go to My Stream -></button>
+                <button className="btn btn-primary" onClick={()=>go(SCREENS.STREAM)}>Go to My Stream</button>
               </div>
             )}
             {screen===SCREENS.ACCOUNT&&(
@@ -3658,7 +3766,7 @@ export default function App() {
                         {!isUnlocked&&(
                           <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"10px 14px",background:darkMode?"#0e0e0e":"#f4f4f0",borderTop:`1px solid ${darkMode?"#2a2a00":"#e0dfd0"}`}}>
                             <div style={{fontSize:11,color:"#555",letterSpacing:1,fontFamily:"'Anton',sans-serif"}}>Ride {p.artist} to see photos & videos</div>
-                            <button className="btn btn-primary" style={{width:"auto",padding:"6px 16px",fontSize:11,letterSpacing:2,marginBottom:0}} onClick={()=>{setSelectedArtist(artist);go(SCREENS.CHECKOUT);}}>Ride -></button>
+                            <button className="btn btn-primary" style={{width:"auto",padding:"6px 16px",fontSize:11,letterSpacing:2,marginBottom:0}} onClick={()=>{setSelectedArtist(artist);go(SCREENS.CHECKOUT);}}>Ride</button>
                           </div>
                         )}
                         <div style={{display:"flex",alignItems:"center",gap:16,padding:"8px 14px 12px"}}>
