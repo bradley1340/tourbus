@@ -1118,6 +1118,161 @@ const SPOTIFY_ARTISTS = [
   {id:1099,name:'Seether',genre:'',riders:0,standby:405,color:'#001510',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1100,name:'Snow Patrol',genre:'',riders:0,standby:452,color:'#100015',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1101,name:'Wilco',genre:'',riders:0,standby:12345,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  // Lollapalooza 2026 lineup
+  {id:1107,name:'Jennie',genre:'K-Pop',riders:0,standby:16200,color:'#0c0c1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1108,name:'John Summit',genre:'Tech-House / EDM',riders:0,standby:11300,color:'#1e0c0f',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1110,name:'Freddie Gibbs',genre:'Hip-Hop',riders:0,standby:6200,color:'#0c1e0f',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1111,name:'Disco Lines',genre:'EDM',riders:0,standby:3100,color:'#1e0c19',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1114,name:'Aespa',genre:'K-Pop',riders:0,standby:13400,color:'#0c1e0f',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1115,name:'Alison Wonderland',genre:'EDM / Bass',riders:0,standby:7200,color:'#0d0c1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1116,name:'Audrey Hobert',genre:'Indie Pop',riders:0,standby:1200,color:'#0c1d1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1117,name:'Beabadoobee',genre:'Indie Rock',riders:0,standby:5800,color:'#1e0c0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1119,name:'Blood Orange',genre:'Art R&B',riders:0,standby:4100,color:'#1e1c0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1120,name:'Not for Radio',genre:'Alt Pop',riders:0,standby:800,color:'#0e1e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1122,name:'Clipse',genre:'Hip-Hop',riders:0,standby:7800,color:'#0e0c1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1123,name:'Eli Brown',genre:'Electronic / Techno',riders:0,standby:2900,color:'#0e1e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1125,name:'Geese',genre:'Indie / Post-Punk',riders:0,standby:3200,color:'#0c1e0e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1126,name:'Ethel Cain',genre:'Indie / Slowcore',riders:0,standby:6400,color:'#0c1b1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1127,name:'Hot Mulligan',genre:'Emo / Rock',riders:0,standby:4200,color:'#191e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1128,name:'I-DLE',genre:'K-Pop',riders:0,standby:8900,color:'#1e0c15',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1129,name:'Kettama',genre:'Electronic / House',riders:0,standby:2100,color:'#1e0c0e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1130,name:'Leon Thomas',genre:'R&B / Soul',riders:0,standby:5300,color:'#1e0c15',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1132,name:'Snow Strippers',genre:'Darkwave / Electronic',riders:0,standby:3600,color:'#1e0c10',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1134,name:'Muna',genre:'Synth Pop / Indie',riders:0,standby:4500,color:'#1e180c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1136,name:'Sombr',genre:'Alt Pop / Indie',riders:0,standby:4800,color:'#0c1e16',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1137,name:'Turnstile',genre:'Hardcore / Rock',riders:0,standby:5600,color:'#0f0c1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1138,name:'Viagra Boys',genre:'Post-Punk / Rock',riders:0,standby:3900,color:'#1e0c16',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1139,name:'Wet Leg',genre:'Indie Rock',riders:0,standby:6100,color:'#110c1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1140,name:'Worship',genre:'Drum & Bass / Electronic',riders:0,standby:2400,color:'#1e140c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1141,name:'Yoasobi',genre:'J-Pop',riders:0,standby:8200,color:'#1e0e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1142,name:'Yungblud',genre:'Punk Pop / Rock',riders:0,standby:7300,color:'#0c1e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1144,name:'Boris Brejcha',genre:'Techno / EDM',riders:0,standby:5700,color:'#0c1e15',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1145,name:'Jade',genre:'Pop / R&B',riders:0,standby:4300,color:'#1e0f0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1146,name:'Suki Waterhouse',genre:'Indie Pop',riders:0,standby:4100,color:'#1c1e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1147,name:'Ric Wilson',genre:'Funk Rap / Hip-Hop',riders:0,standby:1800,color:'#0c0e1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1148,name:'Ella Boh',genre:'Pop',riders:0,standby:900,color:'#1e0c13',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1149,name:'Ella Red',genre:'Alt Pop',riders:0,standby:1100,color:'#1e0c13',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1150,name:'Justine Skye',genre:'R&B / Pop',riders:0,standby:3200,color:'#111e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1151,name:'Khamari',genre:'R&B',riders:0,standby:2100,color:'#1e0c12',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1152,name:'Squirrel Flower',genre:'Indie Folk / Rock',riders:0,standby:2800,color:'#1b1e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1153,name:'Peace Control',genre:'House / Electronic',riders:0,standby:1600,color:'#0c1e1a',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1154,name:'Kim Theory',genre:'Punk / Rock',riders:0,standby:700,color:'#0c0d1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1155,name:'Kingfishr',genre:'Indie Folk',riders:0,standby:1300,color:'#0c141e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1156,name:'Wisp',genre:'Shoegaze / Rock',riders:0,standby:1900,color:'#1e1e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1157,name:'KLO',genre:'Electronic / UK Garage',riders:0,standby:1700,color:'#0c0f1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1158,name:'Slayyter',genre:'Hyperpop / Pop',riders:0,standby:3400,color:'#0c1e12',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1159,name:'Beno',genre:'Electronic / House',riders:0,standby:1200,color:'#1e140c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1160,name:'Between Friends',genre:'Alt Pop',riders:0,standby:2600,color:'#1e120c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1161,name:'Bixby',genre:'Indie / Alt Pop',riders:0,standby:1500,color:'#0c1e15',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1162,name:'Bradeazy',genre:'Hip-Hop / Dance Pop',riders:0,standby:2800,color:'#121e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1163,name:'Little Simz',genre:'Hip-Hop / Rap',riders:0,standby:7600,color:'#1e0c0e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1165,name:'Los Retros',genre:'Indie / Soul',riders:0,standby:2900,color:'#100c1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1166,name:'Pearly Drops',genre:'Indie Pop / Hyperpop',riders:0,standby:1100,color:'#141e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1167,name:'Chicago Made',genre:'Hip-Hop / R&B',riders:0,standby:600,color:'#1e100c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1168,name:'Claire Rosinkranz',genre:'Pop',riders:0,standby:3800,color:'#110c1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1169,name:'Ecca Vandal',genre:'Punk / Alt-Rock',riders:0,standby:1400,color:'#160c1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1170,name:'Marlon Funaki',genre:'Indie / Alt-Rock',riders:0,standby:900,color:'#0c1e1d',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1171,name:'Max Styler',genre:'Tech-House / EDM',riders:0,standby:3300,color:'#0e0c1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1172,name:'Jackie Hollander',genre:'House / EDM',riders:0,standby:2200,color:'#131e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1173,name:'Jae Stephens',genre:'R&B / Pop',riders:0,standby:1800,color:'#1c1e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1174,name:'Julia Wolf',genre:'Alt Pop',riders:0,standby:2100,color:'#0c121e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1175,name:'Know Good',genre:'Electronic / Rock',riders:0,standby:1300,color:'#0c1e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1176,name:'Love Spells',genre:'Dream Pop / Shoegaze',riders:0,standby:1600,color:'#1e0c10',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1177,name:'Lucy Bedroque',genre:'Hip-Hop',riders:0,standby:1400,color:'#0c1c1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1178,name:'Lyny',genre:'Electronic / Bass',riders:0,standby:1900,color:'#1c1e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1179,name:'Notion',genre:'Electronic / UK Bass',riders:0,standby:1200,color:'#150c1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1180,name:'Riordan',genre:'Indie Pop',riders:0,standby:1100,color:'#1e0c0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1181,name:'SB19',genre:'K-Pop / P-Pop',riders:0,standby:6800,color:'#100c1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1182,name:'Sienna Spiro',genre:'R&B / Soul',riders:0,standby:2400,color:'#171e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1183,name:'Sidepiece',genre:'Tech-House / EDM',riders:0,standby:3700,color:'#0c1c1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1184,name:'Sunshine Benzi',genre:'Pop',riders:0,standby:1800,color:'#1e0c1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1185,name:'The Story So Far',genre:'Pop Punk / Rock',riders:0,standby:5100,color:'#1e0c16',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1186,name:'The Bends',genre:'Alt-Rock / Garage Rock',riders:0,standby:1200,color:'#141e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1187,name:'Westend',genre:'Tech-House / Electronic',riders:0,standby:2600,color:'#1e0f0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1188,name:'Whatmore',genre:'Hip-Hop',riders:0,standby:1000,color:'#0c1e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1189,name:'Whethan',genre:'Electronic / Indie Pop',riders:0,standby:4100,color:'#1e0c0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1190,name:'MC4D',genre:'Country / EDM',riders:0,standby:1500,color:'#130c1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1191,name:'Momma',genre:'Rock / Indie',riders:0,standby:2300,color:'#0c1e13',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1192,name:'Monaleo',genre:'Hip-Hop / Rap',riders:0,standby:3100,color:'#1e0c0d',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1194,name:'MPH',genre:'UK Garage / Electronic',riders:0,standby:1100,color:'#0c0f1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1195,name:'Nettspend',genre:'Hip-Hop / Trap',riders:0,standby:4600,color:'#0c0f1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1196,name:'New Constellations',genre:'Dream Pop / Synthwave',riders:0,standby:1300,color:'#1e120c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1197,name:'Next of Kin',genre:'Indie / Country',riders:0,standby:900,color:'#120c1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1198,name:'Ninajirachi',genre:'Electronic / Dance Pop',riders:0,standby:1700,color:'#1e180c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1199,name:'Penelope Road',genre:'Indie Rock / Soul',riders:0,standby:1600,color:'#0c1e1a',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1200,name:'Porch Light',genre:'Indie Rock',riders:0,standby:800,color:'#1e0c17',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1201,name:'Quadeca',genre:'Indie / Hip-Hop',riders:0,standby:3200,color:'#1e0c14',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1202,name:'54 Ultra',genre:'Synth Pop',riders:0,standby:700,color:'#1d0c1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1203,name:'Adela',genre:'Dance Pop',riders:0,standby:900,color:'#0e1e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1204,name:'After',genre:'Trip Pop / Indie',riders:0,standby:1100,color:'#0c1e11',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1205,name:'Amber Mark',genre:'R&B / Electronic',riders:0,standby:2800,color:'#0c1a1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1206,name:'Amble',genre:'Folk / Irish',riders:0,standby:900,color:'#0c1e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1207,name:'The Army the Navy',genre:'Folk Pop / Rock',riders:0,standby:800,color:'#151e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1208,name:'Asha Banks',genre:'Pop / R&B',riders:0,standby:1200,color:'#0c1c1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1209,name:'Ayybo',genre:'Tech-House / EDM',riders:0,standby:2100,color:'#0c1e17',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1210,name:'Bad Nerves',genre:'Garage Rock / Punk',riders:0,standby:2400,color:'#0c171e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1211,name:'Balu Brigada',genre:'Alt Pop / Groove',riders:0,standby:1600,color:'#1e120c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1212,name:'Bella Kay',genre:'Indie Pop',riders:0,standby:2100,color:'#161e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1213,name:'Finn Wolfhard',genre:'Indie Rock',riders:0,standby:3800,color:'#0c1e1b',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1214,name:'Frost Children',genre:'Hyperpop / Electronic',riders:0,standby:2300,color:'#1a0c1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1215,name:'Calder Allen',genre:'Country / Folk',riders:0,standby:1400,color:'#1e150c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1216,name:'Cameron Whitcomb',genre:'Country',riders:0,standby:1700,color:'#0c1e0f',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1217,name:'Case Oats',genre:'Alt-Country / Indie',riders:0,standby:1100,color:'#121e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1218,name:'Chalk',genre:'Punk / Rock',riders:0,standby:1300,color:'#0c1e0d',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1219,name:'Chicago Youth Symphony Orchestra',genre:'Classical',riders:0,standby:400,color:'#0e0c1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1220,name:'Cruz Beckham and the Breakers',genre:'Pop / Rock',riders:0,standby:2800,color:'#0c1e16',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1221,name:'Day We Ran',genre:'Indie Rock',riders:0,standby:1200,color:'#101e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1222,name:'Destin Conrad',genre:'R&B / Alt-R&B',riders:0,standby:3400,color:'#0c1e1a',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1223,name:'Devault',genre:'Electronic / Dance',riders:0,standby:1600,color:'#1e0d0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1224,name:'Die Spitz',genre:'Punk / Rock',riders:0,standby:1100,color:'#0c1e0d',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1225,name:'DJ Trixie Mattel',genre:'EDM / Pop',riders:0,standby:3200,color:'#1e0f0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1226,name:'Dombresky',genre:'House / Electronic',riders:0,standby:2800,color:'#0c111e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1227,name:'Duke Dumont',genre:'House / EDM',riders:0,standby:6100,color:'#1e0c13',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1228,name:'Easy Honey',genre:'Indie Rock',riders:0,standby:900,color:'#0c0f1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1229,name:'Oklou',genre:'Electronic / Dream Pop',riders:0,standby:1400,color:'#0c1e19',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1230,name:'EMI Grace',genre:'Punk / Electronic',riders:0,standby:1100,color:'#1e100c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1231,name:'Evening Elephants',genre:'Indie / Hip-Hop',riders:0,standby:800,color:'#0c0c1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1232,name:'Faouzia',genre:'Pop',riders:0,standby:3600,color:'#1e0c0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1233,name:'horsegiirL',genre:'Electronic / Dance Pop',riders:0,standby:2900,color:'#1e0c16',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1234,name:'High Vis',genre:'Post-Punk / Rock',riders:0,standby:1700,color:'#1e0c0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1235,name:'INK',genre:'Hip-Hop / R&B',riders:0,standby:2100,color:'#0c101e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1236,name:'Inji',genre:'Pop',riders:0,standby:2600,color:'#1e160c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1237,name:'IVRI',genre:'Indie Rock / Shoegaze',riders:0,standby:1400,color:'#1e0c1a',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1238,name:'Omnom',genre:'House / Electronic',riders:0,standby:1300,color:'#0c1e17',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1239,name:'Paris Paloma',genre:'Folk / Singer-Songwriter',riders:0,standby:4200,color:'#1d1e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1240,name:'PartyOf2',genre:'Indie Pop / Hip-Hop',riders:0,standby:1100,color:'#1e180c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1241,name:'Roz',genre:'House / Latin',riders:0,standby:1800,color:'#1e0c1a',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1242,name:'Ryman',genre:'Indie Folk / Alt-Country',riders:0,standby:1600,color:'#0c1e18',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1243,name:'Simon Grossmann',genre:'Latin Indie / Alternative',riders:0,standby:1200,color:'#1d1e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1244,name:'Skye Newman',genre:'Neo-Soul / R&B',riders:0,standby:1500,color:'#1e0c12',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1245,name:'Snacktime',genre:'Soul / Funk / Hip-Hop',riders:0,standby:1700,color:'#0c161e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1246,name:'Spacey Jane',genre:'Indie Rock',riders:0,standby:3800,color:'#1e0c1c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1247,name:'Stella Lefty',genre:'Country Pop / Indie',riders:0,standby:2100,color:'#181e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1248,name:'Sunday (1994)',genre:'Indie Pop / Dream Pop',riders:0,standby:1300,color:'#0c0d1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1249,name:'Surfing for Daisy',genre:'Alt-Folk / Rock',riders:0,standby:800,color:'#0c1b1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1250,name:'The Braymores',genre:'Alt-Folk / Rock',riders:0,standby:700,color:'#0c1b1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1251,name:'The Creekers',genre:'Roots Rock / Bluegrass',riders:0,standby:1100,color:'#1e1e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1252,name:'Valencia Grace',genre:'Dark Pop / Indie',riders:0,standby:1200,color:'#0c0d1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1253,name:'Vandelux',genre:'Electronic / Soul',riders:0,standby:1500,color:'#0c1e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1254,name:'Villanelle',genre:'Rock / Indie',riders:0,standby:2400,color:'#1e0c1a',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1255,name:'Water From Your Eyes',genre:'Noise Rock / Post-Punk',riders:0,standby:1900,color:'#1e1c0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1256,name:'Waylon Wyatt',genre:'Country',riders:0,standby:1100,color:'#0c1e0d',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1257,name:'Boys Noize',genre:'Techno / EDM',riders:0,standby:4800,color:'#0c0c1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1258,name:'Goldie Boutilier',genre:'Pop',riders:0,standby:1300,color:'#0c1e0f',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1259,name:'Whitney Whitney',genre:'Cinematic Pop',riders:0,standby:900,color:'#181e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1260,name:'Will Swinton',genre:'Alt Pop / Indie',riders:0,standby:1200,color:'#0e1e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1261,name:'Wolf Alice',genre:'Indie Rock / Shoegaze',riders:0,standby:7200,color:'#0c191e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1262,name:'Wunderhorse',genre:'Rock / Indie',riders:0,standby:1600,color:'#141e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1263,name:'Zack Martino',genre:'Melodic House / EDM',riders:0,standby:2100,color:'#1a1e0c',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1264,name:'Avello',genre:'Electronic / Dance',riders:0,standby:900,color:'#0f0c1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1265,name:'Chezile',genre:'R&B',riders:0,standby:1800,color:'#1e0c0f',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1266,name:'CMAT',genre:'Indie / Country Pop',riders:0,standby:2600,color:'#1c0c1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1267,name:'Cortis',genre:'K-Pop',riders:0,standby:3200,color:'#140c1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1268,name:'Elizabeth Nichols',genre:'Country',riders:0,standby:1100,color:'#0c0e1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1269,name:'Haute & Freddy',genre:'Alt Pop / EDM',riders:0,standby:1400,color:'#0c1e0f',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1270,name:'KWN',genre:'R&B / Pop',riders:0,standby:1100,color:'#0c0c1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1271,name:'Loathe',genre:'Metal / Rock',riders:0,standby:2800,color:'#0d0c1e',posts:0,active:false,newlyAdded:true,onTour:true},
+  {id:1272,name:'Nat Myers',genre:'Country Blues / Folk',riders:0,standby:900,color:'#0c1e0f',posts:0,active:false,newlyAdded:true,onTour:true},
 ];
 
 const MY_ARTISTS = [ARTISTS[0],ARTISTS[1],ARTISTS[2],ARTISTS[3],ARTISTS[4],ARTISTS[5],ARTISTS[6],ARTISTS[7],ARTISTS[8],ARTISTS[9],ARTISTS[10]];
@@ -1519,6 +1674,7 @@ export default function App() {
   const [tourbusNewPost, setTourbusNewPost] = useState(false);
   const [riderSignInForm, setRiderSignInForm] = useState({username:"",password:""});
   const [riderSignInError, setRiderSignInError] = useState("");
+  const [showPwReset, setShowPwReset] = useState(false);
   const [artistSignInForm, setArtistSignInForm] = useState({email:"",code:""});
   const [artistSignInError, setArtistSignInError] = useState("");
   const [editingProfile, setEditingProfile] = useState(false);
@@ -1557,10 +1713,6 @@ export default function App() {
   const [isLive, setIsLive] = useState(false);
   const [goLiveModal, setGoLiveModal] = useState(false);
   const [closeRiderAccountModal, setCloseRiderAccountModal] = useState(false); // post object
-  const [changingPassword, setChangingPassword] = useState(false);
-  const [pwForm, setPwForm] = useState({current:"",next:"",confirm:""});
-  const [pwError, setPwError] = useState("");
-  const [pwSuccess, setPwSuccess] = useState(false);
   const [profileDraft, setProfileDraft] = useState({bio:"",spotify:"",website:"",onTour:false,photo:""});
   const [artistProfiles, setArtistProfiles] = useState({});
   const [editingPost, setEditingPost] = useState(null);
@@ -1622,6 +1774,7 @@ export default function App() {
   const [confirmOff, setConfirmOff] = useState(null);
   const [suggestNote, setSuggestNote] = useState("");
   const [suggestSubmitted, setSuggestSubmitted] = useState(false);
+  const [recoSuggestSubmitted, setRecoSuggestSubmitted] = useState(false);
   const [postCaption, setPostCaption] = useState("");
   const [postMediaItems, setPostMediaItems] = useState([]); // [{url, file, type:"photo"|"video"}]
   const [postSlides, setPostSlides] = useState({}); // {postId: slideIndex}
@@ -1773,11 +1926,13 @@ export default function App() {
     });
     setOffBus({});
     setSnoozed({});
+    setShowPwReset(false);
     setUserMode("rider");
     if (acct.purchased && acct.purchased.size > 0) {
       setFeedPosts(INIT_FEED.filter(p => !p.newRiderOnly));
     }
     setScreenStack([]);
+    localStorage.setItem('tb_session', JSON.stringify({mode:'rider', username: riderSignInForm.username.trim().toLowerCase()}));
     go(SCREENS.STREAM, {replace:true});
   };
 
@@ -1787,6 +1942,7 @@ export default function App() {
     if (artistSignInForm.code.trim()!==DEMO_AUTH_CODE) { setArtistSignInError("Invalid authentication code. Check your email."); return; }
     setArtistUser(ARTISTS[idx]); setUserMode("artist"); setArtistSignInError(""); setArtistSignInForm({email:"",code:""});
     setScreenStack([]);
+    localStorage.setItem('tb_session', JSON.stringify({mode:'artist', email: artistSignInForm.email.toLowerCase().trim()}));
     go(SCREENS.ARTIST_DASHBOARD, {replace:true});
   };
 
@@ -1895,7 +2051,41 @@ export default function App() {
     }
   }, [screen]);
 
-  // Global swipe-from-left-edge to go back
+  // Restore session on page load
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('tb_session');
+      if (!saved) return;
+      const session = JSON.parse(saved);
+      if (session.mode === 'rider') {
+        const acct = RIDER_ACCOUNTS[session.username];
+        if (!acct) return;
+        setRiderUser(acct);
+        setPurchased(new Map(acct.purchased));
+        setRiderBookmarks(acct.bookmarks||[]);
+        const initialStandby = acct.standby||{};
+        setStandby(initialStandby);
+        setStandbyCounts(c=>{
+          const next = {...c};
+          Object.keys(initialStandby).forEach(id=>{ if(initialStandby[id]) next[id]=(next[id]||0)+1; });
+          return next;
+        });
+        setUserMode("rider");
+        if (acct.purchased && acct.purchased.size > 0) {
+          setFeedPosts(INIT_FEED.filter(p => !p.newRiderOnly));
+        }
+        setScreen(SCREENS.STREAM);
+      } else if (session.mode === 'artist') {
+        const idx = ARTIST_ACCOUNTS[session.email];
+        if (idx === undefined) return;
+        setArtistUser(ARTISTS[idx]);
+        setUserMode("artist");
+        setScreen(SCREENS.ARTIST_DASHBOARD);
+      }
+    } catch(e) {
+      localStorage.removeItem('tb_session');
+    }
+  }, []);
   useEffect(() => {
     const EDGE_ZONE = 44;   // px from left edge to begin tracking
     const TRIGGER   = 100;  // px to commit navigation
@@ -2068,6 +2258,12 @@ export default function App() {
                 {isArtistMode?(
                   <>
                     <button className="nav-post-btn" onClick={()=>go(SCREENS.NEW_POST)}>+ New Post</button>
+                    <button onClick={()=>setDarkMode(d=>!d)} className="nav-account-btn" title={darkMode?"Switch to light mode":"Switch to dark mode"}>
+                      {darkMode
+                        ? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                        : <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                      }
+                    </button>
                     <button className={`nav-account-btn${screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?" active":""}`} onClick={()=>{if(screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id){go(SCREENS.ARTIST_DASHBOARD);}else{setSelectedArtist(artistUser);go(SCREENS.PROFILE);}}} title={screen===SCREENS.PROFILE&&selectedArtist?.id===artistUser?.id?"Back to Dashboard":"View public profile"}>
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
                     </button>
@@ -2091,6 +2287,12 @@ export default function App() {
                     <button className="nav-station-btn" onClick={()=>go(SCREENS.SEARCH)}>
                       <span className="nav-station-label">Station</span>
                       <span className="nav-station-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+                    </button>
+                    <button onClick={()=>setDarkMode(d=>!d)} className="nav-account-btn" title={darkMode?"Switch to light mode":"Switch to dark mode"}>
+                      {darkMode
+                        ? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                        : <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                      }
                     </button>
                     <button className={`nav-account-btn${screen===SCREENS.ACCOUNT?" active":""}`} onClick={()=>go(SCREENS.ACCOUNT)}>
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="9"/><line x1="12" y1="15" x2="12" y2="22"/><line x1="2" y1="12" x2="9" y2="12"/><line x1="15" y1="12" x2="22" y2="12"/></svg>
@@ -2150,6 +2352,15 @@ export default function App() {
                 {riderSignInError&&<div className="error-msg">{riderSignInError}</div>}
                 <div className="note" style={{marginTop:14}}>{E.bulb} Demo rider: <strong style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>rider</strong> / <strong style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>rider</strong> &nbsp;.&nbsp; New rider: <strong style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>mattbradley</strong> / <strong style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>tourbus123</strong></div>
                 <button className="btn btn-primary" style={{marginTop:22}} onClick={handleRiderSignIn}>Sign In</button>
+                <div style={{textAlign:"center",marginTop:14}}>
+                  <span onClick={()=>setShowPwReset(p=>!p)} style={{fontSize:12,color:darkMode?"#aaa":"#666",letterSpacing:1,cursor:"pointer",fontFamily:"'Inter',sans-serif",borderBottom:`1px solid ${darkMode?"#555":"#999"}`}}>Forgot password?</span>
+                </div>
+                {showPwReset&&(
+                  <div style={{marginTop:12,padding:"14px 16px",background:darkMode?"#1a1a00":"#f0efe8",border:`1px solid ${darkMode?"#3a3a00":"#c0bfb0"}`,borderRadius:2,lineHeight:1.7,fontFamily:"'Inter',sans-serif"}}>
+                    <div style={{fontSize:13,color:darkMode?"#ddd":"#333",marginBottom:10}}>Enter your username above and we'll send a reset link to your email on file.</div>
+                    <button className="btn btn-primary" style={{marginTop:0,fontSize:12,padding:"10px 0"}} onClick={()=>{setShowPwReset(false);setRiderSignInError("");}}>Send Reset Link</button>
+                  </div>
+                )}
               </div>
             )}
             {screen===SCREENS.ARTIST_SIGNIN&&(
@@ -2377,6 +2588,9 @@ export default function App() {
                               {snoozed[p.artist]&&<div className="post-menu-item" onClick={()=>doUnsnooze(p.artist)}>{E.bell} Unsnooze</div>}
                               {!hidden[p.artist]&&<div className="post-menu-item" onClick={()=>doHide(p.artist)}>{E.hide} Hide from stream</div>}
                               {hidden[p.artist]&&<div className="post-menu-item" onClick={()=>doUnhide(p.artist)}>{E.eye} Unhide</div>}
+                              {(()=>{const a=ARTISTS.find(a=>a.name===p.artist);if(!a)return null;const pinned=isBookmarked(a.id);const full=riderBookmarks.length>=7&&!pinned;return(
+                                <div className={`post-menu-item${full?" danger":""}`} onClick={()=>{if(!full){toggleBookmark(a.id);setArtistMenu(null);}}}>{pinned?"â˜… Unpin from Your Buses":`â˜† ${full?"Your Buses full (7 max)":"Pin to Your Buses"}`}</div>
+                              );})()}
                               <div className="post-menu-item" onClick={()=>setArtistMenu(null)}>{E.flag} Report this post</div>
                               <div className="post-menu-item danger" onClick={()=>{setConfirmOff(p.artist);setArtistMenu(null);}}>{E.bus} Get off this bus</div>
                             </div>
@@ -2580,7 +2794,7 @@ export default function App() {
               </div>
             )}
             {screen===SCREENS.SEARCH&&stationView==="venues"&&(
-              <div style={{width:"100%"}}>
+              <div className="search-wrap" style={{width:"100%"}}>
                 {VENUES.map(venue=>{
                   const venuePosts = feedPosts.filter(p=>{
                     if(!p.label) return false;
@@ -2590,7 +2804,7 @@ export default function App() {
                   return (
                     <div key={venue.slug} className="tag-summary-card" style={{cursor:"pointer"}} onClick={()=>{setActiveVenue(venue.slug);go(SCREENS.VENUE_FEED);}}>
                       <div>
-                        <div className="tag-summary-name" style={{fontSize:14}}>{venue.name}</div>
+                        <div className="tag-summary-name">{venue.name}</div>
                         <div className="tag-summary-meta" style={{marginTop:2}}>{venue.city}</div>
                       </div>
                       <div style={{textAlign:"right"}}>
@@ -2635,7 +2849,7 @@ export default function App() {
                           {p.previewUrl?<img src={p.previewUrl} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>:
                             <span>{p.type==="photo"?E.photo:E.video}</span>}
                         </div>
-                        <div style={{padding:"10px 14px 4px",fontSize:13,color:darkMode?"#aaa":"#3a3a5a",fontFamily:"'Inter',sans-serif",lineHeight:1.6}}>{parseCaption(p.label)}</div>
+                        <div style={{padding:"10px 14px 4px",fontSize:13,color:darkMode?"#aaa":"#3a3a5a",fontFamily:"'Inter',sans-serif",lineHeight:1.6,filter:isUnlocked?"none":"blur(4px)",userSelect:isUnlocked?"auto":"none",pointerEvents:isUnlocked?"auto":"none"}}>{parseCaption(p.label)}</div>
                         {!isUnlocked&&(
                           <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"10px 14px",background:darkMode?"#0e0e0e":"#f4f4f0",borderTop:`1px solid ${darkMode?"#2a2a00":"#e0dfd0"}`}}>
                             <div style={{fontSize:11,color:"#555",letterSpacing:1,fontFamily:"'Anton',sans-serif"}}>Ride {p.artist} to see photos & videos</div>
@@ -2871,36 +3085,12 @@ export default function App() {
               <div className="account-wrap fade">
                 <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:24}}>
                   <div style={{fontFamily:"'Anton',sans-serif",fontSize:28,letterSpacing:4,color:darkMode?"#e6ff00":"#ff4d1a"}}>@{(riderUser?.username||"rider").toUpperCase()}</div>
-                  <button className="account-signout" onClick={()=>go(SCREENS.LANDING)} style={{marginBottom:0}}>Sign Out</button>
+                  <button className="account-signout" onClick={()=>{localStorage.removeItem('tb_session');go(SCREENS.LANDING);}} style={{marginBottom:0}}>Sign Out</button>
                 </div>
                 <div className="account-section">
                   <div className="account-section-title">Profile</div>
                   <div className="account-row"><div><div className="account-row-label">Username</div><div className="account-row-value">@{riderUser?.username||"rider"}</div></div></div>
                   <div className="account-row"><div><div className="account-row-label">Email</div><div className="account-row-value">rider@email.com</div></div></div>
-                  <div className="account-row"><div><div className="account-row-label">Password</div><div className="account-row-value">Ã¢â‚¬Â¢Ã¢â‚¬Â¢Ã¢â‚¬Â¢Ã¢â‚¬Â¢Ã¢â‚¬Â¢Ã¢â‚¬Â¢Ã¢â‚¬Â¢Ã¢â‚¬Â¢</div></div><button className="account-edit-btn" onClick={()=>{setChangingPassword(p=>!p);setPwError("");setPwSuccess(false);setPwForm({current:"",next:"",confirm:""});}}>{changingPassword?"Cancel":"Change"}</button></div>
-                  {changingPassword&&(
-                    <div style={{padding:"12px 16px 16px",borderBottom:`1px solid ${darkMode?"#1e1e00":"#e0dfd0"}`}}>
-                      {pwSuccess?(
-                        <div style={{fontSize:12,color:darkMode?"#e6ff00":"#007744",letterSpacing:1,fontFamily:"'Anton',sans-serif"}}>PASSWORD UPDATED</div>
-                      ):(
-                        <>
-                          <input className="inp" type="password" placeholder="Current password" style={{marginBottom:8}} value={pwForm.current} onChange={e=>setPwForm(p=>({...p,current:e.target.value}))}/>
-                          <input className="inp" type="password" placeholder="New password" style={{marginBottom:8}} value={pwForm.next} onChange={e=>setPwForm(p=>({...p,next:e.target.value}))}/>
-                          <input className="inp" type="password" placeholder="Confirm new password" style={{marginBottom:8}} value={pwForm.confirm} onChange={e=>setPwForm(p=>({...p,confirm:e.target.value}))}/>
-                          {pwError&&<div style={{fontSize:11,color:"#cc4444",marginBottom:8,letterSpacing:0.5}}>{pwError}</div>}
-                          <button className="btn btn-primary" style={{marginBottom:0}} onClick={()=>{
-                            if(!pwForm.current||!pwForm.next||!pwForm.confirm){setPwError("All fields are required.");return;}
-                            if(pwForm.current!==riderUser.password){setPwError("Current password is incorrect.");return;}
-                            if(pwForm.next.length<6){setPwError("New password must be at least 6 characters.");return;}
-                            if(pwForm.next!==pwForm.confirm){setPwError("New passwords do not match.");return;}
-                            riderUser.password=pwForm.next;
-                            setPwSuccess(true);
-                            setTimeout(()=>{setChangingPassword(false);setPwSuccess(false);},2000);
-                          }}>Update Password</button>
-                        </>
-                      )}
-                    </div>
-                  )}
                   <div className="account-row"><div><div className="account-row-label">Zip Code</div><div className="account-row-value">90210</div></div><button className="account-edit-btn">Edit</button></div>
                   <div style={{padding:"8px 16px 12px",fontSize:10,color:"#555",letterSpacing:1,fontFamily:"'Anton',sans-serif"}}>TO CHANGE YOUR USERNAME OR EMAIL, CONTACT HELLO@TOURBUS.LIVE</div>
                 </div>
@@ -2982,7 +3172,7 @@ export default function App() {
                   <ArtistThumb artist={artistUser} photoOverride={getArtistProfile(artistUser).photo} style={{width:56,height:56,borderRadius:2,flexShrink:0}}/>
                   <div><div className="dashboard-name">{artistUser.name}</div><div className="dashboard-genre">{artistUser.genre}</div></div>
                   <div style={{display:"flex",alignItems:"center",gap:8,marginLeft:"auto"}}>
-                    <button className="account-signout" style={{width:"auto",marginTop:0,padding:"8px 16px",fontSize:10}} onClick={()=>{setUserMode("rider");setArtistUser(null);go(SCREENS.LANDING);}}>Sign Out</button>
+                    <button className="account-signout" style={{width:"auto",marginTop:0,padding:"8px 16px",fontSize:10}} onClick={()=>{localStorage.removeItem('tb_session');setUserMode("rider");setArtistUser(null);go(SCREENS.LANDING);}}>Sign Out</button>
                   </div>
                 </div>
                 <div className="dashboard-stats">
@@ -3136,26 +3326,51 @@ export default function App() {
                   {(artistRecos[artistUser?.id]||[]).length<5&&(
                     <div style={{marginTop:10,position:"relative"}}>
                       <input className="inp reco-search-input" style={{marginBottom:0}} placeholder="Search any artist..." value={recoSearch}
-                        onChange={e=>{setRecoSearch(e.target.value);setRecoSearchActive(true);}}
+                        onChange={e=>{setRecoSearch(e.target.value);setRecoSearchActive(true);setRecoSuggestSubmitted(false);}}
                         onFocus={()=>setRecoSearchActive(true)}
                         onBlur={()=>setTimeout(()=>setRecoSearchActive(false),150)}
                       />
                       {recoSearchActive&&recoSearch.trim().length>1&&(()=>{
                         const existing=new Set((artistRecos[artistUser?.id]||[]).map(r=>r.id));
                         const results=[...ARTISTS,...SPOTIFY_ARTISTS].filter(a=>a.id!==artistUser?.id&&!existing.has(a.id)&&a.name.toLowerCase().includes(recoSearch.toLowerCase())).slice(0,6);
-                        return results.length>0&&(
-                          <div className="reco-search-results">
-                            {results.map(a=>(
-                              <div key={a.id} className="reco-result" onMouseDown={()=>{setArtistRecos(p=>({...p,[artistUser.id]:[...(p[artistUser.id]||[]),a]}));setRecoSearch("");setRecoSearchActive(false);}}>
-                                <ArtistThumb artist={a} style={{width:28,height:28,borderRadius:1,flexShrink:0}}/>
-                                <div style={{flex:1}}>
-                                  <div className="reco-result-name">{a.name}</div>
-                                  {a.genre&&<div className="reco-result-genre">{a.genre}</div>}
-                                </div>
-                                {!a.active&&<span style={{fontFamily:"'Anton',sans-serif",fontSize:8,letterSpacing:1,color:"#555",border:"1px solid #2a2a00",padding:"1px 5px",borderRadius:1}}>NOT ON TOURBUS</span>}
+                        const trimmed=recoSearch.trim();
+                        const noResults=results.length===0;
+                        return (
+                          <>
+                            {results.length>0&&(
+                              <div className="reco-search-results">
+                                {results.map(a=>(
+                                  <div key={a.id} className="reco-result" onMouseDown={()=>{setArtistRecos(p=>({...p,[artistUser.id]:[...(p[artistUser.id]||[]),a]}));setRecoSearch("");setRecoSearchActive(false);setRecoSuggestSubmitted(false);}}>
+                                    <ArtistThumb artist={a} style={{width:28,height:28,borderRadius:1,flexShrink:0}}/>
+                                    <div style={{flex:1}}>
+                                      <div className="reco-result-name">{a.name}</div>
+                                      {a.genre&&<div className="reco-result-genre">{a.genre}</div>}
+                                    </div>
+                                    {!a.active&&<span style={{fontFamily:"'Anton',sans-serif",fontSize:8,letterSpacing:1,color:"#555",border:"1px solid #2a2a00",padding:"1px 5px",borderRadius:1}}>NOT ON TOURBUS</span>}
+                                  </div>
+                                ))}
                               </div>
-                            ))}
-                          </div>
+                            )}
+                            {noResults&&(
+                              <div className="suggest-card" style={{marginTop:8}}>
+                                {!recoSuggestSubmitted?(
+                                  <>
+                                    <div className="suggest-title">"{trimmed}" isn't on tourbus yet</div>
+                                    <div className="suggest-sub">Want to recommend them? We'll reach out and try to get them on board.</div>
+                                    <label className="lbl">Artist name</label>
+                                    <input className="inp" value={trimmed} readOnly style={{color:darkMode?"#e6ff00":"#ff4d1a",marginBottom:16}}/>
+                                    <button className="btn btn-primary" style={{marginBottom:0}} onMouseDown={()=>setRecoSuggestSubmitted(true)}>Suggest to tourbus</button>
+                                  </>
+                                ):(
+                                  <div className="suggest-success">
+                                    <div className="suggest-success-icon">{E.guitar}</div>
+                                    <div className="suggest-success-text">Suggestion received!</div>
+                                    <div className="suggest-success-sub">We'll look into bringing {trimmed} onto tourbus.</div>
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                          </>
                         );
                       })()}
                     </div>
@@ -3446,7 +3661,7 @@ export default function App() {
                           {p.previewUrl?<img src={p.previewUrl} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>:
                             <span>{p.type==="photo"?E.photo:E.video}</span>}
                         </div>
-                        <div style={{padding:"10px 14px 4px",fontSize:13,color:darkMode?"#aaa":"#3a3a5a",fontFamily:"'Inter',sans-serif",lineHeight:1.6}}>{parseCaption(p.label)}</div>
+                        <div style={{padding:"10px 14px 4px",fontSize:13,color:darkMode?"#aaa":"#3a3a5a",fontFamily:"'Inter',sans-serif",lineHeight:1.6,filter:isUnlocked?"none":"blur(4px)",userSelect:isUnlocked?"auto":"none",pointerEvents:isUnlocked?"auto":"none"}}>{parseCaption(p.label)}</div>
                         {!isUnlocked&&(
                           <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"10px 14px",background:darkMode?"#0e0e0e":"#f4f4f0",borderTop:`1px solid ${darkMode?"#2a2a00":"#e0dfd0"}`}}>
                             <div style={{fontSize:11,color:"#555",letterSpacing:1,fontFamily:"'Anton',sans-serif"}}>Ride {p.artist} to see photos & videos</div>
