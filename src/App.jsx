@@ -1125,8 +1125,8 @@ const ARTIST_ACCOUNTS = {"midnight@tourbus.live":0,"jade@tourbus.live":1,"brass@
 const DEMO_AUTH_CODE = "12345";
 const RIDER_DEMO_STANDBY = {1101: true}; // Wilco
 const RIDER_ACCOUNTS = {
-  mattbradley:{password:"tourbus123",purchased:new Map(),username:"mattbradley",standby:{}},
-  rider:{password:"rider",purchased:new Map(MY_ARTISTS.map((a,i)=>[a.id, new Date(Date.now()-(i+1)*30*24*60*60*1000)])),username:"rider",standby:RIDER_DEMO_STANDBY},
+  mattbradley:{password:"tourbus123",purchased:new Map(),username:"mattbradley",standby:{},bookmarks:[]},
+  rider:{password:"rider",purchased:new Map(MY_ARTISTS.map((a,i)=>[a.id, new Date(Date.now()-(i+1)*30*24*60*60*1000)])),username:"rider",standby:RIDER_DEMO_STANDBY,bookmarks:[1,5,9,2,10,7,4]},
 };
 
 const mkDate = daysAgo => new Date(Date.now() - daysAgo*24*60*60*1000);
@@ -1308,7 +1308,7 @@ const makeCSS = (dark) => {
   .live-badge{position:absolute;top:-7px;left:50%;transform:translateX(-50%);background:#ff2222;color:#fff;font-family:'Anton',sans-serif;font-size:7px;letter-spacing:1.5px;padding:1px 5px;border-radius:1px;pointer-events:none;white-space:nowrap;}
   .my-bus-chip-wrap{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;flex-shrink:0;}
   .live-thumb{animation:live-glow 1.4s ease-in-out infinite;}
-  .my-bus-name{font-family:'Inter',sans-serif;font-size:9px;letter-spacing:1px;color:${t.textDeep};text-align:center;max-width:60px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .my-bus-name{font-family:'Inter',sans-serif;font-size:9px;letter-spacing:0.5px;color:${t.textDim};text-align:center;max-width:64px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .feed-post{background:${t.bgCard};border:1px solid ${t.border};border-radius:2px;margin-bottom:16px;overflow:visible;width:100%;transition:opacity 0.3s;position:relative;}.feed-post.muted{opacity:0.35;}
   .feed-post-header{display:flex;align-items:center;gap:10px;padding:12px 14px;width:100%;overflow:visible;position:relative;}
   .feed-post-avatar{width:32px;height:32px;border:1px solid ${t.border};border-radius:2px;flex-shrink:0;}
@@ -1570,7 +1570,7 @@ export default function App() {
   const [selectedArtist, setSelectedArtist] = useState(null);
   const [riderUser, setRiderUser] = useState(null);
   const [purchased, setPurchased] = useState(()=>new Map(MY_ARTISTS.map((a,i)=>[a.id, new Date(Date.now()-(i+1)*30*24*60*60*1000)])));
-  const [riderBookmarks, setRiderBookmarks] = useState([ARTISTS[0].id, ARTISTS[4].id, ARTISTS[9].id]); // ordered list of artist IDs, max 7
+  const [riderBookmarks, setRiderBookmarks] = useState([]); // ordered list of artist IDs, max 7 â€” rider pins from Settings
   const [selectedPost, setSelectedPost] = useState(null);
   const [search, setSearch] = useState("");
   const [navSearch, setNavSearch] = useState("");
@@ -1763,6 +1763,7 @@ export default function App() {
     if (riderSignInForm.password !== acct.password) { setRiderSignInError("Incorrect password."); return; }
     setRiderUser(acct);
     setPurchased(new Map(acct.purchased));
+    setRiderBookmarks(acct.bookmarks||[]);
     const initialStandby = acct.standby||{};
     setStandby(initialStandby);
     setStandbyCounts(c=>{
@@ -2159,7 +2160,7 @@ export default function App() {
                 <label className="lbl">Email</label>
                 <input className={`inp${artistSignInError?" inp-error":""}`} placeholder="you@yourdomain.com" value={artistSignInForm.email} onChange={e=>{setArtistSignInForm(p=>({...p,email:e.target.value}));setArtistSignInError("");}}/>
                 <label className="lbl">Authentication Code</label>
-                <input className={`inp auth-code-inp${artistSignInError?" inp-error":""}`} placeholder="Ã‚Â· Ã‚Â· Ã‚Â· Ã‚Â· Ã‚Â·" maxLength={5} value={artistSignInForm.code} onChange={e=>{setArtistSignInForm(p=>({...p,code:e.target.value.replace(/\D/g,"").slice(0,5)}));setArtistSignInError("");}}/>
+                <input className={`inp auth-code-inp${artistSignInError?" inp-error":""}`} placeholder="- - - - -" maxLength={5} value={artistSignInForm.code} onChange={e=>{setArtistSignInForm(p=>({...p,code:e.target.value.replace(/\D/g,"").slice(0,5)}));setArtistSignInError("");}}/>
                 {artistSignInError?<div className="error-msg">{artistSignInError}</div>:<div className="code-hint">We'll email you a code each time you sign in.</div>}
                 <div className="note" style={{marginTop:14}}>{E.bulb} Demo: use any artist email + code <strong style={{color:darkMode?"#e6ff00":"#ff4d1a",letterSpacing:3}}>12345</strong><br/>e.g. midnight@tourbus.live</div>
                 <button className="btn btn-primary" style={{marginTop:20}} onClick={handleArtistSignIn}>Sign In</button>
@@ -2285,12 +2286,17 @@ export default function App() {
                 <p className="stream-greeting">Good to see you, <b>@{riderUser?.username||"rider"}</b></p>
                 <div className="stream-label">Your buses</div>
                 <div className="my-buses">
-                  {/* 1. tourbus â€” always first */}
+                  {/* tourbus â€” always first */}
                   <div className="my-bus-chip" onClick={()=>go(SCREENS.TOURBUS_PROFILE)}>
                     <div style={{width:52,height:52,borderRadius:2,border:`2px solid ${darkMode?"#e6ff00":"#ff4d1a"}`,background:darkMode?"#0e0e0e":"#fff",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Caveat',cursive",fontSize:20,fontWeight:700,color:darkMode?"#e6ff00":"#0e0e0e",flexShrink:0,letterSpacing:-1}}>tb</div>
                     <div className="my-bus-name" style={{color:darkMode?"#e6ff00":"#0e0e0e"}}>tourbus</div>
                   </div>
-                  {/* 2. LIVE artists â€” always next, prominent */}
+                  {/* + add â€” always second */}
+                  <div className="my-bus-chip" onClick={()=>go(SCREENS.SEARCH)}>
+                    <div className="my-bus-avatar" style={{display:"flex",alignItems:"center",justifyContent:"center",fontSize:22,color:darkMode?"#555":"#aaa"}}>+</div>
+                    <div className="my-bus-name" style={{color:darkMode?"#444":"#aaa"}}>add</div>
+                  </div>
+                  {/* Any riding artist who is LIVE â€” inserted after + regardless of bookmark status */}
                   {ARTISTS.filter(a=>purchased.has(a.id)&&!offBus[a.name]&&LIVE_IDS.has(a.id)).map(a=>(
                     <div key={`live-${a.id}`} className="my-bus-chip-wrap" onClick={()=>{setSelectedArtist(a);go(SCREENS.PROFILE);}}>
                       <div style={{position:"relative"}}>
@@ -2300,45 +2306,18 @@ export default function App() {
                       <div className="my-bus-name" style={{color:"#ff4444"}}>{a.name}</div>
                     </div>
                   ))}
-                  {/* 3. Bookmarked buses â€” user's up to 7, in their chosen order, skip if already shown as LIVE */}
+                  {/* Up to 7 bookmarked artists â€” in rider's chosen order, skip if already shown as LIVE */}
                   {riderBookmarks
                     .map(id=>ARTISTS.find(a=>a.id===id))
                     .filter(a=>a&&purchased.has(a.id)&&!offBus[a.name]&&!LIVE_IDS.has(a.id))
                     .map(a=>(
                       <div key={a.id} className="my-bus-chip-wrap" onClick={()=>{setSelectedArtist(a);go(SCREENS.PROFILE);}}>
-                        <div style={{position:"relative"}}>
-                          <ArtistThumb artist={a} photoOverride={getArtistProfile(a).photo} style={{width:52,height:52,borderRadius:2,border:`1px solid ${darkMode?"#3a3a00":"#d0cfc0"}`}}/>
-                          {/* bookmark indicator dot */}
-                          <div style={{position:"absolute",bottom:-3,left:"50%",transform:"translateX(-50%)",width:4,height:4,borderRadius:"50%",background:darkMode?"#e6ff00":"#ff4d1a"}}/>
-                        </div>
-                        <div className="my-bus-name">{a.name}</div>
+                        <ArtistThumb artist={a} photoOverride={getArtistProfile(a).photo} style={{width:56,height:56,borderRadius:2,border:`1.5px solid ${darkMode?"#4a4a00":"#c0bfb0"}`}}/>
+                        <div className="my-bus-name" style={{color:darkMode?"#ccc":"#444",maxWidth:64}}>{a.name}</div>
                       </div>
                     ))
                   }
-                  {/* 4. + add button â€” always last */}
-                  <div className="my-bus-chip" onClick={()=>go(SCREENS.SEARCH)}>
-                    <div className="my-bus-avatar" style={{display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,color:"#444"}}>+</div>
-                    <div className="my-bus-name" style={{color:"#3a3a00"}}>add</div>
-                  </div>
                 </div>
-                {/* Other purchased buses not bookmarked â€” tap star on their profile to pin */}
-                {(()=>{
-                  const otherBuses = ARTISTS.filter(a=>
-                    purchased.has(a.id) && !offBus[a.name] &&
-                    !riderBookmarks.includes(a.id) && !LIVE_IDS.has(a.id)
-                  );
-                  if (otherBuses.length === 0) return null;
-                  return (
-                    <div style={{display:"flex",gap:8,overflowX:"auto",paddingBottom:6,marginBottom:20,scrollbarWidth:"none",WebkitOverflowScrolling:"touch",marginTop:-16}}>
-                      {otherBuses.map(a=>(
-                        <div key={a.id} style={{display:"flex",flexDirection:"column",alignItems:"center",gap:4,flexShrink:0,cursor:"pointer",opacity:0.55}} onClick={()=>{setSelectedArtist(a);go(SCREENS.PROFILE);}}>
-                          <ArtistThumb artist={a} photoOverride={getArtistProfile(a).photo} style={{width:36,height:36,borderRadius:2,border:`1px solid ${darkMode?"#2a2a00":"#d0cfc0"}`}}/>
-                          <div style={{fontFamily:"'Inter',sans-serif",fontSize:8,letterSpacing:1,color:"#555",maxWidth:44,whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis",textAlign:"center"}}>{a.name}</div>
-                        </div>
-                      ))}
-                    </div>
-                  );
-                })()}
                 {Object.keys(snoozed).filter(k=>snoozed[k]).map(name=>(
                   <div key={name} className="status-bar"><span>{E.sleep} {name} snoozed for 30 days</span><button className="status-bar-undo" onClick={()=>doUnsnooze(name)}>UNDO</button></div>
                 ))}
@@ -2691,24 +2670,7 @@ export default function App() {
                         {LIVE_IDS.has(selectedArtist.id)&&<div className="live-badge" style={{top:8}}>LIVE</div>}
                       </div>
                       <div className="profile-name">{selectedArtist.name}</div>
-                      <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:4}}>
-                        <div className="profile-genre">{selectedArtist.genre}</div>
-                        {!isArtistMode&&(
-                          <button
-                            onClick={()=>toggleBookmark(selectedArtist.id)}
-                            title={isBookmarked(selectedArtist.id)?"Remove from Your Buses":riderBookmarks.length>=7?"Your Buses are full (max 7)":"Add to Your Buses"}
-                            style={{
-                              background:"transparent",border:"none",cursor:riderBookmarks.length>=7&&!isBookmarked(selectedArtist.id)?"not-allowed":"pointer",
-                              padding:"2px 4px",fontSize:18,lineHeight:1,
-                              color:isBookmarked(selectedArtist.id)?darkMode?"#e6ff00":"#ff4d1a":"#444",
-                              opacity:riderBookmarks.length>=7&&!isBookmarked(selectedArtist.id)?0.4:1,
-                              flexShrink:0,
-                            }}
-                          >
-                            {isBookmarked(selectedArtist.id) ? "â˜…" : "â˜†"}
-                          </button>
-                        )}
-                      </div>
+                      <div className="profile-genre">{selectedArtist.genre}</div>
                       <p className="profile-bio">{getArtistProfile(selectedArtist).bio}</p>
                       {(getArtistProfile(selectedArtist).spotify||getArtistProfile(selectedArtist).website)&&(
                         <div style={{display:"flex",gap:10,flexWrap:"wrap",justifyContent:"center",marginBottom:16}}>
@@ -2956,24 +2918,38 @@ export default function App() {
                 </div>
                 <div className="account-section">
                   <div className="account-section-title">Tickets</div>
+                  {ARTISTS.filter(a=>purchased.has(a.id)&&!offBus[a.name]).length===0&&(
+                    <div style={{padding:"12px 16px",fontSize:11,color:"#444",letterSpacing:1}}>No tickets yet. Head to the Station to find an artist.</div>
+                  )}
                   {ARTISTS.filter(a=>purchased.has(a.id)&&!offBus[a.name]).map(a=>(
                     <div key={a.id} className="ticket-row" style={{alignItems:"center",gap:12}}>
                       <div style={{display:"flex",alignItems:"center",gap:10,flex:1,minWidth:0,cursor:"pointer"}} onClick={()=>{setSelectedArtist(a);go(SCREENS.PROFILE);}}>
                         <ArtistThumb artist={a} photoOverride={getArtistProfile(a).photo} style={{width:40,height:40,borderRadius:2,flexShrink:0,border:`1px solid ${darkMode?"#2a2a00":"#d0cfc0"}`}}/>
                         <div style={{minWidth:0}}>
-                          <div className="ticket-name" style={{cursor:"pointer"}}>{a.name}</div>
+                          <div className="ticket-name">{a.name}</div>
                           <div className="ticket-genre">{a.genre}</div>
                           <div style={{fontSize:9,color:"#444",letterSpacing:1,marginTop:2}}>{purchased.get(a.id)?.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</div>
                         </div>
                       </div>
                       <div style={{display:"flex",flexDirection:"column",alignItems:"flex-end",gap:6,flexShrink:0}}>
-                        <div className="ticket-status">ON THE BUS</div>
+                        {/* Pin to Your Buses */}
+                        <button
+                          onClick={()=>toggleBookmark(a.id)}
+                          title={isBookmarked(a.id)?"Remove from Your Buses":riderBookmarks.length>=7?"Your Buses full (7 max)":"Pin to Your Buses"}
+                          style={{
+                            background:"transparent",border:"none",cursor:riderBookmarks.length>=7&&!isBookmarked(a.id)?"not-allowed":"pointer",
+                            fontSize:16,lineHeight:1,padding:"2px 0",
+                            color:isBookmarked(a.id)?darkMode?"#e6ff00":"#ff4d1a":"#444",
+                            opacity:riderBookmarks.length>=7&&!isBookmarked(a.id)?0.35:1,
+                          }}
+                        >{isBookmarked(a.id)?"â˜…":"â˜†"}</button>
                         <button onClick={()=>setConfirmOff(a.name)} style={{fontFamily:"'Anton',sans-serif",fontSize:9,letterSpacing:1,color:"#cc4444",background:"transparent",border:"1px solid #441111",borderRadius:1,padding:"3px 8px",cursor:"pointer"}}>GET OFF</button>
                       </div>
                     </div>
                   ))}
-                  {ARTISTS.filter(a=>purchased.has(a.id)&&!offBus[a.name]).length===0&&(
-                    <div style={{fontSize:11,color:"#444",letterSpacing:1}}>No tickets yet. Head to the Station to find an artist.</div>
+                  {/* hint */}
+                  {ARTISTS.filter(a=>purchased.has(a.id)&&!offBus[a.name]).length>0&&(
+                    <div style={{padding:"8px 16px 10px",fontSize:9,color:"#444",letterSpacing:1,lineHeight:1.6}}>â˜… PIN UP TO 7 ARTISTS TO YOUR BUSES ROW</div>
                   )}
                 </div>
                 {Object.keys(standby).filter(k=>standby[k]).length>0&&(
