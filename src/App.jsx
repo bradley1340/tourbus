@@ -2564,7 +2564,7 @@ export default function App() {
                 <label className="lbl">Password</label>
                 <input className={`inp${riderSignInError?" inp-error":""}`} type="password" placeholder="********" value={riderSignInForm.password} onChange={e=>{setRiderSignInForm(p=>({...p,password:e.target.value}));setRiderSignInError("");}}/>
                 {riderSignInError&&<div className="error-msg">{riderSignInError}</div>}
-                <div className="note" style={{marginTop:14}}>{E.bulb} Demo rider: <strong style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>rider</strong> / <strong style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>rider</strong> &nbsp;.&nbsp; New rider: <strong style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>mattbradley</strong> / <strong style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>tourbus123</strong></div>
+                <div className="note" style={{marginTop:14}}>Demo: <strong style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>rider</strong> / <strong style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>rider</strong> &nbsp;.&nbsp; New rider: <strong style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>mattbradley</strong> / <strong style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>tourbus123</strong></div>
                 <button className="btn btn-primary" style={{marginTop:22}} onClick={handleRiderSignIn}>Sign In</button>
                 <div style={{textAlign:"center",marginTop:14}}>
                   <span onClick={()=>setShowPwReset(p=>!p)} style={{fontSize:12,color:darkMode?"#aaa":"#666",letterSpacing:1,cursor:"pointer",fontFamily:"'Inter',sans-serif",borderBottom:`1px solid ${darkMode?"#555":"#999"}`}}>Forgot password?</span>
@@ -2587,7 +2587,7 @@ export default function App() {
                 <label className="lbl">Authentication Code</label>
                 <input className={`inp auth-code-inp${artistSignInError?" inp-error":""}`} placeholder="- - - - -" maxLength={5} value={artistSignInForm.code} onChange={e=>{setArtistSignInForm(p=>({...p,code:e.target.value.replace(/\D/g,"").slice(0,5)}));setArtistSignInError("");}}/>
                 {artistSignInError?<div className="error-msg">{artistSignInError}</div>:<div className="code-hint">We'll email you a code each time you sign in.</div>}
-                <div className="note" style={{marginTop:14}}>{E.bulb} Demo: use any artist email + code <strong style={{color:darkMode?"#e6ff00":"#ff4d1a",letterSpacing:3}}>12345</strong><br/>e.g. midnight@tourbus.live</div>
+                <div className="note" style={{marginTop:14}}>Demo: use any artist email + code <strong style={{color:darkMode?"#e6ff00":"#ff4d1a",letterSpacing:3}}>12345</strong><br/>e.g. midnight@tourbus.live</div>
                 <button className="btn btn-primary" style={{marginTop:20}} onClick={handleArtistSignIn}>Sign In</button>
               </div>
             )}
@@ -2662,13 +2662,13 @@ export default function App() {
                 <label className="lbl">Management Email <span style={{color:"#333"}}>(optional)</span></label><input className="inp" type="email" placeholder="manager@mgmt.com" value={artistForm.mgmtEmail} onChange={e=>setArtistForm(p=>({...p,mgmtEmail:e.target.value}))}/>
                 <hr className="divider"/>
                 <label className="lbl">Listen URL <span style={{color:"#333"}}>(optional)</span></label><input className="inp" placeholder="music.apple.com, bandcamp.com, etc." value={artistForm.listen} onChange={e=>setArtistForm(p=>({...p,listen:e.target.value}))}/>
-                <div className="note">{E.info} Artist accounts are manually reviewed before going live.</div>
+                <div className="note">Artist accounts are manually reviewed before going live.</div>
                 <button className="btn btn-primary" style={{marginTop:20}} onClick={()=>go(SCREENS.ARTIST_SUCCESS)}>Submit Application</button>
               </div>
             )}
             {screen===SCREENS.RIDER_SUCCESS&&(
               <div className="card fade" style={{textAlign:"center"}}>
-                <div className="success-icon">{E.ticket}</div><div className="logo logo-sm">you're on</div>
+                <div className="success-icon"></div><div className="logo logo-sm">you're on</div>
                 <div className="logo-sub">Welcome, {riderForm.username||"Rider"}</div>
                 <p className="subtext" style={{margin:"14px 0 26px"}}>Your account is ready. Head to tb Station to find an artist and grab your $5 ticket.</p>
                 <button className="btn btn-primary" onClick={()=>go(SCREENS.STREAM)}>Go to My Stream</button>
@@ -2679,7 +2679,7 @@ export default function App() {
                 <div className="logo logo-sm">submitted</div>
                 <div className="logo-sub">Application received</div>
                 <p className="subtext" style={{margin:"14px 0 18px"}}>We'll reach out to <strong style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>{artistForm.email||"your email"}</strong> within 2-3 business days.</p>
-                <div className="note" style={{textAlign:"left",marginBottom:20}}>{E.note} Once approved, you'll earn $3 for every $5 ticket your riders purchase.</div>
+                <div className="note" style={{textAlign:"left",marginBottom:20}}>Once approved, you'll earn $3 for every $5 ticket your riders purchase.</div>
                 <button className="btn btn-ghost" onClick={()=>go(SCREENS.LANDING)}>Home</button>
               </div>
             )}
@@ -2744,10 +2744,10 @@ export default function App() {
                   }
                 </div>
                 {Object.keys(snoozed).filter(k=>snoozed[k]).map(name=>(
-                  <div key={name} className="status-bar"><span>{E.sleep} {name} snoozed for 30 days</span><button className="status-bar-undo" onClick={()=>doUnsnooze(name)}>UNDO</button></div>
+                  <div key={name} className="status-bar"><span>{name} snoozed for 30 days</span><button className="status-bar-undo" onClick={()=>doUnsnooze(name)}>UNDO</button></div>
                 ))}
                 {Object.keys(hidden).filter(k=>hidden[k]).map(name=>(
-                  <div key={name} className="status-bar"><span>{E.hide} {name} hidden from stream</span><button className="status-bar-undo" onClick={()=>doUnhide(name)}>UNDO</button></div>
+                  <div key={name} className="status-bar"><span>{name} hidden from stream</span><button className="status-bar-undo" onClick={()=>doUnhide(name)}>UNDO</button></div>
                 ))}
                 {feedPosts.filter(p=>{
                   if(p.isTourbus) return true;
@@ -2778,8 +2778,8 @@ export default function App() {
                         </div>
                       )}
                       <div className="feed-post-footer">
-                        <button className={`like-btn${likes[p.id]?.liked?" liked":""}`} onClick={()=>toggleLike(p.id)}>{E.clap} {(likes[p.id]?.count||0).toLocaleString()}</button>
-                        <button className={`like-btn${amps[p.id]?.amped?" liked":""}`} onClick={()=>toggleAmp(p.id)}>{E.fire} {(amps[p.id]?.count||0).toLocaleString()}</button>
+                        <button className={`like-btn${likes[p.id]?.liked?" liked":""}`} onClick={()=>toggleLike(p.id)}>{likes[p.id]?.liked?"â™¥":"â™¡"} {(likes[p.id]?.count||0).toLocaleString()}</button>
+                        <button className={`like-btn${amps[p.id]?.amped?" liked":""}`} onClick={()=>toggleAmp(p.id)}>{amps[p.id]?.amped?"â†‘â†‘":"â†‘"} {(amps[p.id]?.count||0).toLocaleString()}</button>
                         <button className={`tag-btn${activeTagInput===p.id?" active":""}`} onClick={()=>{setActiveTagInput(activeTagInput===p.id?null:p.id);setTagDraft('');}}>&#35;</button>
                       </div>
                     </div>
@@ -2798,15 +2798,15 @@ export default function App() {
                           {artistMenu===p.artist+p.id&&(
                             <div className="post-menu" style={{top:32,right:0}}>
                               <div className="post-menu-label">{p.artist}</div>
-                              {!snoozed[p.artist]&&<button className="post-menu-item" style={{width:"100%",textAlign:"left",background:"none",border:"none",cursor:"pointer",fontFamily:"inherit"}} onClick={()=>doSnooze(p.artist)}>{E.sleep} Snooze for 30 days</button>}
-                              {snoozed[p.artist]&&<button className="post-menu-item" style={{width:"100%",textAlign:"left",background:"none",border:"none",cursor:"pointer",fontFamily:"inherit"}} onClick={()=>doUnsnooze(p.artist)}>{E.bell} Unsnooze</button>}
-                              {!hidden[p.artist]&&<button className="post-menu-item" style={{width:"100%",textAlign:"left",background:"none",border:"none",cursor:"pointer",fontFamily:"inherit"}} onClick={()=>doHide(p.artist)}>{E.hide} Hide from stream</button>}
-                              {hidden[p.artist]&&<button className="post-menu-item" style={{width:"100%",textAlign:"left",background:"none",border:"none",cursor:"pointer",fontFamily:"inherit"}} onClick={()=>doUnhide(p.artist)}>{E.eye} Unhide</button>}
+                              {!snoozed[p.artist]&&<button className="post-menu-item" style={{width:"100%",textAlign:"left",background:"none",border:"none",cursor:"pointer",fontFamily:"inherit"}} onClick={()=>doSnooze(p.artist)}>Snooze for 30 days</button>}
+                              {snoozed[p.artist]&&<button className="post-menu-item" style={{width:"100%",textAlign:"left",background:"none",border:"none",cursor:"pointer",fontFamily:"inherit"}} onClick={()=>doUnsnooze(p.artist)}>Unsnooze</button>}
+                              {!hidden[p.artist]&&<button className="post-menu-item" style={{width:"100%",textAlign:"left",background:"none",border:"none",cursor:"pointer",fontFamily:"inherit"}} onClick={()=>doHide(p.artist)}>Hide from stream</button>}
+                              {hidden[p.artist]&&<button className="post-menu-item" style={{width:"100%",textAlign:"left",background:"none",border:"none",cursor:"pointer",fontFamily:"inherit"}} onClick={()=>doUnhide(p.artist)}>Unhide</button>}
                               {(()=>{const a=ARTISTS.find(a=>a.name===p.artist);if(!a)return null;const pinned=isBookmarked(a.id);const full=riderBookmarks.length>=7&&!pinned;return(
                                 <button className={`post-menu-item${full?" danger":""}`} style={{width:"100%",textAlign:"left",background:"none",border:"none",cursor:full?"default":"pointer",fontFamily:"inherit"}} onClick={()=>{if(!full){toggleBookmark(a.id);setArtistMenu(null);}}}>{pinned?"â˜… Unpin from Your Buses":`â˜† ${full?"Your Buses full (7 max)":"Pin to Your Buses"}`}</button>
                               );})()}
-                              <button className="post-menu-item" style={{width:"100%",textAlign:"left",background:"none",border:"none",cursor:"pointer",fontFamily:"inherit"}} onClick={()=>setArtistMenu(null)}>{E.flag} Report this post</button>
-                              <button className="post-menu-item danger" style={{width:"100%",textAlign:"left",background:"none",border:"none",cursor:"pointer",fontFamily:"inherit"}} onClick={()=>{setConfirmOff(p.artist);setArtistMenu(null);}}>{E.bus} Get off this bus</button>
+                              <button className="post-menu-item" style={{width:"100%",textAlign:"left",background:"none",border:"none",cursor:"pointer",fontFamily:"inherit"}} onClick={()=>setArtistMenu(null)}>Report this post</button>
+                              <button className="post-menu-item danger" style={{width:"100%",textAlign:"left",background:"none",border:"none",cursor:"pointer",fontFamily:"inherit"}} onClick={()=>{setConfirmOff(p.artist);setArtistMenu(null);}}>Get off this bus</button>
                             </div>
                           )}
                         </div>
@@ -2823,8 +2823,8 @@ export default function App() {
                         </div>
                       )}
                       <div className="feed-post-footer">
-                        <button className={`like-btn${likes[p.id]?.liked?" liked":""}`} onClick={()=>toggleLike(p.id)}>{E.clap} {(likes[p.id]?.count||0).toLocaleString()}</button>
-                        <button className={`like-btn${amps[p.id]?.amped?" liked":""}`} onClick={()=>toggleAmp(p.id)}>{E.fire} {(amps[p.id]?.count||0).toLocaleString()}</button>
+                        <button className={`like-btn${likes[p.id]?.liked?" liked":""}`} onClick={()=>toggleLike(p.id)}>{likes[p.id]?.liked?"â™¥":"â™¡"} {(likes[p.id]?.count||0).toLocaleString()}</button>
+                        <button className={`like-btn${amps[p.id]?.amped?" liked":""}`} onClick={()=>toggleAmp(p.id)}>{amps[p.id]?.amped?"â†‘â†‘":"â†‘"} {(amps[p.id]?.count||0).toLocaleString()}</button>
                         <button className={`tag-btn${activeTagInput===p.id?" active":""}`} onClick={()=>{setActiveTagInput(activeTagInput===p.id?null:p.id);setTagDraft('');}}>&#35;</button>
                       </div>
                     </div>
@@ -2904,7 +2904,7 @@ export default function App() {
                 </div>
                 {stationView==="artists"&&(
                   <>
-                    <div className="search-bar-wrap"><span className="search-icon">{E.search}</span><input className="search-bar" placeholder="Search artists, genres..." value={search} onChange={e=>{setSearch(e.target.value);setSuggestSubmitted(false);setSuggestNote("");}}/></div>
+                    <div className="search-bar-wrap"><span className="search-icon"></span><input className="search-bar" placeholder="Search artists, genres..." value={search} onChange={e=>{setSearch(e.target.value);setSuggestSubmitted(false);setSuggestNote("");}}/></div>
                     <div className="filter-row">
                       {GENRE_FILTERS.map(g=><button key={g} className={`filter-pill${genre===g?" active":""}`} onClick={()=>setGenre(g)}>{g}</button>)}
                       {GENRE_TAGS.map(g=><button key={g} className={`filter-pill${genre===g?" active":""}`} onClick={()=>setGenre(g)}>{g}</button>)}
@@ -2951,7 +2951,7 @@ export default function App() {
                         </>
                       ):(
                         <div className="suggest-success">
-                          <div className="suggest-success-icon">{E.guitar}</div>
+                          <div className="suggest-success-icon">âœ“</div>
                           <div className="suggest-success-text">Suggestion received!</div>
                           <div className="suggest-success-sub">We'll look into bringing {search} onto tourbus.</div>
                         </div>
@@ -3071,8 +3071,8 @@ export default function App() {
                           </div>
                         )}
                         <div style={{display:"flex",alignItems:"center",gap:16,padding:"8px 14px 12px"}}>
-                          <button className={`like-btn${likes[p.id]?.liked?" liked":""}`} onClick={()=>toggleLike(p.id)}>{E.clap} {(likes[p.id]?.count||0).toLocaleString()}</button>
-                          <button className={`like-btn${amps[p.id]?.amped?" liked":""}`} onClick={()=>toggleAmp(p.id)}>{E.fire} {(amps[p.id]?.count||0).toLocaleString()}</button>
+                          <button className={`like-btn${likes[p.id]?.liked?" liked":""}`} onClick={()=>toggleLike(p.id)}>{likes[p.id]?.liked?"â™¥":"â™¡"} {(likes[p.id]?.count||0).toLocaleString()}</button>
+                          <button className={`like-btn${amps[p.id]?.amped?" liked":""}`} onClick={()=>toggleAmp(p.id)}>{amps[p.id]?.amped?"â†‘â†‘":"â†‘"} {(amps[p.id]?.count||0).toLocaleString()}</button>
                         </div>
                       </div>
                     );
@@ -3102,7 +3102,7 @@ export default function App() {
                       <p className="profile-bio">{getArtistProfile(selectedArtist).bio}</p>
                       {getArtistProfile(selectedArtist).website&&(
                         <div style={{display:"flex",gap:10,flexWrap:"wrap",justifyContent:"center",marginBottom:16}}>
-                          <a href={getArtistProfile(selectedArtist).website} target="_blank" rel="noopener noreferrer" style={{fontSize:11,color:darkMode?"#e6ff00":"#ff4d1a",border:darkMode?"1px solid #e6ff00":"1px solid #ff4d1a",borderRadius:1,padding:"5px 12px",letterSpacing:1,textDecoration:"none",fontFamily:"'Anton',sans-serif"}}>{E.globe} Website</a>
+                          <a href={getArtistProfile(selectedArtist).website} target="_blank" rel="noopener noreferrer" style={{fontSize:11,color:darkMode?"#e6ff00":"#ff4d1a",border:darkMode?"1px solid #e6ff00":"1px solid #ff4d1a",borderRadius:1,padding:"5px 12px",letterSpacing:1,textDecoration:"none",fontFamily:"'Anton',sans-serif"}}>Website</a>
                         </div>
                       )}
                       <div className="profile-stats" style={{alignItems:"center",gap:12,flexWrap:"wrap"}}>
@@ -3148,7 +3148,7 @@ export default function App() {
                             <div style={{width:"100%",aspectRatio:"16/9",background:"#0a0000",border:"2px solid #ff2222",borderRadius:2,display:"flex",alignItems:"center",justifyContent:"center",flexDirection:"column",gap:12,boxShadow:"0 0 30px rgba(255,30,30,0.2)",position:"relative",overflow:"hidden"}}>
                               <ArtistThumb artist={selectedArtist} style={{position:"absolute",inset:0,width:"100%",height:"100%",opacity:0.15}}/>
                               <div style={{position:"relative",textAlign:"center"}}>
-                                <div style={{fontSize:40,marginBottom:8}}>{E.satellite}</div>
+                                <div style={{fontSize:40,marginBottom:8}}></div>
                                 <div style={{fontFamily:"'Anton',sans-serif",fontSize:16,letterSpacing:3,color:"#f5f5f5",marginBottom:4}}>{selectedArtist.name} IS LIVE</div>
                                 <div style={{fontSize:11,color:"#666",letterSpacing:1,fontFamily:"'Inter',sans-serif"}}>Live Feed Goes Here</div>
                               </div>
@@ -3179,7 +3179,7 @@ export default function App() {
                     ):(
                       <>
                         <div className="feed-grid">
-                          <div className="feed-grid-lock">{E.lock}</div>
+                          <div className="feed-grid-lock">ðŸ”’</div>
                           {MOCK_POSTS.map((p,i)=><div key={i} className="feed-grid-item" style={{background:p.color,filter:"blur(5px)",cursor:"default"}}><span>{p.type==="photo"?E.photo:E.video}</span></div>)}
                         </div>
                         <div className="unlock-box">
@@ -3271,8 +3271,8 @@ export default function App() {
                         {(()=>{const topTags=Object.entries(tags[p.id]||{}).filter(([,cnt])=>cnt>=TAG_THRESHOLD).sort((a,b)=>b[1]-a[1]).slice(0,5);return topTags.length>0&&<div className="tag-pills" style={{paddingLeft:14,paddingRight:14,marginBottom:4}}>{topTags.map(([tag])=><span key={tag} className="tag-pill" style={{cursor:"pointer"}} onClick={()=>{setActiveTag(tag);go(SCREENS.TAG_FEED);}}>#{tag}</span>)}</div>;})()}
                         {/* Footer */}
                         <div style={{display:"flex",alignItems:"center",gap:12,padding:"8px 14px 12px"}}>
-                          <button className={`like-btn${likes[p.id]?.liked?" liked":""}`} onClick={()=>toggleLike(p.id)}>{E.clap} {(likes[p.id]?.count||p.likes||0).toLocaleString()}</button>
-                          <button className={`like-btn${amps[p.id]?.amped?" liked":""}`} onClick={()=>toggleAmp(p.id)}>{E.fire} {(amps[p.id]?.count||0).toLocaleString()}</button>
+                          <button className={`like-btn${likes[p.id]?.liked?" liked":""}`} onClick={()=>toggleLike(p.id)}>{likes[p.id]?.liked?"â™¥":"â™¡"} {(likes[p.id]?.count||p.likes||0).toLocaleString()}</button>
+                          <button className={`like-btn${amps[p.id]?.amped?" liked":""}`} onClick={()=>toggleAmp(p.id)}>{amps[p.id]?.amped?"â†‘â†‘":"â†‘"} {(amps[p.id]?.count||0).toLocaleString()}</button>
                         </div>
                       </div>
                     );
@@ -3339,7 +3339,7 @@ export default function App() {
             )}
             {screen===SCREENS.UNLOCKED&&selectedArtist&&(
               <div className="card fade" style={{textAlign:"center"}}>
-                <div className="success-icon">{E.ticket}</div><div className="logo logo-sm">you're on</div>
+                <div className="success-icon"></div><div className="logo logo-sm">you're on</div>
                 <div className="logo-sub">{selectedArtist.name}</div>
                 <p className="subtext" style={{margin:"14px 0 26px"}}>You're on the bus. Welcome to {selectedArtist?.name}'s exclusive feed.</p>
                 <button className="btn btn-primary" onClick={()=>go(SCREENS.STREAM)}>Go to My Stream</button>
@@ -3492,7 +3492,7 @@ export default function App() {
                       <div className="tour-toggle">
                         <div>
                           <div className="tour-toggle-label">On Tour</div>
-                          <div className={`tour-toggle-status${getArtistProfile(artistUser).onTour?" on-tour":""}`} style={{marginTop:4}}>{getArtistProfile(artistUser).onTour?E.bus+" Currently on tour":"Not currently on tour"}</div>
+                          <div className={`tour-toggle-status${getArtistProfile(artistUser).onTour?" on-tour":""}`} style={{marginTop:4}}>{getArtistProfile(artistUser).onTour?"ON TOUR":"Not currently on tour"}</div>
                         </div>
                       </div>
                       {getArtistProfile(artistUser).photo&&(
@@ -3530,7 +3530,7 @@ export default function App() {
                       <div className="tour-toggle" style={{marginBottom:8}}>
                         <div>
                           <div className="tour-toggle-label">On Tour</div>
-                          <div className={`tour-toggle-status${profileDraft.onTour?" on-tour":""}`} style={{marginTop:4}}>{profileDraft.onTour?E.bus+" Currently on tour":"Not currently on tour"}</div>
+                          <div className={`tour-toggle-status${profileDraft.onTour?" on-tour":""}`} style={{marginTop:4}}>{profileDraft.onTour?"ON TOUR":"Not currently on tour"}</div>
                         </div>
                         <div className="toggle-switch" onClick={()=>setProfileDraft(p=>({...p,onTour:!p.onTour}))}>
                           <div className={`toggle-track${profileDraft.onTour?" on":""}`}>
@@ -3627,7 +3627,7 @@ export default function App() {
                                   </>
                                 ):(
                                   <div className="suggest-success">
-                                    <div className="suggest-success-icon">{E.guitar}</div>
+                                    <div className="suggest-success-icon">âœ“</div>
                                     <div className="suggest-success-text">Suggestion received!</div>
                                     <div className="suggest-success-sub">We'll look into bringing {trimmed} onto tourbus.</div>
                                   </div>
@@ -3651,7 +3651,7 @@ export default function App() {
                         <div style={{fontSize:9,color:darkMode?"#444":"#8a8aaa",letterSpacing:1,marginTop:2}}>rider since {r.purchased.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</div>
                       </div>
                       <div style={{textAlign:"right"}}>
-                        <div style={{fontSize:10,color:darkMode?"#e6ff00":"#ff4d1a",fontFamily:"'Anton',sans-serif",letterSpacing:1}}>{E.clap}</div>
+                        <div style={{fontSize:10,color:darkMode?"#e6ff00":"#ff4d1a",fontFamily:"'Anton',sans-serif",letterSpacing:1}}>CLAPS</div>
                         <div style={{fontSize:9,color:darkMode?"#444":"#8a8aaa",letterSpacing:1,marginTop:3}}>{r.zip}</div>
                       </div>
                     </div>
@@ -3669,7 +3669,7 @@ export default function App() {
                         </div>
                         <div style={{flex:1}}>
                           <div className="post-list-label">{p.label}</div>
-                          <div className="post-list-likes" style={{cursor:"pointer",display:"inline-block"}} onClick={()=>setClapModal(p)}>{E.clap} {(likes[p.id]?.count||0).toLocaleString()} <span style={{fontSize:9,color:"#555",letterSpacing:1}}>SEE RIDERS</span></div>
+                          <div className="post-list-likes" style={{cursor:"pointer",display:"inline-block"}} onClick={()=>setClapModal(p)}>{(likes[p.id]?.count||0).toLocaleString()} <span style={{fontSize:9,color:"#555",letterSpacing:1}}>SEE RIDERS</span></div>
                         </div>
                         <div className="post-list-meta">{p.time}<br/>{p.type.toUpperCase()}</div>
                       </div>
@@ -3731,7 +3731,7 @@ export default function App() {
             {goLiveModal&&(
               <div className="modal-overlay">
                 <div className="modal" style={{textAlign:"center"}}>
-                  <div style={{fontSize:36,marginBottom:12}}>{E.red}</div>
+                  <div style={{fontSize:36,marginBottom:12}}>âœ•</div>
                   <div className="modal-title">Ready to go live?</div>
                   <p className="modal-desc">Your riders will be notified that you're streaming. You can end the stream at any time.</p>
                   <div className="modal-btns">
@@ -3756,7 +3756,7 @@ export default function App() {
             {clapModal&&(
               <div className="modal-overlay" onClick={()=>setClapModal(null)}>
                 <div className="modal" onClick={e=>e.stopPropagation()} style={{maxHeight:"80vh",overflowY:"auto"}}>
-                  <div className="modal-title">{E.clap} Riders Who Clapped</div>
+                  <div className="modal-title">Riders Who Clapped</div>
                   <p style={{fontSize:11,color:darkMode?"#555":"#7a7a9a",letterSpacing:1,marginBottom:16,lineHeight:1.5}}>{clapModal.label.slice(0,60)}{clapModal.label.length>60?"...":""}</p>
                   {MOCK_CLAPPERS.map((r,i)=>(
                     <div key={r.username} style={{display:"flex",alignItems:"center",gap:12,padding:"10px 0",borderBottom:i<MOCK_CLAPPERS.length-1?`1px solid ${darkMode?"#1e1e00":"#e0dfd0"}`:"none"}}>
@@ -3851,7 +3851,7 @@ export default function App() {
                 {/* Main upload zone â€” only show when no media yet */}
                 {postMediaItems.length === 0 && (
                   <div className={`upload-zone`} onClick={()=>fileInputRef.current?.click()}>
-                    <div><div className="upload-placeholder-icon">{E.img}</div><div className="upload-placeholder-text">Click to upload photos or videos</div><div className="upload-placeholder-sub">JPG, PNG, WEBP, MP4, MOV Â· up to 10 files</div></div>
+                    <div><div className="upload-placeholder-text">Click to upload photos or videos</div><div className="upload-placeholder-sub">JPG, PNG, WEBP, MP4, MOV Â· up to 10 files</div></div>
                   </div>
                 )}
 
@@ -3933,8 +3933,8 @@ export default function App() {
                           </div>
                         )}
                         <div style={{display:"flex",alignItems:"center",gap:16,padding:"8px 14px 12px"}}>
-                          <button className={`like-btn${likes[p.id]?.liked?" liked":""}`} onClick={()=>toggleLike(p.id)}>{E.clap} {(likes[p.id]?.count||0).toLocaleString()}</button>
-                          <button className={`like-btn${amps[p.id]?.amped?" liked":""}`} onClick={()=>toggleAmp(p.id)}>{E.fire} {(amps[p.id]?.count||0).toLocaleString()}</button>
+                          <button className={`like-btn${likes[p.id]?.liked?" liked":""}`} onClick={()=>toggleLike(p.id)}>{likes[p.id]?.liked?"â™¥":"â™¡"} {(likes[p.id]?.count||0).toLocaleString()}</button>
+                          <button className={`like-btn${amps[p.id]?.amped?" liked":""}`} onClick={()=>toggleAmp(p.id)}>{amps[p.id]?.amped?"â†‘â†‘":"â†‘"} {(amps[p.id]?.count||0).toLocaleString()}</button>
                         </div>
                       </div>
                     );
@@ -3983,8 +3983,8 @@ export default function App() {
                         </div>
                       )}
                       <div className="feed-post-footer">
-                        <button className={`like-btn${likes[p.id]?.liked?" liked":""}`} onClick={()=>toggleLike(p.id)}>{E.clap} {(likes[p.id]?.count||0).toLocaleString()}</button>
-                        <button className={`like-btn${amps[p.id]?.amped?" liked":""}`} onClick={()=>toggleAmp(p.id)}>{E.fire} {(amps[p.id]?.count||0).toLocaleString()}</button>
+                        <button className={`like-btn${likes[p.id]?.liked?" liked":""}`} onClick={()=>toggleLike(p.id)}>{likes[p.id]?.liked?"â™¥":"â™¡"} {(likes[p.id]?.count||0).toLocaleString()}</button>
+                        <button className={`like-btn${amps[p.id]?.amped?" liked":""}`} onClick={()=>toggleAmp(p.id)}>{amps[p.id]?.amped?"â†‘â†‘":"â†‘"} {(amps[p.id]?.count||0).toLocaleString()}</button>
                         <button className={`tag-btn${activeTagInput===p.id?" active":""}`} onClick={()=>{setActiveTagInput(activeTagInput===p.id?null:p.id);setTagDraft('');}}>#</button>
                       </div>
                     </div>
@@ -4078,7 +4078,7 @@ export default function App() {
                       <div style={{width:40,height:40,background:"#111",borderRadius:1,display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,flexShrink:0}}>{p.type==="photo"?E.photo:p.type==="video"?E.video:"&#128226;"}</div>
                       <div style={{flex:1,minWidth:0}}>
                         <div style={{fontSize:11,color:darkMode?"#aaa":"#3a3a5a",lineHeight:1.5,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{p.label}</div>
-                        <div style={{fontSize:9,color:"#555",letterSpacing:1,marginTop:4}}>{p.time} - {E.clap} {(likes[p.id]?.count||0)} - {E.fire} {(amps[p.id]?.count||0)}</div>
+                        <div style={{fontSize:9,color:"#555",letterSpacing:1,marginTop:4}}>{p.time} - {(likes[p.id]?.count||0)} - {(amps[p.id]?.count||0)}</div>
                       </div>
                     </div>
                   ))}
