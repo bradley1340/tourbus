@@ -1,5 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// DEMO_MODE â€” set to false at launch to use real Supabase data
+// See src/lib/data.js for the full data layer
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+export const DEMO_MODE = true;
+
+
 const TOURBUS_BUS_IMG = "";
 
 const E = {
@@ -37,6 +44,7 @@ const SCREENS = {
   STREAM:"stream", SEARCH:"search", PROFILE:"profile", CHECKOUT:"checkout", UNLOCKED:"unlocked",
   ACCOUNT:"account", ARTIST_DASHBOARD:"artist_dashboard", NEW_POST:"new_post", POST_VIEW:"post_view", ARTIST_CLOSED:"artist_closed", ARTIST_LIVE:"artist_live", RIDER_CLOSED:"rider_closed", TAG_FEED:"tag_feed", VENUE_FEED:"venue_feed",
   TOURBUS_PROFILE:"tourbus_profile", TOURBUS_DASHBOARD:"tourbus_dashboard",
+  TOUR_SCHEDULE:"tour_schedule",
 };
 
 const ARTISTS = [
@@ -1842,12 +1850,57 @@ export default function App() {
   const [goLiveModal, setGoLiveModal] = useState(false);
   const [closeRiderAccountModal, setCloseRiderAccountModal] = useState(false); // post object
   const [profileDraft, setProfileDraft] = useState({bio:"",spotify:"",website:"",onTour:false,photo:""});
-  const [artistProfiles, setArtistProfiles] = useState({});
+  const [artistProfiles, setArtistProfiles] = useState({
+    1: { spotify:"https://open.spotify.com/artist/2ye2Wgw4gimLv2eAKyk1NB", tourDates: [ // The Midnight
+      {date:"Aug 15, 2026", venue:"Thalia Hall", city:"Chicago, IL", soldOut:true},
+      {date:"Aug 17, 2026", venue:"The Riviera Theatre", city:"Chicago, IL", soldOut:false},
+      {date:"Aug 22, 2026", venue:"9:30 Club", city:"Washington, DC", soldOut:false},
+      {date:"Aug 25, 2026", venue:"Terminal 5", city:"New York, NY", soldOut:false},
+      {date:"Sep 3, 2026", venue:"The Wiltern", city:"Los Angeles, CA", soldOut:false},
+      {date:"Sep 6, 2026", venue:"The Fillmore", city:"San Francisco, CA", soldOut:false},
+    ]},
+    2: { spotify:"https://open.spotify.com/artist/4xls23Ria9K7pQpHIj9tqh", tourDates: [ // Jade Carver
+      {date:"Aug 18, 2026", venue:"Schubas Tavern", city:"Chicago, IL", soldOut:false},
+      {date:"Aug 20, 2026", venue:"Bluebird Cafe", city:"Nashville, TN", soldOut:true},
+      {date:"Aug 28, 2026", venue:"The Earl", city:"Atlanta, GA", soldOut:false},
+      {date:"Sep 10, 2026", venue:"Antone's", city:"Austin, TX", soldOut:false},
+    ]},
+    3: { spotify:"https://open.spotify.com/artist/6Ff53KvcvAj5U7Z1vojB5o" }, // Brass & Bone
+    4: { spotify:"https://open.spotify.com/artist/4Z8W4fKeB5YxbusRsdQVPb" }, // Neon Palms
+    5: { spotify:"https://open.spotify.com/artist/3YQKmKGau1PzlVlkL1iAx3", tourDates: [ // Colt Reyes
+      {date:"Aug 14, 2026", venue:"Billy Bob's Texas", city:"Fort Worth, TX", soldOut:false},
+      {date:"Aug 21, 2026", venue:"Ryman Auditorium", city:"Nashville, TN", soldOut:true},
+      {date:"Sep 4, 2026", venue:"Red Rocks Amphitheatre", city:"Morrison, CO", soldOut:true},
+      {date:"Sep 12, 2026", venue:"Greek Theatre", city:"Los Angeles, CA", soldOut:false},
+    ]},
+    6: { spotify:"https://open.spotify.com/artist/6mfK6Q2tzLMEchAr0e9Uzu", tourDates: [ // Static Bloom
+      {date:"Aug 16, 2026", venue:"Empty Bottle", city:"Chicago, IL", soldOut:false},
+      {date:"Aug 19, 2026", venue:"Bowery Ballroom", city:"New York, NY", soldOut:false},
+      {date:"Aug 26, 2026", venue:"Boot & Saddle", city:"Philadelphia, PA", soldOut:false},
+    ]},
+    7: { spotify:"https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b", tourDates: [ // Rosa Vega
+      {date:"Aug 23, 2026", venue:"Metro Chicago", city:"Chicago, IL", soldOut:false},
+      {date:"Sep 1, 2026", venue:"Music Hall of Williamsburg", city:"Brooklyn, NY", soldOut:false},
+      {date:"Sep 8, 2026", venue:"El Rey Theatre", city:"Los Angeles, CA", soldOut:false},
+    ]},
+    8: { spotify:"https://open.spotify.com/artist/4TMHGUX5WIsQFPg1LsNBFV" }, // Hollow Pine
+    9: { spotify:"https://open.spotify.com/artist/776Uo845nYHJpNaStv1Ds4" }, // Dusk Radio
+    10: { spotify:"https://open.spotify.com/artist/2RdwBSPQiwcmiDo9kixcl8" }, // Maeve
+    11: { spotify:"https://open.spotify.com/artist/5INjqkS1o8h1imAzPqGZnR" }, // tourbus placeholder
+  });
   const [editingPost, setEditingPost] = useState(null);
   const [editPostCaption, setEditPostCaption] = useState("");
   const [editPostMedia, setEditPostMedia] = useState(null);
   const [confirmDeletePost, setConfirmDeletePost] = useState(null);
   const [selectedArtist, setSelectedArtist] = useState(null);
+  const [artistHistory, setArtistHistory] = useState([]); // stack of previous selectedArtist values
+
+  // Navigate to an artist profile, pushing current artist onto history
+  const goToArtist = (artist) => {
+    if (selectedArtist) setArtistHistory(prev => [...prev, selectedArtist]);
+    setSelectedArtist(artist);
+    go(SCREENS.PROFILE);
+  };
   const [riderUser, setRiderUser] = useState(null);
   const [purchased, setPurchased] = useState(()=>new Map(MY_ARTISTS.map((a,i)=>[a.id, new Date(Date.now()-(i+1)*30*24*60*60*1000)])));
   const [riderBookmarks, setRiderBookmarks] = useState([]); // ordered list of artist IDs, max 7 â€” rider pins from Settings
@@ -1932,6 +1985,16 @@ export default function App() {
       window.scrollTo(0,0);
       setActiveTagInput(null);
       setTagDraft('');
+      // Restore previous artist when navigating back to a profile
+      if (target === SCREENS.PROFILE) {
+        setArtistHistory(h => {
+          if (h.length === 0) return h;
+          const hNext = [...h];
+          const prevArtist = hNext.pop();
+          setSelectedArtist(prevArtist);
+          return hNext;
+        });
+      }
       return next;
     });
   };
@@ -2105,7 +2168,14 @@ export default function App() {
 
   const getArtistProfile = (artist) => {
     const ov = artistProfiles[artist.id];
-    return {bio: ov?.bio!==undefined?ov.bio:artist.bio||"", spotify: ov?.spotify!==undefined?ov.spotify:artist.spotify||"", website: ov?.website!==undefined?ov.website:artist.website||"", onTour: ov?.onTour!==undefined?ov.onTour:artist.onTour||false, photo: ov?.photo||artist.photo||""};
+    return {
+      bio: ov?.bio!==undefined?ov.bio:artist.bio||"",
+      spotify: ov?.spotify!==undefined?ov.spotify:artist.spotify||"",
+      website: ov?.website!==undefined?ov.website:artist.website||"",
+      onTour: ov?.onTour!==undefined?ov.onTour:artist.onTour||false,
+      photo: ov?.photo||artist.photo||"",
+      tourDates: ov?.tourDates||artist.tourDates||[],
+    };
   };
 
   const startCamera = async (videoEl) => {
@@ -2263,6 +2333,15 @@ export default function App() {
           const target = next.pop();
           setScreen(target);
           window.scrollTo(0,0);
+          if (target === SCREENS.PROFILE) {
+            setArtistHistory(h => {
+              if (h.length === 0) return h;
+              const hNext = [...h];
+              const prevArtist = hNext.pop();
+              setSelectedArtist(prevArtist);
+              return hNext;
+            });
+          }
           return next;
         });
       }
@@ -2314,7 +2393,7 @@ export default function App() {
   }).sort((a,b)=>genre==="Top This Month"?(b.riders+b.standby)-(a.riders+a.standby):0);
 
   const navResults = ALL_ARTISTS.filter(a=>navSearch.length>1&&a.name.toLowerCase().includes(navSearch.toLowerCase()));
-  const isLoggedIn = [SCREENS.STREAM,SCREENS.SEARCH,SCREENS.PROFILE,SCREENS.CHECKOUT,SCREENS.UNLOCKED,SCREENS.ACCOUNT,SCREENS.ARTIST_DASHBOARD,SCREENS.NEW_POST,SCREENS.POST_VIEW,SCREENS.TAG_FEED,SCREENS.VENUE_FEED,SCREENS.ARTIST_LIVE,SCREENS.ARTIST_CLOSED,SCREENS.RIDER_CLOSED,SCREENS.TOURBUS_PROFILE,SCREENS.TOURBUS_DASHBOARD].includes(screen);
+  const isLoggedIn = [SCREENS.STREAM,SCREENS.SEARCH,SCREENS.PROFILE,SCREENS.CHECKOUT,SCREENS.UNLOCKED,SCREENS.ACCOUNT,SCREENS.ARTIST_DASHBOARD,SCREENS.NEW_POST,SCREENS.POST_VIEW,SCREENS.TAG_FEED,SCREENS.VENUE_FEED,SCREENS.ARTIST_LIVE,SCREENS.ARTIST_CLOSED,SCREENS.RIDER_CLOSED,SCREENS.TOURBUS_PROFILE,SCREENS.TOURBUS_DASHBOARD,SCREENS.TOUR_SCHEDULE].includes(screen);
   const isArtistMode = userMode==="artist"&&!!artistUser;
   const myArtistPosts = feedPosts.filter(p=>artistUser&&p.artist===artistUser.name);
 
@@ -3021,28 +3100,42 @@ export default function App() {
                       <div className="profile-name">{selectedArtist.name}</div>
                       <div className="profile-genre">{selectedArtist.genre}</div>
                       <p className="profile-bio">{getArtistProfile(selectedArtist).bio}</p>
-                      {(getArtistProfile(selectedArtist).spotify||getArtistProfile(selectedArtist).website)&&(
+                      {getArtistProfile(selectedArtist).website&&(
                         <div style={{display:"flex",gap:10,flexWrap:"wrap",justifyContent:"center",marginBottom:16}}>
-                          {getArtistProfile(selectedArtist).spotify&&<a href={getArtistProfile(selectedArtist).spotify} target="_blank" rel="noopener noreferrer" style={{fontSize:11,color:"#1db954",border:"1px solid #1db954",borderRadius:1,padding:"5px 12px",letterSpacing:1,textDecoration:"none",fontFamily:"'Anton',sans-serif"}}>&#9654; Spotify</a>}
-                          {getArtistProfile(selectedArtist).website&&<a href={getArtistProfile(selectedArtist).website} target="_blank" rel="noopener noreferrer" style={{fontSize:11,color:darkMode?"#e6ff00":"#ff4d1a",border:darkMode?"1px solid #e6ff00":"1px solid #ff4d1a",borderRadius:1,padding:"5px 12px",letterSpacing:1,textDecoration:"none",fontFamily:"'Anton',sans-serif"}}>{E.globe} Website</a>}
+                          <a href={getArtistProfile(selectedArtist).website} target="_blank" rel="noopener noreferrer" style={{fontSize:11,color:darkMode?"#e6ff00":"#ff4d1a",border:darkMode?"1px solid #e6ff00":"1px solid #ff4d1a",borderRadius:1,padding:"5px 12px",letterSpacing:1,textDecoration:"none",fontFamily:"'Anton',sans-serif"}}>{E.globe} Website</a>
                         </div>
                       )}
-                      <div className="profile-stats" style={{alignItems:"center"}}>
+                      <div className="profile-stats" style={{alignItems:"center",gap:12,flexWrap:"wrap"}}>
                         <div className="stat"><div className="stat-num">{selectedArtist.riders.toLocaleString()}</div><div className="stat-lbl">Riders</div></div>
                         <div className="stat"><div className="stat-num">{selectedArtist.posts}</div><div className="stat-lbl">Posts</div></div>
-                        {(artistRecos[selectedArtist.id]||[]).length>0&&(
-                          <div style={{display:"flex",alignItems:"center",gap:6}}>
-                            <div style={{fontFamily:"'Anton',sans-serif",fontSize:9,letterSpacing:2,color:"#444",flexShrink:0}}>RECOS</div>
-                            <div style={{display:"flex",gap:4}}>
-                              {(artistRecos[selectedArtist.id]||[]).map(a=>(
-                                <div key={a.id} style={{cursor:"pointer"}} onClick={()=>{setSelectedArtist(a);go(SCREENS.PROFILE);}}>
-                                  <ArtistThumb artist={a} style={{width:36,height:36,borderRadius:2,border:`1px solid ${darkMode?"#2a2a00":"#d0cfc0"}`,transition:"border-color 0.2s"}}/>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
+                        {getArtistProfile(selectedArtist).onTour&&(
+                          <button onClick={()=>go(SCREENS.TOUR_SCHEDULE)} style={{fontFamily:"'Anton',sans-serif",fontSize:13,letterSpacing:2,color:darkMode?"#e6ff00":"#ff4d1a",background:darkMode?"rgba(230,255,0,0.06)":"rgba(255,77,26,0.08)",border:darkMode?"1px solid rgba(230,255,0,0.3)":"1px solid rgba(255,77,26,0.4)",borderRadius:2,padding:"7px 14px",cursor:"pointer"}}>
+                            ON TOUR
+                          </button>
                         )}
+                        {(()=>{
+                          const listenUrl = getArtistProfile(selectedArtist).spotify;
+                          const btn = <div style={{fontFamily:"'Anton',sans-serif",fontSize:13,letterSpacing:2,color:darkMode?"#e6ff00":"#ff4d1a",background:darkMode?"rgba(230,255,0,0.06)":"rgba(255,77,26,0.08)",border:darkMode?"1px solid rgba(230,255,0,0.3)":"1px solid rgba(255,77,26,0.4)",borderRadius:2,padding:"7px 14px",cursor:listenUrl?"pointer":"default",opacity:listenUrl?1:0.45}}>LISTEN</div>;
+                          return listenUrl
+                            ? <a href={`${listenUrl}?utm_source=tourbus`} target="_blank" rel="noopener noreferrer" style={{textDecoration:"none"}}>{btn}</a>
+                            : btn;
+                        })()}
                       </div>
+                      {/* Recos â€” own section below stats */}
+                      {(artistRecos[selectedArtist.id]||[]).length>0&&(
+                        <div style={{width:"100%",marginTop:20,paddingTop:16,borderTop:`1px solid ${darkMode?"#1e1e00":"#e8e8e0"}`}}>
+                          <div style={{fontFamily:"'Anton',sans-serif",fontSize:10,letterSpacing:3,color:darkMode?"#555":"#aaa",marginBottom:12,textAlign:"center"}}>ARTIST RECOS</div>
+                          <div style={{display:"flex",gap:12,justifyContent:"center",flexWrap:"wrap"}}>
+                            {(artistRecos[selectedArtist.id]||[]).map(a=>(
+                              <div key={a.id} style={{display:"flex",flexDirection:"column",alignItems:"center",gap:6,cursor:"pointer",minWidth:56}} onClick={()=>goToArtist(a)}>
+                                <ArtistThumb artist={a} style={{width:56,height:56,borderRadius:2,border:`1px solid ${darkMode?"#3a3a00":"#d0cfc0"}`,transition:"border-color 0.2s"}}/>
+                                <div style={{fontFamily:"'Inter',sans-serif",fontSize:9,letterSpacing:0.5,color:darkMode?"#bbb":"#555",textAlign:"center",maxWidth:64,whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{a.name}</div>
+                                {!a.active&&<div style={{fontFamily:"'Anton',sans-serif",fontSize:7,letterSpacing:1,color:"#555",marginTop:-4}}>NOT ON TB</div>}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </div>
                     {purchased.has(selectedArtist.id)?(
                       <>
@@ -3185,6 +3278,48 @@ export default function App() {
                     );
                   });
                 })()}
+              </div>
+            )}
+            {screen===SCREENS.TOUR_SCHEDULE&&selectedArtist&&(
+              <div className="fade" style={{width:"100%",maxWidth:"min(560px,100%)"}}>
+                <button className="profile-back" onClick={goBack}>Back to {selectedArtist.name}</button>
+                <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:20}}>
+                  <ArtistThumb artist={selectedArtist} photoOverride={getArtistProfile(selectedArtist).photo} style={{width:44,height:44,borderRadius:2,border:`1px solid ${darkMode?"#3a3a00":"#d0cfc0"}`,flexShrink:0}}/>
+                  <div>
+                    <div style={{fontFamily:"'Anton',sans-serif",fontSize:18,letterSpacing:2,color:darkMode?"#f5f5f5":"#1a1a2e"}}>{selectedArtist.name}</div>
+                    <div style={{fontFamily:"'Anton',sans-serif",fontSize:9,letterSpacing:3,color:"#ff4d1a"}}>TOUR SCHEDULE</div>
+                  </div>
+                </div>
+                {getArtistProfile(selectedArtist).tourDates.length>0?(
+                  <div style={{display:"flex",flexDirection:"column",gap:2}}>
+                    {getArtistProfile(selectedArtist).tourDates.map((show,i)=>(
+                      <div key={i} style={{display:"flex",alignItems:"center",gap:12,padding:"14px 16px",background:darkMode?"#161616":"#ffffff",border:`1px solid ${darkMode?"#2a2a00":"#e0dfd0"}`,borderRadius:2,opacity:show.soldOut?0.6:1}}>
+                        <div style={{flexShrink:0,textAlign:"center",minWidth:44}}>
+                          <div style={{fontFamily:"'Anton',sans-serif",fontSize:11,letterSpacing:1,color:darkMode?"#e6ff00":"#ff4d1a"}}>{show.date.split(" ").slice(0,2).join(" ").toUpperCase()}</div>
+                          <div style={{fontFamily:"'Anton',sans-serif",fontSize:9,letterSpacing:1,color:"#555"}}>{show.date.split(" ")[2]}</div>
+                        </div>
+                        <div style={{width:1,background:darkMode?"#2a2a00":"#e0dfd0",alignSelf:"stretch",flexShrink:0}}/>
+                        <div style={{flex:1,minWidth:0}}>
+                          <div style={{fontFamily:"'Anton',sans-serif",fontSize:13,letterSpacing:1,color:darkMode?"#f5f5f5":"#1a1a2e"}}>{show.venue}</div>
+                          <div style={{fontSize:11,color:darkMode?"#555":"#888",letterSpacing:0.5,marginTop:2}}>{show.city}</div>
+                        </div>
+                        <div style={{flexShrink:0}}>
+                          {show.soldOut
+                            ? <div style={{fontFamily:"'Anton',sans-serif",fontSize:9,letterSpacing:2,color:"#555",border:"1px solid #333",borderRadius:1,padding:"4px 8px"}}>SOLD OUT</div>
+                            : <div style={{fontFamily:"'Anton',sans-serif",fontSize:9,letterSpacing:2,color:darkMode?"#e6ff00":"#ff4d1a",border:`1px solid ${darkMode?"#3a3a00":"#ffb399"}`,borderRadius:1,padding:"4px 8px"}}>TICKETS</div>
+                          }
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ):(
+                  <div style={{padding:"40px 0",textAlign:"center",color:"#555",fontFamily:"'Anton',sans-serif",fontSize:11,letterSpacing:2}}>NO DATES ANNOUNCED YET</div>
+                )}
+                {purchased.has(selectedArtist.id)&&(
+                  <div style={{marginTop:16,padding:"12px 14px",background:darkMode?"#0e1a00":"#f0f8e8",border:`1px solid ${darkMode?"#2a3a00":"#b8d4a0"}`,borderRadius:2,fontSize:11,color:darkMode?"#8aaa66":"#4a7a2a",fontFamily:"'Inter',sans-serif",letterSpacing:0.5}}>
+                    You're on the bus â€” artist will post updates about tickets + VIP access for riders.
+                  </div>
+                )}
               </div>
             )}
             {screen===SCREENS.CHECKOUT&&selectedArtist&&(
@@ -3384,7 +3519,7 @@ export default function App() {
                       </div>
                       <div className="account-row">
                         <div style={{flex:1}}>
-                          <div className="account-row-label">Spotify</div>
+                          <div className="account-row-label">Listen</div>
                           <div style={{fontSize:13,color: getArtistProfile(artistUser).spotify?"#1db954":"#333",marginTop:4}}>{getArtistProfile(artistUser).spotify||"--"}</div>
                         </div>
                       </div>
@@ -3412,7 +3547,7 @@ export default function App() {
                       <label className="lbl">Bio</label>
                       <textarea className="inp" style={{height:100}} placeholder="Tell your riders about yourself..." value={profileDraft.bio} onChange={e=>setProfileDraft(p=>({...p,bio:e.target.value.slice(0,300)}))}/>
                       <div className="char-count">{profileDraft.bio.length}/300</div>
-                      <label className="lbl">Spotify URL</label>
+                      <label className="lbl">Listen URL</label>
                       <input className="inp" placeholder="https://open.spotify.com/artist/..." value={profileDraft.spotify} onChange={e=>setProfileDraft(p=>({...p,spotify:e.target.value}))}/>
                       <label className="lbl">Website</label>
                       <input className="inp" placeholder="https://yoursite.com" value={profileDraft.website} onChange={e=>setProfileDraft(p=>({...p,website:e.target.value}))}/>
