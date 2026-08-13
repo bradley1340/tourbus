@@ -1849,9 +1849,9 @@ export default function App() {
   const [isLive, setIsLive] = useState(false);
   const [goLiveModal, setGoLiveModal] = useState(false);
   const [closeRiderAccountModal, setCloseRiderAccountModal] = useState(false); // post object
-  const [profileDraft, setProfileDraft] = useState({bio:"",spotify:"",website:"",onTour:false,photo:""});
+  const [profileDraft, setProfileDraft] = useState({bio:"",listen:"",website:"",onTour:false,photo:""});
   const [artistProfiles, setArtistProfiles] = useState({
-    1: { spotify:"https://open.spotify.com/artist/2ye2Wgw4gimLv2eAKyk1NB", tourDates: [ // The Midnight
+    1: { tourDates: [ // The Midnight
       {date:"Aug 15, 2026", venue:"Thalia Hall", city:"Chicago, IL", soldOut:true},
       {date:"Aug 17, 2026", venue:"The Riviera Theatre", city:"Chicago, IL", soldOut:false},
       {date:"Aug 22, 2026", venue:"9:30 Club", city:"Washington, DC", soldOut:false},
@@ -1859,34 +1859,34 @@ export default function App() {
       {date:"Sep 3, 2026", venue:"The Wiltern", city:"Los Angeles, CA", soldOut:false},
       {date:"Sep 6, 2026", venue:"The Fillmore", city:"San Francisco, CA", soldOut:false},
     ]},
-    2: { spotify:"https://open.spotify.com/artist/4xls23Ria9K7pQpHIj9tqh", tourDates: [ // Jade Carver
+    2: { tourDates: [ // Jade Carver
       {date:"Aug 18, 2026", venue:"Schubas Tavern", city:"Chicago, IL", soldOut:false},
       {date:"Aug 20, 2026", venue:"Bluebird Cafe", city:"Nashville, TN", soldOut:true},
       {date:"Aug 28, 2026", venue:"The Earl", city:"Atlanta, GA", soldOut:false},
       {date:"Sep 10, 2026", venue:"Antone's", city:"Austin, TX", soldOut:false},
     ]},
-    3: { spotify:"https://open.spotify.com/artist/6Ff53KvcvAj5U7Z1vojB5o" }, // Brass & Bone
-    4: { spotify:"https://open.spotify.com/artist/4Z8W4fKeB5YxbusRsdQVPb" }, // Neon Palms
-    5: { spotify:"https://open.spotify.com/artist/3YQKmKGau1PzlVlkL1iAx3", tourDates: [ // Colt Reyes
+    3: { }, // Brass & Bone
+    4: { }, // Neon Palms
+    5: { tourDates: [ // Colt Reyes
       {date:"Aug 14, 2026", venue:"Billy Bob's Texas", city:"Fort Worth, TX", soldOut:false},
       {date:"Aug 21, 2026", venue:"Ryman Auditorium", city:"Nashville, TN", soldOut:true},
       {date:"Sep 4, 2026", venue:"Red Rocks Amphitheatre", city:"Morrison, CO", soldOut:true},
       {date:"Sep 12, 2026", venue:"Greek Theatre", city:"Los Angeles, CA", soldOut:false},
     ]},
-    6: { spotify:"https://open.spotify.com/artist/6mfK6Q2tzLMEchAr0e9Uzu", tourDates: [ // Static Bloom
+    6: { tourDates: [ // Static Bloom
       {date:"Aug 16, 2026", venue:"Empty Bottle", city:"Chicago, IL", soldOut:false},
       {date:"Aug 19, 2026", venue:"Bowery Ballroom", city:"New York, NY", soldOut:false},
       {date:"Aug 26, 2026", venue:"Boot & Saddle", city:"Philadelphia, PA", soldOut:false},
     ]},
-    7: { spotify:"https://open.spotify.com/artist/3PhoLpVuITZKcymswpck5b", tourDates: [ // Rosa Vega
+    7: { tourDates: [ // Rosa Vega
       {date:"Aug 23, 2026", venue:"Metro Chicago", city:"Chicago, IL", soldOut:false},
       {date:"Sep 1, 2026", venue:"Music Hall of Williamsburg", city:"Brooklyn, NY", soldOut:false},
       {date:"Sep 8, 2026", venue:"El Rey Theatre", city:"Los Angeles, CA", soldOut:false},
     ]},
-    8: { spotify:"https://open.spotify.com/artist/4TMHGUX5WIsQFPg1LsNBFV" }, // Hollow Pine
-    9: { spotify:"https://open.spotify.com/artist/776Uo845nYHJpNaStv1Ds4" }, // Dusk Radio
-    10: { spotify:"https://open.spotify.com/artist/2RdwBSPQiwcmiDo9kixcl8" }, // Maeve
-    11: { spotify:"https://open.spotify.com/artist/5INjqkS1o8h1imAzPqGZnR" }, // tourbus placeholder
+    8: { }, // Hollow Pine
+    9: { }, // Dusk Radio
+    10: { }, // Maeve
+    11: { }, // tourbus placeholder
   });
   const [editingPost, setEditingPost] = useState(null);
   const [editPostCaption, setEditPostCaption] = useState("");
@@ -1913,7 +1913,7 @@ export default function App() {
   const [agreedPrivacy, setAgreedPrivacy] = useState(false);
   const [agreedTerms, setAgreedTerms] = useState(false);
   const [showPolicy, setShowPolicy] = useState(null);
-  const [artistForm, setArtistForm] = useState({name:"",artist:"",email:"",agencyName:"",agencyEmail:"",mgmtName:"",mgmtEmail:"",spotify:""});
+  const [artistForm, setArtistForm] = useState({name:"",artist:"",email:"",agencyName:"",agencyEmail:"",mgmtName:"",mgmtEmail:"",listen:""});
   const [ccForm, setCcForm] = useState({number:"",exp:"",cvv:""});
   const [feedPosts, setFeedPosts] = useState(INIT_FEED);
   const [likes, setLikes] = useState(()=>Object.fromEntries(INIT_FEED.map(p=>[p.id,{count:p.likes,liked:false}])));
@@ -2162,7 +2162,7 @@ export default function App() {
   };
 
   const handleSaveProfile = () => {
-    setArtistProfiles(p=>({...p,[artistUser.id]:{bio:profileDraft.bio,spotify:profileDraft.spotify,website:profileDraft.website,onTour:profileDraft.onTour,photo:profileDraft.photo||p[artistUser.id]?.photo||""}}));
+    setArtistProfiles(p=>({...p,[artistUser.id]:{bio:profileDraft.bio,listen:profileDraft.listen,website:profileDraft.website,onTour:profileDraft.onTour,photo:profileDraft.photo||p[artistUser.id]?.photo||""}}));
     setEditingProfile(false);
   };
 
@@ -2170,7 +2170,7 @@ export default function App() {
     const ov = artistProfiles[artist.id];
     return {
       bio: ov?.bio!==undefined?ov.bio:artist.bio||"",
-      spotify: ov?.spotify!==undefined?ov.spotify:artist.spotify||"",
+      listen: ov?.listen!==undefined?ov.listen:artist.listen||"",
       website: ov?.website!==undefined?ov.website:artist.website||"",
       onTour: ov?.onTour!==undefined?ov.onTour:artist.onTour||false,
       photo: ov?.photo||artist.photo||"",
@@ -2436,7 +2436,7 @@ export default function App() {
                     )}
                   </div>
                   <button className="nav-station-btn" onClick={()=>go(SCREENS.SEARCH)}>
-                    <span className="nav-station-label">Station</span>
+                    <span className="nav-station-label">tb Station</span>
                     <span className="nav-station-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
                   </button>
                   <button onClick={()=>setDarkMode(d=>!d)} className="nav-account-btn" title={darkMode?"Switch to light mode":"Switch to dark mode"}>
@@ -2504,7 +2504,7 @@ export default function App() {
                   ? (() => {
                       const prev = screenStack[screenStack.length - 1];
                       if (prev === SCREENS.STREAM) return 'MY STREAM';
-                      if (prev === SCREENS.SEARCH) return 'STATION';
+                      if (prev === SCREENS.SEARCH) return 'TB STATION';
                       if (prev === SCREENS.PROFILE) return selectedArtist?.name?.toUpperCase() || 'BACK';
                       if (prev === SCREENS.ARTIST_DASHBOARD) return 'DASHBOARD';
                       if (prev === SCREENS.ACCOUNT) return 'ACCOUNT';
@@ -2661,7 +2661,7 @@ export default function App() {
                 <label className="lbl">Management Name <span style={{color:"#333"}}>(optional)</span></label><input className="inp" placeholder="Manager or management company" value={artistForm.mgmtName} onChange={e=>setArtistForm(p=>({...p,mgmtName:e.target.value}))}/>
                 <label className="lbl">Management Email <span style={{color:"#333"}}>(optional)</span></label><input className="inp" type="email" placeholder="manager@mgmt.com" value={artistForm.mgmtEmail} onChange={e=>setArtistForm(p=>({...p,mgmtEmail:e.target.value}))}/>
                 <hr className="divider"/>
-                <label className="lbl">Spotify Link <span style={{color:"#333"}}>(optional)</span></label><input className="inp" placeholder="spotify.com/artist/..." value={artistForm.spotify} onChange={e=>setArtistForm(p=>({...p,spotify:e.target.value}))}/>
+                <label className="lbl">Listen URL <span style={{color:"#333"}}>(optional)</span></label><input className="inp" placeholder="music.apple.com, bandcamp.com, etc." value={artistForm.listen} onChange={e=>setArtistForm(p=>({...p,listen:e.target.value}))}/>
                 <div className="note">{E.info} Artist accounts are manually reviewed before going live.</div>
                 <button className="btn btn-primary" style={{marginTop:20}} onClick={()=>go(SCREENS.ARTIST_SUCCESS)}>Submit Application</button>
               </div>
@@ -2670,7 +2670,7 @@ export default function App() {
               <div className="card fade" style={{textAlign:"center"}}>
                 <div className="success-icon">{E.ticket}</div><div className="logo logo-sm">you're on</div>
                 <div className="logo-sub">Welcome, {riderForm.username||"Rider"}</div>
-                <p className="subtext" style={{margin:"14px 0 26px"}}>Your account is ready. Head to the Station to find an artist and grab your $5 ticket.</p>
+                <p className="subtext" style={{margin:"14px 0 26px"}}>Your account is ready. Head to tb Station to find an artist and grab your $5 ticket.</p>
                 <button className="btn btn-primary" onClick={()=>go(SCREENS.STREAM)}>Go to My Stream</button>
               </div>
             )}
@@ -2896,7 +2896,7 @@ export default function App() {
             )}
             {screen===SCREENS.SEARCH&&(
               <div className="fade" style={{width:"100%",display:"flex",flexDirection:"column",alignItems:"center"}}>
-                <div className="station-header"><span style={{fontFamily:"'Caveat',cursive",fontSize:32,letterSpacing:-1,fontWeight:700,marginRight:16}}>the</span>STATION</div>
+                <div className="station-header"><span style={{fontFamily:"'Caveat',cursive",fontSize:32,letterSpacing:-1,fontWeight:700,marginRight:6}}>tb</span>STATION</div>
                 <div className="station-tabs">
                   <button className={`station-tab${stationView==="artists"?" active":""}`} onClick={()=>setStationView("artists")}>ARTISTS</button>
                   <button className={`station-tab${stationView==="tags"?" active":""}`} onClick={()=>setStationView("tags")}>TAGS</button>
@@ -3086,7 +3086,7 @@ export default function App() {
                   <button className="profile-back" onClick={goBack}>
                     {screenStack[screenStack.length-1]===SCREENS.ARTIST_DASHBOARD ? "Back to Dashboard"
                       : screenStack[screenStack.length-1]===SCREENS.STREAM ? "Back to My Stream"
-                      : screenStack[screenStack.length-1]===SCREENS.SEARCH ? "Back to Station"
+                      : screenStack[screenStack.length-1]===SCREENS.SEARCH ? "Back to tb Station"
                       : "Back"}
                   </button>
                 )}
@@ -3114,7 +3114,7 @@ export default function App() {
                           </button>
                         )}
                         {(()=>{
-                          const listenUrl = getArtistProfile(selectedArtist).spotify;
+                          const listenUrl = getArtistProfile(selectedArtist).listen;
                           const btn = <div style={{fontFamily:"'Anton',sans-serif",fontSize:13,letterSpacing:2,color:darkMode?"#e6ff00":"#ff4d1a",background:darkMode?"rgba(230,255,0,0.06)":"rgba(255,77,26,0.08)",border:darkMode?"1px solid rgba(230,255,0,0.3)":"1px solid rgba(255,77,26,0.4)",borderRadius:2,padding:"7px 14px",cursor:listenUrl?"pointer":"default",opacity:listenUrl?1:0.45}}>LISTEN</div>;
                           return listenUrl
                             ? <a href={`${listenUrl}?utm_source=tourbus`} target="_blank" rel="noopener noreferrer" style={{textDecoration:"none"}}>{btn}</a>
@@ -3293,7 +3293,7 @@ export default function App() {
                 {getArtistProfile(selectedArtist).tourDates.length>0?(
                   <div style={{display:"flex",flexDirection:"column",gap:2}}>
                     {getArtistProfile(selectedArtist).tourDates.map((show,i)=>(
-                      <div key={i} style={{display:"flex",alignItems:"center",gap:12,padding:"14px 16px",background:darkMode?"#161616":"#ffffff",border:`1px solid ${darkMode?"#2a2a00":"#e0dfd0"}`,borderRadius:2,opacity:show.soldOut?0.6:1}}>
+                      <div key={i} style={{display:"flex",alignItems:"center",gap:12,padding:"14px 16px",background:darkMode?"#161616":"#ffffff",border:`1px solid ${darkMode?"#2a2a00":"#e0dfd0"}`,borderRadius:2}}>
                         <div style={{flexShrink:0,textAlign:"center",minWidth:44}}>
                           <div style={{fontFamily:"'Anton',sans-serif",fontSize:11,letterSpacing:1,color:darkMode?"#e6ff00":"#ff4d1a"}}>{show.date.split(" ").slice(0,2).join(" ").toUpperCase()}</div>
                           <div style={{fontFamily:"'Anton',sans-serif",fontSize:9,letterSpacing:1,color:"#555"}}>{show.date.split(" ")[2]}</div>
@@ -3302,12 +3302,6 @@ export default function App() {
                         <div style={{flex:1,minWidth:0}}>
                           <div style={{fontFamily:"'Anton',sans-serif",fontSize:13,letterSpacing:1,color:darkMode?"#f5f5f5":"#1a1a2e"}}>{show.venue}</div>
                           <div style={{fontSize:11,color:darkMode?"#555":"#888",letterSpacing:0.5,marginTop:2}}>{show.city}</div>
-                        </div>
-                        <div style={{flexShrink:0}}>
-                          {show.soldOut
-                            ? <div style={{fontFamily:"'Anton',sans-serif",fontSize:9,letterSpacing:2,color:"#555",border:"1px solid #333",borderRadius:1,padding:"4px 8px"}}>SOLD OUT</div>
-                            : <div style={{fontFamily:"'Anton',sans-serif",fontSize:9,letterSpacing:2,color:darkMode?"#e6ff00":"#ff4d1a",border:`1px solid ${darkMode?"#3a3a00":"#ffb399"}`,borderRadius:1,padding:"4px 8px"}}>TICKETS</div>
-                          }
                         </div>
                       </div>
                     ))}
@@ -3379,7 +3373,7 @@ export default function App() {
                 <div className="account-section">
                   <div className="account-section-title">Tickets</div>
                   {ARTISTS.filter(a=>purchased.has(a.id)&&!offBus[a.name]).length===0&&(
-                    <div style={{padding:"12px 16px",fontSize:11,color:"#444",letterSpacing:1}}>No tickets yet. Head to the Station to find an artist.</div>
+                    <div style={{padding:"12px 16px",fontSize:11,color:"#444",letterSpacing:1}}>No tickets yet. Head to tb Station to find an artist.</div>
                   )}
                   {ARTISTS.filter(a=>purchased.has(a.id)&&!offBus[a.name]).map(a=>(
                     <div key={a.id} className="ticket-row" style={{alignItems:"center",gap:12}}>
@@ -3519,8 +3513,8 @@ export default function App() {
                       </div>
                       <div className="account-row">
                         <div style={{flex:1}}>
-                          <div className="account-row-label">Listen</div>
-                          <div style={{fontSize:13,color: getArtistProfile(artistUser).spotify?"#1db954":"#333",marginTop:4}}>{getArtistProfile(artistUser).spotify||"--"}</div>
+                          <div className="account-row-label">Listen URL</div>
+                          <div style={{fontSize:13,color: getArtistProfile(artistUser).listen?darkMode?"#e6ff00":"#ff4d1a":"#333",marginTop:4}}>{getArtistProfile(artistUser).listen||"--"}</div>
                         </div>
                       </div>
                       <div className="account-row" style={{borderBottom:"none"}}>
@@ -3529,7 +3523,7 @@ export default function App() {
                           <div style={{fontSize:13,color: getArtistProfile(artistUser).website?darkMode?"#e6ff00":"#ff4d1a":"#333",marginTop:4}}>{getArtistProfile(artistUser).website||"--"}</div>
                         </div>
                       </div>
-                      <button className="btn btn-outline" style={{marginTop:16,fontSize:12,padding:"10px",letterSpacing:2}} onClick={()=>{const p=getArtistProfile(artistUser);setProfileDraft({bio:p.bio,spotify:p.spotify,website:p.website,onTour:p.onTour,photo:p.photo||""});setEditingProfile(true);}}>Edit Profile</button>
+                      <button className="btn btn-outline" style={{marginTop:16,fontSize:12,padding:"10px",letterSpacing:2}} onClick={()=>{const p=getArtistProfile(artistUser);setProfileDraft({bio:p.bio,listen:p.listen,website:p.website,onTour:p.onTour,photo:p.photo||""});setEditingProfile(true);}}>Edit Profile</button>
                     </>
                   ):(
                     <>
@@ -3548,7 +3542,7 @@ export default function App() {
                       <textarea className="inp" style={{height:100}} placeholder="Tell your riders about yourself..." value={profileDraft.bio} onChange={e=>setProfileDraft(p=>({...p,bio:e.target.value.slice(0,300)}))}/>
                       <div className="char-count">{profileDraft.bio.length}/300</div>
                       <label className="lbl">Listen URL</label>
-                      <input className="inp" placeholder="https://open.spotify.com/artist/..." value={profileDraft.spotify} onChange={e=>setProfileDraft(p=>({...p,spotify:e.target.value}))}/>
+                      <input className="inp" placeholder="music.apple.com, bandcamp.com, soundcloud.com..." value={profileDraft.listen} onChange={e=>setProfileDraft(p=>({...p,listen:e.target.value}))}/>
                       <label className="lbl">Website</label>
                       <input className="inp" placeholder="https://yoursite.com" value={profileDraft.website} onChange={e=>setProfileDraft(p=>({...p,website:e.target.value}))}/>
                       <label className="lbl" style={{marginTop:12}}>Profile Photo</label>
