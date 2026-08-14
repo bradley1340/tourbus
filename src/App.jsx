@@ -2524,9 +2524,10 @@ export default function App() {
             {screen===SCREENS.LANDING&&(
               <div className="card fade">
                 <div className="logo">tourbus</div>
-                <div className="logo-sub" style={{fontSize:"18px",letterSpacing:"2px",marginBottom:"26px"}}>"We're with the band."</div>
+                <div className="logo-sub" style={{fontFamily:"'Playfair Display',serif",fontSize:"18px",letterSpacing:"0px",fontWeight:400,marginBottom:"26px"}}>"We're with the band."</div>
+                
                 <div className="headline">The <em>inside seat</em> with your favorite artists on their musical journey.</div>
-                <p className="subtext" style={{fontFamily:"'Inter',sans-serif"}}>Support artists directly, and get on board for exclusive content only they can provide -- photos, videos and livestream moments from backstage to the main stage, and everything in between.<br/><br/>No ads. No subscriptions. No upsells.<br/>Just an app to make your <em style={{color:darkMode?"#e6ff00":"#ff4d1a",fontWeight:"bold",fontStyle:"italic"}}>live</em> better.</p>
+                <p className="subtext" style={{fontFamily:"'Inter',sans-serif"}}>Support artists directly, and get on board their tourbus for <em style={{color:darkMode?"#e6ff00":"#ff4d1a",fontWeight:"bold",fontStyle:"italic"}}>exclusive content</em> only they can provide. Real-time photos, videos and livestream moments from backstage to the main stage, and everywhere in between.<br/><br/>No ads. No subscriptions. No clutter.<br/>Just an app to make your <em style={{color:darkMode?"#e6ff00":"#ff4d1a",fontWeight:"bold",fontStyle:"italic"}}>live</em> better.</p>
                 <div style={{width:"100%",aspectRatio:"16/9",background:darkMode?"#0a0a0a":"#f4f4f0",border:`1px solid ${darkMode?"#2a2a00":"#d0cfc0"}`,borderRadius:2,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:10,marginBottom:24,position:"relative",overflow:"hidden"}}>
                   <div style={{width:52,height:52,borderRadius:"50%",background:darkMode?"rgba(230,255,0,0.1)":"rgba(255,77,26,0.1)",border:`2px solid ${darkMode?"#e6ff00":"#ff4d1a"}`,display:"flex",alignItems:"center",justifyContent:"center"}}>
                     <div style={{width:0,height:0,borderTop:"10px solid transparent",borderBottom:"10px solid transparent",borderLeft:`16px solid ${darkMode?"#e6ff00":"#ff4d1a"}`,marginLeft:4}}/>
@@ -2581,7 +2582,7 @@ export default function App() {
             {screen===SCREENS.ARTIST_SIGNIN&&(
               <div className="card fade">
                 <button className="back" onClick={goBack}>Back</button>
-                <div className="logo logo-sm">tourbus</div><div className="logo-sub">Artist sign in</div>
+                <div className="logo logo-sm">tourbus</div><div className="logo-sub" style={{fontFamily:"'Playfair Display',serif",fontSize:"16px",letterSpacing:"0px",fontWeight:400}}>"We're with the band."</div><div className="logo-sub">Artist sign in</div>
                 <div className="headline">Your <em>tourbus</em> awaits.</div>
                 <label className="lbl">Email</label>
                 <input className={`inp${artistSignInError?" inp-error":""}`} placeholder="you@yourdomain.com" value={artistSignInForm.email} onChange={e=>{setArtistSignInForm(p=>({...p,email:e.target.value}));setArtistSignInError("");}}/>
@@ -2594,7 +2595,7 @@ export default function App() {
             )}
             {screen===SCREENS.CHOOSE_TYPE&&(
               <div className="card fade">
-                <div className="logo logo-sm">tourbus</div><div className="logo-sub">"We're with the band."</div>
+                <div className="logo logo-sm">tourbus</div>
                 <div className="headline">Who are you?</div>
 
                 <div style={{display:"flex",flexDirection:"column",gap:12,marginBottom:16}}>
