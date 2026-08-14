@@ -1953,8 +1953,7 @@ export default function App() {
   const [hidden, setHidden] = useState({});
   const [offBus, setOffBus] = useState({});
   const [confirmOff, setConfirmOff] = useState(null);
-  const [standbyConfirm, setStandbyConfirm] = useState(null);
-  const [showExplainer, setShowExplainer] = useState(false); // artist ID pending standby confirmation
+  const [standbyConfirm, setStandbyConfirm] = useState(null); // artist ID pending standby confirmation
   const [suggestNote, setSuggestNote] = useState("");
   const [suggestSubmitted, setSuggestSubmitted] = useState(false);
   const [recoSuggestSubmitted, setRecoSuggestSubmitted] = useState(false);
@@ -2529,9 +2528,9 @@ export default function App() {
                 
                 <div className="headline">The <em>inside seat</em> with your favorite artists on their musical journey.</div>
                 <p className="subtext" style={{fontFamily:"'Inter',sans-serif"}}>Support artists directly, and get on board their tourbus for <em style={{color:darkMode?"#e6ff00":"#ff4d1a",fontWeight:"bold",fontStyle:"italic"}}>exclusive content</em> only they can provide. Real-time photos, videos and livestream moments from backstage to the main stage, and everywhere in between.<br/><br/>No ads. No subscriptions. No clutter.<br/>Just an app to make your <em style={{color:darkMode?"#e6ff00":"#ff4d1a",fontWeight:"bold",fontStyle:"italic"}}>live</em> better.</p>
-                <div onClick={()=>setShowExplainer(true)} style={{width:"100%",aspectRatio:"16/9",background:darkMode?"#0a0a0a":"#f4f4f0",border:`1px solid ${darkMode?"#2a2a00":"#d0cfc0"}`,borderRadius:2,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:10,marginBottom:24,position:"relative",overflow:"hidden",cursor:"pointer"}} role="button">
-                  <div style={{width:56,height:56,borderRadius:"50%",background:darkMode?"rgba(230,255,0,0.1)":"rgba(255,77,26,0.1)",border:`2px solid ${darkMode?"#e6ff00":"#ff4d1a"}`,display:"flex",alignItems:"center",justifyContent:"center",transition:"transform 0.15s",transform:"scale(1)"}}>
-                    <div style={{width:0,height:0,borderTop:"11px solid transparent",borderBottom:"11px solid transparent",borderLeft:`18px solid ${darkMode?"#e6ff00":"#ff4d1a"}`,marginLeft:5}}/>
+                <div style={{width:"100%",aspectRatio:"16/9",background:darkMode?"#0a0a0a":"#f4f4f0",border:`1px solid ${darkMode?"#2a2a00":"#d0cfc0"}`,borderRadius:2,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:10,marginBottom:24,position:"relative",overflow:"hidden"}}>
+                  <div style={{width:52,height:52,borderRadius:"50%",background:darkMode?"rgba(230,255,0,0.1)":"rgba(255,77,26,0.1)",border:`2px solid ${darkMode?"#e6ff00":"#ff4d1a"}`,display:"flex",alignItems:"center",justifyContent:"center"}}>
+                    <div style={{width:0,height:0,borderTop:"10px solid transparent",borderBottom:"10px solid transparent",borderLeft:`16px solid ${darkMode?"#e6ff00":"#ff4d1a"}`,marginLeft:4}}/>
                   </div>
                   <div style={{fontFamily:"'Anton',sans-serif",fontSize:10,letterSpacing:3,color:"#555"}}>TOURBUS EXPLAINED IN 30 SECONDS</div>
                 </div>
@@ -2835,228 +2834,6 @@ export default function App() {
                 })}
               </div>
             )}
-            {showExplainer&&(
-              <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.92)",zIndex:9999,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:"16px"}} onClick={()=>setShowExplainer(false)}>
-                <div style={{width:"100%",maxWidth:560,position:"relative"}} onClick={e=>e.stopPropagation()}>
-                  <iframe
-                    srcDoc={"<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<title>tourbus</title>\n<link href=\"https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@700&family=Inter:wght@400;500&display=swap\" rel=\"stylesheet\">\n<style>\n*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }\nbody { background: #0a0a0a; display: flex; align-items: center; justify-content: center; min-height: 100vh; }\n.stage { width: min(560px,100vw); aspect-ratio: 16/9; background: #0a0a0a; position: relative; overflow: hidden; cursor: pointer; font-family: 'Anton', sans-serif; }\n.progress { position: absolute; bottom: 0; left: 0; height: 2px; background: #e6ff00; width: 0; animation: progress 38s linear forwards; z-index: 10; }\n@keyframes progress { to { width: 100%; } }\n.scanline { position: absolute; left: 0; right: 0; height: 60px; background: linear-gradient(to bottom, transparent, rgba(230,255,0,0.03), transparent); animation: scan 6s linear infinite; pointer-events: none; z-index: 9; }\n@keyframes scan { 0% { top: -60px; } 100% { top: 100%; } }\n.replay { position: absolute; bottom: 14px; right: 14px; font-family: 'Anton',sans-serif; font-size: 9px; letter-spacing: 2px; color: #333; border: 1px solid #1e1e1e; padding: 5px 10px; cursor: pointer; z-index: 20; animation: fadein 0.4s 37.5s both; }\n.replay:hover { color: #e6ff00; border-color: #3a3a00; }\n\n.scene { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; }\n#s1 { animation: scene-show  5s  0s both; }\n#s2 { animation: scene-show 11s  5s both; }\n#s3 { animation: scene-show  9s 16s both; }\n#s4 { animation: scene-show 10s 25s both; }\n#s5 { animation: scene-hold  4s 35s both; }\n@keyframes scene-show { 0%{opacity:0;} 5%{opacity:1;} 90%{opacity:1;} 100%{opacity:0;} }\n@keyframes scene-hold { 0%{opacity:0;} 8%{opacity:1;} 100%{opacity:1;} }\n\n/* S1 */\n.s1-label { font-size:clamp(7px,1.6vw,10px); letter-spacing:5px; color:#444; margin-bottom:10px; animation:fadein 0.4s 0.2s both; opacity:0; }\n.logo-main { font-family:'Caveat',cursive; font-size:clamp(32px,9vw,62px); color:#e6ff00; letter-spacing:-2px; font-weight:700; animation:riseup 0.7s 0.4s both; opacity:0; }\n.s1-sub { font-size:clamp(7px,1.8vw,11px); letter-spacing:4px; color:#444; margin-top:8px; animation:fadein 0.5s 1.1s both; opacity:0; }\n\n/* S2 */\n.prob { font-family:'Inter',sans-serif; font-size:clamp(10px,2.4vw,15px); color:#888; letter-spacing:0.3px; text-align:center; line-height:1.7; padding:0 8%; opacity:0; position:relative; display:inline-block; }\n.prob::after { content:''; position:absolute; left:0; top:50%; height:1.5px; background:rgba(230,255,0,0.55); width:0; display:block; transform:translateY(-50%); }\n#p1 { animation: fadein 0.4s 5.4s both; } #p1::after { animation: strike 0.5s 7.0s forwards; }\n#p2 { animation: fadein 0.4s 7.8s both; } #p2::after { animation: strike 0.5s 9.4s forwards; }\n#p3 { animation: fadein 0.4s 10.2s both; } #p3::after { animation: strike 0.5s 11.8s forwards; }\n@keyframes strike { from{width:0;} to{width:100%;} }\n.prob-punch { font-size:clamp(14px,3.5vw,24px); color:#f5f5f5; letter-spacing:2px; text-align:center; margin-top:18px; opacity:0; }\n.prob-punch em { color:#e6ff00; font-style:normal; }\n#p4 { animation: riseup 0.5s 13.2s both; }\n\n/* S3 */\n.step { display:flex; align-items:flex-start; gap:clamp(8px,2vw,18px); padding:clamp(6px,1.5vw,11px) clamp(20px,5vw,48px); width:100%; opacity:0; }\n.step-n { font-size:clamp(22px,5.5vw,40px); color:#e6ff00; line-height:1; width:clamp(24px,6vw,44px); flex-shrink:0; }\n.step-txt { font-family:'Inter',sans-serif; font-size:clamp(10px,2.2vw,14px); color:#888; line-height:1.5; padding-top:3px; }\n.step-txt strong { color:#f0f0f0; font-weight:500; }\n.step-hr { width:calc(100% - clamp(40px,10vw,90px)); height:1px; background:#1a1a00; margin:0 clamp(20px,5vw,48px) 0 clamp(40px,10vw,90px); opacity:0; }\n#step1 { animation:slidein 0.45s 16.4s both; } #hr1 { animation:fadein 0.3s 17s both; }\n#step2 { animation:slidein 0.45s 17.5s both; } #hr2 { animation:fadein 0.3s 18.1s both; }\n#step3 { animation:slidein 0.45s 19.1s both; }\n\n/* \u2500\u2500 S4: MONEY SPLIT \u2500\u2500 */\n\n/* headline */\n.s4-intro {\n  font-size: clamp(9px,2vw,13px);\n  letter-spacing: 4px;\n  color: #555;\n  text-align: center;\n  opacity: 0;\n  animation: fadein 0.5s 25.4s both;\n}\n.s4-intro em { color: #888; font-style: normal; font-family: 'Inter', sans-serif; font-size: clamp(8px,1.6vw,11px); letter-spacing: 1px; }\n\n/* $5 bill */\n.bill {\n  position: absolute;\n  width: clamp(88px,20vw,120px);\n  height: clamp(40px,9vw,56px);\n  border: 1.5px solid #e6ff00;\n  border-radius: 3px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: clamp(22px,5.5vw,38px);\n  color: #e6ff00;\n  letter-spacing: 1px;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -10%);\n  background: rgba(230,255,0,0.04);\n  box-shadow: 0 0 24px rgba(230,255,0,0.1), inset 0 0 20px rgba(0,0,0,0.3);\n  animation: bill-in 0.5s 26.1s both, bill-out 0.3s 27.0s forwards;\n}\n.bill::before {\n  content: '';\n  position: absolute;\n  inset: 3px;\n  border: 1px solid rgba(230,255,0,0.12);\n  border-radius: 2px;\n}\n@keyframes bill-in  { from{opacity:0;transform:translate(-50%,-10%) scale(0.8);} to{opacity:1;transform:translate(-50%,-10%) scale(1);} }\n@keyframes bill-out { from{opacity:1;} to{opacity:0;transform:translate(-50%,-10%) scale(1.08);filter:blur(2px);} }\n\n/* Singles \u2014 5 bills, start at center, split left/right */\n.single {\n  position: absolute;\n  width: clamp(56px,13vw,80px);\n  height: clamp(26px,6vw,38px);\n  border: 1px solid rgba(230,255,0,0.5);\n  border-radius: 2px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: clamp(11px,2.8vw,18px);\n  color: #e6ff00;\n  background: rgba(230,255,0,0.03);\n  top: 50%;\n  left: 50%;\n  opacity: 0;\n}\n\n/* 3 go left, 2 go right */\n/* appear at center, then fly to destination */\n.b1 { animation: to-left-1 0.7s 27.2s both; }\n.b2 { animation: to-left-2 0.7s 27.35s both; }\n.b3 { animation: to-left-3 0.7s 27.5s both; }\n.b4 { animation: to-right-1 0.7s 27.2s both; }\n.b5 { animation: to-right-2 0.7s 27.35s both; }\n\n@keyframes to-left-1  { 0%{opacity:0;transform:translate(-50%,-50%);} 20%{opacity:1;} 100%{opacity:1;transform:translate(-200%,-80%);} }\n@keyframes to-left-2  { 0%{opacity:0;transform:translate(-50%,-50%);} 20%{opacity:1;} 100%{opacity:1;transform:translate(-210%,-30%);} }\n@keyframes to-left-3  { 0%{opacity:0;transform:translate(-50%,-50%);} 20%{opacity:1;} 100%{opacity:1;transform:translate(-200%,20%);} }\n@keyframes to-right-1 { 0%{opacity:0;transform:translate(-50%,-50%);} 20%{opacity:1;} 100%{opacity:1;transform:translate(110%,-65%);} }\n@keyframes to-right-2 { 0%{opacity:0;transform:translate(-50%,-50%);} 20%{opacity:1;} 100%{opacity:1;transform:translate(110%,-5%);} }\n\n/* Pile labels \u2014 appear after bills land */\n.pile {\n  position: absolute;\n  bottom: 12%;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  gap: 3px;\n  opacity: 0;\n}\n.pile.left  { left: 16%;  animation: riseup 0.4s 28.1s both; }\n.pile.right { right: 12%; animation: riseup 0.4s 28.3s both; }\n\n.pile-amt {\n  font-size: clamp(24px,6vw,40px);\n  color: #e6ff00;\n  line-height: 1;\n}\n.pile-to {\n  font-size: clamp(7px,1.5vw,10px);\n  letter-spacing: 3px;\n  color: #e6ff00;\n}\n.pile-desc {\n  font-family: 'Inter', sans-serif;\n  font-size: clamp(6px,1.2vw,8px);\n  color: #444;\n  letter-spacing: 0.5px;\n  text-align: center;\n  margin-top: 2px;\n}\n\n/* center divider */\n.divider-v {\n  position: absolute;\n  top: 10%; bottom: 8%;\n  left: 50%;\n  width: 1px;\n  background: #1e1e00;\n  opacity: 0;\n  animation: fadein 0.3s 28s both;\n}\n\n/* S5 */\n.cta-h    { font-size:clamp(16px,4.5vw,32px); letter-spacing:2px; color:#f5f5f5; text-align:center; line-height:1.25; padding:0 6%; opacity:0; animation:riseup 0.55s 35.3s both; }\n.cta-h em { color:#e6ff00; font-style:normal; }\n.cta-sub  { font-family:'Inter',sans-serif; font-size:clamp(9px,1.8vw,12px); color:#555; letter-spacing:1px; margin-top:10px; opacity:0; animation:fadein 0.4s 36s both; }\n.cta-logo { font-family:'Caveat',cursive; font-size:clamp(16px,4vw,30px); color:#e6ff00; font-weight:700; letter-spacing:-1px; margin-top:clamp(14px,3.5vw,24px); opacity:0; animation:fadein 0.5s 36.8s both; }\n\n@keyframes fadein  { from{opacity:0;} to{opacity:1;} }\n@keyframes riseup  { from{opacity:0;transform:translateY(10px);} to{opacity:1;transform:translateY(0);} }\n@keyframes slidein { from{opacity:0;transform:translateX(-14px);} to{opacity:1;transform:translateX(0);} }\n</style>\n</head>\n<body>\n<div class=\"stage\" id=\"stage\" onclick=\"restart()\">\n  <div class=\"scanline\"></div>\n  <div class=\"progress\"></div>\n\n  <!-- S1 -->\n  <div class=\"scene\" id=\"s1\">\n    <div class=\"s1-label\">EXPLAINED</div>\n    <div class=\"logo-main\">tourbus</div>\n    <div class=\"s1-sub\">\"WE'RE WITH THE BAND.\"</div>\n  </div>\n\n  <!-- S2 -->\n  <div class=\"scene\" id=\"s2\">\n    <div class=\"prob\" id=\"p1\">algorithms that bury your favorite artists</div>\n    <div class=\"prob\" id=\"p2\">ads selling you things they didn't make</div>\n    <div class=\"prob\" id=\"p3\">subscriptions that pay them pennies</div>\n    <div class=\"prob-punch\" id=\"p4\">there's a better way. <em>$5.</em></div>\n  </div>\n\n  <!-- S3 -->\n  <div class=\"scene\" id=\"s3\">\n    <div class=\"step\" id=\"step1\"><div class=\"step-n\">1</div><div class=\"step-txt\"><strong>Pick an artist you love.</strong><br>Find them at tb Station.</div></div>\n    <div class=\"step-hr\" id=\"hr1\"></div>\n    <div class=\"step\" id=\"step2\"><div class=\"step-n\">2</div><div class=\"step-txt\"><strong>Ride with them for $5.</strong><br>One-time. No subscription ever.</div></div>\n    <div class=\"step-hr\" id=\"hr2\"></div>\n    <div class=\"step\" id=\"step3\"><div class=\"step-n\">3</div><div class=\"step-txt\"><strong>Get the inside seat.</strong><br>Photos, video, live moments only riders see.</div></div>\n  </div>\n\n  <!-- S4 -->\n  <div class=\"scene\" id=\"s4\">\n\n    <!-- intro text -->\n    <div class=\"s4-intro\" style=\"position:absolute;top:14%;width:100%;\">\n      TRANSPARENT PRICING &nbsp;\u00b7&nbsp; <em>just what's fair</em>\n    </div>\n\n    <!-- $5 bill center stage -->\n    <div class=\"bill\">$5</div>\n\n    <!-- 3 singles \u2192 left (artist) -->\n    <div class=\"single b1\">$1</div>\n    <div class=\"single b2\">$1</div>\n    <div class=\"single b3\">$1</div>\n\n    <!-- 2 singles \u2192 right (tourbus) -->\n    <div class=\"single b4\">$1</div>\n    <div class=\"single b5\">$1</div>\n\n    <!-- vertical divider -->\n    <div class=\"divider-v\"></div>\n\n    <!-- left pile -->\n    <div class=\"pile left\">\n      <div class=\"pile-amt\">$3</div>\n      <div class=\"pile-to\">TO ARTIST</div>\n      <div class=\"pile-desc\">directly. always.</div>\n    </div>\n\n    <!-- right pile -->\n    <div class=\"pile right\">\n      <div class=\"pile-amt\">$2</div>\n      <div class=\"pile-to\">TO TOURBUS</div>\n      <div class=\"pile-desc\">our team + charity.</div>\n    </div>\n\n  </div>\n\n  <!-- S5 -->\n  <div class=\"scene\" id=\"s5\">\n    <div class=\"cta-h\">Get on the bus.<br><em>Your artist is waiting.</em></div>\n    <div class=\"cta-sub\">No ads. No algorithms. Just them.</div>\n    <div class=\"cta-logo\">tourbus</div>\n  </div>\n\n  <div class=\"replay\" onclick=\"event.stopPropagation();restart()\">\u21ba REPLAY</div>\n</div>\n<script>\nfunction restart(){const s=document.getElementById('stage');s.style.display='none';void s.offsetWidth;s.style.display='';}\n</script>\n</body>\n</html>\n"}
-                    style={{width:"100%",aspectRatio:"16/9",border:"none",borderRadius:2,display:"block"}}
-                    title="tourbus explained"
-                    scrolling="no"
-                  />
-                  <button onClick={()=>setShowExplainer(false)} style={{position:"absolute",top:-36,right:0,background:"transparent",border:"none",color:"#555",fontFamily:"'Anton',sans-serif",fontSize:11,letterSpacing:2,cursor:"pointer"}}>CLOSE</button>
-                </div>
-              </div>
-            )}
-            {standbyConfirm&&(
-              <div className="modal-overlay" onClick={()=>setStandbyConfirm(null)}>
-                <div className="modal" onClick={e=>e.stopPropagation()}>
-                  <div className="modal-title">Go on Standby?</div>
-                  <p className="modal-desc" style={{lineHeight:1.7}}>
-                    {(()=>{const a=[...ARTISTS,...SPOTIFY_ARTISTS].find(a=>a.id===standbyConfirm);return a?.name||"This artist";})()}  doesn't have a tourbus account yet. If they activate, we'll charge your card $5 and you'll be on the bus. You can cancel standby anytime before then.
-                  </p>
-                  <div className="modal-btns">
-                    <button className="btn btn-primary" onClick={()=>{toggleStandby(standbyConfirm);setStandbyConfirm(null);}}>Go Standby</button>
-                    <button className="btn btn-ghost" onClick={()=>setStandbyConfirm(null)}>Cancel</button>
-                  </div>
-                </div>
-              </div>
-            )}
-            {confirmOff&&(
-              <div className="modal-overlay">
-                <div className="modal">
-                  <div className="modal-title">Get off this bus?</div>
-                  <p className="modal-desc">You'll lose access to <strong style={{color:"#f5f5f5"}}>{confirmOff}</strong>'s feed. Your $5 ticket is non-refundable.</p>
-                  <div className="modal-btns">
-                    <button className="btn btn-primary" style={{background:"#331100",color:"#ff6633",boxShadow:"none"}} onClick={()=>doGetOff(confirmOff)}>Get Off</button>
-                    <button className="btn btn-ghost" onClick={()=>setConfirmOff(null)}>Cancel</button>
-                  </div>
-                </div>
-              </div>
-            )}
-            {showPolicy&&(
-              <div className="modal-overlay" onClick={()=>setShowPolicy(null)}>
-                <div className="policy-modal" onClick={e=>e.stopPropagation()}>
-                  {showPolicy==="privacy"?(
-                    <>
-                      <div className="policy-modal-title">Privacy Policy</div>
-                      <div className="policy-modal-body">
-                        <p>Last updated: March 2026</p>
-                        <h4>INFORMATION WE COLLECT</h4>
-                        <p>We collect your username, zip code, and payment information when you create a Rider account. We collect your email address and professional information when you apply as an Artist.</p>
-                        <h4>HOW WE USE YOUR INFORMATION</h4>
-                        <p>We use your information to operate the tourbus platform, process payments, send you notifications about artists you follow, and improve our services. We do not sell your personal information to third parties.</p>
-                        <h4>PAYMENT INFORMATION</h4>
-                        <p>Payment information is processed securely. We store only the last four digits of your card for reference. Full card details are handled by our payment processor and are never stored on our servers.</p>
-                        <h4>COMMUNICATIONS</h4>
-                        <p>We may send you emails about new artists, platform updates, and activity on your account. You may opt out of promotional emails at any time.</p>
-                        <h4>DATA RETENTION</h4>
-                        <p>We retain your account data for as long as your account is active. You may request deletion of your account and associated data at any time by contacting support.</p>
-                        <h4>CONTACT</h4>
-                        <p>For privacy-related inquiries, contact us at privacy@tourbus.live.</p>
-                      </div>
-                    </>
-                  ):(
-                    <>
-                      <div className="policy-modal-title">Terms of Use</div>
-                      <div className="policy-modal-body">
-                        <p>Last updated: March 2026</p>
-                        <h4>ACCEPTANCE OF TERMS</h4>
-                        <p>By creating an account on tourbus, you agree to these Terms of Use. If you do not agree, do not use the platform.</p>
-                        <h4>RIDER ACCOUNTS</h4>
-                        <p>Rider accounts are for personal, non-commercial use. You must be 13 years of age or older to create an account. You are responsible for maintaining the confidentiality of your account credentials.</p>
-                        <h4>PURCHASES AND REFUNDS</h4>
-                        <p>All $5 artist ticket purchases are final and non-refundable. This includes cases where an artist deactivates their tourbus account after your purchase. By purchasing a ticket, you acknowledge this policy.</p>
-                        <h4>CONTENT</h4>
-                        <p>All content on tourbus is owned by the respective artists. You may not reproduce, distribute, or commercially exploit any content without the explicit written consent of the artist.</p>
-                        <h4>PROHIBITED CONDUCT</h4>
-                        <p>You agree not to use tourbus to harass artists or other users, circumvent access controls, scrape or harvest content, or engage in any activity that disrupts the platform.</p>
-                        <h4>LIVE LIVES HERE</h4>
-                        <p>One dollar from every $5 ticket is donated to Live Lives Here, a charity supporting local music venues. tourbus does not guarantee any specific amount of donations.</p>
-                        <h4>CHANGES TO TERMS</h4>
-                        <p>We may update these terms at any time. Continued use of the platform after changes constitutes acceptance of the updated terms.</p>
-                        <h4>CONTACT</h4>
-                        <p>For questions about these terms, contact us at legal@tourbus.live.</p>
-                      </div>
-                    </>
-                  )}
-                  <button className="btn btn-primary" style={{marginBottom:0,flexShrink:0}} onClick={()=>{if(showPolicy==="privacy")setAgreedPrivacy(true);else setAgreedTerms(true);setShowPolicy(null);}}>I Agree</button>
-                </div>
-              </div>
-            )}
-            {screen===SCREENS.SEARCH&&(
-              <div className="fade" style={{width:"100%",display:"flex",flexDirection:"column",alignItems:"center"}}>
-                <div className="station-header"><span style={{fontFamily:"'Caveat',cursive",fontSize:32,letterSpacing:-1,fontWeight:700,marginRight:6}}>tb</span>STATION</div>
-                <div className="station-tabs">
-                  <button className={`station-tab${stationView==="artists"?" active":""}`} onClick={()=>setStationView("artists")}>ARTISTS</button>
-                  <button className={`station-tab${stationView==="tags"?" active":""}`} onClick={()=>setStationView("tags")}>TAGS</button>
-                  <button className={`station-tab${stationView==="venues"?" active":""}`} onClick={()=>setStationView("venues")}>VENUES</button>
-                </div>
-                {stationView==="artists"&&(
-                  <>
-                    <div className="search-bar-wrap"><span className="search-icon"></span><input className="search-bar" placeholder="Search artists, genres..." value={search} onChange={e=>{setSearch(e.target.value);setSuggestSubmitted(false);setSuggestNote("");}}/></div>
-                    <div className="filter-row">
-                      {GENRE_FILTERS.map(g=><button key={g} className={`filter-pill${genre===g?" active":""}`} onClick={()=>setGenre(g)}>{g}</button>)}
-                      {GENRE_TAGS.map(g=><button key={g} className={`filter-pill${genre===g?" active":""}`} onClick={()=>setGenre(g)}>{g}</button>)}
-                    </div>
-                <div className="artist-cards">
-                  {filteredArtists.map(a=>(
-                    <div key={a.id} className={`artist-card${!a.active?" standby":""}`} onClick={()=>{setSelectedArtist(a);go(SCREENS.PROFILE);}}>
-                      <div className="artist-card-main">
-                        <div className="artist-card-top">
-                          <div style={{display:"flex",alignItems:"center",gap:10}}>
-                            <ArtistThumb artist={a} style={{width:56,height:56,borderRadius:2,flexShrink:0}}/>
-                            <div><div className="artist-card-name">{a.name}</div><div className="artist-card-genre">{a.genre}</div></div>
-                          </div>
-                        </div>
-                        <div className="artist-card-badges">
-                          {a.onTour&&<span className="badge badge-tour">On Tour</span>}
-                          {a.newlyAdded&&<span className="badge badge-new">New</span>}
-                        </div>
-                      </div>
-                      <div className="artist-card-stub">
-                        <div className="stub-notch-top"/><div className="stub-notch-bot"/>
-                        {a.active?(
-                          <><div className="stub-count">{a.riders.toLocaleString()}</div><div className="stub-label">riders</div>
-                          {purchased.has(a.id)
-                            ? <div style={{fontFamily:"'Anton',sans-serif",fontSize:9,letterSpacing:1,color:darkMode?"#e6ff00":"#ff4d1a",marginTop:4,textAlign:"center"}}>RIDING</div>
-                            : <button className="stub-action" onClick={e=>{e.stopPropagation();setSelectedArtist(a);go(SCREENS.PROFILE);}}>Ride</button>
-                          }</>
-                        ):(
-                          <><div className="stub-count">{(standbyCounts[a.id]||0).toLocaleString()}</div><div className="stub-label">on standby</div><button className="stub-action" onClick={e=>{e.stopPropagation();standby[a.id]?toggleStandby(a.id):setStandbyConfirm(a.id);}}>{standby[a.id]?"Standby":"Go Standby"}</button></>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                  {search.trim().length>1&&filteredArtists.length===0&&(
-                    <div className="suggest-card">
-                      {!suggestSubmitted?(
-                        <>
-                          <div className="suggest-title">Don't see {search}?</div>
-                          <div className="suggest-sub">We're always adding new artists. Suggest them and we'll reach out.</div>
-                          <label className="lbl">Artist name</label>
-                          <input className="inp" value={search} readOnly style={{color:darkMode?"#e6ff00":"#ff4d1a",marginBottom:16}}/>
-                          <button className="btn btn-primary" style={{marginBottom:0}} onClick={()=>setSuggestSubmitted(true)}>Suggest This Artist</button>
-                        </>
-                      ):(
-                        <div className="suggest-success">
-                          <div className="suggest-success-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-                          <div className="suggest-success-text">Suggestion received!</div>
-                          <div className="suggest-success-sub">We'll look into bringing {search} onto tourbus.</div>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                  {search.trim().length>1&&filteredArtists.length>0&&(
-                    <div style={{textAlign:"center",padding:"16px 0",borderTop:`1px solid ${darkMode?"#1e1e00":"#e8e0d0"}`,marginTop:4}}>
-                      <span style={{fontSize:11,color:"#888",letterSpacing:1}}>Not seeing who you're looking for? </span>
-                      <span style={{fontSize:11,color:darkMode?"#e6ff00":"#ff4d1a",letterSpacing:1,cursor:"pointer"}} onClick={()=>{setSuggestSubmitted(false);setSearch(search+" ");}}>Suggest an artist -></span>
-                    </div>
-                  )}
-                  {search.trim().length===0&&(
-                    <div style={{textAlign:"center",padding:"16px 0",borderTop:`1px solid ${darkMode?"#1e1e00":"#e8e0d0"}`,marginTop:4}}>
-                      <span style={{fontSize:11,color:"#888",letterSpacing:1}}>Not seeing who you're looking for? </span>
-                      <span style={{fontSize:11,color:darkMode?"#e6ff00":"#ff4d1a",letterSpacing:1,cursor:"pointer"}} onClick={()=>{setSuggestSubmitted(false);setSearch("an artist");}}>Suggest an artist -></span>
-                    </div>
-                  )}
-                </div>
-                  </>
-                )}
-                {stationView==="tags"&&(()=>{
-                  // Aggregate all tags across all posts, sum counts, sort by total fire
-                  const allTagTotals = {};
-                  feedPosts.forEach(p=>{
-                    const postTags = tags[p.id]||{};
-                    const fire = amps[p.id]?.count||0;
-                    Object.entries(postTags).filter(([,cnt])=>cnt>=TAG_THRESHOLD).forEach(([tag,cnt])=>{
-                      if(!allTagTotals[tag]) allTagTotals[tag]={posts:0,tagCount:0,fire:0};
-                      allTagTotals[tag].posts++;
-                      allTagTotals[tag].tagCount+=cnt;
-                      allTagTotals[tag].fire+=fire;
-                    });
-                  });
-                  const sorted = Object.entries(allTagTotals).sort((a,b)=>b[1].tagCount-a[1].tagCount);
-                  return (
-                    <div className="tag-summary-cards">
-                      {sorted.map(([tag,data])=>(
-                        <div key={tag} className="tag-summary-card" onClick={()=>{setActiveTag(tag);go(SCREENS.TAG_FEED);}}>
-                          <div>
-                            <div className="tag-summary-name">#{tag}</div>
-                            <div className="tag-summary-meta">{data.posts} POST{data.posts!==1?"S":""}</div>
-                          </div>
-                          <div style={{textAlign:"right"}}>
-                            <div className="tag-summary-count">{data.tagCount.toLocaleString()}</div>
-                            <div className="tag-summary-count-lbl">TOTAL TAGS</div>
-                          </div>
-                        </div>
-                      ))}
-                      {sorted.length===0&&<div style={{color:"#555",fontFamily:"'Inter',sans-serif",fontSize:13,textAlign:"center",padding:40}}>No tags yet. Add some from the stream.</div>}
-                    </div>
-                  );
-                })()}
-              </div>
-            )}
-            {screen===SCREENS.SEARCH&&stationView==="venues"&&(
-              <div className="search-wrap" style={{width:"100%"}}>
-                {VENUES.map(venue=>{
-                  const venuePosts = feedPosts.filter(p=>{
-                    if(!p.label) return false;
-                    const re = new RegExp("@"+venue.slug, "i");
-                    return re.test(p.label);
-                  });
-                  return (
-                    <div key={venue.slug} className="tag-summary-card" style={{cursor:"pointer"}} onClick={()=>{setActiveVenue(venue.slug);go(SCREENS.VENUE_FEED);}}>
-                      <div>
-                        <div className="tag-summary-name">{venue.name}</div>
-                        <div className="tag-summary-meta" style={{marginTop:2}}>{venue.city}</div>
-                      </div>
-                      <div style={{textAlign:"right"}}>
-                        <div className="tag-summary-count">{venuePosts.length}</div>
-                        <div className="tag-summary-count-lbl">POST{venuePosts.length!==1?"S":""}</div>
-                      </div>
-                    </div>
-                  );
-                })}
               </div>
             )}
             {screen===SCREENS.VENUE_FEED&&activeVenue&&(()=>{
@@ -3785,6 +3562,32 @@ export default function App() {
                   <div className="modal-btns">
                     <button className="btn btn-primary" style={{background:"#330000",color:"#ff4444",boxShadow:"none",marginBottom:0}} onClick={()=>{setCloseAccountModal(false);setArtistUser(null);setUserMode("rider");go(SCREENS.ARTIST_CLOSED);}}>Yes, Close My Account</button>
                     <button className="btn btn-ghost" onClick={()=>setCloseAccountModal(false)}>Cancel</button>
+                  </div>
+                </div>
+              </div>
+            )}
+            {standbyConfirm&&(
+              <div className="modal-overlay" onClick={()=>setStandbyConfirm(null)}>
+                <div className="modal" onClick={e=>e.stopPropagation()}>
+                  <div className="modal-title">Go on Standby?</div>
+                  <p className="modal-desc" style={{lineHeight:1.7}}>
+                    {(()=>{const a=[...ARTISTS,...SPOTIFY_ARTISTS].find(a=>a.id===standbyConfirm);return a?.name||"This artist";})()}  doesn't have a tourbus account yet. If they activate, we'll charge your card $5 and you'll be on the bus. You can cancel standby anytime before then.
+                  </p>
+                  <div className="modal-btns">
+                    <button className="btn btn-primary" onClick={()=>{toggleStandby(standbyConfirm);setStandbyConfirm(null);}}>Go Standby</button>
+                    <button className="btn btn-ghost" onClick={()=>setStandbyConfirm(null)}>Cancel</button>
+                  </div>
+                </div>
+              </div>
+            )}
+            {confirmOff&&(
+              <div className="modal-overlay" onClick={()=>setConfirmOff(null)}>
+                <div className="modal" onClick={e=>e.stopPropagation()}>
+                  <div className="modal-title">Get off this bus?</div>
+                  <p className="modal-desc">This is non-refundable. You'll lose access to {confirmOff}'s exclusive content.</p>
+                  <div className="modal-btns">
+                    <button className="btn btn-primary" style={{background:"#331100",color:"#ff6633",boxShadow:"none",marginBottom:0}} onClick={()=>{doGetOff(confirmOff);setConfirmOff(null);}}>Get Off</button>
+                    <button className="btn btn-ghost" onClick={()=>setConfirmOff(null)}>Cancel</button>
                   </div>
                 </div>
               </div>
