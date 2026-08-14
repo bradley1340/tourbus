@@ -1710,7 +1710,7 @@ const makeCSS = (dark) => {
   .unlock-desc{font-size:12px;color:${t.textFaint};letter-spacing:0.5px;line-height:1.6;margin-bottom:16px;}
   .feed-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-bottom:20px;position:relative;}
   .feed-grid-item{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;overflow:hidden;position:relative;}
-  .feed-grid-lock{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:36px;z-index:2;}
+  .feed-grid-lock{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;color:#fff;opacity:0.8;}
   .standby-box{border:1px solid ${t.border};border-radius:2px;padding:20px;text-align:center;background:rgba(100,100,100,0.03);margin-bottom:20px;}
   .standby-count{font-family:'Anton',sans-serif;font-size:36px;color:${t.textDeep};letter-spacing:2px;}.standby-lbl{font-size:10px;color:${t.textDeeper};letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;}
   .btn-standby{display:block;width:100%;padding:12px;font-family:'Anton',sans-serif;font-size:14px;letter-spacing:2px;border:none;border-radius:1px;cursor:pointer;transition:all 0.2s;text-align:center;background:${t.accent};color:${t.bg};margin-bottom:10px;}
@@ -1953,6 +1953,7 @@ export default function App() {
   const [hidden, setHidden] = useState({});
   const [offBus, setOffBus] = useState({});
   const [confirmOff, setConfirmOff] = useState(null);
+  const [standbyConfirm, setStandbyConfirm] = useState(null); // artist ID pending standby confirmation
   const [suggestNote, setSuggestNote] = useState("");
   const [suggestSubmitted, setSuggestSubmitted] = useState(false);
   const [recoSuggestSubmitted, setRecoSuggestSubmitted] = useState(false);
@@ -2764,7 +2765,7 @@ export default function App() {
                       </div>
                       {(p.type==="photo"||p.type==="video")&&(
                         <div className="feed-post-thumb" style={{background:"#111",border:"1px solid #2a2a00"}}>
-                          <span style={{fontSize:64}}>{p.type==="photo"?E.photo:E.video}</span>
+                          <span style={{fontSize:64}}>{<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>}</span>
                         </div>
                       )}
                       <div className="tourbus-post-thumb">
@@ -2778,8 +2779,8 @@ export default function App() {
                         </div>
                       )}
                       <div className="feed-post-footer">
-                        <button className={`like-btn${likes[p.id]?.liked?" liked":""}`} onClick={()=>toggleLike(p.id)}>{likes[p.id]?.liked?"â™¥":"â™¡"} {(likes[p.id]?.count||0).toLocaleString()}</button>
-                        <button className={`like-btn${amps[p.id]?.amped?" liked":""}`} onClick={()=>toggleAmp(p.id)}>{amps[p.id]?.amped?"â†‘â†‘":"â†‘"} {(amps[p.id]?.count||0).toLocaleString()}</button>
+                        <button className={`like-btn${likes[p.id]?.liked?" liked":""}`} onClick={()=>toggleLike(p.id)}>{<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>} {(likes[p.id]?.count||0).toLocaleString()}</button>
+                        <button className={`like-btn${amps[p.id]?.amped?" liked":""}`} onClick={()=>toggleAmp(p.id)}>{<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>} {(amps[p.id]?.count||0).toLocaleString()}</button>
                         <button className={`tag-btn${activeTagInput===p.id?" active":""}`} onClick={()=>{setActiveTagInput(activeTagInput===p.id?null:p.id);setTagDraft('');}}>&#35;</button>
                       </div>
                     </div>
@@ -2803,7 +2804,7 @@ export default function App() {
                               {!hidden[p.artist]&&<button className="post-menu-item" style={{width:"100%",textAlign:"left",background:"none",border:"none",cursor:"pointer",fontFamily:"inherit"}} onClick={()=>doHide(p.artist)}>Hide from stream</button>}
                               {hidden[p.artist]&&<button className="post-menu-item" style={{width:"100%",textAlign:"left",background:"none",border:"none",cursor:"pointer",fontFamily:"inherit"}} onClick={()=>doUnhide(p.artist)}>Unhide</button>}
                               {(()=>{const a=ARTISTS.find(a=>a.name===p.artist);if(!a)return null;const pinned=isBookmarked(a.id);const full=riderBookmarks.length>=7&&!pinned;return(
-                                <button className={`post-menu-item${full?" danger":""}`} style={{width:"100%",textAlign:"left",background:"none",border:"none",cursor:full?"default":"pointer",fontFamily:"inherit"}} onClick={()=>{if(!full){toggleBookmark(a.id);setArtistMenu(null);}}}>{pinned?"â˜… Unpin from Your Buses":`â˜† ${full?"Your Buses full (7 max)":"Pin to Your Buses"}`}</button>
+                                <button className={`post-menu-item${full?" danger":""}`} style={{width:"100%",textAlign:"left",background:"none",border:"none",cursor:full?"default":"pointer",fontFamily:"inherit"}} onClick={()=>{if(!full){toggleBookmark(a.id);setArtistMenu(null);}}}>{pinned?"Unpin from Your Buses":full?"Your Buses full (7 max)":"Pin to Your Buses"}</button>
                               );})()}
                               <button className="post-menu-item" style={{width:"100%",textAlign:"left",background:"none",border:"none",cursor:"pointer",fontFamily:"inherit"}} onClick={()=>setArtistMenu(null)}>Report this post</button>
                               <button className="post-menu-item danger" style={{width:"100%",textAlign:"left",background:"none",border:"none",cursor:"pointer",fontFamily:"inherit"}} onClick={()=>{setConfirmOff(p.artist);setArtistMenu(null);}}>Get off this bus</button>
@@ -2812,7 +2813,7 @@ export default function App() {
                         </div>
                       </div>
                       <div className="feed-post-thumb" style={{background:p.color,cursor:"pointer"}} onClick={()=>{const a=ARTISTS.find(a=>a.name===p.artist);if(a){setSelectedArtist(a);setSelectedPost(p);setAllArtistPosts(feedPosts.filter(fp=>fp.artist===p.artist));go(SCREENS.POST_VIEW);}}}>
-                        {p.previewUrl?<img src={p.previewUrl} alt={p.label}/>:<span style={{fontSize:64}}>{p.type==="photo"?E.photo:E.video}</span>}
+                        {p.previewUrl?<img src={p.previewUrl} alt={p.label}/>:<span style={{fontSize:64}}>{<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>}</span>}
                       </div>
                       <div className="feed-post-label">{parseCaption(p.label)}</div>
                       {(()=>{const topTags=Object.entries(tags[p.id]||{}).filter(([,cnt])=>cnt>=TAG_THRESHOLD).sort((a,b)=>b[1]-a[1]).slice(0,5);return topTags.length>0&&<div className="tag-pills">{topTags.map(([tag])=><span key={tag} className="tag-pill" style={{cursor:"pointer"}} onClick={()=>setTags(prev=>({...prev,[p.id]:{...prev[p.id],[tag]:(prev[p.id][tag]||0)+1}}))}>#{tag}</span>)}</div>;})()}
@@ -2823,13 +2824,27 @@ export default function App() {
                         </div>
                       )}
                       <div className="feed-post-footer">
-                        <button className={`like-btn${likes[p.id]?.liked?" liked":""}`} onClick={()=>toggleLike(p.id)}>{likes[p.id]?.liked?"â™¥":"â™¡"} {(likes[p.id]?.count||0).toLocaleString()}</button>
-                        <button className={`like-btn${amps[p.id]?.amped?" liked":""}`} onClick={()=>toggleAmp(p.id)}>{amps[p.id]?.amped?"â†‘â†‘":"â†‘"} {(amps[p.id]?.count||0).toLocaleString()}</button>
+                        <button className={`like-btn${likes[p.id]?.liked?" liked":""}`} onClick={()=>toggleLike(p.id)}>{<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>} {(likes[p.id]?.count||0).toLocaleString()}</button>
+                        <button className={`like-btn${amps[p.id]?.amped?" liked":""}`} onClick={()=>toggleAmp(p.id)}>{<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>} {(amps[p.id]?.count||0).toLocaleString()}</button>
                         <button className={`tag-btn${activeTagInput===p.id?" active":""}`} onClick={()=>{setActiveTagInput(activeTagInput===p.id?null:p.id);setTagDraft('');}}>&#35;</button>
                       </div>
                     </div>
                   );
                 })}
+              </div>
+            )}
+            {standbyConfirm&&(
+              <div className="modal-overlay" onClick={()=>setStandbyConfirm(null)}>
+                <div className="modal" onClick={e=>e.stopPropagation()}>
+                  <div className="modal-title">Go on Standby?</div>
+                  <p className="modal-desc" style={{lineHeight:1.7}}>
+                    {(()=>{const a=[...ARTISTS,...SPOTIFY_ARTISTS].find(a=>a.id===standbyConfirm);return a?.name||"This artist";})()}  doesn't have a tourbus account yet. If they activate, we'll charge your card $5 and you'll be on the bus. You can cancel standby anytime before then.
+                  </p>
+                  <div className="modal-btns">
+                    <button className="btn btn-primary" onClick={()=>{toggleStandby(standbyConfirm);setStandbyConfirm(null);}}>Go Standby</button>
+                    <button className="btn btn-ghost" onClick={()=>setStandbyConfirm(null)}>Cancel</button>
+                  </div>
+                </div>
               </div>
             )}
             {confirmOff&&(
@@ -2922,7 +2937,6 @@ export default function App() {
                         <div className="artist-card-badges">
                           {a.onTour&&<span className="badge badge-tour">On Tour</span>}
                           {a.newlyAdded&&<span className="badge badge-new">New</span>}
-                          {!a.active&&<span className="badge badge-standby">Not on tourbus yet</span>}
                         </div>
                       </div>
                       <div className="artist-card-stub">
@@ -2934,7 +2948,7 @@ export default function App() {
                             : <button className="stub-action" onClick={e=>{e.stopPropagation();setSelectedArtist(a);go(SCREENS.PROFILE);}}>Ride</button>
                           }</>
                         ):(
-                          <><div className="stub-count">{(standbyCounts[a.id]||0).toLocaleString()}</div><div className="stub-label">on standby</div><button className="stub-action" onClick={e=>{e.stopPropagation();toggleStandby(a.id);}}>{standby[a.id]?"Standby":"Go Standby"}</button></>
+                          <><div className="stub-count">{(standbyCounts[a.id]||0).toLocaleString()}</div><div className="stub-label">on standby</div><button className="stub-action" onClick={e=>{e.stopPropagation();standby[a.id]?toggleStandby(a.id):setStandbyConfirm(a.id);}}>{standby[a.id]?"Standby":"Go Standby"}</button></>
                         )}
                       </div>
                     </div>
@@ -2951,7 +2965,7 @@ export default function App() {
                         </>
                       ):(
                         <div className="suggest-success">
-                          <div className="suggest-success-icon">âœ“</div>
+                          <div className="suggest-success-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
                           <div className="suggest-success-text">Suggestion received!</div>
                           <div className="suggest-success-sub">We'll look into bringing {search} onto tourbus.</div>
                         </div>
@@ -3061,9 +3075,10 @@ export default function App() {
                         </div>
                         <div style={{width:"100%",aspectRatio:"16/9",background:p.color,display:"flex",alignItems:"center",justifyContent:"center",fontSize:64,position:"relative",overflow:"hidden",filter:isUnlocked?"none":"blur(8px)"}}>
                           {p.previewUrl?<img src={p.previewUrl} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>:
-                            <span>{p.type==="photo"?E.photo:E.video}</span>}
+                            <span>{p.type==="photo"?<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>:<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>}</span>}
                         </div>
                         <div style={{padding:"10px 14px 4px",fontSize:13,color:darkMode?"#aaa":"#3a3a5a",fontFamily:"'Inter',sans-serif",lineHeight:1.6,filter:isUnlocked?"none":"blur(4px)",userSelect:isUnlocked?"auto":"none",pointerEvents:isUnlocked?"auto":"none"}}>{parseCaption(p.label)}</div>
+                        {isUnlocked&&(()=>{const topTags=Object.entries(tags[p.id]||{}).filter(([,cnt])=>cnt>=TAG_THRESHOLD).sort((a,b)=>b[1]-a[1]).slice(0,5);return topTags.length>0&&<div className="tag-pills" style={{paddingLeft:14,paddingRight:14,marginBottom:4}}>{topTags.map(([tag])=><span key={tag} className="tag-pill" style={{cursor:"pointer"}} onClick={()=>{setActiveTag(tag);go(SCREENS.TAG_FEED);}}>#{tag}</span>)}</div>;})()}
                         {!isUnlocked&&(
                           <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"10px 14px",background:darkMode?"#0e0e0e":"#f4f4f0",borderTop:`1px solid ${darkMode?"#2a2a00":"#e0dfd0"}`}}>
                             <div style={{fontSize:11,color:"#555",letterSpacing:1,fontFamily:"'Anton',sans-serif"}}>Ride {p.artist} to see photos & videos</div>
@@ -3071,8 +3086,8 @@ export default function App() {
                           </div>
                         )}
                         <div style={{display:"flex",alignItems:"center",gap:16,padding:"8px 14px 12px"}}>
-                          <button className={`like-btn${likes[p.id]?.liked?" liked":""}`} onClick={()=>toggleLike(p.id)}>{likes[p.id]?.liked?"â™¥":"â™¡"} {(likes[p.id]?.count||0).toLocaleString()}</button>
-                          <button className={`like-btn${amps[p.id]?.amped?" liked":""}`} onClick={()=>toggleAmp(p.id)}>{amps[p.id]?.amped?"â†‘â†‘":"â†‘"} {(amps[p.id]?.count||0).toLocaleString()}</button>
+                          <button className={`like-btn${likes[p.id]?.liked?" liked":""}`} onClick={()=>toggleLike(p.id)}>{<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>} {(likes[p.id]?.count||0).toLocaleString()}</button>
+                          <button className={`like-btn${amps[p.id]?.amped?" liked":""}`} onClick={()=>toggleAmp(p.id)}>{<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>} {(amps[p.id]?.count||0).toLocaleString()}</button>
                         </div>
                       </div>
                     );
@@ -3130,7 +3145,6 @@ export default function App() {
                               <div key={a.id} style={{display:"flex",flexDirection:"column",alignItems:"center",gap:6,cursor:"pointer",minWidth:56}} onClick={()=>goToArtist(a)}>
                                 <ArtistThumb artist={a} style={{width:56,height:56,borderRadius:2,border:`1px solid ${darkMode?"#3a3a00":"#d0cfc0"}`,transition:"border-color 0.2s"}}/>
                                 <div style={{fontFamily:"'Inter',sans-serif",fontSize:9,letterSpacing:0.5,color:darkMode?"#bbb":"#555",textAlign:"center",maxWidth:64,whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{a.name}</div>
-                                {!a.active&&<div style={{fontFamily:"'Anton',sans-serif",fontSize:7,letterSpacing:1,color:"#555",marginTop:-4}}>NOT ON TB</div>}
                               </div>
                             ))}
                           </div>
@@ -3164,7 +3178,7 @@ export default function App() {
                             const allPosts = [...realPosts, ...mockPostsFull];
                             return allPosts.map(p=>(
                               <div key={p.id} className="feed-grid-item" style={{background:p.color}} onClick={()=>{setSelectedPost(p);setAllArtistPosts(allPosts);go(SCREENS.POST_VIEW);}}>
-                                {p.previewUrl?<img src={p.previewUrl} alt={p.label} style={{width:"100%",height:"100%",objectFit:"cover",display:"block"}}/>:<span>{p.type==="photo"?E.photo:E.video}</span>}
+                                {p.previewUrl?<img src={p.previewUrl} alt={p.label} style={{width:"100%",height:"100%",objectFit:"cover",display:"block"}}/>:<span>{p.type==="photo"?<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>:<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>}</span>}
                                 {p.mediaItems && p.mediaItems.length > 1 && (
                                   <div style={{position:"absolute",top:4,right:4,background:"rgba(0,0,0,0.65)",borderRadius:2,padding:"2px 5px",fontSize:9,color:"#fff",fontFamily:"'Anton',sans-serif",letterSpacing:1,display:"flex",alignItems:"center",gap:3}}>
                                     <span style={{fontSize:8}}>â§‰</span>{p.mediaItems.length}
@@ -3179,8 +3193,8 @@ export default function App() {
                     ):(
                       <>
                         <div className="feed-grid">
-                          <div className="feed-grid-lock">ðŸ”’</div>
-                          {MOCK_POSTS.map((p,i)=><div key={i} className="feed-grid-item" style={{background:p.color,filter:"blur(5px)",cursor:"default"}}><span>{p.type==="photo"?E.photo:E.video}</span></div>)}
+                          <div className="feed-grid-lock"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+                          {MOCK_POSTS.map((p,i)=><div key={i} className="feed-grid-item" style={{background:p.color,filter:"blur(5px)",cursor:"default"}}><span>{p.type==="photo"?<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>:<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>}</span></div>)}
                         </div>
                         <div className="unlock-box">
                           <div className="unlock-desc">A one-time fee to ride on {selectedArtist.name}'s tourbus and access their exclusive feed.</div>
@@ -3198,7 +3212,7 @@ export default function App() {
                     <div className="standby-box">
                       <div className="standby-count">{(standbyCounts[selectedArtist.id]||0).toLocaleString()}</div>
                       <div className="standby-lbl">riders waiting</div>
-                      <button className={`btn btn-standby${standby[selectedArtist.id]?" on":""}`} onClick={()=>toggleStandby(selectedArtist.id)}>
+                      <button className={`btn btn-standby${standby[selectedArtist.id]?" on":""}`} onClick={()=>standby[selectedArtist.id]?toggleStandby(selectedArtist.id):setStandbyConfirm(selectedArtist.id)}>
                         {standby[selectedArtist.id]?"On Standby - Cancel":"Go Standby"}
                       </button>
                       {standby[selectedArtist.id]&&<p style={{fontSize:11,color:"#555",marginTop:12,letterSpacing:1}}>You'll be charged automatically when {selectedArtist.name} goes live.</p>}
@@ -3240,7 +3254,7 @@ export default function App() {
                           <div style={{width:"100%",aspectRatio:"16/9",background:p.color,position:"relative",overflow:"hidden",display:"flex",alignItems:"center",justifyContent:"center"}}>
                             {currentMedia.type==="photo"
                               ? <img src={currentMedia.url} alt={p.label} style={{width:"100%",height:"100%",objectFit:"cover",position:"absolute",inset:0}}/>
-                              : <div style={{width:"100%",height:"100%",display:"flex",alignItems:"center",justifyContent:"center",position:"absolute",inset:0,background:"#111"}}><span style={{fontSize:48}}>{E.video}</span></div>
+                              : <div style={{width:"100%",height:"100%",display:"flex",alignItems:"center",justifyContent:"center",position:"absolute",inset:0,background:"#111"}}><span style={{fontSize:48}}><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span></div>
                             }
                             {mediaItems.length > 1 && clampedSlide > 0 && (
                               <button onClick={e=>{e.stopPropagation();setPostSlides(s=>({...s,[p.id]:clampedSlide-1}));}} style={{position:"absolute",left:8,top:"50%",transform:"translateY(-50%)",background:"rgba(0,0,0,0.6)",border:"1px solid #444",borderRadius:2,color:"#fff",padding:"8px 12px",cursor:"pointer",fontSize:16,zIndex:2}}>&lt;</button>
@@ -3262,7 +3276,7 @@ export default function App() {
                         )}
                         {mediaItems.length === 0 && (
                           <div style={{width:"100%",aspectRatio:"16/9",background:p.color,display:"flex",alignItems:"center",justifyContent:"center",fontSize:48}}>
-                            <span>{p.type==="video"?E.video:E.photo}</span>
+                            <span><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span>
                           </div>
                         )}
                         {/* Caption */}
@@ -3271,8 +3285,8 @@ export default function App() {
                         {(()=>{const topTags=Object.entries(tags[p.id]||{}).filter(([,cnt])=>cnt>=TAG_THRESHOLD).sort((a,b)=>b[1]-a[1]).slice(0,5);return topTags.length>0&&<div className="tag-pills" style={{paddingLeft:14,paddingRight:14,marginBottom:4}}>{topTags.map(([tag])=><span key={tag} className="tag-pill" style={{cursor:"pointer"}} onClick={()=>{setActiveTag(tag);go(SCREENS.TAG_FEED);}}>#{tag}</span>)}</div>;})()}
                         {/* Footer */}
                         <div style={{display:"flex",alignItems:"center",gap:12,padding:"8px 14px 12px"}}>
-                          <button className={`like-btn${likes[p.id]?.liked?" liked":""}`} onClick={()=>toggleLike(p.id)}>{likes[p.id]?.liked?"â™¥":"â™¡"} {(likes[p.id]?.count||p.likes||0).toLocaleString()}</button>
-                          <button className={`like-btn${amps[p.id]?.amped?" liked":""}`} onClick={()=>toggleAmp(p.id)}>{amps[p.id]?.amped?"â†‘â†‘":"â†‘"} {(amps[p.id]?.count||0).toLocaleString()}</button>
+                          <button className={`like-btn${likes[p.id]?.liked?" liked":""}`} onClick={()=>toggleLike(p.id)}>{<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>} {(likes[p.id]?.count||p.likes||0).toLocaleString()}</button>
+                          <button className={`like-btn${amps[p.id]?.amped?" liked":""}`} onClick={()=>toggleAmp(p.id)}>{<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>} {(amps[p.id]?.count||0).toLocaleString()}</button>
                         </div>
                       </div>
                     );
@@ -3311,7 +3325,7 @@ export default function App() {
                 )}
                 {purchased.has(selectedArtist.id)&&(
                   <div style={{marginTop:16,padding:"12px 14px",background:darkMode?"#0e1a00":"#f0f8e8",border:`1px solid ${darkMode?"#2a3a00":"#b8d4a0"}`,borderRadius:2,fontSize:11,color:darkMode?"#8aaa66":"#4a7a2a",fontFamily:"'Inter',sans-serif",letterSpacing:0.5}}>
-                    You're on the bus â€” artist will post updates about tickets + VIP access for riders.
+                    You're on the bus. Artist will post updates about tickets and VIP access for riders.
                   </div>
                 )}
               </div>
@@ -3332,9 +3346,9 @@ export default function App() {
                 </div>
                 <hr className="divider"/>
                 <div style={{display:"flex",justifyContent:"space-between",fontSize:12,color:darkMode?"#666":"#888",marginBottom:4}}><span>Ticket to {selectedArtist.name}</span><span style={{color:darkMode?"#f5f5f5":"#1a1a2e",fontWeight:600}}>$5.00</span></div>
-                <div style={{fontSize:10,color:darkMode?"#444":"#aaa",marginBottom:14}}>$3 to artist &mdash; $2 to tourbus</div>
+                <div style={{fontSize:10,color:darkMode?"#444":"#aaa",marginBottom:14}}>$3 to artist Â· $2 to tourbus</div>
                 <div className="no-refund-notice" style={{marginBottom:16}}>All sales are final. Tickets are non-refundable.</div>
-                <button className="btn btn-primary" onClick={()=>{if(selectedArtist){const date=new Date();setPurchased(p=>{const m=new Map(p);m.set(selectedArtist.id,date);return m;});if(riderUser)riderUser.purchased.set(selectedArtist.id,date);}go(SCREENS.UNLOCKED);}}>Confirm Purchase</button>
+                <button className="btn btn-primary" onClick={()=>{if(selectedArtist){const date=new Date();setPurchased(p=>{const m=new Map(p);m.set(selectedArtist.id,date);return m;});if(riderUser)riderUser.purchased.set(selectedArtist.id,date);setRiderBookmarks(prev=>prev.includes(selectedArtist.id)||prev.length>=7?prev:[...prev,selectedArtist.id]);}go(SCREENS.UNLOCKED);}}>Confirm Purchase</button>
               </div>
             )}
             {screen===SCREENS.UNLOCKED&&selectedArtist&&(
@@ -3610,7 +3624,6 @@ export default function App() {
                                       <div className="reco-result-name">{a.name}</div>
                                       {a.genre&&<div className="reco-result-genre">{a.genre}</div>}
                                     </div>
-                                    {!a.active&&<span style={{fontFamily:"'Anton',sans-serif",fontSize:8,letterSpacing:1,color:"#555",border:"1px solid #2a2a00",padding:"1px 5px",borderRadius:1}}>NOT ON TOURBUS</span>}
                                   </div>
                                 ))}
                               </div>
@@ -3627,7 +3640,7 @@ export default function App() {
                                   </>
                                 ):(
                                   <div className="suggest-success">
-                                    <div className="suggest-success-icon">âœ“</div>
+                                    <div className="suggest-success-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
                                     <div className="suggest-success-text">Suggestion received!</div>
                                     <div className="suggest-success-sub">We'll look into bringing {trimmed} onto tourbus.</div>
                                   </div>
@@ -3641,21 +3654,29 @@ export default function App() {
                   )}
                 </div>
 
-                <div style={{fontSize:10,letterSpacing:3,color:darkMode?"#444":"#8a8aaa",marginBottom:12,fontFamily:"'Anton',sans-serif"}}>TOP CLAPPERS</div>
+                <div style={{fontSize:10,letterSpacing:3,color:darkMode?"#444":"#8a8aaa",marginBottom:12,fontFamily:"'Anton',sans-serif"}}>TOP RIDERS</div>
                 <div style={{background:darkMode?"#161616":"#ffffff",border:`1px solid ${darkMode?"#2a2a00":"#d0cfc0"}`,borderRadius:2,marginBottom:24,overflow:"hidden"}}>
-                  {MOCK_CLAPPERS.slice(0,5).map((r,i)=>(
-                    <div key={r.username} style={{display:"flex",alignItems:"center",gap:12,padding:"10px 16px",borderBottom:i<4?`1px solid ${darkMode?"#1e1e00":"#e0dfd0"}`:"none"}}>
-                      <div style={{fontFamily:"'Anton',sans-serif",fontSize:11,color:darkMode?"#444":"#8a8aaa",width:16,textAlign:"right"}}>{i+1}</div>
-                      <div style={{flex:1}}>
-                        <div style={{fontSize:12,color:darkMode?"#f5f5f5":"#1a1a2e",letterSpacing:0.5}}>@{r.username}</div>
-                        <div style={{fontSize:9,color:darkMode?"#444":"#8a8aaa",letterSpacing:1,marginTop:2}}>rider since {r.purchased.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</div>
+                  {(()=>{
+                    // Rank MOCK_CLAPPERS by how many of this artist's posts they've liked
+                    const postIds = myArtistPosts.map(p=>p.id);
+                    const ranked = [...MOCK_CLAPPERS].map(r=>({
+                      ...r,
+                      likeCount: postIds.filter(id=>likes[id]?.liked).length || Math.floor(Math.random()*12)+1
+                    })).sort((a,b)=>b.likeCount-a.likeCount).slice(0,5);
+                    return ranked.map((r,i)=>(
+                      <div key={r.username} style={{display:"flex",alignItems:"center",gap:12,padding:"10px 16px",borderBottom:i<4?`1px solid ${darkMode?"#1e1e00":"#e0dfd0"}`:"none"}}>
+                        <div style={{fontFamily:"'Anton',sans-serif",fontSize:11,color:darkMode?"#444":"#8a8aaa",width:16,textAlign:"right"}}>{i+1}</div>
+                        <div style={{flex:1}}>
+                          <div style={{fontSize:12,color:darkMode?"#f5f5f5":"#1a1a2e",letterSpacing:0.5}}>@{r.username}</div>
+                          <div style={{fontSize:9,color:darkMode?"#444":"#8a8aaa",letterSpacing:1,marginTop:2}}>rider since {r.purchased.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</div>
+                        </div>
+                        <div style={{textAlign:"right"}}>
+                          <div style={{fontSize:14,color:darkMode?"#e6ff00":"#ff4d1a",fontFamily:"'Anton',sans-serif",letterSpacing:1}}>{r.likeCount}</div>
+                          <div style={{fontSize:8,color:"#555",letterSpacing:1,marginTop:1}}>LIKES</div>
+                        </div>
                       </div>
-                      <div style={{textAlign:"right"}}>
-                        <div style={{fontSize:10,color:darkMode?"#e6ff00":"#ff4d1a",fontFamily:"'Anton',sans-serif",letterSpacing:1}}>CLAPS</div>
-                        <div style={{fontSize:9,color:darkMode?"#444":"#8a8aaa",letterSpacing:1,marginTop:3}}>{r.zip}</div>
-                      </div>
-                    </div>
-                  ))}
+                    ));
+                  })()}
                 </div>
 
                 <div style={{fontSize:10,letterSpacing:3,color:darkMode?"#444":"#8a8aaa",marginBottom:12,fontFamily:"'Anton',sans-serif"}}>RECENT POSTS</div>
@@ -3665,11 +3686,11 @@ export default function App() {
                     <div key={p.id} className="post-list-item" style={{flexDirection:"column",alignItems:"stretch",gap:10}}>
                       <div style={{display:"flex",alignItems:"center",gap:12}}>
                         <div className="post-list-thumb" style={{background:p.color}}>
-                          {p.previewUrl?<img src={p.previewUrl} alt="" style={{width:"100%",height:"100%",objectFit:"cover",borderRadius:1}}/>:<span>{p.type==="photo"?E.photo:E.video}</span>}
+                          {p.previewUrl?<img src={p.previewUrl} alt="" style={{width:"100%",height:"100%",objectFit:"cover",borderRadius:1}}/>:<span>{p.type==="photo"?<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>:<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>}</span>}
                         </div>
                         <div style={{flex:1}}>
                           <div className="post-list-label">{p.label}</div>
-                          <div className="post-list-likes" style={{cursor:"pointer",display:"inline-block"}} onClick={()=>setClapModal(p)}>{(likes[p.id]?.count||0).toLocaleString()} <span style={{fontSize:9,color:"#555",letterSpacing:1}}>SEE RIDERS</span></div>
+                          <div className="post-list-likes" style={{cursor:"pointer",display:"inline-block"}} onClick={()=>setClapModal(p)}>{(likes[p.id]?.count||0).toLocaleString()} <span style={{fontSize:9,color:"#555",letterSpacing:1}}>RIDER LIKES</span></div>
                         </div>
                         <div className="post-list-meta">{p.time}<br/>{p.type.toUpperCase()}</div>
                       </div>
@@ -3731,7 +3752,7 @@ export default function App() {
             {goLiveModal&&(
               <div className="modal-overlay">
                 <div className="modal" style={{textAlign:"center"}}>
-                  <div style={{fontSize:36,marginBottom:12}}>âœ•</div>
+                  <div style={{fontSize:36,marginBottom:12}}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
                   <div className="modal-title">Ready to go live?</div>
                   <p className="modal-desc">Your riders will be notified that you're streaming. You can end the stream at any time.</p>
                   <div className="modal-btns">
@@ -3756,7 +3777,7 @@ export default function App() {
             {clapModal&&(
               <div className="modal-overlay" onClick={()=>setClapModal(null)}>
                 <div className="modal" onClick={e=>e.stopPropagation()} style={{maxHeight:"80vh",overflowY:"auto"}}>
-                  <div className="modal-title">Riders Who Clapped</div>
+                  <div className="modal-title">Top Riders</div>
                   <p style={{fontSize:11,color:darkMode?"#555":"#7a7a9a",letterSpacing:1,marginBottom:16,lineHeight:1.5}}>{clapModal.label.slice(0,60)}{clapModal.label.length>60?"...":""}</p>
                   {MOCK_CLAPPERS.map((r,i)=>(
                     <div key={r.username} style={{display:"flex",alignItems:"center",gap:12,padding:"10px 0",borderBottom:i<MOCK_CLAPPERS.length-1?`1px solid ${darkMode?"#1e1e00":"#e0dfd0"}`:"none"}}>
@@ -3765,7 +3786,10 @@ export default function App() {
                         <div style={{fontSize:12,color:darkMode?"#f5f5f5":"#1a1a2e",letterSpacing:0.5}}>@{r.username}</div>
                         <div style={{fontSize:9,color:darkMode?"#444":"#8a8aaa",letterSpacing:1,marginTop:2}}>rider since {r.purchased.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</div>
                       </div>
-                      <div style={{fontSize:9,color:darkMode?"#444":"#8a8aaa",letterSpacing:1}}>{r.zip}</div>
+                      <div style={{textAlign:"right"}}>
+                        <div style={{fontSize:14,color:darkMode?"#e6ff00":"#ff4d1a",fontFamily:"'Anton',sans-serif",letterSpacing:1}}>{Math.floor(Math.random()*12)+1}</div>
+                        <div style={{fontSize:8,color:"#555",letterSpacing:1,marginTop:1}}>LIKES</div>
+                      </div>
                     </div>
                   ))}
                   <div className="modal-btns" style={{marginTop:16}}>
@@ -3818,7 +3842,7 @@ export default function App() {
                 <div style={{fontFamily:"'Anton',sans-serif",fontSize:28,letterSpacing:4,color:darkMode?"#e6ff00":"#ff4d1a",marginBottom:24}}>NEW POST</div>
 
                 {/* Media Upload Zone */}
-                <div style={{fontSize:10,letterSpacing:3,color:"#555",marginBottom:10,fontFamily:"'Anton',sans-serif"}}>PHOTOS &amp; VIDEOS <span style={{color:darkMode?"#555":"#aaa",fontFamily:"'Inter',sans-serif",fontSize:10,letterSpacing:0,textTransform:"none"}}>â€” add up to 10</span></div>
+                <div style={{fontSize:10,letterSpacing:3,color:"#555",marginBottom:10,fontFamily:"'Anton',sans-serif"}}>PHOTOS &amp; VIDEOS <span style={{color:darkMode?"#555":"#aaa",fontFamily:"'Inter',sans-serif",fontSize:10,letterSpacing:0,textTransform:"none"}}>(add up to 10)</span></div>
 
                 {/* Thumbnail strip of added media */}
                 {postMediaItems.length > 0 && (
@@ -3828,14 +3852,14 @@ export default function App() {
                         {item.type === "photo"
                           ? <img src={item.url} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>
                           : <div style={{width:"100%",height:"100%",display:"flex",alignItems:"center",justifyContent:"center",flexDirection:"column",gap:2,background:"#1a1a00"}}>
-                              <span style={{fontSize:22}}>{E.video}</span>
+                              <span style={{fontSize:22}}><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span>
                               <span style={{fontSize:8,color:"#888",letterSpacing:1}}>VIDEO</span>
                             </div>
                         }
                         {/* Item number badge */}
                         <div style={{position:"absolute",top:3,left:3,background:"rgba(0,0,0,0.7)",borderRadius:1,padding:"1px 5px",fontSize:9,color:"#fff",fontFamily:"'Anton',sans-serif",letterSpacing:1}}>{idx+1}</div>
                         {/* Remove button */}
-                        <button onClick={()=>setPostMediaItems(prev=>prev.filter((_,i)=>i!==idx))} style={{position:"absolute",top:3,right:3,width:18,height:18,borderRadius:"50%",background:"rgba(180,0,0,0.85)",border:"none",cursor:"pointer",fontSize:10,color:"#fff",display:"flex",alignItems:"center",justifyContent:"center",lineHeight:1}}>âœ•</button>
+                        <button onClick={()=>setPostMediaItems(prev=>prev.filter((_,i)=>i!==idx))} style={{position:"absolute",top:3,right:3,width:18,height:18,borderRadius:"50%",background:"rgba(180,0,0,0.85)",border:"none",cursor:"pointer",fontSize:10,color:"#fff",display:"flex",alignItems:"center",justifyContent:"center",lineHeight:1}}><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
                       </div>
                     ))}
                     {/* Add more button */}
@@ -3876,7 +3900,7 @@ export default function App() {
                         <div style={{position:"relative",width:"100%",aspectRatio:"16/9",background:artistUser.color,borderTop:"1px solid #1e1e00",overflow:"hidden"}}>
                           {postMediaItems[0].type==="photo"
                             ? <img src={postMediaItems[0].url} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>
-                            : <div style={{width:"100%",height:"100%",display:"flex",alignItems:"center",justifyContent:"center"}}><span style={{fontSize:36}}>{E.video}</span></div>
+                            : <div style={{width:"100%",height:"100%",display:"flex",alignItems:"center",justifyContent:"center"}}><span style={{fontSize:36}}><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span></div>
                           }
                           {postMediaItems.length > 1 && (
                             <div style={{position:"absolute",bottom:8,right:8,background:"rgba(0,0,0,0.65)",borderRadius:2,padding:"3px 8px",fontSize:10,color:"#fff",fontFamily:"'Anton',sans-serif",letterSpacing:1}}>1 / {postMediaItems.length}</div>
@@ -3885,7 +3909,7 @@ export default function App() {
                       )}
                       {postMediaItems.length === 0 && (
                         <div style={{width:"100%",aspectRatio:"16/9",background:artistUser.color,display:"flex",alignItems:"center",justifyContent:"center",borderTop:"1px solid #1e1e00"}}>
-                          <span style={{fontSize:36}}>{E.photo}</span>
+                          <span style={{fontSize:36}}><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></span>
                         </div>
                       )}
                       <div style={{padding:"10px 14px",fontSize:13,color:"#aaa",letterSpacing:1}}>{postCaption}</div>
@@ -3923,7 +3947,7 @@ export default function App() {
                         </div>
                         <div style={{width:"100%",aspectRatio:"16/9",background:p.color,display:"flex",alignItems:"center",justifyContent:"center",fontSize:64,position:"relative",overflow:"hidden",filter:isUnlocked?"none":"blur(8px)"}}>
                           {p.previewUrl?<img src={p.previewUrl} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>:
-                            <span>{p.type==="photo"?E.photo:E.video}</span>}
+                            <span>{p.type==="photo"?<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>:<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>}</span>}
                         </div>
                         <div style={{padding:"10px 14px 4px",fontSize:13,color:darkMode?"#aaa":"#3a3a5a",fontFamily:"'Inter',sans-serif",lineHeight:1.6,filter:isUnlocked?"none":"blur(4px)",userSelect:isUnlocked?"auto":"none",pointerEvents:isUnlocked?"auto":"none"}}>{parseCaption(p.label)}</div>
                         {!isUnlocked&&(
@@ -3933,8 +3957,8 @@ export default function App() {
                           </div>
                         )}
                         <div style={{display:"flex",alignItems:"center",gap:16,padding:"8px 14px 12px"}}>
-                          <button className={`like-btn${likes[p.id]?.liked?" liked":""}`} onClick={()=>toggleLike(p.id)}>{likes[p.id]?.liked?"â™¥":"â™¡"} {(likes[p.id]?.count||0).toLocaleString()}</button>
-                          <button className={`like-btn${amps[p.id]?.amped?" liked":""}`} onClick={()=>toggleAmp(p.id)}>{amps[p.id]?.amped?"â†‘â†‘":"â†‘"} {(amps[p.id]?.count||0).toLocaleString()}</button>
+                          <button className={`like-btn${likes[p.id]?.liked?" liked":""}`} onClick={()=>toggleLike(p.id)}>{<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>} {(likes[p.id]?.count||0).toLocaleString()}</button>
+                          <button className={`like-btn${amps[p.id]?.amped?" liked":""}`} onClick={()=>toggleAmp(p.id)}>{<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>} {(amps[p.id]?.count||0).toLocaleString()}</button>
                         </div>
                       </div>
                     );
@@ -3969,7 +3993,7 @@ export default function App() {
                       </div>
                       {(p.type==="photo"||p.type==="video")&&(
                         <div className="feed-post-thumb" style={{background:"#111"}}>
-                          <span style={{fontSize:64}}>{p.type==="photo"?E.photo:E.video}</span>
+                          <span style={{fontSize:64}}>{<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>}</span>
                         </div>
                       )}
                       <div className="tourbus-post-thumb">
@@ -3983,8 +4007,8 @@ export default function App() {
                         </div>
                       )}
                       <div className="feed-post-footer">
-                        <button className={`like-btn${likes[p.id]?.liked?" liked":""}`} onClick={()=>toggleLike(p.id)}>{likes[p.id]?.liked?"â™¥":"â™¡"} {(likes[p.id]?.count||0).toLocaleString()}</button>
-                        <button className={`like-btn${amps[p.id]?.amped?" liked":""}`} onClick={()=>toggleAmp(p.id)}>{amps[p.id]?.amped?"â†‘â†‘":"â†‘"} {(amps[p.id]?.count||0).toLocaleString()}</button>
+                        <button className={`like-btn${likes[p.id]?.liked?" liked":""}`} onClick={()=>toggleLike(p.id)}>{<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>} {(likes[p.id]?.count||0).toLocaleString()}</button>
+                        <button className={`like-btn${amps[p.id]?.amped?" liked":""}`} onClick={()=>toggleAmp(p.id)}>{<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>} {(amps[p.id]?.count||0).toLocaleString()}</button>
                         <button className={`tag-btn${activeTagInput===p.id?" active":""}`} onClick={()=>{setActiveTagInput(activeTagInput===p.id?null:p.id);setTagDraft('');}}>#</button>
                       </div>
                     </div>
@@ -4011,8 +4035,8 @@ export default function App() {
                   <div style={{background:darkMode?"#161616":"#ffffff",border:`1px solid ${darkMode?"#2a2a00":"#d0cfc0"}`,borderRadius:2,padding:20,marginBottom:24}}>
                     <div style={{fontFamily:"'Anton',sans-serif",fontSize:13,letterSpacing:3,color:darkMode?"#e6ff00":"#ff4d1a",marginBottom:16}}>NEW TOURBUS POST</div>
                     <div className="post-type-row">
-                      <button className={`post-type-btn${postType==="photo"?" selected":""}`} onClick={()=>setPostType("photo")}><div className="post-type-icon">{E.photo}</div><div className="post-type-label">PHOTO</div></button>
-                      <button className={`post-type-btn${postType==="video"?" selected":""}`} onClick={()=>setPostType("video")}><div className="post-type-icon">{E.video}</div><div className="post-type-label">VIDEO</div></button>
+                      <button className={`post-type-btn${postType==="photo"?" selected":""}`} onClick={()=>setPostType("photo")}><div className="post-type-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div className="post-type-label">PHOTO</div></button>
+                      <button className={`post-type-btn${postType==="video"?" selected":""}`} onClick={()=>setPostType("video")}><div className="post-type-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div><div className="post-type-label">VIDEO</div></button>
                       <button className={`post-type-btn${postType==="announcement"?" selected":""}`} onClick={()=>setPostType("announcement")}><div className="post-type-icon">&#128226;</div><div className="post-type-label">ANNOUNCE</div></button>
                     </div>
                     <div style={{fontSize:10,letterSpacing:3,color:"#555",marginBottom:10,fontFamily:"'Anton',sans-serif"}}>CAPTION</div>
@@ -4075,7 +4099,7 @@ export default function App() {
                   <div style={{fontFamily:"'Anton',sans-serif",fontSize:11,letterSpacing:3,color:darkMode?"#e6ff00":"#ff4d1a",marginBottom:12}}>RECENT POSTS</div>
                   {feedPosts.filter(p=>p.isTourbus).map(p=>(
                     <div key={p.id} style={{display:"flex",gap:10,padding:"10px 12px",background:darkMode?"#161616":"#ffffff",border:`1px solid ${darkMode?"#1e1e00":"#e0dfd0"}`,borderRadius:2,marginBottom:8}}>
-                      <div style={{width:40,height:40,background:"#111",borderRadius:1,display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,flexShrink:0}}>{p.type==="photo"?E.photo:p.type==="video"?E.video:"&#128226;"}</div>
+                      <div style={{width:40,height:40,background:"#111",borderRadius:1,display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,flexShrink:0}}>{p.type==="photo"?(<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>):(<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>)}</div>
                       <div style={{flex:1,minWidth:0}}>
                         <div style={{fontSize:11,color:darkMode?"#aaa":"#3a3a5a",lineHeight:1.5,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{p.label}</div>
                         <div style={{fontSize:9,color:"#555",letterSpacing:1,marginTop:4}}>{p.time} - {(likes[p.id]?.count||0)} - {(amps[p.id]?.count||0)}</div>
