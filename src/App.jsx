@@ -240,7 +240,7 @@ const SPOTIFY_ARTISTS = [
   {id:213,name:'Don Omar',genre:'',riders:0,standby:5580,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:214,name:'Usher',genre:'',riders:0,standby:7086,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:215,name:'Luke Combs',genre:'',riders:0,standby:4044,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:216,name:'TiÃ«sto',genre:'',riders:0,standby:5602,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:216,name:'Ti&#235;sto',genre:'',riders:0,standby:5602,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:217,name:'Don Toliver',genre:'',riders:0,standby:3351,color:'#1a000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:218,name:'Metallica',genre:'',riders:0,standby:4761,color:'#0d000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:219,name:'Charlie Puth',genre:'',riders:0,standby:3379,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -286,7 +286,7 @@ const SPOTIFY_ARTISTS = [
   {id:259,name:'The Kid LAROI',genre:'',riders:0,standby:3835,color:'#001510',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:260,name:'Anitta',genre:'',riders:0,standby:6004,color:'#100015',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:261,name:'Justin Quiles',genre:'',riders:0,standby:2215,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:262,name:'MarÃ­lia MendonÃ§a',genre:'',riders:0,standby:6797,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:262,name:'Mar&#237;lia Mendon&#231;a',genre:'',riders:0,standby:6797,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:263,name:'Black Eyed Peas',genre:'',riders:0,standby:2807,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:264,name:'Green Day',genre:'',riders:0,standby:1305,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:265,name:'Gucci Mane',genre:'',riders:0,standby:3465,color:'#1a000d',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -301,9 +301,9 @@ const SPOTIFY_ARTISTS = [
   {id:274,name:'Panic! At The Disco',genre:'',riders:0,standby:4999,color:'#0a001a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:275,name:'Ne-Yo',genre:'',riders:0,standby:2836,color:'#1a000a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:276,name:'Stray Kids',genre:'',riders:0,standby:2021,color:'#001a00',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:277,name:'Lenny TavÃ¡rez',genre:'',riders:0,standby:1389,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:277,name:'Lenny Tav&#225;rez',genre:'',riders:0,standby:1389,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:278,name:'Joji',genre:'',riders:0,standby:2103,color:'#1a0a0a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:279,name:'ROSALÃA',genre:'',riders:0,standby:3576,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:279,name:'ROSAL&#205;A',genre:'',riders:0,standby:3576,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:280,name:'A.R. Rahman',genre:'',riders:0,standby:3673,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:281,name:'Morat',genre:'',riders:0,standby:1918,color:'#0a150a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:282,name:'Bryson Tiller',genre:'',riders:0,standby:3731,color:'#1a1500',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -332,14 +332,14 @@ const SPOTIFY_ARTISTS = [
   {id:305,name:'Wisin',genre:'',riders:0,standby:1774,color:'#0a150a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:306,name:'Lil Nas X',genre:'',riders:0,standby:465,color:'#1a1500',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:307,name:'Becky G',genre:'',riders:0,standby:1759,color:'#001510',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:308,name:'Banda MS de Sergio LizÃ¡rraga',genre:'',riders:0,standby:231,color:'#100015',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:308,name:'Banda MS de Sergio Liz&#225;rraga',genre:'',riders:0,standby:231,color:'#100015',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:309,name:'Tame Impala',genre:'',riders:0,standby:1062,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:310,name:'Pink Floyd',genre:'',riders:0,standby:721,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:311,name:'Zara Larsson',genre:'',riders:0,standby:294,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:312,name:'Rels B',genre:'',riders:0,standby:990,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:313,name:'Miguel',genre:'',riders:0,standby:419,color:'#1a000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:314,name:'John Mayer',genre:'',riders:0,standby:1925,color:'#0d000d',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:315,name:'Michael BublÃ©',genre:'',riders:0,standby:1944,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:315,name:'Michael Bubl&#233;',genre:'',riders:0,standby:1944,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:316,name:'Anne-Marie',genre:'',riders:0,standby:1550,color:'#0a0a2e',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:317,name:'Childish Gambino',genre:'',riders:0,standby:830,color:'#1a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:318,name:'Jack Harlow',genre:'',riders:0,standby:1640,color:'#0a1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -362,7 +362,7 @@ const SPOTIFY_ARTISTS = [
   {id:335,name:'Robin Schulz',genre:'',riders:0,standby:495,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:336,name:'TWICE',genre:'',riders:0,standby:1174,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:337,name:'Wisin & Yandel',genre:'',riders:0,standby:1451,color:'#1a000d',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:338,name:'Ã‘engo Flow',genre:'',riders:0,standby:1958,color:'#0d000d',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:338,name:'&#209;engo Flow',genre:'',riders:0,standby:1958,color:'#0d000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:339,name:'Gusttavo Lima',genre:'',riders:0,standby:420,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:340,name:'The Rolling Stones',genre:'',riders:0,standby:876,color:'#0a0a2e',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:341,name:'Bryant Myers',genre:'',riders:0,standby:1838,color:'#1a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -400,7 +400,7 @@ const SPOTIFY_ARTISTS = [
   {id:373,name:'The Notorious B.I.G.',genre:'',riders:0,standby:1782,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:374,name:'Creedence Clearwater Revival',genre:'',riders:0,standby:398,color:'#1a0a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:375,name:'Jung Kook',genre:'',riders:0,standby:1207,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:376,name:'JhenÃ© Aiko',genre:'',riders:0,standby:534,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:376,name:'Jhen&#233; Aiko',genre:'',riders:0,standby:534,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:377,name:'Florida Georgia Line',genre:'',riders:0,standby:1140,color:'#0a150a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:378,name:'Labrinth',genre:'',riders:0,standby:366,color:'#1a1500',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:379,name:'WizKid',genre:'',riders:0,standby:1309,color:'#001510',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -408,7 +408,7 @@ const SPOTIFY_ARTISTS = [
   {id:381,name:'Summer Walker',genre:'',riders:0,standby:845,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:382,name:'Rammstein',genre:'',riders:0,standby:1878,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:383,name:'Kehlani',genre:'',riders:0,standby:1517,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:384,name:'ZÃ© Neto & Cristiano',genre:'',riders:0,standby:1473,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:384,name:'Z&#233; Neto & Cristiano',genre:'',riders:0,standby:1473,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:385,name:'De La Ghetto',genre:'',riders:0,standby:1807,color:'#1a000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:386,name:'League of Legends',genre:'',riders:0,standby:1243,color:'#0d000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:387,name:'Mitski',genre:'',riders:0,standby:1953,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -432,7 +432,7 @@ const SPOTIFY_ARTISTS = [
   {id:405,name:'Jeremih',genre:'',riders:0,standby:1765,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:406,name:'Paulo Londra',genre:'',riders:0,standby:1441,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:407,name:'Conan Gray',genre:'',riders:0,standby:1018,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:408,name:'BeÃ©le',genre:'',riders:0,standby:926,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:408,name:'Be&#233;le',genre:'',riders:0,standby:926,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:409,name:'Matheus & Kauan',genre:'',riders:0,standby:1024,color:'#1a000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:410,name:'Dalex',genre:'',riders:0,standby:557,color:'#0d000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:411,name:'U2',genre:'',riders:0,standby:297,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -447,8 +447,8 @@ const SPOTIFY_ARTISTS = [
   {id:420,name:'Marc Anthony',genre:'',riders:0,standby:1580,color:'#001a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:421,name:'Led Zeppelin',genre:'',riders:0,standby:1998,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:422,name:'Danny Ocean',genre:'',riders:0,standby:1234,color:'#1a0a0a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:423,name:'MÃ¥neskin',genre:'',riders:0,standby:866,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:424,name:'ManÃ¡',genre:'',riders:0,standby:1267,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:423,name:'M&#229;neskin',genre:'',riders:0,standby:866,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:424,name:'Man&#225;',genre:'',riders:0,standby:1267,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:425,name:'Central Cee',genre:'',riders:0,standby:1692,color:'#0a150a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:426,name:'The Lumineers',genre:'',riders:0,standby:822,color:'#1a1500',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:427,name:'Anderson .Paak',genre:'',riders:0,standby:1393,color:'#001510',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -456,7 +456,7 @@ const SPOTIFY_ARTISTS = [
   {id:429,name:'Mac DeMarco',genre:'',riders:0,standby:1798,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:430,name:'Nickelback',genre:'',riders:0,standby:874,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:431,name:'Jonas Blue',genre:'',riders:0,standby:1560,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:432,name:'La Arrolladora Banda El LimÃ³n De Rene Camacho',genre:'',riders:0,standby:1162,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:432,name:'La Arrolladora Banda El Lim&#243;n De Rene Camacho',genre:'',riders:0,standby:1162,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:433,name:'Bastille',genre:'',riders:0,standby:1682,color:'#1a000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:434,name:'Sfera Ebbasta',genre:'',riders:0,standby:1237,color:'#0d000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:435,name:'Benson Boone',genre:'',riders:0,standby:771,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -478,7 +478,7 @@ const SPOTIFY_ARTISTS = [
   {id:451,name:'Tanishk Bagchi',genre:'',riders:0,standby:291,color:'#001510',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:452,name:'Cartel De Santa',genre:'',riders:0,standby:1366,color:'#100015',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:453,name:'Giveon',genre:'',riders:0,standby:1211,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:454,name:'JuliÃ³n Ãlvarez y su NorteÃ±o Banda',genre:'',riders:0,standby:1560,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:454,name:'Juli&#243;n &#193;lvarez y su Norte&#241;o Banda',genre:'',riders:0,standby:1560,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:455,name:'Oscar Maydon',genre:'',riders:0,standby:401,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:456,name:'Billy Joel',genre:'',riders:0,standby:851,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:457,name:'Muse',genre:'',riders:0,standby:506,color:'#1a000d',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -495,7 +495,7 @@ const SPOTIFY_ARTISTS = [
   {id:468,name:'Jack Johnson',genre:'',riders:0,standby:1787,color:'#001a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:469,name:'Clairo',genre:'',riders:0,standby:748,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:470,name:'Whitney Houston',genre:'',riders:0,standby:1902,color:'#1a0a0a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:471,name:'Alejandro FernÃ¡ndez',genre:'',riders:0,standby:889,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:471,name:'Alejandro Fern&#225;ndez',genre:'',riders:0,standby:889,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:472,name:'Amy Winehouse',genre:'',riders:0,standby:808,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:473,name:'Alfredo Olivas',genre:'',riders:0,standby:597,color:'#0a150a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:474,name:'Hans Zimmer',genre:'',riders:0,standby:408,color:'#1a1500',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -542,11 +542,11 @@ const SPOTIFY_ARTISTS = [
   {id:515,name:'Chappell Roan',genre:'',riders:0,standby:504,color:'#1a000a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:516,name:'Rod Wave',genre:'',riders:0,standby:1747,color:'#001a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:517,name:'R3HAB',genre:'',riders:0,standby:1430,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:518,name:'Vicente FernÃ¡ndez',genre:'',riders:0,standby:504,color:'#1a0a0a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:518,name:'Vicente Fern&#225;ndez',genre:'',riders:0,standby:504,color:'#1a0a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:519,name:'GIMS',genre:'',riders:0,standby:1934,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:520,name:'Jess Glynne',genre:'',riders:0,standby:1314,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:521,name:'RAF Camora',genre:'',riders:0,standby:1706,color:'#0a150a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:522,name:'Wesley SafadÃ£o',genre:'',riders:0,standby:1528,color:'#1a1500',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:522,name:'Wesley Safad&#227;o',genre:'',riders:0,standby:1528,color:'#1a1500',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:523,name:'ScHoolboy Q',genre:'',riders:0,standby:353,color:'#001510',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:524,name:'Disclosure',genre:'',riders:0,standby:1087,color:'#100015',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:525,name:'Eagles',genre:'',riders:0,standby:1389,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -562,7 +562,7 @@ const SPOTIFY_ARTISTS = [
   {id:535,name:'The Smiths',genre:'',riders:0,standby:978,color:'#1a0a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:536,name:'NewJeans',genre:'',riders:0,standby:934,color:'#001a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:537,name:'Ricardo Arjona',genre:'',riders:0,standby:1799,color:'#1a1a00',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:538,name:'Los Ãngeles Azules',genre:'',riders:0,standby:973,color:'#0a001a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:538,name:'Los &#193;ngeles Azules',genre:'',riders:0,standby:973,color:'#0a001a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:539,name:'H.E.R.',genre:'',riders:0,standby:1901,color:'#1a000a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:540,name:'Dire Straits',genre:'',riders:0,standby:1016,color:'#001a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:541,name:'Disturbed',genre:'',riders:0,standby:374,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -576,7 +576,7 @@ const SPOTIFY_ARTISTS = [
   {id:549,name:'Johnny Cash',genre:'',riders:0,standby:1053,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:550,name:'Bon Iver',genre:'',riders:0,standby:1496,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:551,name:'Nicki Nicole',genre:'',riders:0,standby:801,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:552,name:'CÃ©line Dion',genre:'',riders:0,standby:1615,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:552,name:'C&#233;line Dion',genre:'',riders:0,standby:1615,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:553,name:'KHEA',genre:'',riders:0,standby:1485,color:'#1a000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:554,name:'Tiago PZK',genre:'',riders:0,standby:1815,color:'#0d000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:555,name:'Nelly Furtado',genre:'',riders:0,standby:456,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -596,7 +596,7 @@ const SPOTIFY_ARTISTS = [
   {id:569,name:'JENNIE',genre:'',riders:0,standby:1802,color:'#0a150a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:570,name:'Tom Odell',genre:'',riders:0,standby:566,color:'#1a1500',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:571,name:'beabadoobee',genre:'',riders:0,standby:764,color:'#001510',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:572,name:'Marco Antonio SolÃ­s',genre:'',riders:0,standby:235,color:'#100015',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:572,name:'Marco Antonio Sol&#237;s',genre:'',riders:0,standby:235,color:'#100015',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:573,name:'YNW Melly',genre:'',riders:0,standby:1704,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:574,name:'Jason Mraz',genre:'',riders:0,standby:1094,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:575,name:'Mc IG',genre:'',riders:0,standby:1560,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -614,16 +614,16 @@ const SPOTIFY_ARTISTS = [
   {id:587,name:'Alec Benjamin',genre:'',riders:0,standby:1598,color:'#1a000a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:588,name:'Outkast',genre:'',riders:0,standby:543,color:'#001a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:589,name:'Los Tigres Del Norte',genre:'',riders:0,standby:259,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:590,name:'Pablo AlborÃ¡n',genre:'',riders:0,standby:1567,color:'#1a0a0a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:590,name:'Pablo Albor&#225;n',genre:'',riders:0,standby:1567,color:'#1a0a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:591,name:'Los Temerarios',genre:'',riders:0,standby:211,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:592,name:'Korn',genre:'',riders:0,standby:1497,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:593,name:'Lizzo',genre:'',riders:0,standby:623,color:'#0a150a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:594,name:'Mustard',genre:'',riders:0,standby:1407,color:'#1a1500',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:595,name:'Jesse & Joy',genre:'',riders:0,standby:1367,color:'#001510',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:596,name:'Grupo Menos Ã‰ Mais',genre:'',riders:0,standby:1536,color:'#100015',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:596,name:'Grupo Menos &#201; Mais',genre:'',riders:0,standby:1536,color:'#100015',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:597,name:'The Cure',genre:'',riders:0,standby:1737,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:598,name:'Phoebe Bridgers',genre:'',riders:0,standby:1667,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:599,name:'JosÃ© JosÃ©',genre:'',riders:0,standby:826,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:599,name:'Jos&#233; Jos&#233;',genre:'',riders:0,standby:826,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:600,name:'Filipe Ret',genre:'',riders:0,standby:408,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:601,name:'Train',genre:'',riders:0,standby:161,color:'#1a000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:602,name:'Trey Songz',genre:'',riders:0,standby:287,color:'#0d000d',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -637,7 +637,7 @@ const SPOTIFY_ARTISTS = [
   {id:610,name:'Bibi und Tina',genre:'',riders:0,standby:214,color:'#0a001a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:611,name:'Mc Don Juan',genre:'',riders:0,standby:197,color:'#1a000a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:612,name:'Lin-Manuel Miranda',genre:'',riders:0,standby:230,color:'#001a00',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:613,name:'MatuÃª',genre:'',riders:0,standby:269,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:613,name:'Matu&#234;',genre:'',riders:0,standby:269,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:614,name:'Luciano',genre:'',riders:0,standby:264,color:'#1a0a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:615,name:'d4vd',genre:'',riders:0,standby:200,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:616,name:'Carlos Vives',genre:'',riders:0,standby:112,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -655,7 +655,7 @@ const SPOTIFY_ARTISTS = [
   {id:628,name:'Juan Luis Guerra 4.40',genre:'',riders:0,standby:297,color:'#0a0a2e',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:629,name:'Cosculluela',genre:'',riders:0,standby:413,color:'#1a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:630,name:'Swedish House Mafia',genre:'',riders:0,standby:344,color:'#0a1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:631,name:'The MarÃ­as',genre:'',riders:0,standby:126,color:'#1a0a00',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:631,name:'The Mar&#237;as',genre:'',riders:0,standby:126,color:'#1a0a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:632,name:'John Williams',genre:'',riders:0,standby:205,color:'#001a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:633,name:'A$AP Ferg',genre:'',riders:0,standby:286,color:'#1a1a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:634,name:'Soda Stereo',genre:'',riders:0,standby:86,color:'#0a001a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -693,7 +693,7 @@ const SPOTIFY_ARTISTS = [
   {id:666,name:'Wale',genre:'',riders:0,standby:84,color:'#1a1500',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:667,name:'Lunay',genre:'',riders:0,standby:135,color:'#001510',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:668,name:'Skillet',genre:'',riders:0,standby:463,color:'#100015',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:669,name:'LuÃ­sa Sonza',genre:'',riders:0,standby:148,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:669,name:'Lu&#237;sa Sonza',genre:'',riders:0,standby:148,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:670,name:'AJR',genre:'',riders:0,standby:56,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:671,name:'Jessie J',genre:'',riders:0,standby:224,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:672,name:'Mon Laferte',genre:'',riders:0,standby:263,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -768,7 +768,7 @@ const SPOTIFY_ARTISTS = [
   {id:741,name:'Maren Morris',genre:'',riders:0,standby:384,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:742,name:'Sade',genre:'',riders:0,standby:389,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:743,name:'Jubin Nautiyal',genre:'',riders:0,standby:341,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:744,name:'ROSÃ‰',genre:'',riders:0,standby:383,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:744,name:'ROS&#201;',genre:'',riders:0,standby:383,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:745,name:'Melendi',genre:'',riders:0,standby:450,color:'#1a000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:746,name:'Topic',genre:'',riders:0,standby:367,color:'#0d000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:747,name:'Carly Rae Jepsen',genre:'',riders:0,standby:288,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -802,7 +802,7 @@ const SPOTIFY_ARTISTS = [
   {id:775,name:'Mike Posner',genre:'',riders:0,standby:484,color:'#1a0a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:776,name:'YOASOBI',genre:'',riders:0,standby:106,color:'#001a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:777,name:'Seeb',genre:'',riders:0,standby:357,color:'#1a1a00',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:778,name:'ZoÃ©',genre:'',riders:0,standby:348,color:'#0a001a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:778,name:'Zo&#233;',genre:'',riders:0,standby:348,color:'#0a001a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:779,name:'El Fantasma',genre:'',riders:0,standby:125,color:'#1a000a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:780,name:'D-Block Europe',genre:'',riders:0,standby:390,color:'#001a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:781,name:'The Black Keys',genre:'',riders:0,standby:159,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -819,7 +819,7 @@ const SPOTIFY_ARTISTS = [
   {id:792,name:'Kim Petras',genre:'',riders:0,standby:341,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:793,name:'Keane',genre:'',riders:0,standby:142,color:'#1a000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:794,name:'Van Morrison',genre:'',riders:0,standby:394,color:'#0d000d',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:795,name:'Juan MagÃ¡n',genre:'',riders:0,standby:497,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:795,name:'Juan Mag&#225;n',genre:'',riders:0,standby:497,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:796,name:'Niska',genre:'',riders:0,standby:69,color:'#0a0a2e',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:797,name:'Stromae',genre:'',riders:0,standby:112,color:'#1a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:798,name:'Joey Bada$$',genre:'',riders:0,standby:141,color:'#0a1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -942,14 +942,14 @@ const SPOTIFY_ARTISTS = [
   {id:915,name:'Prince',genre:'',riders:0,standby:469,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:916,name:'Years & Years',genre:'',riders:0,standby:423,color:'#0a0a2e',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:917,name:'Red Velvet',genre:'',riders:0,standby:466,color:'#1a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:918,name:'JesÃºs AdriÃ¡n Romero',genre:'',riders:0,standby:241,color:'#0a1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:918,name:'Jes&#250;s Adri&#225;n Romero',genre:'',riders:0,standby:241,color:'#0a1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:919,name:'La Santa Grifa',genre:'',riders:0,standby:91,color:'#1a0a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:920,name:'3 Doors Down',genre:'',riders:0,standby:132,color:'#001a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:921,name:'j-hope',genre:'',riders:0,standby:253,color:'#1a1a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:922,name:'LUCKI',genre:'',riders:0,standby:481,color:'#0a001a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:923,name:'Alex Rose',genre:'',riders:0,standby:128,color:'#1a000a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:924,name:'Falling In Reverse',genre:'',riders:0,standby:96,color:'#001a00',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:925,name:'Eden MuÃ±oz',genre:'',riders:0,standby:69,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:925,name:'Eden Mu&#241;oz',genre:'',riders:0,standby:69,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:926,name:'Calle 24',genre:'',riders:0,standby:405,color:'#1a0a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:927,name:'B Praak',genre:'',riders:0,standby:242,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:928,name:'Samra',genre:'',riders:0,standby:448,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -974,7 +974,7 @@ const SPOTIFY_ARTISTS = [
   {id:947,name:'The Vamps',genre:'',riders:0,standby:206,color:'#1a000a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:948,name:'Jimi Hendrix',genre:'',riders:0,standby:223,color:'#001a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:949,name:'Ella Mai',genre:'',riders:0,standby:56,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:950,name:'AminÃ©',genre:'',riders:0,standby:194,color:'#1a0a0a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:950,name:'Amin&#233;',genre:'',riders:0,standby:194,color:'#1a0a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:951,name:'Stephen Sanchez',genre:'',riders:0,standby:375,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:952,name:'Timmy Trumpet',genre:'',riders:0,standby:67,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:953,name:'JP Cooper',genre:'',riders:0,standby:421,color:'#0a150a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -991,13 +991,13 @@ const SPOTIFY_ARTISTS = [
   {id:964,name:'NEFFEX',genre:'',riders:0,standby:478,color:'#0a0a2e',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:965,name:'Kodaline',genre:'',riders:0,standby:432,color:'#1a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:966,name:'Doechii',genre:'',riders:0,standby:72,color:'#0a1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:967,name:'RÃœFÃœS DU SOL',genre:'',riders:0,standby:279,color:'#1a0a00',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:967,name:'R&#220;F&#220;S DU SOL',genre:'',riders:0,standby:279,color:'#1a0a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:968,name:'Aretha Franklin',genre:'',riders:0,standby:374,color:'#001a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:969,name:'Bethel Music',genre:'',riders:0,standby:238,color:'#1a1a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:970,name:'Sezen Aksu',genre:'',riders:0,standby:104,color:'#0a001a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:971,name:'Carla Morrison',genre:'',riders:0,standby:143,color:'#1a000a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:972,name:'MÃ¶tley CrÃ¼e',genre:'',riders:0,standby:245,color:'#001a00',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:973,name:'ANAVITÃ“RIA',genre:'',riders:0,standby:75,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:972,name:'M&#246;tley Cr&#252;e',genre:'',riders:0,standby:245,color:'#001a00',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:973,name:'ANAVIT&#211;RIA',genre:'',riders:0,standby:75,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:974,name:'310187161',genre:'',riders:0,standby:322,color:'#1a0a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:975,name:'BROCKHAMPTON',genre:'',riders:0,standby:274,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:976,name:'Ice Spice',genre:'',riders:0,standby:320,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -1009,7 +1009,7 @@ const SPOTIFY_ARTISTS = [
   {id:982,name:'Wolfgang Amadeus Mozart',genre:'',riders:0,standby:382,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:983,name:'YSY A',genre:'',riders:0,standby:462,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:984,name:'Kenshi Yonezu',genre:'',riders:0,standby:265,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:985,name:'Os BarÃµes Da Pisadinha',genre:'',riders:0,standby:236,color:'#1a000d',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:985,name:'Os Bar&#245;es Da Pisadinha',genre:'',riders:0,standby:236,color:'#1a000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:986,name:'CRO',genre:'',riders:0,standby:119,color:'#0d000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:987,name:'Laura Pausini',genre:'',riders:0,standby:245,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:988,name:'PNAU',genre:'',riders:0,standby:442,color:'#0a0a2e',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -1023,8 +1023,8 @@ const SPOTIFY_ARTISTS = [
   {id:996,name:'Rag',genre:'',riders:0,standby:65,color:'#001a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:997,name:'Tiakola',genre:'',riders:0,standby:350,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:998,name:'Santana',genre:'',riders:0,standby:436,color:'#1a0a0a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:999,name:'Kany GarcÃ­a',genre:'',riders:0,standby:486,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:1000,name:'Benjamin BlÃ¼mchen',genre:'',riders:0,standby:153,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:999,name:'Kany Garc&#237;a',genre:'',riders:0,standby:486,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:1000,name:'Benjamin Bl&#252;mchen',genre:'',riders:0,standby:153,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1001,name:'Cavetown',genre:'',riders:0,standby:115,color:'#0a150a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1002,name:'Lauana Prado',genre:'',riders:0,standby:449,color:'#1a1500',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1003,name:'Vintage Culture',genre:'',riders:0,standby:388,color:'#001510',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -1037,18 +1037,18 @@ const SPOTIFY_ARTISTS = [
   {id:1010,name:'NCT DREAM',genre:'',riders:0,standby:274,color:'#0d000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1011,name:'ODESZA',genre:'',riders:0,standby:391,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1012,name:'WALK THE MOON',genre:'',riders:0,standby:299,color:'#0a0a2e',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:1013,name:'FrÃ©dÃ©ric Chopin',genre:'',riders:0,standby:500,color:'#1a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:1013,name:'Fr&#233;d&#233;ric Chopin',genre:'',riders:0,standby:500,color:'#1a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1014,name:'Gloria Trevi',genre:'',riders:0,standby:396,color:'#0a1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1015,name:'The Clash',genre:'',riders:0,standby:210,color:'#1a0a00',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:1016,name:'Pedro CapÃ³',genre:'',riders:0,standby:117,color:'#001a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:1016,name:'Pedro Cap&#243;',genre:'',riders:0,standby:117,color:'#001a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1017,name:'Felipe Amorim',genre:'',riders:0,standby:464,color:'#1a1a00',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:1018,name:'Nanpa BÃ¡sico',genre:'',riders:0,standby:230,color:'#0a001a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:1018,name:'Nanpa B&#225;sico',genre:'',riders:0,standby:230,color:'#0a001a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1019,name:'*NSYNC',genre:'',riders:0,standby:327,color:'#1a000a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1020,name:'Lvbel C5',genre:'',riders:0,standby:439,color:'#001a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1021,name:'Louis Armstrong',genre:'',riders:0,standby:317,color:'#0a1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1022,name:'PEDRO SAMPAIO',genre:'',riders:0,standby:138,color:'#1a0a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1023,name:'Werenoi',genre:'',riders:0,standby:442,color:'#0a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:1024,name:'JoÃ£o Gomes',genre:'',riders:0,standby:92,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:1024,name:'Jo&#227;o Gomes',genre:'',riders:0,standby:92,color:'#150a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1025,name:'Ado',genre:'',riders:0,standby:476,color:'#0a150a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1026,name:'Jere Klein',genre:'',riders:0,standby:338,color:'#1a1500',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1027,name:'DENNIS',genre:'',riders:0,standby:338,color:'#001510',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -1065,7 +1065,7 @@ const SPOTIFY_ARTISTS = [
   {id:1038,name:'IU',genre:'',riders:0,standby:224,color:'#0a1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1039,name:'BoyWithUke',genre:'',riders:0,standby:77,color:'#1a0a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1040,name:'JIN',genre:'',riders:0,standby:308,color:'#001a1a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:1041,name:'Cardenales De Nuevo LeÃ³n',genre:'',riders:0,standby:415,color:'#1a1a00',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:1041,name:'Cardenales De Nuevo Le&#243;n',genre:'',riders:0,standby:415,color:'#1a1a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1042,name:'Dread Mar I',genre:'',riders:0,standby:319,color:'#0a001a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1043,name:'The Pussycat Dolls',genre:'',riders:0,standby:317,color:'#1a000a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1044,name:'FISHER',genre:'',riders:0,standby:178,color:'#001a00',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -1077,7 +1077,7 @@ const SPOTIFY_ARTISTS = [
   {id:1050,name:'Bailey Zimmerman',genre:'',riders:0,standby:254,color:'#1a1500',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1051,name:'back number',genre:'',riders:0,standby:224,color:'#001510',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1052,name:'Supernova Ent',genre:'',riders:0,standby:433,color:'#100015',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:1053,name:'La Adictiva Banda San JosÃ© de Mesillas',genre:'',riders:0,standby:304,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:1053,name:'La Adictiva Banda San Jos&#233; de Mesillas',genre:'',riders:0,standby:304,color:'#150010',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1054,name:'Toby Fox',genre:'',riders:0,standby:257,color:'#0d1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1055,name:'Beret',genre:'',riders:0,standby:456,color:'#1a0d00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1056,name:'Semicenk',genre:'',riders:0,standby:190,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -1107,10 +1107,10 @@ const SPOTIFY_ARTISTS = [
   {id:1080,name:'Alex G',genre:'',riders:0,standby:133,color:'#000d1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1081,name:'Ali Gatie',genre:'',riders:0,standby:440,color:'#1a000d',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1082,name:'Toby Keith',genre:'',riders:0,standby:476,color:'#0d000d',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:1083,name:'Karsten GlÃ¼ck',genre:'',riders:0,standby:218,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:1083,name:'Karsten Gl&#252;ck',genre:'',riders:0,standby:218,color:'#0d1a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1084,name:'Simone Sommerland',genre:'',riders:0,standby:493,color:'#0a0a2e',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1085,name:'ITZY',genre:'',riders:0,standby:89,color:'#1a0a1a',posts:0,active:false,newlyAdded:false,onTour:false},
-  {id:1086,name:'Die Kita-FrÃ¶sche',genre:'',riders:0,standby:461,color:'#0a1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
+  {id:1086,name:'Die Kita-Fr&#246;sche',genre:'',riders:0,standby:461,color:'#0a1a0a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1087,name:'Incubus',genre:'',riders:0,standby:470,color:'#1a0a00',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1088,name:'Lee Brice',genre:'',riders:0,standby:113,color:'#001a1a',posts:0,active:false,newlyAdded:false,onTour:false},
   {id:1089,name:'Foreigner',genre:'',riders:0,standby:348,color:'#1a1a00',posts:0,active:false,newlyAdded:false,onTour:false},
@@ -1954,6 +1954,7 @@ export default function App() {
   const [offBus, setOffBus] = useState({});
   const [confirmOff, setConfirmOff] = useState(null);
   const [standbyConfirm, setStandbyConfirm] = useState(null);
+  const [showExplainer, setShowExplainer] = useState(false); // artist ID pending standby confirmation
   const [suggestNote, setSuggestNote] = useState("");
   const [suggestSubmitted, setSuggestSubmitted] = useState(false);
   const [recoSuggestSubmitted, setRecoSuggestSubmitted] = useState(false);
@@ -1975,6 +1976,9 @@ export default function App() {
     window.scrollTo(0,0);
     setActiveTagInput(null);
     setTagDraft('');
+    setSearch('');
+    setSuggestNote('');
+    setSuggestSubmitted(false);
   };
 
   const goBack = () => {
@@ -2000,7 +2004,7 @@ export default function App() {
     });
   };
 
-  const canGoBack = screenStack.length;
+  const canGoBack = screenStack.length > 0;
   const toggleLike = id => setLikes(p=>({...p,[id]:{count:p[id].liked?p[id].count-1:p[id].count+1,liked:!p[id].liked}}));
   const toggleAmp = id => setAmps(p=>({...p,[id]:{count:p[id].amped?p[id].count-1:p[id].count+1,amped:!p[id].amped}}));
   const TAG_THRESHOLD = 20;
@@ -2430,7 +2434,7 @@ export default function App() {
                         {navResults.map(a=>(
                           <div key={a.id} className="nav-search-result" onClick={()=>{setSelectedArtist(a);setNavSearch("");go(SCREENS.PROFILE);}}>
                             <div style={{width:24,height:24,borderRadius:2,background:a.color,flexShrink:0}}></div>
-                            <div><div className="nav-result-name">{a.name}</div><div className="nav-result-genre">{a.genre}</div></div>
+                            <div><div className="nav-result-name">{a.name}</div></div>
                           </div>
                         ))}
                       </div>
@@ -2461,7 +2465,7 @@ export default function App() {
         willChange: 'transform',
       }}>
         {/* Swipe-back: previous screen peek panel, slides in behind current page */}
-        {canGoBack && swipeDx && (
+        {canGoBack && !!swipeDx && (
           <div style={{
             position: 'fixed',
             left: -swipeDx,   // peeks in from left as current page slides away
@@ -2501,7 +2505,7 @@ export default function App() {
                 padding: '0 6px',
                 textAlign: 'center',
               }}>
-                {screenStack.length
+                {screenStack.length > 0
                   ? (() => {
                       const prev = screenStack[screenStack.length - 1];
                       if (prev === SCREENS.STREAM) return 'MY STREAM';
@@ -2560,7 +2564,7 @@ export default function App() {
               <div className="card fade">
                 <button className="back" onClick={goBack}>Back</button>
                 <div className="logo logo-sm" style={{marginBottom:16}}>tourbus</div>
-                <div className="headline">Welcome back, rider!</div>
+                
                 <label className="lbl">Username</label>
                 <input className={`inp${riderSignInError?" inp-error":""}`} placeholder="your_handle" value={riderSignInForm.username} onChange={e=>{setRiderSignInForm(p=>({...p,username:e.target.value}));setRiderSignInError("");}}/>
                 <label className="lbl">Password</label>
@@ -2766,13 +2770,13 @@ export default function App() {
                       </div>
                       {(p.type==="photo"||p.type==="video")&&(
                         <div className="feed-post-thumb" style={{background:"#111",border:"1px solid #2a2a00"}}>
-                          <span style={{fontSize:64}}>{<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity={0.2}><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>}</span>
+                          <span style={{fontSize:64}}>{<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>}</span>
                         </div>
                       )}
                       <div className="tourbus-post-thumb">
                         <div className="tourbus-post-text">{parseCaption(p.label)}</div>
                       </div>
-                      {(()=>{const topTags=Object.entries(tags[p.id]||{}).filter(([,cnt])=>cnt>=TAG_THRESHOLD).sort((a,b)=>b[1]-a[1]).slice(0,5);return topTags.length>0&&<div className="tag-pills">{topTags.map(([tag])=><span key={tag} className="tag-pill" style={{cursor:"pointer"}} onClick={()=>setTags(prev=>({...prev,[p.id]:{...prev[p.id],[tag]:(prev[p.id][tag]||0)+1}}))}>#{tag}</span>)}</div>;})()}
+                      {(()=>{const topTags=Object.entries(tags[p.id]||{}).filter(([,cnt])=>cnt>=TAG_THRESHOLD).sort((a,b)=>b[1]-a[1]).slice(0,5);return topTags.length>0&&<div className="tag-pills">{topTags.map(([tag])=><span key={tag} className="tag-pill" style={{cursor:"pointer"}} onClick={()=>{setActiveTag(tag);go(SCREENS.TAG_FEED);}}>#{tag}</span>)}</div>;})()}
                       {activeTagInput===p.id&&(
                         <div className="tag-input-wrap">
                           <input className="tag-input" placeholder="add a tag..." maxLength={30} value={tagDraft} onChange={e=>setTagDraft(e.target.value.replace(/\s/g,''))} onKeyDown={e=>{if(e.key==='Enter')addTag(p.id,tagDraft);if(e.key==='Escape'){setActiveTagInput(null);setTagDraft('');}}}/>
@@ -2782,7 +2786,7 @@ export default function App() {
                       <div className="feed-post-footer">
                         <button className={`like-btn${likes[p.id]?.liked?" liked":""}`} onClick={()=>toggleLike(p.id)}>{<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>} {(likes[p.id]?.count||0).toLocaleString()}</button>
                         <button className={`like-btn${amps[p.id]?.amped?" liked":""}`} onClick={()=>toggleAmp(p.id)}>{<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>} {(amps[p.id]?.count||0).toLocaleString()}</button>
-                        <button className={`tag-btn${activeTagInput===p.id?" active":""}`} onClick={()=>{setActiveTagInput(activeTagInput===p.id?null:p.id);setTagDraft('');}}>#</button>
+                        <button className={`tag-btn${activeTagInput===p.id?" active":""}`} onClick={()=>{setActiveTagInput(activeTagInput===p.id?null:p.id);setTagDraft('');}}>&#35;</button>
                       </div>
                     </div>
                   );
@@ -2814,10 +2818,10 @@ export default function App() {
                         </div>
                       </div>
                       <div className="feed-post-thumb" style={{background:p.color,cursor:"pointer"}} onClick={()=>{const a=ARTISTS.find(a=>a.name===p.artist);if(a){setSelectedArtist(a);setSelectedPost(p);setAllArtistPosts(feedPosts.filter(fp=>fp.artist===p.artist));go(SCREENS.POST_VIEW);}}}>
-                        {p.previewUrl?<img src={p.previewUrl} alt={p.label}/>:<span style={{fontSize:64}}>{<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity={0.2}><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>}</span>}
+                        {p.previewUrl?<img src={p.previewUrl} alt={p.label}/>:<span style={{fontSize:64}}>{<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>}</span>}
                       </div>
                       <div className="feed-post-label">{parseCaption(p.label)}</div>
-                      {(()=>{const topTags=Object.entries(tags[p.id]||{}).filter(([,cnt])=>cnt>=TAG_THRESHOLD).sort((a,b)=>b[1]-a[1]).slice(0,5);return topTags.length>0&&<div className="tag-pills">{topTags.map(([tag])=><span key={tag} className="tag-pill" style={{cursor:"pointer"}} onClick={()=>setTags(prev=>({...prev,[p.id]:{...prev[p.id],[tag]:(prev[p.id][tag]||0)+1}}))}>#{tag}</span>)}</div>;})()}
+                      {(()=>{const topTags=Object.entries(tags[p.id]||{}).filter(([,cnt])=>cnt>=TAG_THRESHOLD).sort((a,b)=>b[1]-a[1]).slice(0,5);return topTags.length>0&&<div className="tag-pills">{topTags.map(([tag])=><span key={tag} className="tag-pill" style={{cursor:"pointer"}} onClick={()=>{setActiveTag(tag);go(SCREENS.TAG_FEED);}}>#{tag}</span>)}</div>;})()}
                       {activeTagInput===p.id&&(
                         <div className="tag-input-wrap">
                           <input className="tag-input" placeholder="add a tag..." maxLength={30} value={tagDraft} onChange={e=>setTagDraft(e.target.value.replace(/\s/g,''))} onKeyDown={e=>{if(e.key==='Enter')addTag(p.id,tagDraft);if(e.key==='Escape'){setActiveTagInput(null);setTagDraft('');}}}/>
@@ -2827,7 +2831,7 @@ export default function App() {
                       <div className="feed-post-footer">
                         <button className={`like-btn${likes[p.id]?.liked?" liked":""}`} onClick={()=>toggleLike(p.id)}>{<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>} {(likes[p.id]?.count||0).toLocaleString()}</button>
                         <button className={`like-btn${amps[p.id]?.amped?" liked":""}`} onClick={()=>toggleAmp(p.id)}>{<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>} {(amps[p.id]?.count||0).toLocaleString()}</button>
-                        <button className={`tag-btn${activeTagInput===p.id?" active":""}`} onClick={()=>{setActiveTagInput(activeTagInput===p.id?null:p.id);setTagDraft('');}}>#</button>
+                        <button className={`tag-btn${activeTagInput===p.id?" active":""}`} onClick={()=>{setActiveTagInput(activeTagInput===p.id?null:p.id);setTagDraft('');}}>&#35;</button>
                       </div>
                     </div>
                   );
@@ -2945,7 +2949,7 @@ export default function App() {
                         <div className="artist-card-top">
                           <div style={{display:"flex",alignItems:"center",gap:10}}>
                             <ArtistThumb artist={a} style={{width:56,height:56,borderRadius:2,flexShrink:0}}/>
-                            <div><div className="artist-card-name">{a.name}</div><div className="artist-card-genre">{a.genre}</div></div>
+                            <div><div className="artist-card-name">{a.name}</div></div>
                           </div>
                         </div>
                         <div className="artist-card-badges">
@@ -2971,17 +2975,17 @@ export default function App() {
                     <div className="suggest-card">
                       {!suggestSubmitted?(
                         <>
-                          <div className="suggest-title">Don't see {search}?</div>
+                          <div className="suggest-title">Don't see an artist?</div>
                           <div className="suggest-sub">We're always adding new artists. Suggest them and we'll reach out.</div>
                           <label className="lbl">Artist name</label>
-                          <input className="inp" value={search} readOnly style={{color:darkMode?"#e6ff00":"#ff4d1a",marginBottom:16}}/>
-                          <button className="btn btn-primary" style={{marginBottom:0}} onClick={()=>setSuggestSubmitted(true)}>Suggest This Artist</button>
+                          <input className="inp" value={suggestNote} onChange={e=>setSuggestNote(e.target.value)} placeholder="Artist name..." style={{color:darkMode?"#e6ff00":"#ff4d1a",marginBottom:16}}/>
+                          <button className="btn btn-primary" style={{marginBottom:0}} onClick={()=>{if(suggestNote.trim())setSuggestSubmitted(true);}}>Suggest This Artist</button>
                         </>
                       ):(
                         <div className="suggest-success">
                           <div className="suggest-success-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
                           <div className="suggest-success-text">Suggestion received!</div>
-                          <div className="suggest-success-sub">We'll look into bringing {search} onto tourbus.</div>
+                          <div className="suggest-success-sub">We'll look into bringing {suggestNote} onto tourbus.</div>
                         </div>
                       )}
                     </div>
@@ -3089,7 +3093,7 @@ export default function App() {
                         </div>
                         <div style={{width:"100%",aspectRatio:"16/9",background:p.color,display:"flex",alignItems:"center",justifyContent:"center",fontSize:64,position:"relative",overflow:"hidden",filter:isUnlocked?"none":"blur(8px)"}}>
                           {p.previewUrl?<img src={p.previewUrl} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>:
-                            <span>{p.type==="photo"?<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity={0.2}><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>:<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity={0.2}><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>}</span>}
+                            <span>{p.type==="photo"?<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>:<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>}</span>}
                         </div>
                         <div style={{padding:"10px 14px 4px",fontSize:13,color:darkMode?"#aaa":"#3a3a5a",fontFamily:"'Inter',sans-serif",lineHeight:1.6,filter:isUnlocked?"none":"blur(4px)",userSelect:isUnlocked?"auto":"none",pointerEvents:isUnlocked?"auto":"none"}}>{parseCaption(p.label)}</div>
                         {isUnlocked&&(()=>{const topTags=Object.entries(tags[p.id]||{}).filter(([,cnt])=>cnt>=TAG_THRESHOLD).sort((a,b)=>b[1]-a[1]).slice(0,5);return topTags.length>0&&<div className="tag-pills" style={{paddingLeft:14,paddingRight:14,marginBottom:4}}>{topTags.map(([tag])=><span key={tag} className="tag-pill" style={{cursor:"pointer"}} onClick={()=>{setActiveTag(tag);go(SCREENS.TAG_FEED);}}>#{tag}</span>)}</div>;})()}
@@ -3127,7 +3131,7 @@ export default function App() {
                         {LIVE_IDS.has(selectedArtist.id)&&<div className="live-badge" style={{top:8}}>LIVE</div>}
                       </div>
                       <div className="profile-name">{selectedArtist.name}</div>
-                      <div className="profile-genre">{selectedArtist.genre}</div>
+                      
                       <p className="profile-bio">{getArtistProfile(selectedArtist).bio}</p>
                       {getArtistProfile(selectedArtist).website&&(
                         <div style={{display:"flex",gap:10,flexWrap:"wrap",justifyContent:"center",marginBottom:16}}>
@@ -3180,7 +3184,7 @@ export default function App() {
                                 <div style={{fontFamily:"'Anton',sans-serif",fontSize:16,letterSpacing:3,color:"#f5f5f5",marginBottom:4}}>{selectedArtist.name} IS LIVE</div>
                                 <div style={{fontSize:11,color:"#666",letterSpacing:1,fontFamily:"'Inter',sans-serif"}}>Live Feed Goes Here</div>
                               </div>
-                              <div style={{position:"absolute",bottom:12,right:12,background:"rgba(0,0,0,0.7)",border:"1px solid #ff2222",borderRadius:1,padding:"4px 10px",fontSize:10,color:"#ff6666",fontFamily:"'Anton',sans-serif",letterSpacing:1}}>â— LIVE</div>
+                              <div style={{position:"absolute",bottom:12,right:12,background:"rgba(0,0,0,0.7)",border:"1px solid #ff2222",borderRadius:1,padding:"4px 10px",fontSize:10,color:"#ff6666",fontFamily:"'Anton',sans-serif",letterSpacing:1}}>&#9679; LIVE</div>
                             </div>
                           </div>
                         )}
@@ -3192,7 +3196,7 @@ export default function App() {
                             const allPosts = [...realPosts, ...mockPostsFull];
                             return allPosts.map(p=>(
                               <div key={p.id} className="feed-grid-item" style={{background:p.color}} onClick={()=>{setSelectedPost(p);setAllArtistPosts(allPosts);go(SCREENS.POST_VIEW);}}>
-                                {p.previewUrl?<img src={p.previewUrl} alt={p.label} style={{width:"100%",height:"100%",objectFit:"cover",display:"block"}}/>:<span>{p.type==="photo"?<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity={0.2}><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>:<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity={0.2}><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>}</span>}
+                                {p.previewUrl?<img src={p.previewUrl} alt={p.label} style={{width:"100%",height:"100%",objectFit:"cover",display:"block"}}/>:<span>{p.type==="photo"?<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>:<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>}</span>}
                                 {p.mediaItems && p.mediaItems.length > 1 && (
                                   <div style={{position:"absolute",top:4,right:4,background:"rgba(0,0,0,0.65)",borderRadius:2,padding:"2px 5px",fontSize:9,color:"#fff",fontFamily:"'Anton',sans-serif",letterSpacing:1,display:"flex",alignItems:"center",gap:3}}>
                                     <span style={{fontSize:8}}>â§‰</span>{p.mediaItems.length}
@@ -3208,7 +3212,7 @@ export default function App() {
                       <>
                         <div className="feed-grid">
                           <div className="feed-grid-lock"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-                          {MOCK_POSTS.map((p,i)=><div key={i} className="feed-grid-item" style={{background:p.color,filter:"blur(5px)",cursor:"default"}}><span>{p.type==="photo"?<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity={0.2}><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>:<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity={0.2}><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>}</span></div>)}
+                          {MOCK_POSTS.map((p,i)=><div key={i} className="feed-grid-item" style={{background:p.color,filter:"blur(5px)",cursor:"default"}}><span>{p.type==="photo"?<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>:<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>}</span></div>)}
                         </div>
                         <div className="unlock-box">
                           <div className="unlock-desc">A one-time fee to ride on {selectedArtist.name}'s tourbus and access their exclusive feed.</div>
@@ -3268,7 +3272,7 @@ export default function App() {
                           <div style={{width:"100%",aspectRatio:"16/9",background:p.color,position:"relative",overflow:"hidden",display:"flex",alignItems:"center",justifyContent:"center"}}>
                             {currentMedia.type==="photo"
                               ? <img src={currentMedia.url} alt={p.label} style={{width:"100%",height:"100%",objectFit:"cover",position:"absolute",inset:0}}/>
-                              : <div style={{width:"100%",height:"100%",display:"flex",alignItems:"center",justifyContent:"center",position:"absolute",inset:0,background:"#111"}}><span style={{fontSize:48}}><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity={0.2}><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span></div>
+                              : <div style={{width:"100%",height:"100%",display:"flex",alignItems:"center",justifyContent:"center",position:"absolute",inset:0,background:"#111"}}><span style={{fontSize:48}}><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span></div>
                             }
                             {mediaItems.length > 1 && clampedSlide > 0 && (
                               <button onClick={e=>{e.stopPropagation();setPostSlides(s=>({...s,[p.id]:clampedSlide-1}));}} style={{position:"absolute",left:8,top:"50%",transform:"translateY(-50%)",background:"rgba(0,0,0,0.6)",border:"1px solid #444",borderRadius:2,color:"#fff",padding:"8px 12px",cursor:"pointer",fontSize:16,zIndex:2}}>&lt;</button>
@@ -3290,7 +3294,7 @@ export default function App() {
                         )}
                         {mediaItems.length === 0 && (
                           <div style={{width:"100%",aspectRatio:"16/9",background:p.color,display:"flex",alignItems:"center",justifyContent:"center",fontSize:48}}>
-                            <span><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity={0.2}><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span>
+                            <span><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span>
                           </div>
                         )}
                         {/* Caption */}
@@ -3349,7 +3353,7 @@ export default function App() {
                 <div className="logo logo-sm" >tourbus</div><div className="logo-sub">Your ticket to ride</div>
                 <div className="checkout-artist">
                   <ArtistThumb artist={selectedArtist} style={{width:48,height:48,borderRadius:2,border:`1px solid ${darkMode?"#2a2a00":"#d0cfc0"}`,flexShrink:0}}/>
-                  <div><div style={{fontFamily:"'Anton',sans-serif",fontSize:16,letterSpacing:2,color:darkMode?"#f5f5f5":"#1a1a2e"}}>{selectedArtist.name}</div><div style={{fontSize:11,color:darkMode?"#555":"#888",letterSpacing:2}}>{selectedArtist.genre}</div></div>
+                  <div><div style={{fontFamily:"'Anton',sans-serif",fontSize:16,letterSpacing:2,color:darkMode?"#f5f5f5":"#1a1a2e"}}>{selectedArtist.name}</div></div>
                 </div>
                 <label className="lbl">Card Number</label>
                 <input className="inp" placeholder="Card on file: .... 4242" value={ccForm.number} onChange={e=>setCcForm(p=>({...p,number:e.target.value}))}/>
@@ -3409,7 +3413,7 @@ export default function App() {
                         <ArtistThumb artist={a} photoOverride={getArtistProfile(a).photo} style={{width:40,height:40,borderRadius:2,flexShrink:0,border:`1px solid ${darkMode?"#2a2a00":"#d0cfc0"}`}}/>
                         <div style={{minWidth:0}}>
                           <div className="ticket-name">{a.name}</div>
-                          <div className="ticket-genre">{a.genre}</div>
+                          
                           <div style={{fontSize:9,color:"#444",letterSpacing:1,marginTop:2}}>{purchased.get(a.id)?.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</div>
                         </div>
                       </div>
@@ -3424,14 +3428,14 @@ export default function App() {
                             color:isBookmarked(a.id)?darkMode?"#e6ff00":"#ff4d1a":"#444",
                             opacity:riderBookmarks.length>=7&&!isBookmarked(a.id)?0.35:1,
                           }}
-                        >{isBookmarked(a.id)?"Unpin":"Pin"}</button>
+                        >{isBookmarked(a.id)?"â˜…":"â˜†"}</button>
                         <button onClick={()=>setConfirmOff(a.name)} style={{fontFamily:"'Anton',sans-serif",fontSize:9,letterSpacing:1,color:"#cc4444",background:"transparent",border:"1px solid #441111",borderRadius:1,padding:"3px 8px",cursor:"pointer"}}>GET OFF</button>
                       </div>
                     </div>
                   ))}
                   {/* hint */}
                   {ARTISTS.filter(a=>purchased.has(a.id)&&!offBus[a.name]).length>0&&(
-                    <div style={{padding:"8px 16px 10px",fontSize:9,color:"#444",letterSpacing:1,lineHeight:1.6}}>PIN UP TO 7 ARTISTS TO YOUR BUSES ROW</div>
+                    <div style={{padding:"8px 16px 10px",fontSize:9,color:"#444",letterSpacing:1,lineHeight:1.6}}>â˜… PIN UP TO 7 ARTISTS TO YOUR BUSES ROW</div>
                   )}
                 </div>
                 {Object.keys(standby).filter(k=>standby[k]).length>0&&(
@@ -3462,7 +3466,7 @@ export default function App() {
               <div className="dashboard-wrap fade">
                 <div className="dashboard-header">
                   <ArtistThumb artist={artistUser} photoOverride={getArtistProfile(artistUser).photo} style={{width:56,height:56,borderRadius:2,flexShrink:0}}/>
-                  <div><div className="dashboard-name">{artistUser.name}</div><div className="dashboard-genre">{artistUser.genre}</div></div>
+                  <div><div className="dashboard-name">{artistUser.name}</div></div>
                   <div style={{display:"flex",alignItems:"center",gap:8,marginLeft:"auto"}}>
                     <button className="account-signout" style={{width:"auto",marginTop:0,padding:"8px 16px",fontSize:10}} onClick={()=>{localStorage.removeItem('tb_session');setUserMode("rider");setArtistUser(null);go(SCREENS.LANDING);}}>Sign Out</button>
                   </div>
@@ -3476,7 +3480,7 @@ export default function App() {
                 <div style={{background:darkMode?"#161616":"#ffffff",border:`1px solid ${darkMode?"#2a2a00":"#d0cfc0"}`,borderRadius:2,marginBottom:24,overflow:"hidden"}}>
                   <div onClick={()=>setGrowthOpen(o=>!o)} style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"12px 16px",cursor:"pointer",userSelect:"none"}}>
                     <div style={{fontSize:10,letterSpacing:3,color:darkMode?"#444":"#8a8aaa",fontFamily:"'Anton',sans-serif"}}>RIDER GROWTH</div>
-                    <div style={{fontSize:20,color:darkMode?"#e6ff00":"#0e0e0e",transition:"transform 0.2s",transform:growthOpen?"rotate(180deg)":"rotate(0deg)"}}>â–¾</div>
+                    <div style={{fontSize:20,color:darkMode?"#e6ff00":"#0e0e0e",transition:"transform 0.2s",transform:growthOpen?"rotate(180deg)":"rotate(0deg)"}}>&#9662;</div>
                   </div>
                   {growthOpen&&(
                     <>
@@ -3605,7 +3609,7 @@ export default function App() {
                       <div key={a.id} className="reco-chip">
                         <ArtistThumb artist={a} className="reco-chip-avatar"/>
                         <div className="reco-chip-name">{a.name}</div>
-                        <button className="reco-chip-remove" onClick={()=>setArtistRecos(p=>({...p,[artistUser.id]:(p[artistUser.id]||[]).filter(r=>r.id!==a.id)}))}>âœ•</button>
+                        <button className="reco-chip-remove" onClick={()=>setArtistRecos(p=>({...p,[artistUser.id]:(p[artistUser.id]||[]).filter(r=>r.id!==a.id)}))}>&#10005;</button>
                       </div>
                     ))}
                     {(artistRecos[artistUser?.id]||[]).length<5&&(
@@ -3636,7 +3640,7 @@ export default function App() {
                                     <ArtistThumb artist={a} style={{width:28,height:28,borderRadius:1,flexShrink:0}}/>
                                     <div style={{flex:1}}>
                                       <div className="reco-result-name">{a.name}</div>
-                                      {a.genre&&<div className="reco-result-genre">{a.genre}</div>}
+                                      
                                     </div>
                                   </div>
                                 ))}
@@ -3700,7 +3704,7 @@ export default function App() {
                     <div key={p.id} className="post-list-item" style={{flexDirection:"column",alignItems:"stretch",gap:10}}>
                       <div style={{display:"flex",alignItems:"center",gap:12}}>
                         <div className="post-list-thumb" style={{background:p.color}}>
-                          {p.previewUrl?<img src={p.previewUrl} alt="" style={{width:"100%",height:"100%",objectFit:"cover",borderRadius:1}}/>:<span>{p.type==="photo"?<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity={0.2}><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>:<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity={0.2}><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>}</span>}
+                          {p.previewUrl?<img src={p.previewUrl} alt="" style={{width:"100%",height:"100%",objectFit:"cover",borderRadius:1}}/>:<span>{p.type==="photo"?<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>:<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>}</span>}
                         </div>
                         <div style={{flex:1}}>
                           <div className="post-list-label">{p.label}</div>
@@ -3840,7 +3844,7 @@ export default function App() {
                 <div style={{background:"#161616",border:"1px solid #2a2a00",borderRadius:2,padding:"20px 32px",width:"100%"}}>
                   <div style={{fontSize:10,color:"#444",letterSpacing:3,fontFamily:"'Anton',sans-serif",marginBottom:16}}>STREAMING AS</div>
                   <div style={{fontFamily:"'Anton',sans-serif",fontSize:22,color:"#f5f5f5",letterSpacing:2,marginBottom:4}}>{artistUser.name}</div>
-                  <div style={{fontSize:10,color:"#555",letterSpacing:2}}>{artistUser.genre.toUpperCase()}</div>
+                  
                 </div>
                 <div style={{fontSize:11,color:"#444",letterSpacing:1,fontFamily:"'Inter',sans-serif",lineHeight:1.7,maxWidth:360}}>
                   Livestream duration limits are coming soon. For now, stream as long as you need.
@@ -3866,7 +3870,7 @@ export default function App() {
                         {item.type === "photo"
                           ? <img src={item.url} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>
                           : <div style={{width:"100%",height:"100%",display:"flex",alignItems:"center",justifyContent:"center",flexDirection:"column",gap:2,background:"#1a1a00"}}>
-                              <span style={{fontSize:22}}><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity={0.2}><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span>
+                              <span style={{fontSize:22}}><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span>
                               <span style={{fontSize:8,color:"#888",letterSpacing:1}}>VIDEO</span>
                             </div>
                         }
@@ -3914,7 +3918,7 @@ export default function App() {
                         <div style={{position:"relative",width:"100%",aspectRatio:"16/9",background:artistUser.color,borderTop:"1px solid #1e1e00",overflow:"hidden"}}>
                           {postMediaItems[0].type==="photo"
                             ? <img src={postMediaItems[0].url} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>
-                            : <div style={{width:"100%",height:"100%",display:"flex",alignItems:"center",justifyContent:"center"}}><span style={{fontSize:36}}><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity={0.2}><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span></div>
+                            : <div style={{width:"100%",height:"100%",display:"flex",alignItems:"center",justifyContent:"center"}}><span style={{fontSize:36}}><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span></div>
                           }
                           {postMediaItems.length > 1 && (
                             <div style={{position:"absolute",bottom:8,right:8,background:"rgba(0,0,0,0.65)",borderRadius:2,padding:"3px 8px",fontSize:10,color:"#fff",fontFamily:"'Anton',sans-serif",letterSpacing:1}}>1 / {postMediaItems.length}</div>
@@ -3923,7 +3927,7 @@ export default function App() {
                       )}
                       {postMediaItems.length === 0 && (
                         <div style={{width:"100%",aspectRatio:"16/9",background:artistUser.color,display:"flex",alignItems:"center",justifyContent:"center",borderTop:"1px solid #1e1e00"}}>
-                          <span style={{fontSize:36}}><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity={0.2}><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></span>
+                          <span style={{fontSize:36}}><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></span>
                         </div>
                       )}
                       <div style={{padding:"10px 14px",fontSize:13,color:"#aaa",letterSpacing:1}}>{postCaption}</div>
@@ -3961,7 +3965,7 @@ export default function App() {
                         </div>
                         <div style={{width:"100%",aspectRatio:"16/9",background:p.color,display:"flex",alignItems:"center",justifyContent:"center",fontSize:64,position:"relative",overflow:"hidden",filter:isUnlocked?"none":"blur(8px)"}}>
                           {p.previewUrl?<img src={p.previewUrl} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>:
-                            <span>{p.type==="photo"?<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity={0.2}><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>:<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity={0.2}><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>}</span>}
+                            <span>{p.type==="photo"?<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>:<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>}</span>}
                         </div>
                         <div style={{padding:"10px 14px 4px",fontSize:13,color:darkMode?"#aaa":"#3a3a5a",fontFamily:"'Inter',sans-serif",lineHeight:1.6,filter:isUnlocked?"none":"blur(4px)",userSelect:isUnlocked?"auto":"none",pointerEvents:isUnlocked?"auto":"none"}}>{parseCaption(p.label)}</div>
                         {!isUnlocked&&(
@@ -3990,7 +3994,7 @@ export default function App() {
                     <span style={{fontFamily:"'Caveat',cursive",fontSize:52,fontWeight:700,color:darkMode?"#e6ff00":"#0e0e0e",letterSpacing:-2,lineHeight:1}}>tb</span>
                   </div>
                   <div className="profile-name" style={{fontFamily:"'Caveat',cursive",letterSpacing:-1,color:darkMode?"#e6ff00":"#0e0e0e"}}>tourbus</div>
-                  <div className="profile-genre">The Official tourbus Channel</div>
+                  
                   <p className="profile-bio">Artist spotlights, platform news, and exclusive editorial content. Always free. Always on your bus.</p>
                   <div className="profile-stats" style={{justifyContent:"center"}}>
 
@@ -4007,13 +4011,13 @@ export default function App() {
                       </div>
                       {(p.type==="photo"||p.type==="video")&&(
                         <div className="feed-post-thumb" style={{background:"#111"}}>
-                          <span style={{fontSize:64}}>{<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity={0.2}><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>}</span>
+                          <span style={{fontSize:64}}>{<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>}</span>
                         </div>
                       )}
                       <div className="tourbus-post-thumb">
                         <div className="tourbus-post-text">{parseCaption(p.label)}</div>
                       </div>
-                      {(()=>{const topTags=Object.entries(tags[p.id]||{}).filter(([,cnt])=>cnt>=TAG_THRESHOLD).sort((a,b)=>b[1]-a[1]).slice(0,5);return topTags.length>0&&<div className="tag-pills">{topTags.map(([tag])=><span key={tag} className="tag-pill" style={{cursor:"pointer"}} onClick={()=>setTags(prev=>({...prev,[p.id]:{...prev[p.id],[tag]:(prev[p.id][tag]||0)+1}}))}>#{tag}</span>)}</div>;})()}
+                      {(()=>{const topTags=Object.entries(tags[p.id]||{}).filter(([,cnt])=>cnt>=TAG_THRESHOLD).sort((a,b)=>b[1]-a[1]).slice(0,5);return topTags.length>0&&<div className="tag-pills">{topTags.map(([tag])=><span key={tag} className="tag-pill" style={{cursor:"pointer"}} onClick={()=>{setActiveTag(tag);go(SCREENS.TAG_FEED);}}>#{tag}</span>)}</div>;})()}
                       {activeTagInput===p.id&&(
                         <div className="tag-input-wrap">
                           <input className="tag-input" placeholder="add a tag..." maxLength={30} value={tagDraft} onChange={e=>setTagDraft(e.target.value.replace(/\s/g,''))} onKeyDown={e=>{if(e.key==='Enter')addTag(p.id,tagDraft);if(e.key==='Escape'){setActiveTagInput(null);setTagDraft('');}}}/>
@@ -4030,7 +4034,7 @@ export default function App() {
                 </div>
                 <div style={{textAlign:"center",padding:"12px 0",fontSize:11,color:darkMode?"#e6ff00":"#3a7a00",letterSpacing:2,fontFamily:"'Anton',sans-serif"}}>YOU'RE ON THIS BUS</div>
                 <div style={{textAlign:"center",marginTop:8}}>
-                  <span style={{fontSize:10,color:"#333",letterSpacing:1,cursor:"pointer",fontFamily:"'Anton',sans-serif"}} onClick={()=>go(SCREENS.TOURBUS_DASHBOARD)}>Admin</span>
+                  <span style={{fontSize:10,color:"#333",letterSpacing:1,cursor:"pointer",fontFamily:"'Anton',sans-serif"}} onClick={()=>go(SCREENS.TOURBUS_DASHBOARD)}>Admin -></span>
                 </div>
               </div>
             )}
@@ -4049,9 +4053,9 @@ export default function App() {
                   <div style={{background:darkMode?"#161616":"#ffffff",border:`1px solid ${darkMode?"#2a2a00":"#d0cfc0"}`,borderRadius:2,padding:20,marginBottom:24}}>
                     <div style={{fontFamily:"'Anton',sans-serif",fontSize:13,letterSpacing:3,color:darkMode?"#e6ff00":"#ff4d1a",marginBottom:16}}>NEW TOURBUS POST</div>
                     <div className="post-type-row">
-                      <button className={`post-type-btn${postType==="photo"?" selected":""}`} onClick={()=>setPostType("photo")}><div className="post-type-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity={0.2}><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div className="post-type-label">PHOTO</div></button>
-                      <button className={`post-type-btn${postType==="video"?" selected":""}`} onClick={()=>setPostType("video")}><div className="post-type-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity={0.2}><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div><div className="post-type-label">VIDEO</div></button>
-                      <button className={`post-type-btn${postType==="announcement"?" selected":""}`} onClick={()=>setPostType("announcement")}><div className="post-type-icon">ðŸ“¢</div><div className="post-type-label">ANNOUNCE</div></button>
+                      <button className={`post-type-btn${postType==="photo"?" selected":""}`} onClick={()=>setPostType("photo")}><div className="post-type-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div className="post-type-label">PHOTO</div></button>
+                      <button className={`post-type-btn${postType==="video"?" selected":""}`} onClick={()=>setPostType("video")}><div className="post-type-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div><div className="post-type-label">VIDEO</div></button>
+                      <button className={`post-type-btn${postType==="announcement"?" selected":""}`} onClick={()=>setPostType("announcement")}><div className="post-type-icon">&#128226;</div><div className="post-type-label">ANNOUNCE</div></button>
                     </div>
                     <div style={{fontSize:10,letterSpacing:3,color:"#555",marginBottom:10,fontFamily:"'Anton',sans-serif"}}>CAPTION</div>
                     <textarea className="inp" placeholder="Write your post..." value={postCaption} onChange={e=>setPostCaption(e.target.value.slice(0,1340))}/>
@@ -4087,7 +4091,7 @@ export default function App() {
                     {tourbusRecos.map(a=>(
                       <div key={a.id} style={{position:"relative"}}>
                         <ArtistThumb artist={a} style={{width:44,height:44,borderRadius:2,border:`1px solid ${darkMode?"#2a2a00":"#d0cfc0"}`}}/>
-                        <button style={{position:"absolute",top:-4,right:-4,width:14,height:14,borderRadius:"50%",background:"#331111",border:"none",cursor:"pointer",fontSize:8,color:"#cc4444",display:"flex",alignItems:"center",justifyContent:"center"}} onClick={()=>setTourbusRecos(p=>p.filter(r=>r.id!==a.id))}>âœ•</button>
+                        <button style={{position:"absolute",top:-4,right:-4,width:14,height:14,borderRadius:"50%",background:"#331111",border:"none",cursor:"pointer",fontSize:8,color:"#cc4444",display:"flex",alignItems:"center",justifyContent:"center"}} onClick={()=>setTourbusRecos(p=>p.filter(r=>r.id!==a.id))}>&#10005;</button>
                       </div>
                     ))}
                   </div>
