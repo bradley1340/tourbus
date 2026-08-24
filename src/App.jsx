@@ -1808,9 +1808,10 @@ export default function App() {
   const [isTourbuAdmin, setIsTourbuAdmin] = useState(false);
   const [tourbusRecos, setTourbusRecos] = useState([ARTISTS[0],ARTISTS[1],ARTISTS[4],ARTISTS[6],ARTISTS[9]]); // The Midnight, Jade Carver, Colt Reyes, Rosa Vega, Maeve
   const [tourbusNewPost, setTourbusNewPost] = useState(false);
-  const [riderSignInForm, setRiderSignInForm] = useState({username:"",password:""});
+  const [riderSignInForm, setRiderSignInForm] = useState({username:"mattbradley",password:"tourbus123"});
   const [riderSignInError, setRiderSignInError] = useState("");
   const [showPwReset, setShowPwReset] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [artistSignInForm, setArtistSignInForm] = useState({email:"",code:""});
   const [artistSignInError, setArtistSignInError] = useState("");
   const [editingProfile, setEditingProfile] = useState(false);
@@ -2568,7 +2569,10 @@ export default function App() {
                 <label className="lbl">Username</label>
                 <input className={`inp${riderSignInError?" inp-error":""}`} placeholder="your_handle" value={riderSignInForm.username} onChange={e=>{setRiderSignInForm(p=>({...p,username:e.target.value}));setRiderSignInError("");}}/>
                 <label className="lbl">Password</label>
-                <input className={`inp${riderSignInError?" inp-error":""}`} type="password" placeholder="********" value={riderSignInForm.password} onChange={e=>{setRiderSignInForm(p=>({...p,password:e.target.value}));setRiderSignInError("");}}/>
+                <div style={{position:"relative"}}>
+                  <input className={`inp${riderSignInError?" inp-error":""}`} type={showPassword?"text":"password"} placeholder="********" value={riderSignInForm.password} onChange={e=>{setRiderSignInForm(p=>({...p,password:e.target.value}));setRiderSignInError("");}} style={{paddingRight:44}}/>
+                  <button onClick={()=>setShowPassword(p=>!p)} type="button" style={{position:"absolute",right:12,top:"50%",transform:"translateY(-50%)",background:"none",border:"none",cursor:"pointer",fontSize:11,color:"#555",fontFamily:"'Anton',sans-serif",letterSpacing:1,padding:0}}>{showPassword?"HIDE":"SHOW"}</button>
+                </div>
                 {riderSignInError&&<div className="error-msg">{riderSignInError}</div>}
                 <div className="note" style={{marginTop:14}}>Demo: <strong style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>rider</strong> / <strong style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>rider</strong> &nbsp;.&nbsp; New rider: <strong style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>mattbradley</strong> / <strong style={{color:darkMode?"#e6ff00":"#ff4d1a"}}>tourbus123</strong></div>
                 <button className="btn btn-primary" style={{marginTop:22}} onClick={handleRiderSignIn}>Sign In</button>
