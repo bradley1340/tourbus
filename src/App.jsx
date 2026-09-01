@@ -2861,7 +2861,7 @@ export default function App() {
               </div>
             )}
             {showBuskModal&&selectedArtist&&(
-              <div className="modal-overlay" onClick={()=>{setShowBuskModal(false);setBuskCheckout(false);}}>
+              <div className="modal-overlay" style={{alignItems:"flex-start",paddingTop:"20vh"}} onClick={()=>{setShowBuskModal(false);setBuskCheckout(false);}}>
                 <div className="modal" onClick={e=>e.stopPropagation()}>
                   {!buskSent&&!buskCheckout&&(
                     <>
@@ -2881,7 +2881,7 @@ export default function App() {
                       )}
                       <div className="modal-btns">
                         {purchased.has(selectedArtist.id)&&!offBus[selectedArtist.name]?(
-                          <button className="btn btn-primary" style={{marginBottom:0,opacity:buskDraft.trim()?1:0.4,cursor:buskDraft.trim()?"pointer":"default"}} onClick={()=>{if(buskDraft.trim())setBuskCheckout(true);}}>Continue â€” $1</button>
+                          <button className="btn btn-primary" style={{marginBottom:0,opacity:buskDraft.trim()?1:0.4,cursor:buskDraft.trim()?"pointer":"default"}} onClick={()=>{if(buskDraft.trim())setBuskCheckout(true);}}>Send</button>
                         ):(
                           <button className="btn btn-primary" style={{marginBottom:0}} onClick={()=>{setShowBuskModal(false);go(SCREENS.CHECKOUT);}}>Ride to Send</button>
                         )}
@@ -2891,7 +2891,7 @@ export default function App() {
                   )}
                   {!buskSent&&buskCheckout&&(
                     <>
-                      <div className="modal-title">Busk Jar â€” $1</div>
+                      <div className="modal-title">Busk Jar</div>
                       <div style={{padding:"10px 12px",background:darkMode?"#161616":"#f8f8f0",border:`1px solid ${darkMode?"#2a2a00":"#e0dfd0"}`,borderRadius:2,marginBottom:16,fontSize:13,color:darkMode?"#aaa":"#555",fontStyle:"italic",fontFamily:"'Inter',sans-serif"}}>"{buskDraft}"</div>
                       <label className="lbl">Card Number</label>
                       <input className="inp" placeholder="Card on file: .... 4242" value={ccForm.number} onChange={e=>setCcForm(p=>({...p,number:e.target.value}))}/>
@@ -3204,30 +3204,34 @@ export default function App() {
                           <a href={getArtistProfile(selectedArtist).website} target="_blank" rel="noopener noreferrer" style={{fontSize:11,color:darkMode?"#e6ff00":"#ff4d1a",border:darkMode?"1px solid #e6ff00":"1px solid #ff4d1a",borderRadius:1,padding:"5px 12px",letterSpacing:1,textDecoration:"none",fontFamily:"'Anton',sans-serif"}}>Website</a>
                         </div>
                       )}
-                      <div className="profile-stats" style={{alignItems:"center",gap:12,flexWrap:"wrap"}}>
-                        <div className="stat"><div className="stat-num">{selectedArtist.riders.toLocaleString()}</div><div className="stat-lbl">Riders</div></div>
-                        <div className="stat"><div className="stat-num">{selectedArtist.posts}</div><div className="stat-lbl">Posts</div></div>
-                        {getArtistProfile(selectedArtist).onTour&&(
-                          <button onClick={()=>go(SCREENS.TOUR_SCHEDULE)} style={{fontFamily:"'Anton',sans-serif",fontSize:13,letterSpacing:2,color:darkMode?"#e6ff00":"#ff4d1a",background:darkMode?"rgba(230,255,0,0.06)":"rgba(255,77,26,0.08)",border:darkMode?"1px solid rgba(230,255,0,0.3)":"1px solid rgba(255,77,26,0.4)",borderRadius:2,padding:"7px 14px",cursor:"pointer"}}>
-                            ON TOUR
-                          </button>
-                        )}
-                        {(()=>{
-                          const listenUrl = getArtistProfile(selectedArtist).listen;
-                          const btn = <div style={{fontFamily:"'Anton',sans-serif",fontSize:13,letterSpacing:2,color:darkMode?"#e6ff00":"#ff4d1a",background:darkMode?"rgba(230,255,0,0.06)":"rgba(255,77,26,0.08)",border:darkMode?"1px solid rgba(230,255,0,0.3)":"1px solid rgba(255,77,26,0.4)",borderRadius:2,padding:"7px 14px",cursor:listenUrl?"pointer":"default",opacity:listenUrl?1:0.45}}>LISTEN</div>;
-                          return listenUrl
-                            ? <a href={`${listenUrl}?utm_source=tourbus`} target="_blank" rel="noopener noreferrer" style={{textDecoration:"none"}}>{btn}</a>
-                            : btn;
-                        })()}
-                        {selectedArtist.active&&(
-                          <button onClick={()=>{setBuskDraft('');setBuskSent(false);setBuskCheckout(false);setShowBuskModal(true);}} style={{fontFamily:"'Anton',sans-serif",fontSize:13,letterSpacing:2,color:darkMode?"#e6ff00":"#ff4d1a",background:darkMode?"rgba(230,255,0,0.06)":"rgba(255,77,26,0.08)",border:darkMode?"1px solid rgba(230,255,0,0.3)":"1px solid rgba(255,77,26,0.4)",borderRadius:2,padding:"7px 14px",cursor:"pointer"}}>BUSK JAR</button>
-                        )}
+                      <div style={{display:"flex",flexDirection:"column",alignItems:"center",gap:10,width:"100%"}}>
+                        {/* Row 1: Riders + Posts */}
+                        <div className="profile-stats" style={{alignItems:"center",gap:12,justifyContent:"center"}}>
+                          <div className="stat"><div className="stat-num">{selectedArtist.riders.toLocaleString()}</div><div className="stat-lbl">Riders</div></div>
+                          <div className="stat"><div className="stat-num">{selectedArtist.posts}</div><div className="stat-lbl">Posts</div></div>
+                        </div>
+                        {/* Row 2: ON TOUR / LISTEN / BUSK JAR */}
+                        <div style={{display:"flex",alignItems:"center",gap:8,justifyContent:"center",flexWrap:"wrap"}}>
+                          {getArtistProfile(selectedArtist).onTour&&(
+                            <button onClick={()=>go(SCREENS.TOUR_SCHEDULE)} style={{fontFamily:"'Anton',sans-serif",fontSize:13,letterSpacing:2,color:darkMode?"#e6ff00":"#ff4d1a",background:darkMode?"rgba(230,255,0,0.06)":"rgba(255,77,26,0.08)",border:darkMode?"1px solid rgba(230,255,0,0.3)":"1px solid rgba(255,77,26,0.4)",borderRadius:2,padding:"7px 14px",cursor:"pointer"}}>ON TOUR</button>
+                          )}
+                          {(()=>{
+                            const listenUrl = getArtistProfile(selectedArtist).listen;
+                            const btn = <div style={{fontFamily:"'Anton',sans-serif",fontSize:13,letterSpacing:2,color:darkMode?"#e6ff00":"#ff4d1a",background:darkMode?"rgba(230,255,0,0.06)":"rgba(255,77,26,0.08)",border:darkMode?"1px solid rgba(230,255,0,0.3)":"1px solid rgba(255,77,26,0.4)",borderRadius:2,padding:"7px 14px",cursor:listenUrl?"pointer":"default",opacity:listenUrl?1:0.45}}>LISTEN</div>;
+                            return listenUrl
+                              ? <a href={`${listenUrl}?utm_source=tourbus`} target="_blank" rel="noopener noreferrer" style={{textDecoration:"none"}}>{btn}</a>
+                              : btn;
+                          })()}
+                          {selectedArtist.active&&(
+                            <button onClick={()=>{setBuskDraft('');setBuskSent(false);setBuskCheckout(false);setShowBuskModal(true);}} style={{fontFamily:"'Anton',sans-serif",fontSize:13,letterSpacing:2,color:darkMode?"#e6ff00":"#ff4d1a",background:darkMode?"rgba(230,255,0,0.06)":"rgba(255,77,26,0.08)",border:darkMode?"1px solid rgba(230,255,0,0.3)":"1px solid rgba(255,77,26,0.4)",borderRadius:2,padding:"7px 14px",cursor:"pointer"}}>BUSK JAR</button>
+                          )}
+                        </div>
                       </div>
                       {/* Recos â€” own section below stats */}
                       {(artistRecos[selectedArtist.id]||[]).length>0&&(
                         <div style={{width:"100%",marginTop:20,paddingTop:16,borderTop:`1px solid ${darkMode?"#1e1e00":"#e8e8e0"}`}}>
                           <div style={{fontFamily:"'Anton',sans-serif",fontSize:10,letterSpacing:3,color:darkMode?"#555":"#aaa",marginBottom:12,textAlign:"center"}}>ARTIST RECOS</div>
-                          <div style={{display:"flex",gap:12,justifyContent:"center",flexWrap:"wrap"}}>
+                          <div style={{display:"flex",gap:12,justifyContent:"center",flexWrap:"wrap",justifyContent:"center"}}>
                             {(artistRecos[selectedArtist.id]||[]).map(a=>(
                               <div key={a.id} style={{display:"flex",flexDirection:"column",alignItems:"center",gap:6,cursor:"pointer",minWidth:56}} onClick={()=>goToArtist(a)}>
                                 <ArtistThumb artist={a} style={{width:56,height:56,borderRadius:2,border:`1px solid ${darkMode?"#3a3a00":"#d0cfc0"}`,transition:"border-color 0.2s"}}/>
